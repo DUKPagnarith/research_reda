@@ -1,0 +1,354 @@
+---
+title: "Research Roadmap: Measuring Credit Risk in Cambodia's Banking Sector Using Interest Rate Spreads"
+subtitle: "A Step-by-Step Guide for Your First Research Project"
+author: "Research Plan"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+---
+
+# Project Overview
+
+## Title (Working)
+
+**"Credit Risk and Early Warning Indicators in Cambodia's Banking Sector: Evidence from Interest Rate Spreads (2014–2024)"**
+
+## Research Question
+
+*Can interest rate spreads between lending and deposit rates serve as an effective early warning indicator of credit risk in Cambodia's banking sector, and how did the COVID-19 pandemic impact credit risk dynamics?*
+
+## Why This Topic Works for You
+
+- **Data you already have**: 10 years of loan and deposit interest rates from the National Bank of Cambodia (NBC)
+- **No loan-level data needed**: The CRI framework is specifically designed for environments with limited default data — exactly Cambodia's situation
+- **Directly relevant to your internship goal**: You'll be building an early warning tool that any bank risk department would find valuable
+- **Demonstrates technical skills**: Stochastic modeling, time series analysis, stress testing
+- **Original contribution**: Very few (if any) studies apply this framework to Cambodia specifically
+
+---
+
+# Paper Structure
+
+Your paper should follow this structure. Aim for roughly **15–25 pages** total.
+
+## Section 1: Introduction (2–3 pages)
+
+What to write:
+
+- Why credit risk matters for Cambodia's banking sector
+- The challenge: Cambodia has limited default data, so traditional PD/LGD/EAD models are hard to build
+- Your solution: Use interest rate spreads as an *indirect* measure of credit risk
+- Brief mention of the COVID-19 angle as a case study
+- State your research question clearly
+- Outline the rest of the paper
+
+Key points to make:
+
+- Cambodia's banking sector has grown rapidly (credit growth has been double digits for years)
+- The sector is heavily dollarized (~80% of loans in USD), which adds a unique risk dimension
+- NBC has been strengthening regulation but granular default data remains scarce
+- Interest rate spreads reflect how banks price risk — when spreads widen, banks perceive more risk
+
+## Section 2: Literature Review (2–3 pages)
+
+Cover these areas:
+
+- **Credit risk measurement**: Briefly explain PD, LGD, EAD (from your modeling notes). Explain that these require loan-level data
+- **Interest rate spreads as risk indicators**: Academic papers that use spreads to measure financial stress (e.g., TED spread, corporate bond spreads as risk indicators)
+- **Mean-reverting stochastic processes**: The Ornstein-Uhlenbeck model and its use in finance
+- **Cambodia's banking sector**: Any existing studies on Cambodian financial stability
+- **Gap in literature**: No one has built a composite Credit Risk Index for Cambodia using this approach
+
+::: {.callout-tip}
+## Tip for a First-Time Researcher
+You don't need to read 50 papers. Aim for 15–20 well-chosen references. Use Google Scholar and search terms like "interest rate spread credit risk", "financial stability Cambodia", "Ornstein-Uhlenbeck interest rates", "early warning indicators banking".
+:::
+
+## Section 3: Methodology (4–5 pages)
+
+This is the core of your paper. Here's the step-by-step framework from your study materials:
+
+### Step 3.1: Define the Spread
+
+$$
+S_t = r_{\text{loan},t} - r_{\text{deposit},t}
+$$
+
+where $S_t$ is the interest rate spread at time $t$. This spread captures credit risk compensation, operating costs, and profit margin.
+
+### Step 3.2: Fit the Ornstein-Uhlenbeck Model
+
+The spread follows a **mean-reverting stochastic differential equation (SDE)**:
+
+$$
+dS_t = \kappa(\theta - S_t)\,dt + \sigma\,dW_t
+$$
+
+where:
+
+| Parameter | Meaning | Intuition |
+|-----------|---------|-----------|
+| $S_t$ | Spread at time $t$ | What you observe in data |
+| $\theta$ | Long-run average spread | The "normal" level spreads revert to |
+| $\kappa$ | Speed of mean reversion | How fast spreads return to normal after a shock |
+| $\sigma$ | Volatility | How much random fluctuation there is |
+| $W_t$ | Brownian motion | Random shocks from the market |
+
+**How to estimate these parameters from your data**: Use Maximum Likelihood Estimation (MLE) or the method of moments on your monthly spread series. In Python, you can use `scipy.optimize.minimize` to fit the parameters.
+
+### Step 3.3: Derive the Distribution
+
+Under this model, the spread at time $t$ is normally distributed:
+
+$$
+S_t \sim \mathcal{N}(m(t),\; v(t))
+$$
+
+where:
+
+$$
+m(t) = \theta + (S_0 - \theta)e^{-\kappa t}
+$$
+
+$$
+v(t) = \frac{\sigma^2}{2\kappa}\left(1 - e^{-2\kappa t}\right)
+$$
+
+### Step 3.4: Set the Crisis Threshold
+
+Choose a threshold $S_c$ above which the spread signals a "crisis." Methods:
+
+- **Statistical**: Use the 95th percentile of historical spreads
+- **Historical**: Look at the maximum spread during known stress periods (e.g., COVID-19)
+- **Expert judgment**: Consult literature on what spread levels are considered dangerous
+
+::: {.callout-note}
+For your paper, I'd recommend using the **95th percentile** as your primary threshold, then testing sensitivity with the 90th and 99th percentiles.
+:::
+
+### Step 3.5: Compute Crisis Probability
+
+$$
+P(S_t > S_c) = 1 - \Phi\left(\frac{S_c - m(t)}{\sqrt{v(t)}}\right)
+$$
+
+where $\Phi(\cdot)$ is the standard normal CDF.
+
+### Step 3.6: Construct the Credit Risk Index (CRI)
+
+$$
+\text{CRI} = \alpha \cdot \sigma + \beta \cdot P(S_t > S_c)
+$$
+
+where $\alpha$ and $\beta$ are weighting parameters. This combines:
+
+- **$\sigma$** — spread volatility (measures instability)
+- **$P(S_t > S_c)$** — crisis probability (measures extreme risk)
+
+For weights, you can:
+
+- Use equal weights ($\alpha = \beta = 0.5$) as a baseline
+- Then test different weight combinations as a sensitivity analysis
+
+### Step 3.7: Stress Testing
+
+Simulate a shock:
+
+$$
+S_t^{\text{stress}} = S_t(1 + \delta)
+$$
+
+| $\delta$ | Scenario |
+|----------|----------|
+| 0.10 | Mild stress |
+| 0.30 | Moderate stress |
+| 0.50 | Severe crisis |
+
+Then recompute crisis probability and CRI under each stress scenario and compare to baseline.
+
+## Section 4: Data Description (2–3 pages)
+
+Describe your NBC dataset:
+
+- Time period covered (e.g., 2014–2024)
+- Frequency (monthly? quarterly?)
+- Variables: lending rate, deposit rate, and the computed spread
+- Descriptive statistics: mean, standard deviation, min, max
+- Time series plots showing the spread over time
+- Highlight the COVID-19 period visually (shade 2020–2021 on your charts)
+
+::: {.callout-tip}
+## If Your Data Separates KHR and USD
+If the NBC data breaks down rates by currency (KHR vs. USD), compute spreads for **both** currencies separately. This gives you richer analysis and a unique Cambodia-specific angle.
+:::
+
+## Section 5: Results (4–5 pages)
+
+Present your findings in this order:
+
+1. **Estimated parameters** ($\kappa$, $\theta$, $\sigma$) — explain what they mean in the Cambodia context. For example, a low $\kappa$ means spreads are slow to return to normal after shocks.
+
+2. **CRI over time** — plot the Credit Risk Index from 2014–2024. Annotate key events:
+   - 2020: COVID-19 onset
+   - 2020–2021: NBC loan restructuring measures
+   - 2022–2023: Recovery period
+
+3. **COVID-19 case study** — compare CRI before COVID (2014–2019), during COVID (2020–2021), and after (2022–2024). Did the CRI spike? How quickly did it recover?
+
+4. **Stress test results** — show how CRI changes under mild/moderate/severe shocks. Is Cambodia's banking system fragile or resilient?
+
+5. **Interpretation table**:
+
+| CRI Level | Interpretation |
+|-----------|---------------|
+| Low | Stable financial conditions |
+| Moderate | Elevated risk — increased monitoring needed |
+| High | Severe danger — potential crisis |
+
+## Section 6: Discussion (1–2 pages)
+
+- What do your results tell us about credit risk in Cambodia?
+- How does the COVID-19 shock compare to the stress test scenarios?
+- Policy implications: Could the NBC use a CRI-like tool for monitoring?
+- Limitations: The spread captures more than just credit risk (also includes operating costs, profit margins). Data frequency may be limited.
+
+## Section 7: Conclusion (1 page)
+
+- Summarize key findings
+- Emphasize the practical value: an early warning tool that works with limited data
+- Suggest future research directions (e.g., extending to individual bank data, adding macroeconomic variables)
+
+---
+
+# Your Data: What to Collect
+
+## What You Already Have
+
+- Lending rates from NBC (10 years)
+- Deposit rates from NBC (10 years)
+
+## Where to Find Additional Context Data (Optional but Helpful)
+
+| Data | Source | Why |
+|------|--------|-----|
+| GDP growth | World Bank / IMF | To annotate your charts with economic context |
+| Credit growth | NBC Annual Reports | To show banking sector expansion |
+| NPL ratios | NBC / IMF FSAP reports | To validate your CRI against actual default trends |
+| Policy rate changes | NBC | To explain sudden spread movements |
+
+## Data Preparation Steps
+
+1. Download your loan and deposit rates into a CSV file with columns: `date`, `loan_rate`, `deposit_rate`
+2. Compute the spread: `spread = loan_rate - deposit_rate`
+3. Check for missing values and outliers
+4. Plot the raw series to visually inspect trends
+
+---
+
+# Python Implementation Plan
+
+You'll need to learn Python for this project. Here's a learning plan:
+
+## Libraries to Install
+
+```bash
+pip install pandas numpy scipy matplotlib statsmodels
+```
+
+## Code Structure
+
+Your project should have these Python scripts/notebooks:
+
+```
+project/
+├── data/
+│   └── nbc_interest_rates.csv       # Your raw data
+├── notebooks/
+│   ├── 01_data_preparation.ipynb     # Load, clean, compute spread
+│   ├── 02_exploratory_analysis.ipynb # Plots, descriptive stats
+│   ├── 03_parameter_estimation.ipynb # Fit the OU model
+│   ├── 04_cri_computation.ipynb      # Crisis probability + CRI
+│   └── 05_stress_testing.ipynb       # Stress scenarios
+├── paper/
+│   └── paper.qmd                     # Your final paper
+└── README.md
+```
+
+## What Each Notebook Does
+
+**Notebook 01 — Data Preparation**:
+Load CSV, compute spread, handle missing data, export clean dataset.
+
+**Notebook 02 — Exploratory Analysis**:
+Plot the spread time series, compute descriptive statistics (mean, std, min, max, percentiles), visually identify the COVID period.
+
+**Notebook 03 — Parameter Estimation**:
+Estimate $\kappa$, $\theta$, $\sigma$ from the spread data using MLE. The key idea: for discrete observations, the OU process has a known transition density, so you can write a log-likelihood function and maximize it.
+
+**Notebook 04 — CRI Computation**:
+Using estimated parameters, compute $m(t)$, $v(t)$, crisis probability $P(S_t > S_c)$, and the CRI for each time period. Plot CRI over time.
+
+**Notebook 05 — Stress Testing**:
+Apply stress shocks ($\delta = 0.1, 0.3, 0.5$), recompute CRI, compare to baseline, visualize results.
+
+---
+
+# Timeline (Suggested: 6–8 Weeks)
+
+| Week | Task |
+|------|------|
+| 1 | Learn Python basics (pandas, matplotlib). Collect and clean your data |
+| 2 | Exploratory analysis: plots, descriptive stats. Start literature review |
+| 3 | Study the OU model math. Implement parameter estimation in Python |
+| 4 | Compute crisis probability and CRI. Debug and validate results |
+| 5 | Run stress tests. Create all charts and tables |
+| 6 | Write the paper: Introduction, Literature Review, Methodology |
+| 7 | Write the paper: Results, Discussion, Conclusion |
+| 8 | Review, polish, and prepare for interviews |
+
+---
+
+# How to Talk About This in Interviews
+
+When a credit risk interviewer asks "tell me about a project you've worked on," here's your story:
+
+> "I built a Credit Risk Index for Cambodia's banking sector using 10 years of interest rate data from the National Bank of Cambodia. The challenge was that Cambodia doesn't have widely available default data, so I used an indirect approach — modeling the dynamics of lending-deposit spreads with an Ornstein-Uhlenbeck stochastic process. I estimated the model parameters, computed crisis probabilities, and constructed a composite index that combines spread volatility and tail risk. I also used COVID-19 as a case study to test the model's ability to detect financial stress, and ran stress tests under different severity scenarios. The project showed me that data preparation is really 70% of the work, and I gained hands-on experience with stochastic modeling, time series analysis, and risk quantification in Python."
+
+This answer hits everything a hiring manager wants to hear: you understand the business problem, you chose an appropriate methodology, you executed it technically, and you can communicate results clearly.
+
+---
+
+# Resources to Get Started
+
+## Python Learning (Focus on These)
+
+- **pandas**: DataCamp's "Introduction to pandas" or the official 10-minute tutorial
+- **matplotlib**: The official pyplot tutorial
+- **scipy.optimize**: For parameter estimation — learn `minimize` function
+
+## Key Concepts to Study
+
+- What is a stochastic differential equation (conceptual, not deep math)
+- The Ornstein-Uhlenbeck process and why it's used for mean-reverting series
+- Maximum Likelihood Estimation basics
+- The normal distribution CDF (for computing crisis probability)
+
+## Cambodia-Specific Sources
+
+- NBC Annual Reports and Statistical Bulletins (for your data and context)
+- IMF Article IV Consultation reports on Cambodia (great for literature review)
+- World Bank Cambodia Economic Updates
+
+---
+
+# Next Steps: What to Do Right Now
+
+1. **Organize your NBC data** into a clean CSV with columns: `date`, `loan_rate`, `deposit_rate`
+2. **Install Python** (use Anaconda — it comes with pandas, numpy, matplotlib pre-installed)
+3. **Open a Jupyter notebook** and plot your spread series — just seeing the data will give you intuition
+4. **Read your project PDF** on the CRI methodology one more time — it will make much more sense now that you have a concrete plan
+5. **Come back to me** when you're ready to write the Python code — I can help you build each notebook step by step
