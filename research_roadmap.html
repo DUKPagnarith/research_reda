@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Research Plan">
+<meta name="dcterms.date" content="2026-02-17">
+
+<title>Research Roadmap: Measuring Credit Risk in Cambodia’s Banking Sector Using Interest Rate Spreads</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="research_roadmap_files/libs/clipboard/clipboard.min.js"></script>
+<script src="research_roadmap_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="research_roadmap_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="research_roadmap_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="research_roadmap_files/libs/quarto-html/popper.min.js"></script>
+<script src="research_roadmap_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="research_roadmap_files/libs/quarto-html/anchor.min.js"></script>
+<link href="research_roadmap_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="research_roadmap_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="research_roadmap_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="research_roadmap_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="research_roadmap_files/libs/bootstrap/bootstrap-a74871fe4945b66d259aafc266475145.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview"><span class="header-section-number">1</span> Project Overview</a>
+  <ul class="collapse">
+  <li><a href="#title-working" id="toc-title-working" class="nav-link" data-scroll-target="#title-working"><span class="header-section-number">1.1</span> Title (Working)</a></li>
+  <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">1.2</span> Research Question</a></li>
+  <li><a href="#why-this-topic-works-for-you" id="toc-why-this-topic-works-for-you" class="nav-link" data-scroll-target="#why-this-topic-works-for-you"><span class="header-section-number">1.3</span> Why This Topic Works for You</a></li>
+  </ul></li>
+  <li><a href="#paper-structure" id="toc-paper-structure" class="nav-link" data-scroll-target="#paper-structure"><span class="header-section-number">2</span> Paper Structure</a>
+  <ul class="collapse">
+  <li><a href="#section-1-introduction-23-pages" id="toc-section-1-introduction-23-pages" class="nav-link" data-scroll-target="#section-1-introduction-23-pages"><span class="header-section-number">2.1</span> Section 1: Introduction (2–3 pages)</a></li>
+  <li><a href="#section-2-literature-review-23-pages" id="toc-section-2-literature-review-23-pages" class="nav-link" data-scroll-target="#section-2-literature-review-23-pages"><span class="header-section-number">2.2</span> Section 2: Literature Review (2–3 pages)</a></li>
+  <li><a href="#section-3-methodology-45-pages" id="toc-section-3-methodology-45-pages" class="nav-link" data-scroll-target="#section-3-methodology-45-pages"><span class="header-section-number">2.3</span> Section 3: Methodology (4–5 pages)</a>
+  <ul class="collapse">
+  <li><a href="#step-3.1-define-the-spread" id="toc-step-3.1-define-the-spread" class="nav-link" data-scroll-target="#step-3.1-define-the-spread"><span class="header-section-number">2.3.1</span> Step 3.1: Define the Spread</a></li>
+  <li><a href="#step-3.2-fit-the-ornstein-uhlenbeck-model" id="toc-step-3.2-fit-the-ornstein-uhlenbeck-model" class="nav-link" data-scroll-target="#step-3.2-fit-the-ornstein-uhlenbeck-model"><span class="header-section-number">2.3.2</span> Step 3.2: Fit the Ornstein-Uhlenbeck Model</a></li>
+  <li><a href="#step-3.3-derive-the-distribution" id="toc-step-3.3-derive-the-distribution" class="nav-link" data-scroll-target="#step-3.3-derive-the-distribution"><span class="header-section-number">2.3.3</span> Step 3.3: Derive the Distribution</a></li>
+  <li><a href="#step-3.4-set-the-crisis-threshold" id="toc-step-3.4-set-the-crisis-threshold" class="nav-link" data-scroll-target="#step-3.4-set-the-crisis-threshold"><span class="header-section-number">2.3.4</span> Step 3.4: Set the Crisis Threshold</a></li>
+  <li><a href="#step-3.5-compute-crisis-probability" id="toc-step-3.5-compute-crisis-probability" class="nav-link" data-scroll-target="#step-3.5-compute-crisis-probability"><span class="header-section-number">2.3.5</span> Step 3.5: Compute Crisis Probability</a></li>
+  <li><a href="#step-3.6-construct-the-credit-risk-index-cri" id="toc-step-3.6-construct-the-credit-risk-index-cri" class="nav-link" data-scroll-target="#step-3.6-construct-the-credit-risk-index-cri"><span class="header-section-number">2.3.6</span> Step 3.6: Construct the Credit Risk Index (CRI)</a></li>
+  <li><a href="#step-3.7-stress-testing" id="toc-step-3.7-stress-testing" class="nav-link" data-scroll-target="#step-3.7-stress-testing"><span class="header-section-number">2.3.7</span> Step 3.7: Stress Testing</a></li>
+  </ul></li>
+  <li><a href="#section-4-data-description-23-pages" id="toc-section-4-data-description-23-pages" class="nav-link" data-scroll-target="#section-4-data-description-23-pages"><span class="header-section-number">2.4</span> Section 4: Data Description (2–3 pages)</a></li>
+  <li><a href="#section-5-results-45-pages" id="toc-section-5-results-45-pages" class="nav-link" data-scroll-target="#section-5-results-45-pages"><span class="header-section-number">2.5</span> Section 5: Results (4–5 pages)</a></li>
+  <li><a href="#section-6-discussion-12-pages" id="toc-section-6-discussion-12-pages" class="nav-link" data-scroll-target="#section-6-discussion-12-pages"><span class="header-section-number">2.6</span> Section 6: Discussion (1–2 pages)</a></li>
+  <li><a href="#section-7-conclusion-1-page" id="toc-section-7-conclusion-1-page" class="nav-link" data-scroll-target="#section-7-conclusion-1-page"><span class="header-section-number">2.7</span> Section 7: Conclusion (1 page)</a></li>
+  </ul></li>
+  <li><a href="#your-data-what-to-collect" id="toc-your-data-what-to-collect" class="nav-link" data-scroll-target="#your-data-what-to-collect"><span class="header-section-number">3</span> Your Data: What to Collect</a>
+  <ul class="collapse">
+  <li><a href="#what-you-already-have" id="toc-what-you-already-have" class="nav-link" data-scroll-target="#what-you-already-have"><span class="header-section-number">3.1</span> What You Already Have</a></li>
+  <li><a href="#where-to-find-additional-context-data-optional-but-helpful" id="toc-where-to-find-additional-context-data-optional-but-helpful" class="nav-link" data-scroll-target="#where-to-find-additional-context-data-optional-but-helpful"><span class="header-section-number">3.2</span> Where to Find Additional Context Data (Optional but Helpful)</a></li>
+  <li><a href="#data-preparation-steps" id="toc-data-preparation-steps" class="nav-link" data-scroll-target="#data-preparation-steps"><span class="header-section-number">3.3</span> Data Preparation Steps</a></li>
+  </ul></li>
+  <li><a href="#python-implementation-plan" id="toc-python-implementation-plan" class="nav-link" data-scroll-target="#python-implementation-plan"><span class="header-section-number">4</span> Python Implementation Plan</a>
+  <ul class="collapse">
+  <li><a href="#libraries-to-install" id="toc-libraries-to-install" class="nav-link" data-scroll-target="#libraries-to-install"><span class="header-section-number">4.1</span> Libraries to Install</a></li>
+  <li><a href="#code-structure" id="toc-code-structure" class="nav-link" data-scroll-target="#code-structure"><span class="header-section-number">4.2</span> Code Structure</a></li>
+  <li><a href="#what-each-notebook-does" id="toc-what-each-notebook-does" class="nav-link" data-scroll-target="#what-each-notebook-does"><span class="header-section-number">4.3</span> What Each Notebook Does</a></li>
+  </ul></li>
+  <li><a href="#timeline-suggested-68-weeks" id="toc-timeline-suggested-68-weeks" class="nav-link" data-scroll-target="#timeline-suggested-68-weeks"><span class="header-section-number">5</span> Timeline (Suggested: 6–8 Weeks)</a></li>
+  <li><a href="#how-to-talk-about-this-in-interviews" id="toc-how-to-talk-about-this-in-interviews" class="nav-link" data-scroll-target="#how-to-talk-about-this-in-interviews"><span class="header-section-number">6</span> How to Talk About This in Interviews</a></li>
+  <li><a href="#resources-to-get-started" id="toc-resources-to-get-started" class="nav-link" data-scroll-target="#resources-to-get-started"><span class="header-section-number">7</span> Resources to Get Started</a>
+  <ul class="collapse">
+  <li><a href="#python-learning-focus-on-these" id="toc-python-learning-focus-on-these" class="nav-link" data-scroll-target="#python-learning-focus-on-these"><span class="header-section-number">7.1</span> Python Learning (Focus on These)</a></li>
+  <li><a href="#key-concepts-to-study" id="toc-key-concepts-to-study" class="nav-link" data-scroll-target="#key-concepts-to-study"><span class="header-section-number">7.2</span> Key Concepts to Study</a></li>
+  <li><a href="#cambodia-specific-sources" id="toc-cambodia-specific-sources" class="nav-link" data-scroll-target="#cambodia-specific-sources"><span class="header-section-number">7.3</span> Cambodia-Specific Sources</a></li>
+  </ul></li>
+  <li><a href="#next-steps-what-to-do-right-now" id="toc-next-steps-what-to-do-right-now" class="nav-link" data-scroll-target="#next-steps-what-to-do-right-now"><span class="header-section-number">8</span> Next Steps: What to Do Right Now</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Research Roadmap: Measuring Credit Risk in Cambodia’s Banking Sector Using Interest Rate Spreads</h1>
+<p class="subtitle lead">A Step-by-Step Guide for Your First Research Project</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Research Plan </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 17, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="project-overview" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project Overview</h1>
+<section id="title-working" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="title-working"><span class="header-section-number">1.1</span> Title (Working)</h2>
+<p><strong>“Credit Risk and Early Warning Indicators in Cambodia’s Banking Sector: Evidence from Interest Rate Spreads (2014–2024)”</strong></p>
+</section>
+<section id="research-question" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="research-question"><span class="header-section-number">1.2</span> Research Question</h2>
+<p><em>Can interest rate spreads between lending and deposit rates serve as an effective early warning indicator of credit risk in Cambodia’s banking sector, and how did the COVID-19 pandemic impact credit risk dynamics?</em></p>
+</section>
+<section id="why-this-topic-works-for-you" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="why-this-topic-works-for-you"><span class="header-section-number">1.3</span> Why This Topic Works for You</h2>
+<ul>
+<li><strong>Data you already have</strong>: 10 years of loan and deposit interest rates from the National Bank of Cambodia (NBC)</li>
+<li><strong>No loan-level data needed</strong>: The CRI framework is specifically designed for environments with limited default data — exactly Cambodia’s situation</li>
+<li><strong>Directly relevant to your internship goal</strong>: You’ll be building an early warning tool that any bank risk department would find valuable</li>
+<li><strong>Demonstrates technical skills</strong>: Stochastic modeling, time series analysis, stress testing</li>
+<li><strong>Original contribution</strong>: Very few (if any) studies apply this framework to Cambodia specifically</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="paper-structure" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Paper Structure</h1>
+<p>Your paper should follow this structure. Aim for roughly <strong>15–25 pages</strong> total.</p>
+<section id="section-1-introduction-23-pages" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="section-1-introduction-23-pages"><span class="header-section-number">2.1</span> Section 1: Introduction (2–3 pages)</h2>
+<p>What to write:</p>
+<ul>
+<li>Why credit risk matters for Cambodia’s banking sector</li>
+<li>The challenge: Cambodia has limited default data, so traditional PD/LGD/EAD models are hard to build</li>
+<li>Your solution: Use interest rate spreads as an <em>indirect</em> measure of credit risk</li>
+<li>Brief mention of the COVID-19 angle as a case study</li>
+<li>State your research question clearly</li>
+<li>Outline the rest of the paper</li>
+</ul>
+<p>Key points to make:</p>
+<ul>
+<li>Cambodia’s banking sector has grown rapidly (credit growth has been double digits for years)</li>
+<li>The sector is heavily dollarized (~80% of loans in USD), which adds a unique risk dimension</li>
+<li>NBC has been strengthening regulation but granular default data remains scarce</li>
+<li>Interest rate spreads reflect how banks price risk — when spreads widen, banks perceive more risk</li>
+</ul>
+</section>
+<section id="section-2-literature-review-23-pages" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="section-2-literature-review-23-pages"><span class="header-section-number">2.2</span> Section 2: Literature Review (2–3 pages)</h2>
+<p>Cover these areas:</p>
+<ul>
+<li><strong>Credit risk measurement</strong>: Briefly explain PD, LGD, EAD (from your modeling notes). Explain that these require loan-level data</li>
+<li><strong>Interest rate spreads as risk indicators</strong>: Academic papers that use spreads to measure financial stress (e.g., TED spread, corporate bond spreads as risk indicators)</li>
+<li><strong>Mean-reverting stochastic processes</strong>: The Ornstein-Uhlenbeck model and its use in finance</li>
+<li><strong>Cambodia’s banking sector</strong>: Any existing studies on Cambodian financial stability</li>
+<li><strong>Gap in literature</strong>: No one has built a composite Credit Risk Index for Cambodia using this approach</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip for a First-Time Researcher
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You don’t need to read 50 papers. Aim for 15–20 well-chosen references. Use Google Scholar and search terms like “interest rate spread credit risk”, “financial stability Cambodia”, “Ornstein-Uhlenbeck interest rates”, “early warning indicators banking”.</p>
+</div>
+</div>
+</section>
+<section id="section-3-methodology-45-pages" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="section-3-methodology-45-pages"><span class="header-section-number">2.3</span> Section 3: Methodology (4–5 pages)</h2>
+<p>This is the core of your paper. Here’s the step-by-step framework from your study materials:</p>
+<section id="step-3.1-define-the-spread" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="step-3.1-define-the-spread"><span class="header-section-number">2.3.1</span> Step 3.1: Define the Spread</h3>
+<p><span class="math display">\[
+S_t = r_{\text{loan},t} - r_{\text{deposit},t}
+\]</span></p>
+<p>where <span class="math inline">\(S_t\)</span> is the interest rate spread at time <span class="math inline">\(t\)</span>. This spread captures credit risk compensation, operating costs, and profit margin.</p>
+</section>
+<section id="step-3.2-fit-the-ornstein-uhlenbeck-model" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="step-3.2-fit-the-ornstein-uhlenbeck-model"><span class="header-section-number">2.3.2</span> Step 3.2: Fit the Ornstein-Uhlenbeck Model</h3>
+<p>The spread follows a <strong>mean-reverting stochastic differential equation (SDE)</strong>:</p>
+<p><span class="math display">\[
+dS_t = \kappa(\theta - S_t)\,dt + \sigma\,dW_t
+\]</span></p>
+<p>where:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 29%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Intuition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(S_t\)</span></td>
+<td>Spread at time <span class="math inline">\(t\)</span></td>
+<td>What you observe in data</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\theta\)</span></td>
+<td>Long-run average spread</td>
+<td>The “normal” level spreads revert to</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\kappa\)</span></td>
+<td>Speed of mean reversion</td>
+<td>How fast spreads return to normal after a shock</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sigma\)</span></td>
+<td>Volatility</td>
+<td>How much random fluctuation there is</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(W_t\)</span></td>
+<td>Brownian motion</td>
+<td>Random shocks from the market</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to estimate these parameters from your data</strong>: Use Maximum Likelihood Estimation (MLE) or the method of moments on your monthly spread series. In Python, you can use <code>scipy.optimize.minimize</code> to fit the parameters.</p>
+</section>
+<section id="step-3.3-derive-the-distribution" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="step-3.3-derive-the-distribution"><span class="header-section-number">2.3.3</span> Step 3.3: Derive the Distribution</h3>
+<p>Under this model, the spread at time <span class="math inline">\(t\)</span> is normally distributed:</p>
+<p><span class="math display">\[
+S_t \sim \mathcal{N}(m(t),\; v(t))
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+m(t) = \theta + (S_0 - \theta)e^{-\kappa t}
+\]</span></p>
+<p><span class="math display">\[
+v(t) = \frac{\sigma^2}{2\kappa}\left(1 - e^{-2\kappa t}\right)
+\]</span></p>
+</section>
+<section id="step-3.4-set-the-crisis-threshold" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="step-3.4-set-the-crisis-threshold"><span class="header-section-number">2.3.4</span> Step 3.4: Set the Crisis Threshold</h3>
+<p>Choose a threshold <span class="math inline">\(S_c\)</span> above which the spread signals a “crisis.” Methods:</p>
+<ul>
+<li><strong>Statistical</strong>: Use the 95th percentile of historical spreads</li>
+<li><strong>Historical</strong>: Look at the maximum spread during known stress periods (e.g., COVID-19)</li>
+<li><strong>Expert judgment</strong>: Consult literature on what spread levels are considered dangerous</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For your paper, I’d recommend using the <strong>95th percentile</strong> as your primary threshold, then testing sensitivity with the 90th and 99th percentiles.</p>
+</div>
+</div>
+</section>
+<section id="step-3.5-compute-crisis-probability" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="step-3.5-compute-crisis-probability"><span class="header-section-number">2.3.5</span> Step 3.5: Compute Crisis Probability</h3>
+<p><span class="math display">\[
+P(S_t &gt; S_c) = 1 - \Phi\left(\frac{S_c - m(t)}{\sqrt{v(t)}}\right)
+\]</span></p>
+<p>where <span class="math inline">\(\Phi(\cdot)\)</span> is the standard normal CDF.</p>
+</section>
+<section id="step-3.6-construct-the-credit-risk-index-cri" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="step-3.6-construct-the-credit-risk-index-cri"><span class="header-section-number">2.3.6</span> Step 3.6: Construct the Credit Risk Index (CRI)</h3>
+<p><span class="math display">\[
+\text{CRI} = \alpha \cdot \sigma + \beta \cdot P(S_t &gt; S_c)
+\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are weighting parameters. This combines:</p>
+<ul>
+<li><strong><span class="math inline">\(\sigma\)</span></strong> — spread volatility (measures instability)</li>
+<li><strong><span class="math inline">\(P(S_t &gt; S_c)\)</span></strong> — crisis probability (measures extreme risk)</li>
+</ul>
+<p>For weights, you can:</p>
+<ul>
+<li>Use equal weights (<span class="math inline">\(\alpha = \beta = 0.5\)</span>) as a baseline</li>
+<li>Then test different weight combinations as a sensitivity analysis</li>
+</ul>
+</section>
+<section id="step-3.7-stress-testing" class="level3" data-number="2.3.7">
+<h3 data-number="2.3.7" class="anchored" data-anchor-id="step-3.7-stress-testing"><span class="header-section-number">2.3.7</span> Step 3.7: Stress Testing</h3>
+<p>Simulate a shock:</p>
+<p><span class="math display">\[
+S_t^{\text{stress}} = S_t(1 + \delta)
+\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\delta\)</span></th>
+<th>Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.10</td>
+<td>Mild stress</td>
+</tr>
+<tr class="even">
+<td>0.30</td>
+<td>Moderate stress</td>
+</tr>
+<tr class="odd">
+<td>0.50</td>
+<td>Severe crisis</td>
+</tr>
+</tbody>
+</table>
+<p>Then recompute crisis probability and CRI under each stress scenario and compare to baseline.</p>
+</section>
+</section>
+<section id="section-4-data-description-23-pages" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="section-4-data-description-23-pages"><span class="header-section-number">2.4</span> Section 4: Data Description (2–3 pages)</h2>
+<p>Describe your NBC dataset:</p>
+<ul>
+<li>Time period covered (e.g., 2014–2024)</li>
+<li>Frequency (monthly? quarterly?)</li>
+<li>Variables: lending rate, deposit rate, and the computed spread</li>
+<li>Descriptive statistics: mean, standard deviation, min, max</li>
+<li>Time series plots showing the spread over time</li>
+<li>Highlight the COVID-19 period visually (shade 2020–2021 on your charts)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>If Your Data Separates KHR and USD
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the NBC data breaks down rates by currency (KHR vs.&nbsp;USD), compute spreads for <strong>both</strong> currencies separately. This gives you richer analysis and a unique Cambodia-specific angle.</p>
+</div>
+</div>
+</section>
+<section id="section-5-results-45-pages" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="section-5-results-45-pages"><span class="header-section-number">2.5</span> Section 5: Results (4–5 pages)</h2>
+<p>Present your findings in this order:</p>
+<ol type="1">
+<li><p><strong>Estimated parameters</strong> (<span class="math inline">\(\kappa\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma\)</span>) — explain what they mean in the Cambodia context. For example, a low <span class="math inline">\(\kappa\)</span> means spreads are slow to return to normal after shocks.</p></li>
+<li><p><strong>CRI over time</strong> — plot the Credit Risk Index from 2014–2024. Annotate key events:</p>
+<ul>
+<li>2020: COVID-19 onset</li>
+<li>2020–2021: NBC loan restructuring measures</li>
+<li>2022–2023: Recovery period</li>
+</ul></li>
+<li><p><strong>COVID-19 case study</strong> — compare CRI before COVID (2014–2019), during COVID (2020–2021), and after (2022–2024). Did the CRI spike? How quickly did it recover?</p></li>
+<li><p><strong>Stress test results</strong> — show how CRI changes under mild/moderate/severe shocks. Is Cambodia’s banking system fragile or resilient?</p></li>
+<li><p><strong>Interpretation table</strong>:</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>CRI Level</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low</td>
+<td>Stable financial conditions</td>
+</tr>
+<tr class="even">
+<td>Moderate</td>
+<td>Elevated risk — increased monitoring needed</td>
+</tr>
+<tr class="odd">
+<td>High</td>
+<td>Severe danger — potential crisis</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section-6-discussion-12-pages" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="section-6-discussion-12-pages"><span class="header-section-number">2.6</span> Section 6: Discussion (1–2 pages)</h2>
+<ul>
+<li>What do your results tell us about credit risk in Cambodia?</li>
+<li>How does the COVID-19 shock compare to the stress test scenarios?</li>
+<li>Policy implications: Could the NBC use a CRI-like tool for monitoring?</li>
+<li>Limitations: The spread captures more than just credit risk (also includes operating costs, profit margins). Data frequency may be limited.</li>
+</ul>
+</section>
+<section id="section-7-conclusion-1-page" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="section-7-conclusion-1-page"><span class="header-section-number">2.7</span> Section 7: Conclusion (1 page)</h2>
+<ul>
+<li>Summarize key findings</li>
+<li>Emphasize the practical value: an early warning tool that works with limited data</li>
+<li>Suggest future research directions (e.g., extending to individual bank data, adding macroeconomic variables)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="your-data-what-to-collect" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Your Data: What to Collect</h1>
+<section id="what-you-already-have" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="what-you-already-have"><span class="header-section-number">3.1</span> What You Already Have</h2>
+<ul>
+<li>Lending rates from NBC (10 years)</li>
+<li>Deposit rates from NBC (10 years)</li>
+</ul>
+</section>
+<section id="where-to-find-additional-context-data-optional-but-helpful" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="where-to-find-additional-context-data-optional-but-helpful"><span class="header-section-number">3.2</span> Where to Find Additional Context Data (Optional but Helpful)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 42%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Source</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GDP growth</td>
+<td>World Bank / IMF</td>
+<td>To annotate your charts with economic context</td>
+</tr>
+<tr class="even">
+<td>Credit growth</td>
+<td>NBC Annual Reports</td>
+<td>To show banking sector expansion</td>
+</tr>
+<tr class="odd">
+<td>NPL ratios</td>
+<td>NBC / IMF FSAP reports</td>
+<td>To validate your CRI against actual default trends</td>
+</tr>
+<tr class="even">
+<td>Policy rate changes</td>
+<td>NBC</td>
+<td>To explain sudden spread movements</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-preparation-steps" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="data-preparation-steps"><span class="header-section-number">3.3</span> Data Preparation Steps</h2>
+<ol type="1">
+<li>Download your loan and deposit rates into a CSV file with columns: <code>date</code>, <code>loan_rate</code>, <code>deposit_rate</code></li>
+<li>Compute the spread: <code>spread = loan_rate - deposit_rate</code></li>
+<li>Check for missing values and outliers</li>
+<li>Plot the raw series to visually inspect trends</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="python-implementation-plan" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Python Implementation Plan</h1>
+<p>You’ll need to learn Python for this project. Here’s a learning plan:</p>
+<section id="libraries-to-install" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="libraries-to-install"><span class="header-section-number">4.1</span> Libraries to Install</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pandas numpy scipy matplotlib statsmodels</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-structure" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="code-structure"><span class="header-section-number">4.2</span> Code Structure</h2>
+<p>Your project should have these Python scripts/notebooks:</p>
+<pre><code>project/
+├── data/
+│   └── nbc_interest_rates.csv       # Your raw data
+├── notebooks/
+│   ├── 01_data_preparation.ipynb     # Load, clean, compute spread
+│   ├── 02_exploratory_analysis.ipynb # Plots, descriptive stats
+│   ├── 03_parameter_estimation.ipynb # Fit the OU model
+│   ├── 04_cri_computation.ipynb      # Crisis probability + CRI
+│   └── 05_stress_testing.ipynb       # Stress scenarios
+├── paper/
+│   └── paper.qmd                     # Your final paper
+└── README.md</code></pre>
+</section>
+<section id="what-each-notebook-does" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="what-each-notebook-does"><span class="header-section-number">4.3</span> What Each Notebook Does</h2>
+<p><strong>Notebook 01 — Data Preparation</strong>: Load CSV, compute spread, handle missing data, export clean dataset.</p>
+<p><strong>Notebook 02 — Exploratory Analysis</strong>: Plot the spread time series, compute descriptive statistics (mean, std, min, max, percentiles), visually identify the COVID period.</p>
+<p><strong>Notebook 03 — Parameter Estimation</strong>: Estimate <span class="math inline">\(\kappa\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma\)</span> from the spread data using MLE. The key idea: for discrete observations, the OU process has a known transition density, so you can write a log-likelihood function and maximize it.</p>
+<p><strong>Notebook 04 — CRI Computation</strong>: Using estimated parameters, compute <span class="math inline">\(m(t)\)</span>, <span class="math inline">\(v(t)\)</span>, crisis probability <span class="math inline">\(P(S_t &gt; S_c)\)</span>, and the CRI for each time period. Plot CRI over time.</p>
+<p><strong>Notebook 05 — Stress Testing</strong>: Apply stress shocks (<span class="math inline">\(\delta = 0.1, 0.3, 0.5\)</span>), recompute CRI, compare to baseline, visualize results.</p>
+<hr>
+</section>
+</section>
+<section id="timeline-suggested-68-weeks" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Timeline (Suggested: 6–8 Weeks)</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Task</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Learn Python basics (pandas, matplotlib). Collect and clean your data</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Exploratory analysis: plots, descriptive stats. Start literature review</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Study the OU model math. Implement parameter estimation in Python</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Compute crisis probability and CRI. Debug and validate results</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Run stress tests. Create all charts and tables</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Write the paper: Introduction, Literature Review, Methodology</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Write the paper: Results, Discussion, Conclusion</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Review, polish, and prepare for interviews</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="how-to-talk-about-this-in-interviews" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> How to Talk About This in Interviews</h1>
+<p>When a credit risk interviewer asks “tell me about a project you’ve worked on,” here’s your story:</p>
+<blockquote class="blockquote">
+<p>“I built a Credit Risk Index for Cambodia’s banking sector using 10 years of interest rate data from the National Bank of Cambodia. The challenge was that Cambodia doesn’t have widely available default data, so I used an indirect approach — modeling the dynamics of lending-deposit spreads with an Ornstein-Uhlenbeck stochastic process. I estimated the model parameters, computed crisis probabilities, and constructed a composite index that combines spread volatility and tail risk. I also used COVID-19 as a case study to test the model’s ability to detect financial stress, and ran stress tests under different severity scenarios. The project showed me that data preparation is really 70% of the work, and I gained hands-on experience with stochastic modeling, time series analysis, and risk quantification in Python.”</p>
+</blockquote>
+<p>This answer hits everything a hiring manager wants to hear: you understand the business problem, you chose an appropriate methodology, you executed it technically, and you can communicate results clearly.</p>
+<hr>
+</section>
+<section id="resources-to-get-started" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Resources to Get Started</h1>
+<section id="python-learning-focus-on-these" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="python-learning-focus-on-these"><span class="header-section-number">7.1</span> Python Learning (Focus on These)</h2>
+<ul>
+<li><strong>pandas</strong>: DataCamp’s “Introduction to pandas” or the official 10-minute tutorial</li>
+<li><strong>matplotlib</strong>: The official pyplot tutorial</li>
+<li><strong>scipy.optimize</strong>: For parameter estimation — learn <code>minimize</code> function</li>
+</ul>
+</section>
+<section id="key-concepts-to-study" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="key-concepts-to-study"><span class="header-section-number">7.2</span> Key Concepts to Study</h2>
+<ul>
+<li>What is a stochastic differential equation (conceptual, not deep math)</li>
+<li>The Ornstein-Uhlenbeck process and why it’s used for mean-reverting series</li>
+<li>Maximum Likelihood Estimation basics</li>
+<li>The normal distribution CDF (for computing crisis probability)</li>
+</ul>
+</section>
+<section id="cambodia-specific-sources" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="cambodia-specific-sources"><span class="header-section-number">7.3</span> Cambodia-Specific Sources</h2>
+<ul>
+<li>NBC Annual Reports and Statistical Bulletins (for your data and context)</li>
+<li>IMF Article IV Consultation reports on Cambodia (great for literature review)</li>
+<li>World Bank Cambodia Economic Updates</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="next-steps-what-to-do-right-now" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Next Steps: What to Do Right Now</h1>
+<ol type="1">
+<li><strong>Organize your NBC data</strong> into a clean CSV with columns: <code>date</code>, <code>loan_rate</code>, <code>deposit_rate</code></li>
+<li><strong>Install Python</strong> (use Anaconda — it comes with pandas, numpy, matplotlib pre-installed)</li>
+<li><strong>Open a Jupyter notebook</strong> and plot your spread series — just seeing the data will give you intuition</li>
+<li><strong>Read your project PDF</strong> on the CRI methodology one more time — it will make much more sense now that you have a concrete plan</li>
+<li><strong>Come back to me</strong> when you’re ready to write the Python code — I can help you build each notebook step by step</li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
