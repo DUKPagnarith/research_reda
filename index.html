@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Research Plan">
+<meta name="dcterms.date" content="2026-02-17">
+
+<title>Research Roadmap: Credit Risk and Dollarization in Cambodia — A Dual-Currency Analysis Using Interest Rate Spreads</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="index_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap-a74871fe4945b66d259aafc266475145.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview"><span class="header-section-number">1</span> Project Overview</a>
+  <ul class="collapse">
+  <li><a href="#title-working" id="toc-title-working" class="nav-link" data-scroll-target="#title-working"><span class="header-section-number">1.1</span> Title (Working)</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><span class="header-section-number">1.2</span> Research Questions</a></li>
+  <li><a href="#why-this-topic-is-strong" id="toc-why-this-topic-is-strong" class="nav-link" data-scroll-target="#why-this-topic-is-strong"><span class="header-section-number">1.3</span> Why This Topic Is Strong</a></li>
+  <li><a href="#the-big-idea-in-one-paragraph" id="toc-the-big-idea-in-one-paragraph" class="nav-link" data-scroll-target="#the-big-idea-in-one-paragraph"><span class="header-section-number">1.4</span> The Big Idea in One Paragraph</a></li>
+  </ul></li>
+  <li><a href="#paper-structure" id="toc-paper-structure" class="nav-link" data-scroll-target="#paper-structure"><span class="header-section-number">2</span> Paper Structure</a>
+  <ul class="collapse">
+  <li><a href="#section-1-introduction-23-pages" id="toc-section-1-introduction-23-pages" class="nav-link" data-scroll-target="#section-1-introduction-23-pages"><span class="header-section-number">2.1</span> Section 1: Introduction (2–3 pages)</a>
+  <ul class="collapse">
+  <li><a href="#what-to-write" id="toc-what-to-write" class="nav-link" data-scroll-target="#what-to-write"><span class="header-section-number">2.1.1</span> What to Write</a></li>
+  <li><a href="#key-arguments-to-make" id="toc-key-arguments-to-make" class="nav-link" data-scroll-target="#key-arguments-to-make"><span class="header-section-number">2.1.2</span> Key Arguments to Make</a></li>
+  <li><a href="#how-to-end-the-introduction" id="toc-how-to-end-the-introduction" class="nav-link" data-scroll-target="#how-to-end-the-introduction"><span class="header-section-number">2.1.3</span> How to End the Introduction</a></li>
+  </ul></li>
+  <li><a href="#section-2-literature-review-34-pages" id="toc-section-2-literature-review-34-pages" class="nav-link" data-scroll-target="#section-2-literature-review-34-pages"><span class="header-section-number">2.2</span> Section 2: Literature Review (3–4 pages)</a>
+  <ul class="collapse">
+  <li><a href="#credit-risk-measurement" id="toc-credit-risk-measurement" class="nav-link" data-scroll-target="#credit-risk-measurement"><span class="header-section-number">2.2.1</span> 2.1 Credit Risk Measurement</a></li>
+  <li><a href="#interest-rate-spreads-as-risk-indicators" id="toc-interest-rate-spreads-as-risk-indicators" class="nav-link" data-scroll-target="#interest-rate-spreads-as-risk-indicators"><span class="header-section-number">2.2.2</span> 2.2 Interest Rate Spreads as Risk Indicators</a></li>
+  <li><a href="#stochastic-models-in-finance" id="toc-stochastic-models-in-finance" class="nav-link" data-scroll-target="#stochastic-models-in-finance"><span class="header-section-number">2.2.3</span> 2.3 Stochastic Models in Finance</a></li>
+  <li><a href="#cambodias-financial-system-and-dollarization" id="toc-cambodias-financial-system-and-dollarization" class="nav-link" data-scroll-target="#cambodias-financial-system-and-dollarization"><span class="header-section-number">2.2.4</span> 2.4 Cambodia’s Financial System and Dollarization</a></li>
+  <li><a href="#gap-in-literature" id="toc-gap-in-literature" class="nav-link" data-scroll-target="#gap-in-literature"><span class="header-section-number">2.2.5</span> 2.5 Gap in Literature</a></li>
+  </ul></li>
+  <li><a href="#section-3-methodology-56-pages" id="toc-section-3-methodology-56-pages" class="nav-link" data-scroll-target="#section-3-methodology-56-pages"><span class="header-section-number">2.3</span> Section 3: Methodology (5–6 pages)</a>
+  <ul class="collapse">
+  <li><a href="#interest-rate-spread-definition" id="toc-interest-rate-spread-definition" class="nav-link" data-scroll-target="#interest-rate-spread-definition"><span class="header-section-number">2.3.1</span> 3.1 Interest Rate Spread Definition</a></li>
+  <li><a href="#the-ornstein-uhlenbeck-model" id="toc-the-ornstein-uhlenbeck-model" class="nav-link" data-scroll-target="#the-ornstein-uhlenbeck-model"><span class="header-section-number">2.3.2</span> 3.2 The Ornstein-Uhlenbeck Model</a></li>
+  <li><a href="#parameter-estimation" id="toc-parameter-estimation" class="nav-link" data-scroll-target="#parameter-estimation"><span class="header-section-number">2.3.3</span> 3.3 Parameter Estimation</a></li>
+  <li><a href="#crisis-threshold" id="toc-crisis-threshold" class="nav-link" data-scroll-target="#crisis-threshold"><span class="header-section-number">2.3.4</span> 3.4 Crisis Threshold</a></li>
+  <li><a href="#crisis-probability" id="toc-crisis-probability" class="nav-link" data-scroll-target="#crisis-probability"><span class="header-section-number">2.3.5</span> 3.5 Crisis Probability</a></li>
+  <li><a href="#currency-specific-credit-risk-indices" id="toc-currency-specific-credit-risk-indices" class="nav-link" data-scroll-target="#currency-specific-credit-risk-indices"><span class="header-section-number">2.3.6</span> 3.6 Currency-Specific Credit Risk Indices</a></li>
+  <li><a href="#system-wide-composite-cri" id="toc-system-wide-composite-cri" class="nav-link" data-scroll-target="#system-wide-composite-cri"><span class="header-section-number">2.3.7</span> 3.7 System-Wide Composite CRI</a></li>
+  <li><a href="#stress-testing" id="toc-stress-testing" class="nav-link" data-scroll-target="#stress-testing"><span class="header-section-number">2.3.8</span> 3.8 Stress Testing</a></li>
+  <li><a href="#covid-19-sub-period-analysis" id="toc-covid-19-sub-period-analysis" class="nav-link" data-scroll-target="#covid-19-sub-period-analysis"><span class="header-section-number">2.3.9</span> 3.9 COVID-19 Sub-Period Analysis</a></li>
+  </ul></li>
+  <li><a href="#section-4-data-description-23-pages" id="toc-section-4-data-description-23-pages" class="nav-link" data-scroll-target="#section-4-data-description-23-pages"><span class="header-section-number">2.4</span> Section 4: Data Description (2–3 pages)</a>
+  <ul class="collapse">
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source"><span class="header-section-number">2.4.1</span> 4.1 Data Source</a></li>
+  <li><a href="#computed-variables" id="toc-computed-variables" class="nav-link" data-scroll-target="#computed-variables"><span class="header-section-number">2.4.2</span> 4.2 Computed Variables</a></li>
+  <li><a href="#descriptive-statistics-table" id="toc-descriptive-statistics-table" class="nav-link" data-scroll-target="#descriptive-statistics-table"><span class="header-section-number">2.4.3</span> 4.3 Descriptive Statistics Table</a></li>
+  <li><a href="#key-visualizations" id="toc-key-visualizations" class="nav-link" data-scroll-target="#key-visualizations"><span class="header-section-number">2.4.4</span> 4.4 Key Visualizations</a></li>
+  </ul></li>
+  <li><a href="#section-5-results-56-pages" id="toc-section-5-results-56-pages" class="nav-link" data-scroll-target="#section-5-results-56-pages"><span class="header-section-number">2.5</span> Section 5: Results (5–6 pages)</a>
+  <ul class="collapse">
+  <li><a href="#estimated-ou-parameters" id="toc-estimated-ou-parameters" class="nav-link" data-scroll-target="#estimated-ou-parameters"><span class="header-section-number">2.5.1</span> 5.1 Estimated OU Parameters</a></li>
+  <li><a href="#crisis-probability-over-time" id="toc-crisis-probability-over-time" class="nav-link" data-scroll-target="#crisis-probability-over-time"><span class="header-section-number">2.5.2</span> 5.2 Crisis Probability Over Time</a></li>
+  <li><a href="#currency-specific-cris" id="toc-currency-specific-cris" class="nav-link" data-scroll-target="#currency-specific-cris"><span class="header-section-number">2.5.3</span> 5.3 Currency-Specific CRIs</a></li>
+  <li><a href="#system-wide-composite-cri-1" id="toc-system-wide-composite-cri-1" class="nav-link" data-scroll-target="#system-wide-composite-cri-1"><span class="header-section-number">2.5.4</span> 5.4 System-Wide Composite CRI</a></li>
+  <li><a href="#covid-19-case-study" id="toc-covid-19-case-study" class="nav-link" data-scroll-target="#covid-19-case-study"><span class="header-section-number">2.5.5</span> 5.5 COVID-19 Case Study</a></li>
+  <li><a href="#stress-test-results" id="toc-stress-test-results" class="nav-link" data-scroll-target="#stress-test-results"><span class="header-section-number">2.5.6</span> 5.6 Stress Test Results</a></li>
+  </ul></li>
+  <li><a href="#section-6-discussion-23-pages" id="toc-section-6-discussion-23-pages" class="nav-link" data-scroll-target="#section-6-discussion-23-pages"><span class="header-section-number">2.6</span> Section 6: Discussion (2–3 pages)</a>
+  <ul class="collapse">
+  <li><a href="#key-discussion-points" id="toc-key-discussion-points" class="nav-link" data-scroll-target="#key-discussion-points"><span class="header-section-number">2.6.1</span> Key Discussion Points</a></li>
+  </ul></li>
+  <li><a href="#section-7-conclusion-1-page" id="toc-section-7-conclusion-1-page" class="nav-link" data-scroll-target="#section-7-conclusion-1-page"><span class="header-section-number">2.7</span> Section 7: Conclusion (1 page)</a></li>
+  </ul></li>
+  <li><a href="#complete-model-summary" id="toc-complete-model-summary" class="nav-link" data-scroll-target="#complete-model-summary"><span class="header-section-number">3</span> Complete Model Summary</a></li>
+  <li><a href="#python-project-structure" id="toc-python-project-structure" class="nav-link" data-scroll-target="#python-project-structure"><span class="header-section-number">4</span> Python Project Structure</a></li>
+  <li><a href="#timeline-79-weeks" id="toc-timeline-79-weeks" class="nav-link" data-scroll-target="#timeline-79-weeks"><span class="header-section-number">5</span> Timeline (7–9 Weeks)</a></li>
+  <li><a href="#interview-preparation" id="toc-interview-preparation" class="nav-link" data-scroll-target="#interview-preparation"><span class="header-section-number">6</span> Interview Preparation</a>
+  <ul class="collapse">
+  <li><a href="#the-60-second-pitch" id="toc-the-60-second-pitch" class="nav-link" data-scroll-target="#the-60-second-pitch"><span class="header-section-number">6.1</span> The 60-Second Pitch</a></li>
+  <li><a href="#likely-follow-up-questions" id="toc-likely-follow-up-questions" class="nav-link" data-scroll-target="#likely-follow-up-questions"><span class="header-section-number">6.2</span> Likely Follow-Up Questions</a></li>
+  </ul></li>
+  <li><a href="#flow-diagram" id="toc-flow-diagram" class="nav-link" data-scroll-target="#flow-diagram"><span class="header-section-number">7</span> Flow Diagram</a></li>
+  <li><a href="#next-steps-what-to-do-right-now" id="toc-next-steps-what-to-do-right-now" class="nav-link" data-scroll-target="#next-steps-what-to-do-right-now"><span class="header-section-number">8</span> Next Steps: What to Do Right Now</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Research Roadmap: Credit Risk and Dollarization in Cambodia — A Dual-Currency Analysis Using Interest Rate Spreads</h1>
+<p class="subtitle lead">A Step-by-Step Guide for Your First Research Project</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Research Plan </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 17, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="project-overview" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project Overview</h1>
+<section id="title-working" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="title-working"><span class="header-section-number">1.1</span> Title (Working)</h2>
+<p><strong>“Credit Risk and Dollarization in Cambodia: A Dual-Currency Analysis Using Interest Rate Spreads (2014–2024)”</strong></p>
+</section>
+<section id="research-questions" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="research-questions"><span class="header-section-number">1.2</span> Research Questions</h2>
+<ol type="1">
+<li>How do credit risk dynamics differ between USD and KHR lending in Cambodia’s banking sector?</li>
+<li>Which currency segment is more sensitive to financial shocks, particularly the COVID-19 pandemic?</li>
+<li>Can a composite dual-currency Credit Risk Index serve as an effective early warning tool for monitoring financial stability?</li>
+</ol>
+</section>
+<section id="why-this-topic-is-strong" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="why-this-topic-is-strong"><span class="header-section-number">1.3</span> Why This Topic Is Strong</h2>
+<ul>
+<li><strong>Original</strong>: No existing study applies a dual-currency CRI framework to Cambodia</li>
+<li><strong>Policy-relevant</strong>: Cambodia is actively pursuing de-dollarization — your results speak directly to whether that changes the risk profile</li>
+<li><strong>Data-feasible</strong>: Uses only publicly available NBC interest rate data (no loan-level data needed)</li>
+<li><strong>Technically impressive</strong>: Stochastic modeling, comparative analysis, stress testing</li>
+<li><strong>Interview-ready</strong>: Shows you understand Cambodia’s unique banking landscape deeply</li>
+</ul>
+</section>
+<section id="the-big-idea-in-one-paragraph" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="the-big-idea-in-one-paragraph"><span class="header-section-number">1.4</span> The Big Idea in One Paragraph</h2>
+<p>Cambodia’s banking sector is unique because it operates in two currencies simultaneously — roughly 80% of lending is in USD and 20% in KHR. This means credit risk may behave very differently depending on which currency a loan is denominated in. By modeling the interest rate spread (loan rate minus deposit rate) separately for each currency using a mean-reverting stochastic process, you can construct currency-specific Credit Risk Indices and a system-wide composite index. Comparing how these indices behave — especially during the COVID-19 shock — reveals whether dollarization amplifies or dampens credit risk, and which segment serves as a better early warning signal.</p>
+<hr>
+</section>
+</section>
+<section id="paper-structure" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Paper Structure</h1>
+<p>Aim for <strong>18–28 pages</strong> total.</p>
+<section id="section-1-introduction-23-pages" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="section-1-introduction-23-pages"><span class="header-section-number">2.1</span> Section 1: Introduction (2–3 pages)</h2>
+<section id="what-to-write" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="what-to-write"><span class="header-section-number">2.1.1</span> What to Write</h3>
+<p>Open with the significance of credit risk in banking, then narrow to Cambodia’s specific context. The key tension: Cambodia has a <em>dual-currency</em> banking system, and we don’t know whether credit risk behaves the same way in both segments.</p>
+</section>
+<section id="key-arguments-to-make" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="key-arguments-to-make"><span class="header-section-number">2.1.2</span> Key Arguments to Make</h3>
+<p><strong>Cambodia’s banking sector context:</strong></p>
+<ul>
+<li>Rapid credit growth over the past decade (often 15–25% annually)</li>
+<li>Banking assets have grown to over 180% of GDP</li>
+<li>The sector is a critical engine of economic growth but also a potential source of systemic risk</li>
+</ul>
+<p><strong>The dollarization challenge:</strong></p>
+<ul>
+<li>Cambodia is one of the most dollarized economies in the world</li>
+<li>Approximately 80% of loans and deposits are in USD</li>
+<li>The NBC has been gradually pushing de-dollarization (higher reserve requirements for USD, promoting KHR use)</li>
+<li>USD and KHR lending carry different risk profiles: KHR loans face additional exchange rate risk, while USD loans create systemic vulnerability to external dollar shocks</li>
+</ul>
+<p><strong>The data gap:</strong></p>
+<ul>
+<li>Granular loan-level default data is not widely available in Cambodia</li>
+<li>Traditional credit risk models (PD, LGD, EAD) require this data</li>
+<li>Interest rate spreads offer an indirect but powerful alternative — banks embed their risk assessment into the rates they charge</li>
+</ul>
+<p><strong>Your contribution:</strong></p>
+<ul>
+<li>First study to construct a dual-currency Credit Risk Index for Cambodia</li>
+<li>Uses only publicly available data from NBC</li>
+<li>Provides a practical early warning tool</li>
+<li>COVID-19 serves as a natural stress event to validate the framework</li>
+</ul>
+</section>
+<section id="how-to-end-the-introduction" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="how-to-end-the-introduction"><span class="header-section-number">2.1.3</span> How to End the Introduction</h3>
+<p>State your three research questions clearly, then provide a brief roadmap of the paper’s structure.</p>
+</section>
+</section>
+<section id="section-2-literature-review-34-pages" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="section-2-literature-review-34-pages"><span class="header-section-number">2.2</span> Section 2: Literature Review (3–4 pages)</h2>
+<p>Organize into four themes:</p>
+<section id="credit-risk-measurement" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="credit-risk-measurement"><span class="header-section-number">2.2.1</span> 2.1 Credit Risk Measurement</h3>
+<p>Briefly explain the standard approach: banks measure credit risk through three components — Probability of Default (PD), Loss Given Default (LGD), and Exposure at Default (EAD). Together these determine expected credit losses. Mention that this framework requires loan-level data with observed defaults, which is a constraint in emerging markets.</p>
+<p>Reference your study materials on how banks segment portfolios by product type and client type, and build separate models for different segments — this directly supports your decision to model USD and KHR separately.</p>
+</section>
+<section id="interest-rate-spreads-as-risk-indicators" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="interest-rate-spreads-as-risk-indicators"><span class="header-section-number">2.2.2</span> 2.2 Interest Rate Spreads as Risk Indicators</h3>
+<p>This is the theoretical foundation. Cover:</p>
+<ul>
+<li>The TED spread (Treasury-Eurodollar spread) as a well-known systemic risk indicator</li>
+<li>Corporate bond spreads as credit risk measures</li>
+<li>Studies using bank-level spreads to assess financial health</li>
+<li>The logic: spreads capture credit risk, operating costs, and profit margin, but changes in spreads over time primarily reflect changes in perceived risk</li>
+</ul>
+</section>
+<section id="stochastic-models-in-finance" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="stochastic-models-in-finance"><span class="header-section-number">2.2.3</span> 2.3 Stochastic Models in Finance</h3>
+<p>Introduce the Ornstein-Uhlenbeck process and why mean-reverting models are appropriate for interest rate spreads. Key references:</p>
+<ul>
+<li>Vasicek (1977) — one of the earliest mean-reverting interest rate models</li>
+<li>Literature on stochastic modeling of credit spreads</li>
+</ul>
+</section>
+<section id="cambodias-financial-system-and-dollarization" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="cambodias-financial-system-and-dollarization"><span class="header-section-number">2.2.4</span> 2.4 Cambodia’s Financial System and Dollarization</h3>
+<ul>
+<li>Overview of Cambodia’s banking sector development</li>
+<li>Studies on dollarization in Cambodia (Menon 2008, Duma 2011, or more recent IMF reports)</li>
+<li>NBC’s de-dollarization efforts and their impact</li>
+<li>Any existing studies on financial stability or credit risk in Cambodia</li>
+</ul>
+</section>
+<section id="gap-in-literature" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="gap-in-literature"><span class="header-section-number">2.2.5</span> 2.5 Gap in Literature</h3>
+<p>No study has: (a) applied the CRI framework to Cambodia, (b) compared credit risk dynamics across USD and KHR segments, or (c) used Cambodia’s interest rate spreads to construct an early warning indicator.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Literature Review Strategy
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Search Google Scholar for: “interest rate spread credit risk”, “dollarization Cambodia banking”, “Ornstein-Uhlenbeck credit spread”, “financial stability early warning indicator”, “Cambodia banking sector risk”. Aim for 15–25 references.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="section-3-methodology-56-pages" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="section-3-methodology-56-pages"><span class="header-section-number">2.3</span> Section 3: Methodology (5–6 pages)</h2>
+<section id="interest-rate-spread-definition" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="interest-rate-spread-definition"><span class="header-section-number">2.3.1</span> 3.1 Interest Rate Spread Definition</h3>
+<p>For each currency <span class="math inline">\(c \in \{USD, KHR\}\)</span>:</p>
+<p><span class="math display">\[
+S_t^c = r_{\text{loan},t}^c - r_{\text{deposit},t}^c
+\]</span></p>
+<p>This gives you two time series: <span class="math inline">\(S_t^{USD}\)</span> and <span class="math inline">\(S_t^{KHR}\)</span>.</p>
+<p><strong>Why model them separately</strong>: Risk factors differ across segments, so models should be built separately. USD lending is influenced by global dollar conditions and Fed policy, while KHR lending is more sensitive to domestic monetary policy and exchange rate movements.</p>
+</section>
+<section id="the-ornstein-uhlenbeck-model" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="the-ornstein-uhlenbeck-model"><span class="header-section-number">2.3.2</span> 3.2 The Ornstein-Uhlenbeck Model</h3>
+<p>For each currency <span class="math inline">\(c\)</span>, the spread follows:</p>
+<p><span class="math display">\[
+dS_t^c = \kappa^c(\theta^c - S_t^c)\,dt + \sigma^c\,dW_t^c
+\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 16%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Meaning</th>
+<th>What to Compare Across Currencies</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\theta^c\)</span></td>
+<td>Long-run average spread</td>
+<td>Is the “normal” spread higher for KHR or USD?</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\kappa^c\)</span></td>
+<td>Speed of mean reversion</td>
+<td>Does one currency recover faster from shocks?</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sigma^c\)</span></td>
+<td>Volatility</td>
+<td>Which currency has more volatile spreads?</td>
+</tr>
+</tbody>
+</table>
+<p>The spread at time <span class="math inline">\(t\)</span> follows a normal distribution:</p>
+<p><span class="math display">\[
+S_t^c \sim \mathcal{N}\left(m^c(t),\; v^c(t)\right)
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+m^c(t) = \theta^c + (S_0^c - \theta^c)e^{-\kappa^c t}
+\]</span></p>
+<p><span class="math display">\[
+v^c(t) = \frac{(\sigma^c)^2}{2\kappa^c}\left(1 - e^{-2\kappa^c t}\right)
+\]</span></p>
+</section>
+<section id="parameter-estimation" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="parameter-estimation"><span class="header-section-number">2.3.3</span> 3.3 Parameter Estimation</h3>
+<p>For discrete monthly observations, the transition density between consecutive observations:</p>
+<p><span class="math display">\[
+S_{t_{i+1}}^c \mid S_{t_i}^c \sim \mathcal{N}\left(\theta^c + (S_{t_i}^c - \theta^c)e^{-\kappa^c \Delta t},\; \frac{(\sigma^c)^2}{2\kappa^c}(1 - e^{-2\kappa^c \Delta t})\right)
+\]</span></p>
+<p>The <strong>log-likelihood function</strong>:</p>
+<p><span class="math display">\[
+\ell(\kappa^c, \theta^c, \sigma^c) = -\frac{n}{2}\ln(2\pi) - \frac{n}{2}\ln\left(\frac{(\sigma^c)^2}{2\kappa^c}(1 - e^{-2\kappa^c \Delta t})\right) - \sum_{i=1}^{n}\frac{\left(S_{t_i}^c - \theta^c - (S_{t_{i-1}}^c - \theta^c)e^{-\kappa^c \Delta t}\right)^2}{2 \cdot \frac{(\sigma^c)^2}{2\kappa^c}(1 - e^{-2\kappa^c \Delta t})}
+\]</span></p>
+<p>Maximize using <code>scipy.optimize.minimize</code> (with negative log-likelihood).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Cross-Check with AR(1)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The OU process in discrete time is equivalent to an AR(1) model:</p>
+<p><span class="math display">\[S_{t+1}^c = a^c + b^c S_t^c + \varepsilon_t^c\]</span></p>
+<p>where <span class="math inline">\(b^c = e^{-\kappa^c \Delta t}\)</span>, <span class="math inline">\(a^c = \theta^c(1 - b^c)\)</span>, and <span class="math inline">\(\text{Var}(\varepsilon^c) = \frac{(\sigma^c)^2}{2\kappa^c}(1 - (b^c)^2)\)</span>.</p>
+<p>Run a simple OLS regression of <span class="math inline">\(S_{t+1}\)</span> on <span class="math inline">\(S_t\)</span> and back out the OU parameters as verification.</p>
+</div>
+</div>
+</section>
+<section id="crisis-threshold" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="crisis-threshold"><span class="header-section-number">2.3.4</span> 3.4 Crisis Threshold</h3>
+<p>For each currency, use the <strong>95th percentile</strong> of historical spreads:</p>
+<p><span class="math display">\[
+S_c^{USD} = \text{Percentile}_{95}(S_t^{USD}), \qquad S_c^{KHR} = \text{Percentile}_{95}(S_t^{KHR})
+\]</span></p>
+<p>Sensitivity analysis with the 90th and 99th percentiles.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each currency gets its own threshold because their “normal” spread levels are different. KHR spreads are typically wider than USD spreads.</p>
+</div>
+</div>
+</section>
+<section id="crisis-probability" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="crisis-probability"><span class="header-section-number">2.3.5</span> 3.5 Crisis Probability</h3>
+<p><span class="math display">\[
+P(S_t^c &gt; S_c^c) = 1 - \Phi\left(\frac{S_c^c - m^c(t)}{\sqrt{v^c(t)}}\right)
+\]</span></p>
+</section>
+<section id="currency-specific-credit-risk-indices" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="currency-specific-credit-risk-indices"><span class="header-section-number">2.3.6</span> 3.6 Currency-Specific Credit Risk Indices</h3>
+<p><span class="math display">\[
+\text{CRI}^c = \alpha \cdot \sigma^c + \beta \cdot P(S_t^c &gt; S_c^c)
+\]</span></p>
+<p>Use <span class="math inline">\(\alpha = \beta = 0.5\)</span> as baseline.</p>
+</section>
+<section id="system-wide-composite-cri" class="level3" data-number="2.3.7">
+<h3 data-number="2.3.7" class="anchored" data-anchor-id="system-wide-composite-cri"><span class="header-section-number">2.3.7</span> 3.7 System-Wide Composite CRI</h3>
+<p><span class="math display">\[
+\text{CRI}_{\text{System}} = w_{USD} \cdot \text{CRI}^{USD} + w_{KHR} \cdot \text{CRI}^{KHR}
+\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Weighting Approach</th>
+<th><span class="math inline">\(w_{USD}\)</span></th>
+<th><span class="math inline">\(w_{KHR}\)</span></th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Loan-share weighted</td>
+<td>~0.80</td>
+<td>~0.20</td>
+<td>Reflects actual banking system composition</td>
+</tr>
+<tr class="even">
+<td>Equal weighted</td>
+<td>0.50</td>
+<td>0.50</td>
+<td>Gives equal attention to both segments</td>
+</tr>
+<tr class="odd">
+<td>Time-varying</td>
+<td>Changes yearly</td>
+<td>Changes yearly</td>
+<td>Captures de-dollarization trend</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stress-testing" class="level3" data-number="2.3.8">
+<h3 data-number="2.3.8" class="anchored" data-anchor-id="stress-testing"><span class="header-section-number">2.3.8</span> 3.8 Stress Testing</h3>
+<p><span class="math display">\[
+S_t^{c,\text{stress}} = S_t^c(1 + \delta)
+\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th><span class="math inline">\(\delta\)</span></th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mild</td>
+<td>0.10</td>
+<td>Minor economic slowdown</td>
+</tr>
+<tr class="even">
+<td>Moderate</td>
+<td>0.30</td>
+<td>Significant financial stress</td>
+</tr>
+<tr class="odd">
+<td>Severe</td>
+<td>0.50</td>
+<td>Major crisis</td>
+</tr>
+</tbody>
+</table>
+<p>Recompute all three CRIs under each scenario.</p>
+</section>
+<section id="covid-19-sub-period-analysis" class="level3" data-number="2.3.9">
+<h3 data-number="2.3.9" class="anchored" data-anchor-id="covid-19-sub-period-analysis"><span class="header-section-number">2.3.9</span> 3.9 COVID-19 Sub-Period Analysis</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Period</th>
+<th>Dates</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pre-COVID</td>
+<td>2014 – Dec 2019</td>
+<td>Baseline</td>
+</tr>
+<tr class="even">
+<td>COVID</td>
+<td>Jan 2020 – Dec 2021</td>
+<td>Shock</td>
+</tr>
+<tr class="odd">
+<td>Post-COVID</td>
+<td>Jan 2022 – 2024</td>
+<td>Recovery</td>
+</tr>
+</tbody>
+</table>
+<p>Estimate OU parameters and CRI separately for each sub-period, for each currency.</p>
+<hr>
+</section>
+</section>
+<section id="section-4-data-description-23-pages" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="section-4-data-description-23-pages"><span class="header-section-number">2.4</span> Section 4: Data Description (2–3 pages)</h2>
+<section id="data-source" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="data-source"><span class="header-section-number">2.4.1</span> 4.1 Data Source</h3>
+<ul>
+<li>Source: National Bank of Cambodia statistical reports</li>
+<li>Period: 2014–2024 (~120 monthly observations)</li>
+<li>Variables: lending rate (USD), lending rate (KHR), deposit rate (USD), deposit rate (KHR)</li>
+</ul>
+</section>
+<section id="computed-variables" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="computed-variables"><span class="header-section-number">2.4.2</span> 4.2 Computed Variables</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(S_t^{USD}\)</span></td>
+<td><span class="math inline">\(r_{\text{loan},t}^{USD} - r_{\text{deposit},t}^{USD}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(S_t^{KHR}\)</span></td>
+<td><span class="math inline">\(r_{\text{loan},t}^{KHR} - r_{\text{deposit},t}^{KHR}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="descriptive-statistics-table" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="descriptive-statistics-table"><span class="header-section-number">2.4.3</span> 4.3 Descriptive Statistics Table</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th><span class="math inline">\(S_t^{USD}\)</span></th>
+<th><span class="math inline">\(S_t^{KHR}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>Std. Dev.</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td>Min</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>Max</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td>Percentile 95th</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>Observations</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-visualizations" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="key-visualizations"><span class="header-section-number">2.4.4</span> 4.4 Key Visualizations</h3>
+<ol type="1">
+<li>Dual time series plot (both spreads, shaded COVID region)</li>
+<li>Histograms of each spread</li>
+<li>Correlation between the two spread series</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="section-5-results-56-pages" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="section-5-results-56-pages"><span class="header-section-number">2.5</span> Section 5: Results (5–6 pages)</h2>
+<section id="estimated-ou-parameters" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="estimated-ou-parameters"><span class="header-section-number">2.5.1</span> 5.1 Estimated OU Parameters</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>USD</th>
+<th>KHR</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat{\theta}\)</span></td>
+<td>?</td>
+<td>?</td>
+<td>Long-run average spread</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat{\kappa}\)</span></td>
+<td>?</td>
+<td>?</td>
+<td>Speed of recovery</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\hat{\sigma}\)</span></td>
+<td>?</td>
+<td>?</td>
+<td>Volatility</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="crisis-probability-over-time" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="crisis-probability-over-time"><span class="header-section-number">2.5.2</span> 5.2 Crisis Probability Over Time</h3>
+<p>Plot both currencies’ crisis probabilities on one chart. Annotate COVID-19 onset and NBC policy responses.</p>
+</section>
+<section id="currency-specific-cris" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="currency-specific-cris"><span class="header-section-number">2.5.3</span> 5.3 Currency-Specific CRIs</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>CRI Level</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low (&lt; 0.3)</td>
+<td>Stable conditions</td>
+</tr>
+<tr class="even">
+<td>Moderate (0.3 – 0.6)</td>
+<td>Elevated risk</td>
+</tr>
+<tr class="odd">
+<td>High (&gt; 0.6)</td>
+<td>Severe danger</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="system-wide-composite-cri-1" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="system-wide-composite-cri-1"><span class="header-section-number">2.5.4</span> 5.4 System-Wide Composite CRI</h3>
+<p>Does the composite index provide earlier or clearer warning signals than either individual index?</p>
+</section>
+<section id="covid-19-case-study" class="level3" data-number="2.5.5">
+<h3 data-number="2.5.5" class="anchored" data-anchor-id="covid-19-case-study"><span class="header-section-number">2.5.5</span> 5.5 COVID-19 Case Study</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Period</th>
+<th><span class="math inline">\(\text{CRI}^{USD}\)</span></th>
+<th><span class="math inline">\(\text{CRI}^{KHR}\)</span></th>
+<th><span class="math inline">\(\text{CRI}_{\text{System}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pre-COVID</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>COVID</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td>Post-COVID</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stress-test-results" class="level3" data-number="2.5.6">
+<h3 data-number="2.5.6" class="anchored" data-anchor-id="stress-test-results"><span class="header-section-number">2.5.6</span> 5.6 Stress Test Results</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th><span class="math inline">\(\text{CRI}^{USD}\)</span></th>
+<th><span class="math inline">\(\text{CRI}^{KHR}\)</span></th>
+<th><span class="math inline">\(\text{CRI}_{\text{System}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>Mild</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td>Moderate</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>Severe</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="section-6-discussion-23-pages" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="section-6-discussion-23-pages"><span class="header-section-number">2.6</span> Section 6: Discussion (2–3 pages)</h2>
+<section id="key-discussion-points" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="key-discussion-points"><span class="header-section-number">2.6.1</span> Key Discussion Points</h3>
+<ul>
+<li><strong>Dollarization and risk</strong>: Does the USD segment stabilize or amplify systemic risk?</li>
+<li><strong>COVID-19 impact</strong>: Was the shock temporary or structural?</li>
+<li><strong>Early warning value</strong>: Did the CRI signal risk before the crisis became obvious?</li>
+<li><strong>Policy implications</strong>: What does this mean for NBC’s de-dollarization agenda?</li>
+<li><strong>Limitations</strong>: Spreads capture more than credit risk; aggregate data; model assumptions; limited validation without default data</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="section-7-conclusion-1-page" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="section-7-conclusion-1-page"><span class="header-section-number">2.7</span> Section 7: Conclusion (1 page)</h2>
+<p>Summarize key findings, practical value of the dual-currency CRI as a monitoring tool, and future research directions.</p>
+<hr>
+</section>
+</section>
+<section id="complete-model-summary" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Complete Model Summary</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 24%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Formula</th>
+<th>Run for Each Currency?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Compute spread</td>
+<td><span class="math inline">\(S_t^c = r_{\text{loan},t}^c - r_{\text{deposit},t}^c\)</span></td>
+<td>Yes (USD + KHR)</td>
+</tr>
+<tr class="even">
+<td>2. Fit OU model</td>
+<td><span class="math inline">\(dS_t^c = \kappa^c(\theta^c - S_t^c)dt + \sigma^c dW_t^c\)</span></td>
+<td>Yes (USD + KHR)</td>
+</tr>
+<tr class="odd">
+<td>3. Estimate parameters</td>
+<td>MLE on <span class="math inline">\((\kappa^c, \theta^c, \sigma^c)\)</span></td>
+<td>Yes (USD + KHR)</td>
+</tr>
+<tr class="even">
+<td>4. Set crisis threshold</td>
+<td><span class="math inline">\(S_c^c = P_{95}(S_t^c)\)</span></td>
+<td>Yes (USD + KHR)</td>
+</tr>
+<tr class="odd">
+<td>5. Crisis probability</td>
+<td><span class="math inline">\(P(S_t^c &gt; S_c^c) = 1 - \Phi\left(\frac{S_c^c - m^c(t)}{\sqrt{v^c(t)}}\right)\)</span></td>
+<td>Yes (USD + KHR)</td>
+</tr>
+<tr class="even">
+<td>6. Currency CRI</td>
+<td><span class="math inline">\(\text{CRI}^c = 0.5\sigma^c + 0.5 P(S_t^c &gt; S_c^c)\)</span></td>
+<td>Yes (USD + KHR)</td>
+</tr>
+<tr class="odd">
+<td>7. System CRI</td>
+<td><span class="math inline">\(\text{CRI}_{\text{Sys}} = w_{USD}\text{CRI}^{USD} + w_{KHR}\text{CRI}^{KHR}\)</span></td>
+<td>Once (combined)</td>
+</tr>
+<tr class="even">
+<td>8. Stress test</td>
+<td><span class="math inline">\(S_t^{c,\text{stress}} = S_t^c(1+\delta)\)</span></td>
+<td>Yes (USD + KHR)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="python-project-structure" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Python Project Structure</h1>
+<pre><code>cambodia-credit-risk/
+├── data/
+│   ├── raw/
+│   │   └── nbc_interest_rates.csv
+│   └── processed/
+│       ├── spreads_usd.csv
+│       └── spreads_khr.csv
+├── notebooks/
+│   ├── 01_data_preparation.ipynb
+│   ├── 02_exploratory_analysis.ipynb
+│   ├── 03_parameter_estimation.ipynb
+│   ├── 04_cri_computation.ipynb
+│   ├── 05_stress_testing.ipynb
+│   └── 06_covid_analysis.ipynb
+├── figures/
+├── paper/
+│   └── paper.qmd
+└── README.md</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 37%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Notebook</th>
+<th>What It Does</th>
+<th>Key Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>Load NBC CSV, compute both spreads, handle missing data</td>
+<td>Clean spread datasets</td>
+</tr>
+<tr class="even">
+<td>02</td>
+<td>Descriptive stats, dual time series plot, histograms, correlation</td>
+<td>Figures for the paper</td>
+</tr>
+<tr class="odd">
+<td>03</td>
+<td>MLE estimation of parameters for each currency, AR(1) cross-check</td>
+<td>Parameter estimates table</td>
+</tr>
+<tr class="even">
+<td>04</td>
+<td>Crisis probability + CRI for USD, KHR, and System</td>
+<td>CRI time series plot</td>
+</tr>
+<tr class="odd">
+<td>05</td>
+<td>Stress shocks, recompute CRIs, compare to baseline</td>
+<td>Stress test results table</td>
+</tr>
+<tr class="even">
+<td>06</td>
+<td>Sub-period analysis (pre/during/post COVID)</td>
+<td>COVID comparison table</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="timeline-79-weeks" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Timeline (7–9 Weeks)</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Task</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Learn Python basics (pandas, matplotlib, numpy). Install Anaconda</td>
+<td>Can load CSV and make plots</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Clean data. Compute USD and KHR spreads. Exploratory plots</td>
+<td>Notebooks 01 + 02</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Study OU model math. Implement MLE parameter estimation</td>
+<td>Notebook 03</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Compute crisis probability and CRI for both currencies + system</td>
+<td>Notebook 04</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Stress tests + COVID sub-period analysis</td>
+<td>Notebooks 05 + 06</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Write: Introduction, Literature Review, Methodology</td>
+<td>Draft Sections 1–3</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Write: Data, Results, Discussion, Conclusion</td>
+<td>Draft Sections 4–7</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Polish charts, refine writing, review results</td>
+<td>Complete draft</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Final review, formatting, prepare interview talking points</td>
+<td>Finished paper</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="interview-preparation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Interview Preparation</h1>
+<section id="the-60-second-pitch" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-60-second-pitch"><span class="header-section-number">6.1</span> The 60-Second Pitch</h2>
+<blockquote class="blockquote">
+<p>“I built a dual-currency Credit Risk Index for Cambodia’s banking sector. Cambodia is heavily dollarized — about 80% of lending is in US dollars — so I wanted to understand whether credit risk behaves differently in the dollar segment versus the riel segment. I used 10 years of interest rate data from the National Bank of Cambodia and modeled the lending-deposit spread for each currency using an Ornstein-Uhlenbeck stochastic process. From that, I estimated crisis probabilities and constructed a composite Credit Risk Index. I also ran stress tests and used COVID-19 as a case study. The framework gives regulators and banks a practical early warning tool that works without needing loan-level default data.”</p>
+</blockquote>
+</section>
+<section id="likely-follow-up-questions" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="likely-follow-up-questions"><span class="header-section-number">6.2</span> Likely Follow-Up Questions</h2>
+<p><strong>“Why did you use interest rate spreads instead of default data?”</strong> &gt; Cambodia doesn’t have widely available loan-level default data. The spread approach captures how banks price risk in real time using only publicly available data.</p>
+<p><strong>“What’s the Ornstein-Uhlenbeck model?”</strong> &gt; A mean-reverting stochastic process — it captures the idea that spreads return to a normal level over time. Three intuitive parameters: long-run average, speed of reversion, and volatility.</p>
+<p><strong>“What were your main findings?”</strong> &gt; [Depends on results — frame as a story about USD vs.&nbsp;KHR risk dynamics]</p>
+<p><strong>“What are the limitations?”</strong> &gt; Spreads capture more than credit risk (also operating costs and margins). Working with aggregate market rates, not individual bank data. Model assumes normally distributed shocks.</p>
+<hr>
+</section>
+</section>
+<section id="flow-diagram" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Flow Diagram</h1>
+<pre><code>┌─────────────────────────────────────────────────┐
+│                  YOUR DATA                       │
+│  NBC Interest Rates (USD + KHR, 10 years)        │
+└────────────────────┬────────────────────────────┘
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+   ┌─────────────┐       ┌─────────────┐
+   │  USD Spread  │       │  KHR Spread  │
+   │  S_usd = rL  │       │  S_khr = rL  │
+   │    - rD      │       │    - rD      │
+   └──────┬──────┘       └──────┬──────┘
+          │                     │
+          ▼                     ▼
+   ┌─────────────┐       ┌─────────────┐
+   │ Fit OU Model │       │ Fit OU Model │
+   │ κ, θ, σ     │       │ κ, θ, σ     │
+   └──────┬──────┘       └──────┬──────┘
+          │                     │
+          ▼                     ▼
+   ┌─────────────┐       ┌─────────────┐
+   │  CRI (USD)   │       │  CRI (KHR)   │
+   └──────┬──────┘       └──────┬──────┘
+          │                     │
+          └──────────┬──────────┘
+                     ▼
+            ┌───────────────┐
+            │  CRI (System)  │
+            │ = w_usd × CRI  │
+            │ + w_khr × CRI  │
+            └───────────────┘</code></pre>
+<hr>
+</section>
+<section id="next-steps-what-to-do-right-now" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Next Steps: What to Do Right Now</h1>
+<ol type="1">
+<li><strong>Format your NBC data</strong> into a CSV: <code>date</code>, <code>loan_rate_usd</code>, <code>deposit_rate_usd</code>, <code>loan_rate_khr</code>, <code>deposit_rate_khr</code></li>
+<li><strong>Install Anaconda</strong> (comes with everything you need)</li>
+<li><strong>Plot both spreads</strong> in Jupyter — see if they move together or differently</li>
+<li><strong>Find USD/KHR lending shares</strong> from any NBC annual report (for system CRI weights)</li>
+<li><strong>Come back</strong> when ready to code — I will help you build each notebook step by step</li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
