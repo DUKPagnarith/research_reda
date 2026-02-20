@@ -1,0 +1,114 @@
+---
+title: "Literature Review"
+subtitle: "Credit Risk and Dollarization in Cambodia: A Dual-Currency Analysis Using Interest Rate Spreads (2013–2025)"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    theme: cosmo
+bibliography: references.bib
+---
+
+# Literature Review
+
+## Credit Risk Measurement in Banking
+
+Credit risk — the risk that a borrower fails to meet their obligations — is one of the most significant risks faced by financial institutions. The modern framework for measuring credit risk, formalized under the Basel II Accord by the Basel Committee on Banking Supervision (BCBS, 2006), decomposes expected credit loss into three components: the Probability of Default (PD), which captures the likelihood that a borrower will default within a given time horizon; Loss Given Default (LGD), which measures the proportion of exposure that the bank expects to lose if default occurs; and Exposure at Default (EAD), which quantifies the total amount at risk at the moment of default. Together, these components allow banks to estimate expected credit losses and set aside appropriate capital reserves (Altman & Saunders, 1998; Crouhy et al., 2000).
+
+Constructing reliable PD, LGD, and EAD models requires substantial historical loan-level data with observed default events. As Altman and Saunders (1998) note in their review of two decades of credit risk measurement, the accuracy of these models depends critically on the availability of long time series of borrower-level data, including payment histories, collateral values, and recovery outcomes. The adoption of IFRS 9 in 2018 further raised the data requirements by mandating forward-looking expected credit loss provisioning rather than the incurred-loss approach of its predecessor (IASB, 2014). Banks must now estimate lifetime expected losses at loan origination, a task that demands even richer datasets and more sophisticated modeling.
+
+These data requirements pose a particular challenge for emerging and developing economies, where credit bureaus may be nascent, historical default records incomplete, and banking systems relatively young. In such environments, the data infrastructure necessary for traditional PD/LGD/EAD modeling is often inadequate. This gap motivates the search for alternative, indirect approaches to credit risk assessment — approaches that can extract meaningful risk signals from more readily available data. Interest rate spreads offer one such alternative.
+
+It is also important to note that credit risk modeling practice emphasizes portfolio segmentation. As documented in standard modeling frameworks (BCBS, 2006), risk factors differ substantially across product types and client segments, and banks are expected to build separate models for distinct portfolios. This principle directly supports the approach taken in the present study: modeling USD and KHR lending segments separately rather than pooling them, since the two currency segments in Cambodia face fundamentally different risk drivers.
+
+## Interest Rate Spreads as Credit Risk Indicators
+
+The interest rate spread — the difference between the rate banks charge on loans and the rate they pay on deposits — is a fundamental measure in banking that reflects the price of financial intermediation. In their seminal theoretical model, Ho and Saunders (1981) demonstrated that a risk-averse bank acting as a dealer in the loan and deposit market will always charge a positive spread, and that this spread is determined by the degree of managerial risk aversion, the size of bank transactions, market structure, and the variance of interest rates. Critically, the spread compensates banks for credit risk: when perceived default risk increases, banks widen spreads to protect against potential losses.
+
+This theoretical relationship between spreads and credit risk has been confirmed extensively in the empirical literature. Angbazo (1997), using data on US commercial banks, found that net interest margins are significantly and positively related to both default risk and interest rate risk, even after controlling for bank-specific characteristics. Maudos and Fernández de Guevara (2004) extended the Ho-Saunders framework to the European banking sector and reached similar conclusions, identifying credit risk as a key driver of interest margins across multiple countries. Saunders and Schumacher (2000) decomposed bank margins across seven OECD countries into a regulatory component, a market structure component, and a risk premium component, further reinforcing the link between spreads and underlying risk conditions.
+
+Beyond individual bank margins, aggregate credit spreads have been widely adopted as indicators of systemic financial stress. The TED spread (the difference between the three-month LIBOR and the three-month US Treasury bill rate) is perhaps the most well-known example, serving as a barometer of perceived credit risk in the interbank market. During the 2008 Global Financial Crisis, the TED spread spiked to over 450 basis points, providing a real-time signal of financial system distress well before many traditional indicators registered the severity of the crisis. Similarly, corporate bond yield spreads — the difference between corporate bond yields and risk-free government bond yields — are routinely monitored by central banks and international organizations as early warning indicators (Drehmann & Juselius, 2014).
+
+The logic underpinning this study follows directly from these findings. If the spread between lending and deposit rates reflects banks' assessment of credit risk, then tracking the evolution of these spreads over time provides an indirect but informative measure of credit risk conditions in the banking system. When spreads widen persistently, it signals that banks are pricing in greater risk. When spreads narrow, it suggests improving credit conditions. This approach is especially valuable in environments where direct default data is scarce, as it relies only on interest rate data that central banks routinely publish.
+
+## Mean-Reverting Stochastic Models for Financial Variables
+
+Interest rate spreads do not wander randomly without bound. Competitive forces, monetary policy, and regulatory interventions exert a gravitational pull that draws spreads back toward a long-run equilibrium level. When a shock pushes spreads temporarily above their normal level, competition among banks and improving economic conditions eventually bring them back down. Conversely, abnormally low spreads tend to rise as banks reprice risk. This behavior — known as mean reversion — is a well-documented property of interest rates and financial spreads, and it requires a specialized class of stochastic models to capture.
+
+The foundational model for mean-reverting financial variables is the Ornstein-Uhlenbeck (OU) process, originally developed in physics by Uhlenbeck and Ornstein (1930) to describe the velocity of a particle undergoing Brownian motion with friction. The process was introduced to financial modeling by Vasicek (1977) in his landmark paper on the term structure of interest rates, published in the *Journal of Financial Economics*. The Vasicek model specifies that the instantaneous short rate $r_t$ follows the stochastic differential equation:
+
+$$dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t$$
+
+where $\theta$ represents the long-run equilibrium level, $\kappa$ is the speed of mean reversion (how quickly the variable returns to $\theta$ after a shock), $\sigma$ is the volatility parameter, and $W_t$ is a standard Brownian motion representing random market shocks. The model was the first to capture mean reversion in a continuous-time stochastic framework, and it remains one of the most widely used models in quantitative finance nearly five decades after its introduction (Hull, 2018).
+
+The Vasicek/OU model possesses several properties that make it particularly suitable for the present application. First, the process has a known closed-form solution, which means that the distribution of the spread at any future time $t$ can be expressed analytically as a normal distribution with known mean and variance functions of the model parameters. This eliminates the need for simulation and allows crisis probabilities to be computed directly using the normal cumulative distribution function. Second, the model has only three parameters, which makes it estimable even with moderate sample sizes. Maximum likelihood estimation for the discretely observed OU process is well-established, with the transition density between consecutive observations following a known normal distribution (Hull, 2018).
+
+Several extensions of the Vasicek model exist, most notably the Cox-Ingersoll-Ross (CIR) model (Cox et al., 1985), which introduces a square-root diffusion term to prevent the modeled variable from becoming negative. For the present study, this modification is unnecessary because interest rate spreads in Cambodia's banking sector are inherently positive — banks always charge more on loans than they pay on deposits. The standard OU/Vasicek specification is therefore both appropriate and parsimonious for modeling spread dynamics.
+
+## Dollarization and Financial Stability in Cambodia
+
+Cambodia presents a unique case study in financial sector development, distinguished most prominently by its extraordinarily high degree of dollarization. Following the end of the Khmer Rouge period and the subsequent United Nations Transitional Authority in Cambodia (UNTAC) peacekeeping mission in the early 1990s, massive inflows of US dollars transformed the country's monetary landscape. By 1995, Cambodia had become virtually fully dollarized, with the US dollar serving all three functions of money: medium of exchange, store of value, and unit of account (Menon, 2008; Duma, 2011).
+
+The causes of Cambodia's persistent dollarization are well documented. Menon (2008), in a comprehensive study for the Asian Development Bank, identified the strong inflow of dollars from the garment export sector, tourism receipts, foreign direct investment, and international aid as primary drivers. Somewhat paradoxically, growing dollarization in Cambodia occurred against a backdrop of increasing macroeconomic and political stability — the usual motive of currency substitution driven by inflation or instability does not fully explain Cambodia's case. Duma (2011), in an IMF working paper, confirmed that Cambodia's economy operates as two parallel worlds: an urban, dollar-based economy that has benefited from garment exports and foreign investment, and a rural, riel-based economy that remains largely agricultural.
+
+The extent of dollarization has direct consequences for financial stability. As Duma (2011) and the IMF (2025) have noted, high dollarization constrains the NBC's ability to conduct independent monetary policy, as the central bank effectively delegates much of its monetary authority to the US Federal Reserve. This means that Cambodia's banking sector is directly exposed to US monetary policy shifts — including the aggressive rate hikes of 2022–2023 — regardless of domestic economic conditions. Furthermore, dollarization creates currency mismatch risks in bank balance sheets and limits the NBC's capacity to act as a lender of last resort in US dollars, since it cannot print foreign currency (Menon, 2008).
+
+Despite these challenges, Cambodia's banking sector has grown rapidly over the past decade. Credit growth has consistently exceeded 15% annually, and banking assets have surpassed 180% of GDP (NBC, various years; IMF, 2025). The sector includes 58 commercial banks, 9 specialized banks, and 87 microfinance institutions as of 2023. The COVID-19 pandemic posed a significant test for the sector: GDP contracted by 3.1% in 2020, and the NBC responded with a comprehensive loan restructuring program that allowed banks to restructure loans without classifying them as non-performing. By late 2021, approximately $5.2 billion in loans — around 13% of total outstanding credit — had been restructured for 370,785 borrowers (NBC, 2021). Non-performing loan ratios, which reached an all-time low of 1.8% in December 2019, rose to approximately 2.4% in 2021 before climbing further to 5.4% for banks by the end of 2023, reflecting both the pandemic's lasting impact and the unwinding of restructuring forbearance (NBC, various years).
+
+The NBC has been gradually pursuing de-dollarization through several policy measures, including setting higher reserve requirements for dollar deposits relative to riel deposits, promoting the use of the Cambodian riel in domestic transactions, and developing riel-denominated financial products (Samreth et al., 2019; IMF, 2025). While the share of riel in the financial system has increased modestly, the US dollar continues to dominate, accounting for approximately 80% of loans and deposits. Okuda and Chea (2023), in their edited volume on Cambodian dollarization, argue that successful de-dollarization requires not only macroeconomic stability but also deeper structural reforms to build trust in the local currency.
+
+For the purposes of credit risk analysis, Cambodia's dual-currency system means that the banking sector effectively operates two parallel lending markets with distinct risk profiles. USD lending is influenced by global dollar liquidity conditions, US Federal Reserve policy, and the external demand for Cambodia's exports. KHR lending, by contrast, is more sensitive to domestic monetary policy, exchange rate movements, and the rural agricultural economy. Modeling these two segments separately is therefore not merely a methodological choice but a reflection of the economic reality of Cambodia's banking system.
+
+## Research Gap
+
+Despite the extensive literature on dollarization in Cambodia and the well-established use of interest rate spreads as credit risk indicators, no study has applied a stochastic modeling framework to Cambodia's interest rate spread data to construct a composite Credit Risk Index. Furthermore, the dual-currency nature of Cambodia's banking system — a feature that fundamentally shapes the risk landscape — has not been exploited for comparative credit risk analysis. While individual studies have examined Cambodia's dollarization, its banking sector development, and its financial stability challenges, none has combined these elements into a quantitative early warning framework that accounts for the distinct dynamics of USD and KHR lending segments.
+
+The present study addresses this gap by constructing currency-specific and system-wide Credit Risk Indices for Cambodia's banking sector using 13 years of monthly interest rate data from the National Bank of Cambodia. By fitting separate Ornstein-Uhlenbeck models to the USD and KHR lending-deposit spreads, estimating crisis probabilities, and combining them into a composite index, this study provides both a practical monitoring tool and new empirical evidence on how dollarization shapes credit risk dynamics in one of Asia's most dollarized economies.
+
+---
+
+# References
+
+Altman, E.I. & Saunders, A. (1998). Credit risk measurement: Developments over the last 20 years. *Journal of Banking & Finance*, 21(11-12), 1721-1742.
+
+Angbazo, L. (1997). Commercial bank net interest margins, default risk, interest-rate risk, and off-balance sheet banking. *Journal of Banking & Finance*, 21(1), 55-87.
+
+Basel Committee on Banking Supervision (2006). *International Convergence of Capital Measurement and Capital Standards: A Comprehensive Framework (Basel II)*. Bank for International Settlements.
+
+Cox, J.C., Ingersoll, J.E. & Ross, S.A. (1985). A theory of the term structure of interest rates. *Econometrica*, 53(2), 385-407.
+
+Crouhy, M., Galai, D. & Mark, R. (2000). A comparative analysis of current credit risk models. *Journal of Banking & Finance*, 24(1-2), 59-117.
+
+Drehmann, M. & Juselius, M. (2014). Evaluating early warning indicators of banking crises: Satisfying policy requirements. *International Journal of Forecasting*, 30(3), 759-780.
+
+Duma, N. (2011). Dollarization in Cambodia: Causes and policy implications. *IMF Working Paper* No. WP/11/49. International Monetary Fund.
+
+Ho, T.S.Y. & Saunders, A. (1981). The determinants of bank interest margins: Theory and empirical evidence. *Journal of Financial and Quantitative Analysis*, 16(4), 581-600.
+
+Hull, J.C. (2018). *Options, Futures, and Other Derivatives* (10th ed.). Pearson Education.
+
+International Accounting Standards Board (2014). *IFRS 9 Financial Instruments*. IFRS Foundation.
+
+International Monetary Fund (2025). Cambodia: 2025 Article IV Consultation — Staff Report. *IMF Country Report*. Washington, D.C.
+
+Kang, K. (2005). Is dollarization good for Cambodia? *Global Economic Review*, 34(2), 201-211.
+
+Maudos, J. & Fernández de Guevara, J. (2004). Factors explaining the interest margin in the banking sectors of the European Union. *Journal of Banking & Finance*, 28(9), 2259-2281.
+
+Menon, J. (2008). Cambodia's persistent dollarization: Causes and policy options. *ADB Working Paper Series on Regional Economic Integration* No. 19. Asian Development Bank.
+
+National Bank of Cambodia (various years). *Annual Supervision Reports*. Phnom Penh.
+
+National Bank of Cambodia (various years). *Financial Stability Reports*. Phnom Penh.
+
+Okuda, H. & Chea, S. (eds.) (2023). *Cambodian Dollarization: Its Policy Implications for LDCs' Financial Development*. Routledge.
+
+Samreth, S., Sánchez-Martín, M.E. & Ly, S. (2019). Dollarization dilemma: Price stability at the cost of external competitiveness in Cambodia. *World Bank Policy Research Working Paper* No. 8893.
+
+Saunders, A. & Schumacher, L. (2000). The determinants of bank interest rate margins: An international study. *Journal of International Money and Finance*, 19(6), 813-832.
+
+Uhlenbeck, G.E. & Ornstein, L.S. (1930). On the theory of the Brownian motion. *Physical Review*, 36(5), 823-841.
+
+Vasicek, O. (1977). An equilibrium characterization of the term structure. *Journal of Financial Economics*, 5(2), 177-188.

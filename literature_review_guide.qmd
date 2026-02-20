@@ -1,0 +1,367 @@
+---
+title: "Literature Review Guide: References, Search Terms, and How to Write Each Section"
+subtitle: "With actual papers you can cite + why your methodology is legitimate"
+author: "Research Support"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+---
+
+# First: Is Your Methodology Legitimate?
+
+**Yes. Here's the proof.**
+
+You might feel unsure because this is your first research project, but your methodology is built on extremely well-established foundations. Let me show you exactly where each piece comes from:
+
+| What You're Doing | Established By | Year | Used By |
+|-------------------|---------------|------|---------|
+| Mean-reverting model for interest rates | Vasicek, O. "An Equilibrium Characterization of the Term Structure" — *Journal of Financial Economics* | 1977 | Every major bank and central bank in the world |
+| The Ornstein-Uhlenbeck process | Uhlenbeck & Ornstein (physics), adapted to finance by Vasicek | 1930 / 1977 | Standard in quantitative finance textbooks |
+| Interest rate spreads as risk indicators | TED spread, corporate bond spreads — used by the Fed, ECB, IMF | Decades | Central banks globally use spreads to monitor financial stability |
+| MLE for OU parameter estimation | Standard statistical method | — | Every quantitative finance program teaches this |
+| Composite risk indices | IMF Financial Soundness Indicators, various central bank indices | — | IMF, World Bank, BIS regularly publish composite risk measures |
+| Stress testing | Basel Committee on Banking Supervision | 2004+ | Required by regulation for every major bank |
+
+**You are not inventing a new method.** You are applying well-proven tools to a context (Cambodia's dual-currency system) where they haven't been applied before. That's exactly what good applied research looks like.
+
+The specific combination — using spreads + OU model + CRI + dual-currency comparison — is original in its application to Cambodia, but every individual component is mainstream finance.
+
+---
+
+# Your Reference List (Organized by Section)
+
+Here are the actual papers and documents you should cite. I've organized them by which section of your literature review they support.
+
+## Section 2.1: Credit Risk Measurement (PD, LGD, EAD)
+
+These establish that the standard approach requires loan-level data, which motivates your alternative approach.
+
+### Key References
+
+**[1] Basel Committee on Banking Supervision (2006)**
+"International Convergence of Capital Measurement and Capital Standards: A Comprehensive Framework (Basel II)"
+Bank for International Settlements.
+*→ This is THE foundational document defining PD, LGD, EAD. Available free at bis.org.*
+
+- Search: Go to `bis.org` → search "Basel II comprehensive framework"
+- Direct link: `https://www.bis.org/publ/bcbs128.htm`
+- **What to cite**: The three-component framework (PD, LGD, EAD) for computing expected credit loss, and the requirement for loan-level historical default data.
+
+**[2] Altman, E.I. & Saunders, A. (1998)**
+"Credit risk measurement: Developments over the last 20 years"
+*Journal of Banking & Finance*, 21(11-12), 1721-1742.
+*→ Classic overview of credit risk measurement methods. Good for establishing that traditional methods need historical default data.*
+
+- Search Google Scholar: `Altman Saunders 1998 credit risk measurement developments`
+
+**[3] Crouhy, M., Galai, D., & Mark, R. (2000)**
+"A comparative analysis of current credit risk models"
+*Journal of Banking & Finance*, 24(1-2), 59-117.
+*→ Compares different credit risk modeling approaches. Good for showing the data requirements of each.*
+
+- Search Google Scholar: `Crouhy Galai Mark 2000 credit risk models comparative`
+
+**[4] IFRS 9 — International Accounting Standards Board (2014)**
+"IFRS 9 Financial Instruments"
+*→ The accounting standard requiring forward-looking expected credit loss estimation. Relevant because Cambodian banks must comply but have limited data to do so.*
+
+- Search: `IFRS 9 expected credit loss standard`
+
+### What to Write (2.1)
+
+In 3–4 paragraphs, explain:
+
+1. Banks measure credit risk using PD, LGD, and EAD, which together determine expected credit loss (cite [1])
+2. These models require historical loan-level data with observed default events (cite [2], [3])
+3. Regulatory frameworks like Basel II and IFRS 9 mandate this type of modeling (cite [1], [4])
+4. In emerging markets like Cambodia, granular default data is often unavailable, creating a need for alternative approaches → this motivates your paper
+
+---
+
+## Section 2.2: Interest Rate Spreads as Risk Indicators
+
+This is your theoretical foundation — the idea that the gap between loan and deposit rates captures credit risk.
+
+### Key References
+
+**[5] Ho, T.S.Y. & Saunders, A. (1981)**
+"The Determinants of Bank Interest Margins: Theory and Empirical Evidence"
+*Journal of Financial and Quantitative Analysis*, 16(4), 581-600.
+*→ THE foundational paper on bank interest margins. Shows that the spread between loan and deposit rates compensates for credit risk, among other factors.*
+
+- Search Google Scholar: `Ho Saunders 1981 determinants bank interest margins`
+
+**[6] Angbazo, L. (1997)**
+"Commercial bank net interest margins, default risk, interest-rate risk, and off-balance sheet banking"
+*Journal of Banking & Finance*, 21(1), 55-87.
+*→ Empirically shows that bank spreads reflect credit risk (default risk) and interest rate risk.*
+
+- Search Google Scholar: `Angbazo 1997 net interest margins default risk`
+
+**[7] Maudos, J. & Fernández de Guevara, J. (2004)**
+"Factors explaining the interest margin in the banking sectors of the European Union"
+*Journal of Banking & Finance*, 28(9), 2259-2281.
+*→ Shows credit risk as a key determinant of bank interest margins across European banks.*
+
+- Search Google Scholar: `Maudos Fernandez Guevara 2004 interest margin European banking`
+
+**[8] Drehmann, M. & Juselius, M. (2014)**
+"Evaluating early warning indicators of banking crises: Satisfying policy requirements"
+*International Journal of Forecasting*, 30(3), 759-780.
+*→ IMF/BIS study on early warning indicators for banking crises. Supports your use of financial variables as early warning tools.*
+
+- Search Google Scholar: `Drehmann Juselius 2014 early warning indicators banking crises`
+
+### What to Write (2.2)
+
+In 3–4 paragraphs, explain:
+
+1. The interest rate spread (loan rate minus deposit rate) is a fundamental concept in banking — it compensates banks for credit risk, operating costs, and profit margin (cite [5])
+2. Research has shown empirically that spreads widen when default risk increases (cite [6], [7])
+3. Credit spreads are widely used as early warning indicators for financial stress — central banks and the IMF monitor them regularly (cite [8])
+4. Therefore, tracking how spreads evolve over time captures banks' real-time risk assessment, even without default data → this is the core insight of your paper
+
+---
+
+## Section 2.3: Stochastic Models in Finance (Ornstein-Uhlenbeck / Vasicek)
+
+This legitimizes your modeling choice.
+
+### Key References
+
+**[9] Vasicek, O. (1977)**
+"An Equilibrium Characterization of the Term Structure"
+*Journal of Financial Economics*, 5(2), 177-188.
+*→ THE original paper. Introduced the Ornstein-Uhlenbeck process to finance for modeling interest rates. Your model is a direct application of this.*
+
+- Search Google Scholar: `Vasicek 1977 equilibrium characterization term structure`
+- This is one of the most cited papers in all of finance
+
+**[10] Cox, J.C., Ingersoll, J.E., & Ross, S.A. (1985)**
+"A Theory of the Term Structure of Interest Rates"
+*Econometrica*, 53(2), 385-407.
+*→ The CIR model, which extends Vasicek. Cite to show you're aware of alternatives and why Vasicek is sufficient for your purpose.*
+
+- Search Google Scholar: `Cox Ingersoll Ross 1985 theory term structure interest rates`
+
+**[11] Hull, J.C. (2018)**
+*Options, Futures, and Other Derivatives* (10th edition). Pearson.
+*→ THE standard textbook. Chapters on interest rate models cover the Vasicek/OU framework in detail. Good as a general reference for the methodology.*
+
+- This is a textbook — cite it for methodological details
+
+**[12] Uhlenbeck, G.E. & Ornstein, L.S. (1930)**
+"On the Theory of the Brownian Motion"
+*Physical Review*, 36(5), 823-841.
+*→ The original OU process paper from physics. Optional to cite but shows scholarly depth.*
+
+### What to Write (2.3)
+
+In 2–3 paragraphs, explain:
+
+1. Interest rate spreads don't wander randomly — they tend to revert to a long-run "normal" level. This is called mean reversion. (Intuition: competitive forces and monetary policy pull spreads back to equilibrium)
+2. The Ornstein-Uhlenbeck (OU) process, introduced to finance by Vasicek (1977), is the standard model for mean-reverting financial variables (cite [9], [12])
+3. The OU model has three intuitive parameters: long-run mean ($\theta$), speed of reversion ($\kappa$), and volatility ($\sigma$). It can be estimated from data using Maximum Likelihood Estimation and has a known closed-form distribution, which makes computing crisis probabilities straightforward (cite [9], [11])
+4. While extensions exist (e.g., the CIR model [10] which prevents negative values), the Vasicek/OU framework is sufficient for your application because interest rate spreads are positive by nature in your data
+
+---
+
+## Section 2.4: Cambodia's Financial System and Dollarization
+
+This grounds your study in the specific country context.
+
+### Key References
+
+**[13] Duma, N. (2011)**
+"Dollarization in Cambodia: Causes and Policy Implications"
+*IMF Working Paper* No. WP/11/49.
+*→ THE key paper on Cambodia's dollarization. Covers causes, consequences, and policy implications. Discusses financial stability risks from dollarization.*
+
+- Direct link: `https://www.imf.org/external/pubs/ft/wp/2011/wp1149.pdf`
+- Free PDF from IMF
+
+**[14] Menon, J. (2008)**
+"Cambodia's Persistent Dollarization: Causes and Policy Options"
+*ADB Working Paper* Series on Regional Economic Integration No. 19.
+*→ Discusses why Cambodia remains dollarized despite economic stability. Covers the dual economy (urban/dollar vs. rural/riel).*
+
+- Direct link: `https://www.adb.org/sites/default/files/publication/28494/wp19-cambodias-persistent-dollarization.pdf`
+- Free PDF from ADB
+
+**[15] Kang, K. (2005)**
+"Is Dollarization Good for Cambodia?"
+*Global Economic Review*, 34(2), 201-211.
+*→ Analyzes costs and benefits of dollarization for Cambodia.*
+
+- Search Google Scholar: `Kang 2005 dollarization good Cambodia`
+
+**[16] Okuda, H. & Chea, S. (eds.) (2023)**
+*Cambodian Dollarization: Its Policy Implications for LDCs' Financial Development*
+Routledge.
+*→ A recent book specifically on Cambodian dollarization. Very relevant as a recent source.*
+
+- Search Google Scholar: `Okuda Chea 2023 Cambodian dollarization Routledge`
+
+**[17] Samreth, S., Sánchez-Martín, M.E., & Ly, S. (2019)**
+"Dollarization Dilemma: Price Stability at the Cost of External Competitiveness in Cambodia"
+*World Bank Policy Research Working Paper* No. 8893.
+*→ Discusses the trade-offs of Cambodia's dollarization.*
+
+- Search Google Scholar: `Samreth Sanchez-Martin 2019 dollarization dilemma Cambodia`
+
+**[18] IMF (2025)**
+"Cambodia: 2025 Article IV Consultation — Staff Report"
+*IMF Country Report*.
+*→ The most recent IMF assessment of Cambodia's economy and financial sector. Discusses financial stability risks and de-dollarization strategy.*
+
+- Available at: `https://www.imf.org/en/publications/cr/` → search Cambodia 2025
+- Cite for the most current data on Cambodia's banking sector
+
+**[19] National Bank of Cambodia**
+Annual Supervision Reports (various years).
+*→ Primary source for banking sector data, NPL ratios, and lending composition.*
+
+- Available at NBC website
+
+### What to Write (2.4)
+
+In 3–4 paragraphs, explain:
+
+1. Cambodia became heavily dollarized in the early 1990s following post-conflict inflows (cite [13], [14])
+2. Today, approximately 80% of bank lending is in USD, making Cambodia one of the most dollarized economies globally (cite [13], [18])
+3. The NBC has been pursuing de-dollarization through higher reserve requirements for USD and promotion of KHR use (cite [17], [18], [19])
+4. High dollarization creates specific financial stability risks: limited monetary policy independence, exposure to US Fed policy changes, and potential currency mismatches (cite [13], [14], [15])
+5. USD and KHR lending operate in somewhat separate segments — urban/formal economy in USD, rural/agricultural in KHR — with different risk profiles (cite [14], [16])
+
+---
+
+## Section 2.5: Gap in Literature
+
+### What to Write
+
+In 1 short paragraph:
+
+Despite extensive research on dollarization in Cambodia and the well-established use of interest rate spreads as risk indicators, **no study has**:
+
+(a) Applied the mean-reverting stochastic framework to Cambodia's interest rate spreads to construct a Credit Risk Index;
+
+(b) Compared credit risk dynamics across the USD and KHR lending segments;
+
+(c) Used Cambodia's dual-currency spread data to build an early warning indicator for financial stability.
+
+This paper addresses all three gaps.
+
+---
+
+# Complete Reference List (Ready to Copy)
+
+Here are all references in a standard format you can use:
+
+1. Altman, E.I. & Saunders, A. (1998). Credit risk measurement: Developments over the last 20 years. *Journal of Banking & Finance*, 21(11-12), 1721-1742.
+
+2. Angbazo, L. (1997). Commercial bank net interest margins, default risk, interest-rate risk, and off-balance sheet banking. *Journal of Banking & Finance*, 21(1), 55-87.
+
+3. Basel Committee on Banking Supervision (2006). *International Convergence of Capital Measurement and Capital Standards: A Comprehensive Framework*. Bank for International Settlements.
+
+4. Cox, J.C., Ingersoll, J.E., & Ross, S.A. (1985). A theory of the term structure of interest rates. *Econometrica*, 53(2), 385-407.
+
+5. Crouhy, M., Galai, D., & Mark, R. (2000). A comparative analysis of current credit risk models. *Journal of Banking & Finance*, 24(1-2), 59-117.
+
+6. Drehmann, M. & Juselius, M. (2014). Evaluating early warning indicators of banking crises: Satisfying policy requirements. *International Journal of Forecasting*, 30(3), 759-780.
+
+7. Duma, N. (2011). Dollarization in Cambodia: Causes and policy implications. *IMF Working Paper* No. WP/11/49.
+
+8. Ho, T.S.Y. & Saunders, A. (1981). The determinants of bank interest margins: Theory and empirical evidence. *Journal of Financial and Quantitative Analysis*, 16(4), 581-600.
+
+9. Hull, J.C. (2018). *Options, Futures, and Other Derivatives* (10th ed.). Pearson.
+
+10. International Monetary Fund (2025). Cambodia: 2025 Article IV Consultation — Staff Report. *IMF Country Report*.
+
+11. Kang, K. (2005). Is dollarization good for Cambodia? *Global Economic Review*, 34(2), 201-211.
+
+12. Maudos, J. & Fernández de Guevara, J. (2004). Factors explaining the interest margin in the banking sectors of the European Union. *Journal of Banking & Finance*, 28(9), 2259-2281.
+
+13. Menon, J. (2008). Cambodia's persistent dollarization: Causes and policy options. *ADB Working Paper Series on Regional Economic Integration* No. 19.
+
+14. National Bank of Cambodia. Annual Supervision Reports (various years).
+
+15. Okuda, H. & Chea, S. (eds.) (2023). *Cambodian Dollarization: Its Policy Implications for LDCs' Financial Development*. Routledge.
+
+16. Samreth, S., Sánchez-Martín, M.E., & Ly, S. (2019). Dollarization dilemma: Price stability at the cost of external competitiveness in Cambodia. *World Bank Policy Research Working Paper* No. 8893.
+
+17. Uhlenbeck, G.E. & Ornstein, L.S. (1930). On the theory of the Brownian motion. *Physical Review*, 36(5), 823-841.
+
+18. Vasicek, O. (1977). An equilibrium characterization of the term structure. *Journal of Financial Economics*, 5(2), 177-188.
+
+---
+
+# How to Search Google Scholar Efficiently
+
+## The Strategy
+
+You don't need to find all papers from scratch. Use the **snowball method**:
+
+1. **Start with one key paper** (e.g., Duma 2011 on Cambodia, or Ho & Saunders 1981 on spreads)
+2. **Click "Cited by"** underneath it → this shows every paper that referenced it
+3. **Sort by relevance or date** → find more recent papers on the same topic
+4. **Check the reference list** of any good paper → the papers IT cites are likely foundational ones you should also read
+
+## Exact Search Strings
+
+Copy-paste these into Google Scholar:
+
+**For Section 2.1:**
+```
+"probability of default" "loss given default" credit risk framework Basel
+"expected credit loss" "data limitations" emerging markets
+IFRS 9 "expected credit loss" implementation challenges developing
+```
+
+**For Section 2.2:**
+```
+"net interest margin" OR "interest rate spread" determinants "credit risk"
+"bank interest margin" default risk empirical
+"early warning" "banking crisis" financial indicators
+"credit spread" "financial stability" monitoring
+```
+
+**For Section 2.3:**
+```
+Vasicek 1977 "equilibrium characterization" "term structure"
+"Ornstein-Uhlenbeck" interest rate "mean reverting" finance
+"mean reversion" "interest rate" stochastic model estimation
+```
+
+**For Section 2.4:**
+```
+dollarization Cambodia banking financial stability
+"National Bank of Cambodia" financial sector risk
+Cambodia "de-dollarization" policy banking
+Cambodia banking sector "credit risk" OR "financial stability"
+```
+
+## Quick Tips
+
+- Use **quotes** around exact phrases: `"interest rate spread"` not just interest rate spread
+- Use **OR** to broaden: `"credit risk" OR "default risk"`
+- Add **year range** in Google Scholar settings to find recent papers
+- **Don't read entire papers** — read the abstract, introduction (last paragraph usually states the contribution), and conclusion. Only read methodology sections of papers that use similar methods to yours.
+- **15–20 references is enough** for a personal research project
+
+---
+
+# How Long Should the Literature Review Be?
+
+For a personal project (not a thesis), aim for **3–4 pages**. That's roughly:
+
+- Section 2.1 (Credit Risk Measurement): 1/2 to 3/4 page
+- Section 2.2 (Spreads as Risk Indicators): 3/4 to 1 page
+- Section 2.3 (Stochastic Models): 1/2 to 3/4 page
+- Section 2.4 (Cambodia & Dollarization): 3/4 to 1 page
+- Section 2.5 (Gap): 1 short paragraph
+
+The literature review is NOT the star of your paper — the results are. Write enough to show you understand the foundations and justify your approach, then move on.
