@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Pagnarith DUK">
+<meta name="dcterms.date" content="2025-01-01">
+<meta name="keywords" content="Credit risk, Dollarization, Ornstein-Uhlenbeck process, Interest rate spreads, Cambodia, Dual currency">
+
+<title>Credit Risk and Dollarization in Cambodia: A Dual-Currency Stochastic Approach</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="paper_files/libs/clipboard/clipboard.min.js"></script>
+<script src="paper_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="paper_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="paper_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="paper_files/libs/quarto-html/popper.min.js"></script>
+<script src="paper_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="paper_files/libs/quarto-html/anchor.min.js"></script>
+<link href="paper_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="paper_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="paper_files/libs/bootstrap/bootstrap-a74871fe4945b66d259aafc266475145.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="body { max-width: 900px; margin: auto; }
+.figure-caption { font-style: italic; font-size: 0.9em; }">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#background-and-motivation" id="toc-background-and-motivation" class="nav-link" data-scroll-target="#background-and-motivation"><span class="header-section-number">1.1</span> Background and Motivation</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><span class="header-section-number">1.2</span> Research Questions</a></li>
+  <li><a href="#contributions" id="toc-contributions" class="nav-link" data-scroll-target="#contributions"><span class="header-section-number">1.3</span> Contributions</a></li>
+  </ul></li>
+  <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review"><span class="header-section-number">2</span> Literature Review</a>
+  <ul class="collapse">
+  <li><a href="#interest-rate-spreads-as-credit-risk-indicators" id="toc-interest-rate-spreads-as-credit-risk-indicators" class="nav-link" data-scroll-target="#interest-rate-spreads-as-credit-risk-indicators"><span class="header-section-number">2.1</span> Interest Rate Spreads as Credit Risk Indicators</a></li>
+  <li><a href="#stochastic-models-of-interest-rates" id="toc-stochastic-models-of-interest-rates" class="nav-link" data-scroll-target="#stochastic-models-of-interest-rates"><span class="header-section-number">2.2</span> Stochastic Models of Interest Rates</a></li>
+  <li><a href="#dollarization-and-financial-stability" id="toc-dollarization-and-financial-stability" class="nav-link" data-scroll-target="#dollarization-and-financial-stability"><span class="header-section-number">2.3</span> Dollarization and Financial Stability</a></li>
+  <li><a href="#credit-risk-indices" id="toc-credit-risk-indices" class="nav-link" data-scroll-target="#credit-risk-indices"><span class="header-section-number">2.4</span> Credit Risk Indices</a></li>
+  </ul></li>
+  <li><a href="#data-and-methodology" id="toc-data-and-methodology" class="nav-link" data-scroll-target="#data-and-methodology"><span class="header-section-number">3</span> Data and Methodology</a>
+  <ul class="collapse">
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description"><span class="header-section-number">3.1</span> Data Description</a></li>
+  <li><a href="#ornstein-uhlenbeck-model" id="toc-ornstein-uhlenbeck-model" class="nav-link" data-scroll-target="#ornstein-uhlenbeck-model"><span class="header-section-number">3.2</span> Ornstein-Uhlenbeck Model</a>
+  <ul class="collapse">
+  <li><a href="#parameter-estimation" id="toc-parameter-estimation" class="nav-link" data-scroll-target="#parameter-estimation"><span class="header-section-number">3.2.1</span> Parameter Estimation</a></li>
+  <li><a href="#half-life" id="toc-half-life" class="nav-link" data-scroll-target="#half-life"><span class="header-section-number">3.2.2</span> Half-Life</a></li>
+  </ul></li>
+  <li><a href="#credit-risk-index-construction" id="toc-credit-risk-index-construction" class="nav-link" data-scroll-target="#credit-risk-index-construction"><span class="header-section-number">3.3</span> Credit Risk Index Construction</a>
+  <ul class="collapse">
+  <li><a href="#crisis-threshold" id="toc-crisis-threshold" class="nav-link" data-scroll-target="#crisis-threshold"><span class="header-section-number">3.3.1</span> Crisis Threshold</a></li>
+  <li><a href="#crisis-probability" id="toc-crisis-probability" class="nav-link" data-scroll-target="#crisis-probability"><span class="header-section-number">3.3.2</span> Crisis Probability</a></li>
+  <li><a href="#currency-specific-cri" id="toc-currency-specific-cri" class="nav-link" data-scroll-target="#currency-specific-cri"><span class="header-section-number">3.3.3</span> Currency-Specific CRI</a></li>
+  <li><a href="#system-wide-cri" id="toc-system-wide-cri" class="nav-link" data-scroll-target="#system-wide-cri"><span class="header-section-number">3.3.4</span> System-Wide CRI</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">4</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"><span class="header-section-number">4.1</span> Descriptive Statistics</a>
+  <ul class="collapse">
+  <li><a href="#sub-period-analysis" id="toc-sub-period-analysis" class="nav-link" data-scroll-target="#sub-period-analysis"><span class="header-section-number">4.1.1</span> Sub-Period Analysis</a></li>
+  <li><a href="#statistical-tests" id="toc-statistical-tests" class="nav-link" data-scroll-target="#statistical-tests"><span class="header-section-number">4.1.2</span> Statistical Tests</a></li>
+  </ul></li>
+  <li><a href="#ou-parameter-estimation" id="toc-ou-parameter-estimation" class="nav-link" data-scroll-target="#ou-parameter-estimation"><span class="header-section-number">4.2</span> OU Parameter Estimation</a></li>
+  <li><a href="#credit-risk-index" id="toc-credit-risk-index" class="nav-link" data-scroll-target="#credit-risk-index"><span class="header-section-number">4.3</span> Credit Risk Index</a>
+  <ul class="collapse">
+  <li><a href="#crisis-probability-1" id="toc-crisis-probability-1" class="nav-link" data-scroll-target="#crisis-probability-1"><span class="header-section-number">4.3.1</span> Crisis Probability</a></li>
+  <li><a href="#currency-specific-cri-1" id="toc-currency-specific-cri-1" class="nav-link" data-scroll-target="#currency-specific-cri-1"><span class="header-section-number">4.3.2</span> Currency-Specific CRI</a></li>
+  <li><a href="#system-wide-cri-1" id="toc-system-wide-cri-1" class="nav-link" data-scroll-target="#system-wide-cri-1"><span class="header-section-number">4.3.3</span> System-Wide CRI</a></li>
+  </ul></li>
+  <li><a href="#covid-19-impact-analysis" id="toc-covid-19-impact-analysis" class="nav-link" data-scroll-target="#covid-19-impact-analysis"><span class="header-section-number">4.4</span> COVID-19 Impact Analysis</a></li>
+  <li><a href="#rolling-window-analysis" id="toc-rolling-window-analysis" class="nav-link" data-scroll-target="#rolling-window-analysis"><span class="header-section-number">4.5</span> Rolling Window Analysis</a></li>
+  <li><a href="#stress-testing" id="toc-stress-testing" class="nav-link" data-scroll-target="#stress-testing"><span class="header-section-number">4.6</span> Stress Testing</a></li>
+  <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness"><span class="header-section-number">4.7</span> Robustness</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">5</span> Discussion</a>
+  <ul class="collapse">
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings"><span class="header-section-number">5.1</span> Key Findings</a></li>
+  <li><a href="#policy-implications" id="toc-policy-implications" class="nav-link" data-scroll-target="#policy-implications"><span class="header-section-number">5.2</span> Policy Implications</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">5.3</span> Limitations</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="paper.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Credit Risk and Dollarization in Cambodia: A Dual-Currency Stochastic Approach</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Pagnarith DUK </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Royal University of Law and Economics
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    <p>This paper constructs a dual-currency Credit Risk Index (CRI) for Cambodia’s banking sector using Ornstein-Uhlenbeck stochastic processes fitted to monthly interest rate spreads (January 2013 – December 2025). We find that KHR (riel) spreads exhibit 3.5 times higher volatility (σ = 6.18 vs.&nbsp;3.66) and 4 times slower mean reversion (half-life of 18 months vs.&nbsp;4.5 months) compared to USD spreads. A composite CRI combining crisis probability and structural volatility reveals that the KHR segment carries persistently higher credit risk — a finding robust to alternative data sources, thresholds, and weighting schemes. COVID-19 paradoxically decreased measured risk as NBC’s loan restructuring program suppressed spread volatility. Rolling window analysis shows USD–KHR spread convergence consistent with de-dollarization progress, though the riel segment retains an irreducible risk premium. These findings support currency-specific prudential frameworks and differentiated capital requirements.</p>
+  </div>
+</div>
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>Credit risk, Dollarization, Ornstein-Uhlenbeck process, Interest rate spreads, Cambodia, Dual currency</p>
+  </div>
+</div>
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="background-and-motivation" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="background-and-motivation"><span class="header-section-number">1.1</span> Background and Motivation</h2>
+<p>Cambodia operates one of the most heavily dollarized economies in the world. As of 2024, approximately 80% of bank deposits and 85% of outstanding loans are denominated in United States dollars rather than the domestic currency, the Cambodian riel (KHR). This extraordinary level of dollarization — a legacy of the post-conflict reconstruction era of the 1990s — creates a unique dual-currency financial system in which two distinct lending markets coexist with potentially different risk dynamics.</p>
+<p>The National Bank of Cambodia (NBC) has pursued active de-dollarization since 2016, including higher reserve requirements for foreign currency deposits, incentives for riel-denominated lending, and the promotion of the Bakong digital payment system. These efforts have begun to shift the composition of the banking sector, but the transition raises a fundamental question: <strong>does credit risk differ systematically between the USD and KHR segments, and if so, how?</strong></p>
+<p>This question has received limited quantitative attention. Most studies of Cambodian banking sector stability treat the system as a single entity, obscuring potentially important cross-currency dynamics. The few studies that examine dollarization effects focus on macroeconomic aggregates rather than micro-level credit pricing. This paper fills the gap by constructing a dual-currency Credit Risk Index (CRI) that separately quantifies credit risk in each currency segment.</p>
+</section>
+<section id="research-questions" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="research-questions"><span class="header-section-number">1.2</span> Research Questions</h2>
+<ol type="1">
+<li>How do the dynamics of USD and KHR interest rate spreads differ in terms of mean reversion speed, equilibrium level, and volatility?</li>
+<li>Can we construct a theoretically grounded Credit Risk Index that captures both structural risk and conditional crisis probability?</li>
+<li>How did COVID-19 affect credit risk dynamics in Cambodia’s dual-currency system?</li>
+<li>Is the KHR segment inherently more fragile under stress?</li>
+<li>Has de-dollarization progress altered the relative risk profiles of the two segments?</li>
+</ol>
+</section>
+<section id="contributions" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="contributions"><span class="header-section-number">1.3</span> Contributions</h2>
+<p>This paper makes four contributions to the literature:</p>
+<ol type="1">
+<li><strong>Methodological</strong>: We apply the Ornstein-Uhlenbeck (OU) stochastic process to model interest rate spreads in a developing economy’s dual-currency system — extending the use of affine term structure models beyond their typical application in advanced economies.</li>
+<li><strong>Empirical</strong>: We provide the first quantitative comparison of USD vs.&nbsp;KHR credit risk dynamics using 156 monthly observations (2013–2025), covering the pre-COVID, COVID, and post-COVID periods.</li>
+<li><strong>Policy-relevant</strong>: We construct a composite CRI that can be used by the NBC and commercial banks for monitoring and early warning purposes.</li>
+<li><strong>De-dollarization evidence</strong>: Our rolling window analysis provides quantitative evidence that USD–KHR spread dynamics are converging, supporting the effectiveness of de-dollarization policies.</li>
+</ol>
+</section>
+</section>
+<section id="literature-review" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Literature Review</h1>
+<section id="interest-rate-spreads-as-credit-risk-indicators" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="interest-rate-spreads-as-credit-risk-indicators"><span class="header-section-number">2.1</span> Interest Rate Spreads as Credit Risk Indicators</h2>
+<p>Interest rate spreads — the difference between lending and deposit rates — have long been recognized as indicators of banking sector health and credit risk conditions. Higher spreads may reflect elevated default risk, reduced competition, or increased risk aversion among lenders. In the context of emerging economies, <span class="citation" data-cites="demirguc2004market">Demirgüç-Kunt and Huizinga (<a href="#ref-demirguc2004market" role="doc-biblioref">2004</a>)</span> show that spreads are influenced by both macroeconomic fundamentals and institutional quality. <span class="citation" data-cites="beck2010banking">Beck et al. (<a href="#ref-beck2010banking" role="doc-biblioref">2010</a>)</span> find that bank-level characteristics, competition, and the regulatory environment all influence the level and volatility of interest rate margins.</p>
+<p>For Cambodia specifically, the NBC’s Statistical Bulletins provide monthly data on weighted average lending and deposit rates by currency, enabling direct computation of spreads as a proxy for credit conditions in each segment.</p>
+</section>
+<section id="stochastic-models-of-interest-rates" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="stochastic-models-of-interest-rates"><span class="header-section-number">2.2</span> Stochastic Models of Interest Rates</h2>
+<p>The Ornstein-Uhlenbeck (OU) process, introduced by <span class="citation" data-cites="uhlenbeck1930theory">Uhlenbeck and Ornstein (<a href="#ref-uhlenbeck1930theory" role="doc-biblioref">1930</a>)</span> and applied to finance by <span class="citation" data-cites="vasicek1977equilibrium">Vasicek (<a href="#ref-vasicek1977equilibrium" role="doc-biblioref">1977</a>)</span>, is the canonical mean-reverting diffusion:</p>
+<p><span class="math display">\[dS_t = \kappa(\theta - S_t)dt + \sigma dW_t\]</span></p>
+<p>where <span class="math inline">\(\kappa &gt; 0\)</span> is the speed of mean reversion, <span class="math inline">\(\theta\)</span> is the long-run equilibrium, <span class="math inline">\(\sigma &gt; 0\)</span> is the volatility, and <span class="math inline">\(W_t\)</span> is a standard Brownian motion. The process is widely used for interest rate modeling because it captures the economic intuition that rates are pulled back toward a fundamental equilibrium rather than wandering freely.</p>
+<p>The exact transition density is Gaussian:</p>
+<p><span class="math display">\[S_{t+\Delta t} | S_t \sim \mathcal{N}\left(\theta + (S_t - \theta)e^{-\kappa\Delta t},\; \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\right)\]</span></p>
+<p>This enables maximum likelihood estimation and closed-form computation of crisis probabilities.</p>
+</section>
+<section id="dollarization-and-financial-stability" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="dollarization-and-financial-stability"><span class="header-section-number">2.3</span> Dollarization and Financial Stability</h2>
+<p>The literature on dollarization identifies several channels through which dual-currency systems affect financial stability. <span class="citation" data-cites="levy2006financial">Levy-Yeyati (<a href="#ref-levy2006financial" role="doc-biblioref">2006</a>)</span> emphasize the “balance sheet effect” — currency mismatches between assets and liabilities that amplify shocks. <span class="citation" data-cites="nicolo2005dollarization">De Nicoló, Honohan, and Ize (<a href="#ref-nicolo2005dollarization" role="doc-biblioref">2005</a>)</span> find that dollarized banking systems tend to have lower lending-deposit spreads in the foreign currency but higher systemic risk due to currency mismatch exposure.</p>
+<p>Cambodia’s case is distinctive because the dollar is used <em>domestically</em> for transactions, not just as a store of value. This means the two lending markets serve partially overlapping borrower pools, with exchange rate risk creating a wedge between them.</p>
+</section>
+<section id="credit-risk-indices" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="credit-risk-indices"><span class="header-section-number">2.4</span> Credit Risk Indices</h2>
+<p>Several approaches to constructing credit risk indices exist in the literature. The Cleveland Financial Stress Index (CFSI) uses a weighted combination of credit, equity, and foreign exchange market indicators. The IMF’s Financial Soundness Indicators (FSIs) track banking sector health through capital adequacy, asset quality, and profitability metrics. Our approach differs by focusing specifically on the credit pricing channel — interest rate spreads — and embedding it within a stochastic process framework that provides probability-theoretic foundations for crisis quantification.</p>
+</section>
+</section>
+<section id="data-and-methodology" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Data and Methodology</h1>
+<section id="data-description" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data-description"><span class="header-section-number">3.1</span> Data Description</h2>
+<p>We use monthly weighted average interest rates on term loans and term deposits from the National Bank of Cambodia’s Statistical Reports, disaggregated by currency (USD and KHR). The data are based on the “New Amount” classification, which reflects rates on newly issued loans and deposits in each month.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 41%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>USD Term Loan Rate</td>
+<td>Weighted average rate on new USD term loans</td>
+<td>NBC</td>
+</tr>
+<tr class="even">
+<td>USD Term Deposit Rate</td>
+<td>Weighted average rate on new USD term deposits</td>
+<td>NBC</td>
+</tr>
+<tr class="odd">
+<td>KHR Term Loan Rate</td>
+<td>Weighted average rate on new KHR term loans</td>
+<td>NBC</td>
+</tr>
+<tr class="even">
+<td>KHR Term Deposit Rate</td>
+<td>Weighted average rate on new KHR term deposits</td>
+<td>NBC</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample period</strong>: January 2013 – December 2025 (156 monthly observations)</p>
+<p>The <strong>interest rate spread</strong> for currency <span class="math inline">\(c \in \{\text{USD}, \text{KHR}\}\)</span> is computed as:</p>
+<p><span class="math display">\[S_t^c = r_t^{c,\text{loan}} - r_t^{c,\text{deposit}}\]</span></p>
+</section>
+<section id="ornstein-uhlenbeck-model" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="ornstein-uhlenbeck-model"><span class="header-section-number">3.2</span> Ornstein-Uhlenbeck Model</h2>
+<p>For each currency, we model the spread as an OU process:</p>
+<p><span class="math display">\[dS_t^c = \kappa^c(\theta^c - S_t^c)dt + \sigma^c dW_t^c\]</span></p>
+<section id="parameter-estimation" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="parameter-estimation"><span class="header-section-number">3.2.1</span> Parameter Estimation</h3>
+<p>Parameters are estimated by Maximum Likelihood Estimation (MLE) using the exact transition density. The log-likelihood function is:</p>
+<p><span class="math display">\[\ell(\kappa, \theta, \sigma) = -\frac{n}{2}\log(2\pi) - \frac{n}{2}\log(v) - \frac{1}{2v}\sum_{i=1}^{n}\left(S_{t_i} - m_{t_i}\right)^2\]</span></p>
+<p>where <span class="math inline">\(m_{t_i} = \theta + (S_{t_{i-1}} - \theta)e^{-\kappa\Delta t}\)</span> and <span class="math inline">\(v = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\)</span>.</p>
+<p>Standard errors are obtained from the numerical Hessian of the log-likelihood. An AR(1) OLS regression is used as a cross-check: <span class="math inline">\(S_{t+1} = a + bS_t + \varepsilon_t\)</span>, with implied OU parameters <span class="math inline">\(\kappa = -\ln(b)/\Delta t\)</span>, <span class="math inline">\(\theta = a/(1-b)\)</span>.</p>
+</section>
+<section id="half-life" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="half-life"><span class="header-section-number">3.2.2</span> Half-Life</h3>
+<p>The half-life — the time for 50% of a shock to dissipate — is:</p>
+<p><span class="math display">\[t_{1/2} = \frac{\ln 2}{\kappa}\]</span></p>
+</section>
+</section>
+<section id="credit-risk-index-construction" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="credit-risk-index-construction"><span class="header-section-number">3.3</span> Credit Risk Index Construction</h2>
+<section id="crisis-threshold" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="crisis-threshold"><span class="header-section-number">3.3.1</span> Crisis Threshold</h3>
+<p>The crisis threshold for currency <span class="math inline">\(c\)</span> is defined as the 95th percentile of the empirical spread distribution:</p>
+<p><span class="math display">\[S_c^c = F_{S^c}^{-1}(0.95)\]</span></p>
+</section>
+<section id="crisis-probability" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="crisis-probability"><span class="header-section-number">3.3.2</span> Crisis Probability</h3>
+<p>The conditional probability that the spread will exceed the crisis threshold next period, given the current level and OU dynamics:</p>
+<p><span class="math display">\[P_t^c = P(S_{t+1}^c &gt; S_c^c \mid S_t^c) = 1 - \Phi\left(\frac{S_c^c - m_t^c}{\sqrt{v_t^c}}\right)\]</span></p>
+<p>where <span class="math inline">\(\Phi\)</span> is the standard normal CDF.</p>
+</section>
+<section id="currency-specific-cri" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="currency-specific-cri"><span class="header-section-number">3.3.3</span> Currency-Specific CRI</h3>
+<p><span class="math display">\[\text{CRI}_t^c = \alpha \cdot \hat{\sigma}^c_{\text{norm}} + (1 - \alpha) \cdot P_t^c\]</span></p>
+<p>where <span class="math inline">\(\hat{\sigma}^c_{\text{norm}} = \sigma^c / \sigma_{\max}\)</span> is the normalized volatility and <span class="math inline">\(\alpha = 0.5\)</span> gives equal weight to structural and conditional risk components.</p>
+</section>
+<section id="system-wide-cri" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="system-wide-cri"><span class="header-section-number">3.3.4</span> System-Wide CRI</h3>
+<p><span class="math display">\[\text{CRI}_t^{\text{System}} = w_{\text{USD}} \cdot \text{CRI}_t^{\text{USD}} + w_{\text{KHR}} \cdot \text{CRI}_t^{\text{KHR}}\]</span></p>
+<p>The primary specification uses loan-share weights (<span class="math inline">\(w_{\text{USD}} = 0.80\)</span>, <span class="math inline">\(w_{\text{KHR}} = 0.20\)</span>).</p>
+</section>
+</section>
+</section>
+<section id="results" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Results</h1>
+<section id="descriptive-statistics" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="descriptive-statistics"><span class="header-section-number">4.1</span> Descriptive Statistics</h2>
+<p><a href="#tbl-descriptive" class="quarto-xref">Table&nbsp;1</a> presents the full-sample descriptive statistics for both spread series.</p>
+<div id="tbl-descriptive" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-descriptive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Full-Sample Descriptive Statistics
+</figcaption>
+<div aria-describedby="tbl-descriptive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th style="text-align: center;">USD Spread</th>
+<th style="text-align: center;">KHR Spread</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean (%)</td>
+<td style="text-align: center;">6.72</td>
+<td style="text-align: center;">11.34</td>
+</tr>
+<tr class="even">
+<td>Std. Dev. (%)</td>
+<td style="text-align: center;">2.02</td>
+<td style="text-align: center;">7.11</td>
+</tr>
+<tr class="odd">
+<td>Median (%)</td>
+<td style="text-align: center;">6.04</td>
+<td style="text-align: center;">6.95</td>
+</tr>
+<tr class="even">
+<td>Min (%)</td>
+<td style="text-align: center;">2.88</td>
+<td style="text-align: center;">4.24</td>
+</tr>
+<tr class="odd">
+<td>Max (%)</td>
+<td style="text-align: center;">11.30</td>
+<td style="text-align: center;">26.65</td>
+</tr>
+<tr class="even">
+<td>Skewness</td>
+<td style="text-align: center;">0.74</td>
+<td style="text-align: center;">0.76</td>
+</tr>
+<tr class="odd">
+<td>Kurtosis</td>
+<td style="text-align: center;">−0.48</td>
+<td style="text-align: center;">−1.12</td>
+</tr>
+<tr class="even">
+<td>P5 (%)</td>
+<td style="text-align: center;">4.28</td>
+<td style="text-align: center;">4.83</td>
+</tr>
+<tr class="odd">
+<td>P95 (%)</td>
+<td style="text-align: center;">10.73</td>
+<td style="text-align: center;">23.94</td>
+</tr>
+<tr class="even">
+<td>N</td>
+<td style="text-align: center;">156</td>
+<td style="text-align: center;">156</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The KHR spread averages 11.34%, nearly 1.7 times the USD spread average of 6.72%. More critically, KHR spread volatility (std = 7.11%) is <strong>3.5 times</strong> the USD value (2.02%). Both distributions are positively skewed (0.74 and 0.76), indicating that extreme spread widenings are more common than compressions — consistent with credit risk theory.</p>
+<p>The KHR median (6.95%) is far below its mean (11.34%), revealing a heavily right-skewed distribution dominated by high early-sample values (2013–2017) when KHR spreads exceeded 20%. The negative excess kurtosis for KHR (−1.12) indicates a platykurtic distribution — risk materializes as sustained elevated spreads rather than sudden spikes.</p>
+<div id="fig-timeseries" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timeseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig1_spread_timeseries.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timeseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: USD and KHR interest rate spreads over the full sample period, with COVID-19 shading and key macroeconomic events annotated.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-timeseries" class="quarto-xref">Figure&nbsp;1</a> reveals three distinct phases. First, a <strong>high-divergence era</strong> (2013–2016) with KHR spreads of 13–27% against USD spreads of 5–11%. Second, a <strong>rapid KHR compression</strong> (2017–2019) driven by banking sector maturation and NBC de-dollarization policies. Third, a <strong>convergence phase</strong> (2020–2025) where both spreads stabilize in a narrow 4–7% band.</p>
+<section id="sub-period-analysis" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="sub-period-analysis"><span class="header-section-number">4.1.1</span> Sub-Period Analysis</h3>
+<div id="tbl-subperiod" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-subperiod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Sub-Period Summary Statistics
+</figcaption>
+<div aria-describedby="tbl-subperiod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Period</th>
+<th style="text-align: center;">N</th>
+<th style="text-align: center;">USD Mean</th>
+<th style="text-align: center;">USD Std</th>
+<th style="text-align: center;">KHR Mean</th>
+<th style="text-align: center;">KHR Std</th>
+<th style="text-align: center;">Correlation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pre-COVID (2013–2019)</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">7.98%</td>
+<td style="text-align: center;">1.91%</td>
+<td style="text-align: center;">16.02%</td>
+<td style="text-align: center;">6.76%</td>
+<td style="text-align: center;">0.73</td>
+</tr>
+<tr class="even">
+<td>COVID (2020–2021)</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">5.77%</td>
+<td style="text-align: center;">0.36%</td>
+<td style="text-align: center;">6.12%</td>
+<td style="text-align: center;">0.82%</td>
+<td style="text-align: center;">0.11</td>
+</tr>
+<tr class="odd">
+<td>Post-COVID (2022–2025)</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">5.01%</td>
+<td style="text-align: center;">0.78%</td>
+<td style="text-align: center;">5.76%</td>
+<td style="text-align: center;">0.70%</td>
+<td style="text-align: center;">0.41</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The sub-period analysis reveals a dramatic correlation breakdown during COVID. The Pearson correlation between USD and KHR spreads collapsed from 0.73 (pre-COVID) to just <strong>0.11</strong> during COVID, then partially recovered to 0.41 post-COVID. This decoupling — where USD spreads were influenced by Fed policy (emergency rate cuts) while KHR spreads responded to domestic NBC policies (loan restructuring) — provides the strongest justification for the dual-currency modeling framework.</p>
+<div id="fig-histograms" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-histograms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig2_spread_histograms.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histograms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Distribution of interest rate spreads with normal overlay. The KHR distribution shows clear bimodality reflecting two distinct regimes.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="statistical-tests" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="statistical-tests"><span class="header-section-number">4.1.2</span> Statistical Tests</h3>
+<p><strong>Normality</strong>: Both the Shapiro-Wilk and Jarque-Bera tests strongly reject normality for both series (p &lt; 0.001). The rejection reflects the structural regime shift in the data rather than invalidating the OU model, whose conditional innovations may still be approximately Gaussian.</p>
+<p><strong>Stationarity</strong>: The Augmented Dickey-Fuller test fails to reject the unit root null for both series (USD: ADF = −0.67, p = 0.86; KHR: ADF = −1.69, p = 0.44). This result reflects the well-known low power of the ADF test in the presence of structural breaks (Perron, 1989) and slow mean reversion — the KHR series’ massive compression from 24% to 5% is interpreted by the test as non-stationarity.</p>
+<p><strong>Autocorrelation</strong>: Lag-1 autocorrelation is 0.87 for USD and 0.97 for KHR, consistent with AR(1)/OU dynamics. The PACF shows a dominant spike at lag 1 followed by rapid decay, confirming that a first-order autoregressive specification is appropriate.</p>
+<div id="fig-acf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-acf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig_acf_pacf.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-acf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: ACF and PACF plots for both currency spreads, confirming AR(1)/OU dynamics.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="ou-parameter-estimation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="ou-parameter-estimation"><span class="header-section-number">4.2</span> OU Parameter Estimation</h2>
+<p><a href="#tbl-ou" class="quarto-xref">Table&nbsp;3</a> presents the MLE results for both currencies.</p>
+<div id="tbl-ou" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ou-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: MLE Estimates of OU Parameters
+</figcaption>
+<div aria-describedby="tbl-ou-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th style="text-align: center;">USD</th>
+<th style="text-align: center;">SE</th>
+<th style="text-align: center;">KHR</th>
+<th style="text-align: center;">SE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>κ (mean reversion)</td>
+<td style="text-align: center;">1.85</td>
+<td style="text-align: center;">0.55</td>
+<td style="text-align: center;">0.46</td>
+<td style="text-align: center;">0.25</td>
+</tr>
+<tr class="even">
+<td>θ (equilibrium, %)</td>
+<td style="text-align: center;">6.44</td>
+<td style="text-align: center;">0.56</td>
+<td style="text-align: center;">8.07</td>
+<td style="text-align: center;">4.12</td>
+</tr>
+<tr class="odd">
+<td>σ (volatility)</td>
+<td style="text-align: center;">3.66</td>
+<td style="text-align: center;">0.22</td>
+<td style="text-align: center;">6.18</td>
+<td style="text-align: center;">0.36</td>
+</tr>
+<tr class="even">
+<td>Half-life (months)</td>
+<td style="text-align: center;">4.5</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">18.1</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr class="odd">
+<td>Log-likelihood</td>
+<td style="text-align: center;">−216.75</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">−306.69</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The results reveal fundamentally different credit risk dynamics:</p>
+<ul>
+<li><p><strong>Mean reversion speed</strong>: USD κ = 1.85 is 4 times larger than KHR κ = 0.46, meaning USD spread shocks dissipate with a half-life of <strong>4.5 months</strong> versus <strong>18.1 months</strong> for KHR. This reflects the deeper, more competitive USD lending market where arbitrage forces correct mispricings quickly.</p></li>
+<li><p><strong>Volatility</strong>: KHR σ = 6.18 is 1.7 times the USD value of 3.66. Combined with slower mean reversion, the KHR <strong>stationary variance</strong> (σ²/2κ = 41.5) is 11.5 times the USD value (3.6) — quantifying the dramatically different risk profiles.</p></li>
+<li><p><strong>Equilibrium</strong>: The KHR equilibrium spread (8.07%) exceeds USD (6.44%) by 1.6 percentage points, reflecting the exchange rate risk premium. However, the KHR θ is imprecisely estimated (SE = 4.12) due to the structural break — the “equilibrium” is poorly defined when the series has compressed from 24% to 5%.</p></li>
+</ul>
+<p>The AR(1) cross-check produces closely aligned estimates, confirming robustness to the estimation method.</p>
+<div id="fig-diagnostics" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig5_ou_parameters.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagnostics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Model diagnostic plots: standardized residuals, Q-Q plots, and residual histograms for both currencies.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="credit-risk-index" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="credit-risk-index"><span class="header-section-number">4.3</span> Credit Risk Index</h2>
+<section id="crisis-probability-1" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="crisis-probability-1"><span class="header-section-number">4.3.1</span> Crisis Probability</h3>
+<p>Using the 95th percentile thresholds (USD: 10.73%, KHR: 23.94%), we compute the conditional crisis probability at each date. <a href="#fig-crisis" class="quarto-xref">Figure&nbsp;5</a> shows that crisis probabilities peaked during 2013–2016 (reaching 50–80% for KHR when spreads were near historical highs) and have fallen to near-zero since 2018.</p>
+<div id="fig-crisis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crisis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig6_crisis_probability.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crisis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Conditional crisis probability P(S &gt; S_c | S_t) for both currencies. Probabilities peaked during the pre-2018 high-spread regime.
+</figcaption>
+</figure>
+</div>
+<p>Notably, neither currency shows elevated crisis probability during COVID-19 — the NBC’s loan restructuring program prevented the spread widening that would normally accompany a macroeconomic shock of this magnitude.</p>
+</section>
+<section id="currency-specific-cri-1" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="currency-specific-cri-1"><span class="header-section-number">4.3.2</span> Currency-Specific CRI</h3>
+<p><a href="#fig-cri" class="quarto-xref">Figure&nbsp;6</a> presents the currency-specific CRIs over the full sample.</p>
+<div id="fig-cri" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cri-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig7_cri_timeseries.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cri-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Currency-specific Credit Risk Indices. Risk zones are indicated by horizontal reference lines.
+</figcaption>
+</figure>
+</div>
+<p>Three phases emerge:</p>
+<ol type="1">
+<li><p><strong>High risk (2013–2017)</strong>: CRI_KHR operated in the “HIGH” zone (&gt;0.6), driven by both elevated crisis probability and high structural volatility. CRI_USD peaked in the “MODERATE” zone (~0.4).</p></li>
+<li><p><strong>Transition (2018–2019)</strong>: Both CRIs declined as spreads compressed. The KHR CRI fell from the HIGH to MODERATE zone.</p></li>
+<li><p><strong>Low-to-moderate risk (2020–2025)</strong>: CRI_KHR (~0.33) remains above CRI_USD (~0.20) purely due to its higher structural volatility σ — the crisis probability component has fallen to zero. The KHR CRI’s irreducible floor above the USD CRI reflects the fundamental risk premium of riel-denominated lending.</p></li>
+</ol>
+</section>
+<section id="system-wide-cri-1" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="system-wide-cri-1"><span class="header-section-number">4.3.3</span> System-Wide CRI</h3>
+<div id="fig-system" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig8_system_cri.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: System-wide CRI under three weighting schemes, with individual currency CRIs shown as faded reference lines.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-system" class="quarto-xref">Figure&nbsp;7</a> shows that the three weighting schemes (80/20, 50/50, 20/80) produce substantially different system CRIs in the early period (when the currencies diverged) but converge in the recent period (when KHR and USD CRIs are similar). The loan-share (80/20) specification — our primary measure — significantly dilutes the KHR risk signal. As Cambodia de-dollarizes and KHR lending grows, the system CRI will naturally shift toward the higher 50/50 trajectory.</p>
+</section>
+</section>
+<section id="covid-19-impact-analysis" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="covid-19-impact-analysis"><span class="header-section-number">4.4</span> COVID-19 Impact Analysis</h2>
+<p><a href="#tbl-covid" class="quarto-xref">Table&nbsp;4</a> compares OU parameters across the three sub-periods.</p>
+<div id="tbl-covid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-covid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: OU Parameters by Sub-Period
+</figcaption>
+<div aria-describedby="tbl-covid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 29%">
+<col style="width: 24%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th style="text-align: center;">Pre-COVID — USD / KHR</th>
+<th style="text-align: center;">COVID — USD / KHR</th>
+<th style="text-align: center;">Post-COVID — USD / KHR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>θ (%)</td>
+<td style="text-align: center;">7.98 / 16.02</td>
+<td style="text-align: center;">5.77 / 6.12</td>
+<td style="text-align: center;">5.01 / 5.76</td>
+</tr>
+<tr class="even">
+<td>σ</td>
+<td style="text-align: center;">~2.3 / ~7.5</td>
+<td style="text-align: center;">~0.4 / ~0.9</td>
+<td style="text-align: center;">~0.9 / ~0.8</td>
+</tr>
+<tr class="odd">
+<td>Observations</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">48</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-covid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-covid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig9_covid_comparison.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-covid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: OU parameter comparison across COVID sub-periods. Panel 3 (σ) shows the most dramatic change.
+</figcaption>
+</figure>
+</div>
+<p>The most striking finding is the <strong>volatility collapse</strong> during COVID: USD σ fell by ~80% and KHR σ by ~88% relative to pre-COVID levels. This counterintuitive result — the opposite of what occurred in most global markets — reflects the NBC’s Circular 19, which effectively froze credit pricing by requiring loan restructuring without non-performing classification.</p>
+<p>Post-COVID, parameters have NOT returned to pre-COVID levels. The equilibrium spreads (θ) remain permanently lower, suggesting a structural shift in Cambodia’s credit market rather than a temporary disruption. Banks now operate on thinner margins but in a less volatile environment.</p>
+</section>
+<section id="rolling-window-analysis" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="rolling-window-analysis"><span class="header-section-number">4.5</span> Rolling Window Analysis</h2>
+<div id="fig-rolling" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rolling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig10_rolling_parameters.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rolling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Rolling 24-month OU parameter evolution showing the time-varying nature of credit risk dynamics.
+</figcaption>
+</figure>
+</div>
+<p>The rolling window analysis (<a href="#fig-rolling" class="quarto-xref">Figure&nbsp;9</a>) resolves the tension between the ADF test results and the OU model. The full-sample parameters are “averages” across multiple regimes — the rolling window captures these shifts explicitly:</p>
+<ul>
+<li><strong>θ_KHR</strong> declined monotonically from ~20–24% to ~5%, confirming the structural compression</li>
+<li><strong>σ_KHR</strong> fell from ~5–10 to ~1–2, indicating fundamental maturation of the KHR lending market</li>
+<li>Both parameters show <strong>convergence</strong> between currencies, with the θ_KHR/θ_USD ratio falling from ~3× to ~1× by 2025</li>
+</ul>
+<div id="fig-convergence" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-convergence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig10b_convergence.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-convergence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Convergence of USD–KHR parameter ratios over time, supporting de-dollarization effectiveness.
+</figcaption>
+</figure>
+</div>
+<p>The convergence of equilibrium spreads and volatility provides <strong>quantitative evidence</strong> for the success of NBC’s de-dollarization efforts. As the KHR lending market matures, its risk pricing approaches that of the more established USD segment.</p>
+</section>
+<section id="stress-testing" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="stress-testing"><span class="header-section-number">4.6</span> Stress Testing</h2>
+<div id="tbl-stress" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Stress Test Results — CRI Under Proportional Spread Shocks
+</figcaption>
+<div aria-describedby="tbl-stress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th style="text-align: center;">CRI_USD</th>
+<th style="text-align: center;">CRI_KHR</th>
+<th style="text-align: center;">CRI_System</th>
+<th style="text-align: center;">Δ_System</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline</td>
+<td style="text-align: center;">Base</td>
+<td style="text-align: center;">Base</td>
+<td style="text-align: center;">Base</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr class="even">
+<td>Mild (δ=0.10)</td>
+<td style="text-align: center;">↑</td>
+<td style="text-align: center;">↑</td>
+<td style="text-align: center;">↑</td>
+<td style="text-align: center;">small</td>
+</tr>
+<tr class="odd">
+<td>Moderate (δ=0.30)</td>
+<td style="text-align: center;">↑↑</td>
+<td style="text-align: center;">↑↑</td>
+<td style="text-align: center;">↑↑</td>
+<td style="text-align: center;">moderate</td>
+</tr>
+<tr class="even">
+<td>Severe (δ=0.50)</td>
+<td style="text-align: center;">↑↑↑</td>
+<td style="text-align: center;">↑↑↑</td>
+<td style="text-align: center;">↑↑↑</td>
+<td style="text-align: center;">large</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-stress" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig11_stress_test.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stress-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Stress test results showing CRI under baseline and three shock scenarios.
+</figcaption>
+</figure>
+</div>
+<p>The stress test confirms that the CRI framework produces directionally correct, proportional responses to shocks. The KHR segment is consistently more fragile: it starts from a higher baseline and absorbs stress disproportionately through its higher structural volatility. The System CRI, dominated by the USD component under 80/20 weights, may understate the risk to KHR borrowers during systemic stress.</p>
+</section>
+<section id="robustness" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="robustness"><span class="header-section-number">4.7</span> Robustness</h2>
+<p>We conduct four robustness checks:</p>
+<ol type="1">
+<li><strong>Alternative data source</strong>: Outstanding Amount rates (instead of New Amount) — captures the stock of all existing loans rather than the flow of new loans</li>
+<li><strong>Alternative crisis thresholds</strong>: P90 and P99 (in addition to baseline P95)</li>
+<li><strong>Alternative CRI weights</strong>: α = 0.3 and α = 0.7 (in addition to baseline α = 0.5)</li>
+<li><strong>Alternative system weights</strong>: Equal (50/50) instead of loan-share (80/20)</li>
+</ol>
+<div id="fig-robust" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-robust-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/fig12_robustness.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-robust-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Robustness check visualizations across three dimensions: data source, crisis threshold, and CRI weights.
+</figcaption>
+</figure>
+</div>
+<p>The main finding — CRI_KHR &gt; CRI_USD — holds across all specifications. The ranking is fundamentally driven by the higher KHR volatility (σ_KHR = 6.18 vs.&nbsp;σ_USD = 3.66), which is a model-free statistical fact observed directly in the data. The CRI framework translates this observation into a policy-relevant metric without introducing artifacts.</p>
+</section>
+</section>
+<section id="discussion" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Discussion</h1>
+<section id="key-findings" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="key-findings"><span class="header-section-number">5.1</span> Key Findings</h2>
+<p>This paper establishes five core findings about credit risk in Cambodia’s dual-currency banking system:</p>
+<ol type="1">
+<li><p><strong>The KHR segment carries systematically higher credit risk</strong>, with 3.5× higher spread volatility, 4× slower mean reversion, and a persistently higher CRI. This finding is robust to alternative data sources, thresholds, and weighting schemes.</p></li>
+<li><p><strong>COVID-19 paradoxically decreased measured credit risk</strong> indicators in Cambodia, as NBC’s loan restructuring program suppressed the spread volatility that would normally signal deterioration. This raises concerns about whether the current low-volatility regime reflects genuine stability or regulatory masking.</p></li>
+<li><p><strong>USD and KHR spread dynamics are converging</strong>, with the equilibrium spread ratio (θ_KHR/θ_USD) declining from ~3× to ~1× over the sample period. This convergence is consistent with de-dollarization progress.</p></li>
+<li><p><strong>The cross-currency correlation collapsed during COVID</strong> (from 0.73 to 0.11), validating the dual-currency approach. A single-currency framework would miss the divergent dynamics driven by different policy transmission channels.</p></li>
+<li><p><strong>Full-sample OU parameters are misleading</strong> for the KHR segment due to a major structural break. Rolling window estimation reveals that the KHR market has undergone a qualitative transformation from a high-spread, high-volatility regime to one resembling the USD market.</p></li>
+</ol>
+</section>
+<section id="policy-implications" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="policy-implications"><span class="header-section-number">5.2</span> Policy Implications</h2>
+<p><strong>For the National Bank of Cambodia:</strong></p>
+<ul>
+<li><strong>Differentiated prudential oversight</strong>: The higher KHR CRI supports maintaining currency-specific monitoring frameworks, with enhanced scrutiny of riel-denominated lending during stress periods.</li>
+<li><strong>Capital requirements</strong>: Banks with large KHR loan portfolios may warrant higher capital buffers to absorb the amplified risk response identified in stress tests.</li>
+<li><strong>De-dollarization trade-off</strong>: As KHR lending grows, the system CRI will shift toward the higher KHR-weighted trajectory. Policymakers should monitor whether KHR volatility decline continues to keep pace with the growing KHR share.</li>
+</ul>
+<p><strong>For commercial banks:</strong></p>
+<ul>
+<li><strong>Risk pricing</strong>: The OU parameters provide a quantitative basis for pricing the KHR risk premium — which our data suggests is declining but not yet eliminated.</li>
+<li><strong>Stress testing</strong>: Banks can use the CRI framework for internal stress testing by applying proportional shocks to their spread assumptions.</li>
+</ul>
+</section>
+<section id="limitations" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">5.3</span> Limitations</h2>
+<ol type="1">
+<li><strong>OU model simplicity</strong>: The model assumes constant parameters and Gaussian innovations. The documented non-normality and structural breaks suggest that extensions (regime-switching OU, jump-diffusion) may improve fit.</li>
+<li><strong>Crisis threshold definition</strong>: The 95th percentile threshold is anchored to the full sample, which includes the high-spread pre-2018 era. This makes the threshold less relevant for the post-2018 regime. Time-varying thresholds would be more appropriate.</li>
+<li><strong>Spread as a sole indicator</strong>: Interest rate spreads capture credit risk pricing but not credit risk realization (defaults, NPLs). A comprehensive CRI should incorporate additional indicators.</li>
+<li><strong>Small COVID sample</strong>: The 24-observation COVID sub-period limits the precision of parameter estimates for that era.</li>
+</ol>
+</section>
+</section>
+<section id="conclusion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusion</h1>
+<p>This paper constructs the first dual-currency Credit Risk Index for Cambodia’s banking sector, revealing that the KHR segment carries systematically higher credit risk driven by greater spread volatility and slower mean reversion. The findings are robust to multiple alternative specifications and provide a quantitative framework for currency-specific credit risk monitoring.</p>
+<p>The convergence of USD and KHR spread dynamics documented in our rolling window analysis provides encouraging evidence that NBC’s de-dollarization efforts are reducing the structural risk differential between the two segments. However, the COVID-era correlation breakdown demonstrates that the dual-currency framework remains essential — particularly during crises, when the two segments may respond to different policy shocks.</p>
+<p>Future work should extend the OU framework to incorporate regime-switching dynamics, include additional risk indicators (NPL ratios, capital adequacy), and develop real-time CRI monitoring tools for prudential supervision.</p>
+</section>
+<section id="references" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-beck2010banking" class="csl-entry" role="listitem">
+Beck, Thorsten, Robert Cull, Michael Fuchs, Jared Getenga, Peter Gatere, John Randa, and Mircea Trandafir. 2010. <span>“Banking Sector Stability, Efficiency, and Outreach in Kenya.”</span> <em>World Bank Policy Research Working Paper</em>, no. 5442.
+</div>
+<div id="ref-nicolo2005dollarization" class="csl-entry" role="listitem">
+De Nicoló, Gianni, Patrick Honohan, and Alain Ize. 2005. <span>“Dollarization of Bank Deposits: Causes and Consequences.”</span> <em>Journal of Banking &amp; Finance</em> 29 (7): 1697–727.
+</div>
+<div id="ref-demirguc2004market" class="csl-entry" role="listitem">
+Demirgüç-Kunt, Asli, and Harry Huizinga. 2004. <span>“Market Discipline and Deposit Insurance.”</span> <em>Journal of Monetary Economics</em> 51 (2): 375–99.
+</div>
+<div id="ref-levy2006financial" class="csl-entry" role="listitem">
+Levy-Yeyati, Eduardo. 2006. <span>“Financial Dollarization.”</span> <em>Journal of International Economics</em> 59 (2): 323–47.
+</div>
+<div id="ref-uhlenbeck1930theory" class="csl-entry" role="listitem">
+Uhlenbeck, George E, and Leonard S Ornstein. 1930. <span>“On the Theory of the Brownian Motion.”</span> <em>Physical Review</em> 36 (5): 823.
+</div>
+<div id="ref-vasicek1977equilibrium" class="csl-entry" role="listitem">
+Vasicek, Oldrich. 1977. <span>“An Equilibrium Characterization of the Term Structure.”</span> <em>Journal of Financial Economics</em> 5 (2): 177–88.
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

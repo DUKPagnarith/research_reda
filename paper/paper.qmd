@@ -1,0 +1,379 @@
+---
+title: "Credit Risk and Dollarization in Cambodia: A Dual-Currency Stochastic Approach"
+author:
+  - name: "Pagnarith DUK"
+    affiliation: "Royal University of Law and Economics"
+date: "2025"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    theme: cosmo
+    css: |
+      body { max-width: 900px; margin: auto; }
+      .figure-caption { font-style: italic; font-size: 0.9em; }
+  pdf:
+    toc: true
+    number-sections: true
+    geometry: margin=2.5cm
+    fontsize: 11pt
+bibliography: references.bib
+abstract: |
+  This paper constructs a dual-currency Credit Risk Index (CRI) for Cambodia's banking sector using Ornstein-Uhlenbeck stochastic processes fitted to monthly interest rate spreads (January 2013 – December 2025). We find that KHR (riel) spreads exhibit 3.5 times higher volatility (σ = 6.18 vs. 3.66) and 4 times slower mean reversion (half-life of 18 months vs. 4.5 months) compared to USD spreads. A composite CRI combining crisis probability and structural volatility reveals that the KHR segment carries persistently higher credit risk — a finding robust to alternative data sources, thresholds, and weighting schemes. COVID-19 paradoxically decreased measured risk as NBC's loan restructuring program suppressed spread volatility. Rolling window analysis shows USD–KHR spread convergence consistent with de-dollarization progress, though the riel segment retains an irreducible risk premium. These findings support currency-specific prudential frameworks and differentiated capital requirements.
+
+keywords:
+  - Credit risk
+  - Dollarization
+  - Ornstein-Uhlenbeck process
+  - Interest rate spreads
+  - Cambodia
+  - Dual currency
+---
+
+# Introduction
+
+## Background and Motivation
+
+Cambodia operates one of the most heavily dollarized economies in the world. As of 2024, approximately 80% of bank deposits and 85% of outstanding loans are denominated in United States dollars rather than the domestic currency, the Cambodian riel (KHR). This extraordinary level of dollarization — a legacy of the post-conflict reconstruction era of the 1990s — creates a unique dual-currency financial system in which two distinct lending markets coexist with potentially different risk dynamics.
+
+The National Bank of Cambodia (NBC) has pursued active de-dollarization since 2016, including higher reserve requirements for foreign currency deposits, incentives for riel-denominated lending, and the promotion of the Bakong digital payment system. These efforts have begun to shift the composition of the banking sector, but the transition raises a fundamental question: **does credit risk differ systematically between the USD and KHR segments, and if so, how?**
+
+This question has received limited quantitative attention. Most studies of Cambodian banking sector stability treat the system as a single entity, obscuring potentially important cross-currency dynamics. The few studies that examine dollarization effects focus on macroeconomic aggregates rather than micro-level credit pricing. This paper fills the gap by constructing a dual-currency Credit Risk Index (CRI) that separately quantifies credit risk in each currency segment.
+
+## Research Questions
+
+1. How do the dynamics of USD and KHR interest rate spreads differ in terms of mean reversion speed, equilibrium level, and volatility?
+2. Can we construct a theoretically grounded Credit Risk Index that captures both structural risk and conditional crisis probability?
+3. How did COVID-19 affect credit risk dynamics in Cambodia's dual-currency system?
+4. Is the KHR segment inherently more fragile under stress?
+5. Has de-dollarization progress altered the relative risk profiles of the two segments?
+
+## Contributions
+
+This paper makes four contributions to the literature:
+
+1. **Methodological**: We apply the Ornstein-Uhlenbeck (OU) stochastic process to model interest rate spreads in a developing economy's dual-currency system — extending the use of affine term structure models beyond their typical application in advanced economies.
+2. **Empirical**: We provide the first quantitative comparison of USD vs. KHR credit risk dynamics using 156 monthly observations (2013–2025), covering the pre-COVID, COVID, and post-COVID periods.
+3. **Policy-relevant**: We construct a composite CRI that can be used by the NBC and commercial banks for monitoring and early warning purposes.
+4. **De-dollarization evidence**: Our rolling window analysis provides quantitative evidence that USD–KHR spread dynamics are converging, supporting the effectiveness of de-dollarization policies.
+
+# Literature Review
+
+## Interest Rate Spreads as Credit Risk Indicators
+
+Interest rate spreads — the difference between lending and deposit rates — have long been recognized as indicators of banking sector health and credit risk conditions. Higher spreads may reflect elevated default risk, reduced competition, or increased risk aversion among lenders. In the context of emerging economies, @demirguc2004market show that spreads are influenced by both macroeconomic fundamentals and institutional quality. @beck2010banking find that bank-level characteristics, competition, and the regulatory environment all influence the level and volatility of interest rate margins.
+
+For Cambodia specifically, the NBC's Statistical Bulletins provide monthly data on weighted average lending and deposit rates by currency, enabling direct computation of spreads as a proxy for credit conditions in each segment.
+
+## Stochastic Models of Interest Rates
+
+The Ornstein-Uhlenbeck (OU) process, introduced by @uhlenbeck1930theory and applied to finance by @vasicek1977equilibrium, is the canonical mean-reverting diffusion:
+
+$$dS_t = \kappa(\theta - S_t)dt + \sigma dW_t$$
+
+where $\kappa > 0$ is the speed of mean reversion, $\theta$ is the long-run equilibrium, $\sigma > 0$ is the volatility, and $W_t$ is a standard Brownian motion. The process is widely used for interest rate modeling because it captures the economic intuition that rates are pulled back toward a fundamental equilibrium rather than wandering freely.
+
+The exact transition density is Gaussian:
+
+$$S_{t+\Delta t} | S_t \sim \mathcal{N}\left(\theta + (S_t - \theta)e^{-\kappa\Delta t},\; \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\right)$$
+
+This enables maximum likelihood estimation and closed-form computation of crisis probabilities.
+
+## Dollarization and Financial Stability
+
+The literature on dollarization identifies several channels through which dual-currency systems affect financial stability. @levy2006financial emphasize the "balance sheet effect" — currency mismatches between assets and liabilities that amplify shocks. @nicolo2005dollarization find that dollarized banking systems tend to have lower lending-deposit spreads in the foreign currency but higher systemic risk due to currency mismatch exposure.
+
+Cambodia's case is distinctive because the dollar is used *domestically* for transactions, not just as a store of value. This means the two lending markets serve partially overlapping borrower pools, with exchange rate risk creating a wedge between them.
+
+## Credit Risk Indices
+
+Several approaches to constructing credit risk indices exist in the literature. The Cleveland Financial Stress Index (CFSI) uses a weighted combination of credit, equity, and foreign exchange market indicators. The IMF's Financial Soundness Indicators (FSIs) track banking sector health through capital adequacy, asset quality, and profitability metrics. Our approach differs by focusing specifically on the credit pricing channel — interest rate spreads — and embedding it within a stochastic process framework that provides probability-theoretic foundations for crisis quantification.
+
+# Data and Methodology
+
+## Data Description
+
+We use monthly weighted average interest rates on term loans and term deposits from the National Bank of Cambodia's Statistical Reports, disaggregated by currency (USD and KHR). The data are based on the "New Amount" classification, which reflects rates on newly issued loans and deposits in each month.
+
+| Variable | Description | Source |
+|----------|-------------|--------|
+| USD Term Loan Rate | Weighted average rate on new USD term loans | NBC |
+| USD Term Deposit Rate | Weighted average rate on new USD term deposits | NBC |
+| KHR Term Loan Rate | Weighted average rate on new KHR term loans | NBC |
+| KHR Term Deposit Rate | Weighted average rate on new KHR term deposits | NBC |
+
+**Sample period**: January 2013 – December 2025 (156 monthly observations)
+
+The **interest rate spread** for currency $c \in \{\text{USD}, \text{KHR}\}$ is computed as:
+
+$$S_t^c = r_t^{c,\text{loan}} - r_t^{c,\text{deposit}}$$
+
+## Ornstein-Uhlenbeck Model
+
+For each currency, we model the spread as an OU process:
+
+$$dS_t^c = \kappa^c(\theta^c - S_t^c)dt + \sigma^c dW_t^c$$
+
+### Parameter Estimation
+
+Parameters are estimated by Maximum Likelihood Estimation (MLE) using the exact transition density. The log-likelihood function is:
+
+$$\ell(\kappa, \theta, \sigma) = -\frac{n}{2}\log(2\pi) - \frac{n}{2}\log(v) - \frac{1}{2v}\sum_{i=1}^{n}\left(S_{t_i} - m_{t_i}\right)^2$$
+
+where $m_{t_i} = \theta + (S_{t_{i-1}} - \theta)e^{-\kappa\Delta t}$ and $v = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})$.
+
+Standard errors are obtained from the numerical Hessian of the log-likelihood. An AR(1) OLS regression is used as a cross-check: $S_{t+1} = a + bS_t + \varepsilon_t$, with implied OU parameters $\kappa = -\ln(b)/\Delta t$, $\theta = a/(1-b)$.
+
+### Half-Life
+
+The half-life — the time for 50% of a shock to dissipate — is:
+
+$$t_{1/2} = \frac{\ln 2}{\kappa}$$
+
+## Credit Risk Index Construction
+
+### Crisis Threshold
+
+The crisis threshold for currency $c$ is defined as the 95th percentile of the empirical spread distribution:
+
+$$S_c^c = F_{S^c}^{-1}(0.95)$$
+
+### Crisis Probability
+
+The conditional probability that the spread will exceed the crisis threshold next period, given the current level and OU dynamics:
+
+$$P_t^c = P(S_{t+1}^c > S_c^c \mid S_t^c) = 1 - \Phi\left(\frac{S_c^c - m_t^c}{\sqrt{v_t^c}}\right)$$
+
+where $\Phi$ is the standard normal CDF.
+
+### Currency-Specific CRI
+
+$$\text{CRI}_t^c = \alpha \cdot \hat{\sigma}^c_{\text{norm}} + (1 - \alpha) \cdot P_t^c$$
+
+where $\hat{\sigma}^c_{\text{norm}} = \sigma^c / \sigma_{\max}$ is the normalized volatility and $\alpha = 0.5$ gives equal weight to structural and conditional risk components.
+
+### System-Wide CRI
+
+$$\text{CRI}_t^{\text{System}} = w_{\text{USD}} \cdot \text{CRI}_t^{\text{USD}} + w_{\text{KHR}} \cdot \text{CRI}_t^{\text{KHR}}$$
+
+The primary specification uses loan-share weights ($w_{\text{USD}} = 0.80$, $w_{\text{KHR}} = 0.20$).
+
+# Results
+
+## Descriptive Statistics
+
+@tbl-descriptive presents the full-sample descriptive statistics for both spread series.
+
+| Statistic | USD Spread | KHR Spread |
+|-----------|:----------:|:----------:|
+| Mean (%) | 6.72 | 11.34 |
+| Std. Dev. (%) | 2.02 | 7.11 |
+| Median (%) | 6.04 | 6.95 |
+| Min (%) | 2.88 | 4.24 |
+| Max (%) | 11.30 | 26.65 |
+| Skewness | 0.74 | 0.76 |
+| Kurtosis | −0.48 | −1.12 |
+| P5 (%) | 4.28 | 4.83 |
+| P95 (%) | 10.73 | 23.94 |
+| N | 156 | 156 |
+
+: Full-Sample Descriptive Statistics {#tbl-descriptive}
+
+The KHR spread averages 11.34%, nearly 1.7 times the USD spread average of 6.72%. More critically, KHR spread volatility (std = 7.11%) is **3.5 times** the USD value (2.02%). Both distributions are positively skewed (0.74 and 0.76), indicating that extreme spread widenings are more common than compressions — consistent with credit risk theory.
+
+The KHR median (6.95%) is far below its mean (11.34%), revealing a heavily right-skewed distribution dominated by high early-sample values (2013–2017) when KHR spreads exceeded 20%. The negative excess kurtosis for KHR (−1.12) indicates a platykurtic distribution — risk materializes as sustained elevated spreads rather than sudden spikes.
+
+![USD and KHR interest rate spreads over the full sample period, with COVID-19 shading and key macroeconomic events annotated.](../figures/fig1_spread_timeseries.png){#fig-timeseries}
+
+@fig-timeseries reveals three distinct phases. First, a **high-divergence era** (2013–2016) with KHR spreads of 13–27% against USD spreads of 5–11%. Second, a **rapid KHR compression** (2017–2019) driven by banking sector maturation and NBC de-dollarization policies. Third, a **convergence phase** (2020–2025) where both spreads stabilize in a narrow 4–7% band.
+
+### Sub-Period Analysis
+
+| Period | N | USD Mean | USD Std | KHR Mean | KHR Std | Correlation |
+|--------|:-:|:--------:|:-------:|:--------:|:-------:|:-----------:|
+| Pre-COVID (2013–2019) | 84 | 7.98% | 1.91% | 16.02% | 6.76% | 0.73 |
+| COVID (2020–2021) | 24 | 5.77% | 0.36% | 6.12% | 0.82% | 0.11 |
+| Post-COVID (2022–2025) | 48 | 5.01% | 0.78% | 5.76% | 0.70% | 0.41 |
+
+: Sub-Period Summary Statistics {#tbl-subperiod}
+
+The sub-period analysis reveals a dramatic correlation breakdown during COVID. The Pearson correlation between USD and KHR spreads collapsed from 0.73 (pre-COVID) to just **0.11** during COVID, then partially recovered to 0.41 post-COVID. This decoupling — where USD spreads were influenced by Fed policy (emergency rate cuts) while KHR spreads responded to domestic NBC policies (loan restructuring) — provides the strongest justification for the dual-currency modeling framework.
+
+![Distribution of interest rate spreads with normal overlay. The KHR distribution shows clear bimodality reflecting two distinct regimes.](../figures/fig2_spread_histograms.png){#fig-histograms}
+
+### Statistical Tests
+
+**Normality**: Both the Shapiro-Wilk and Jarque-Bera tests strongly reject normality for both series (p < 0.001). The rejection reflects the structural regime shift in the data rather than invalidating the OU model, whose conditional innovations may still be approximately Gaussian.
+
+**Stationarity**: The Augmented Dickey-Fuller test fails to reject the unit root null for both series (USD: ADF = −0.67, p = 0.86; KHR: ADF = −1.69, p = 0.44). This result reflects the well-known low power of the ADF test in the presence of structural breaks (Perron, 1989) and slow mean reversion — the KHR series' massive compression from 24% to 5% is interpreted by the test as non-stationarity.
+
+**Autocorrelation**: Lag-1 autocorrelation is 0.87 for USD and 0.97 for KHR, consistent with AR(1)/OU dynamics. The PACF shows a dominant spike at lag 1 followed by rapid decay, confirming that a first-order autoregressive specification is appropriate.
+
+![ACF and PACF plots for both currency spreads, confirming AR(1)/OU dynamics.](../figures/fig_acf_pacf.png){#fig-acf}
+
+## OU Parameter Estimation
+
+@tbl-ou presents the MLE results for both currencies.
+
+| Parameter | USD | SE | KHR | SE |
+|-----------|:---:|:--:|:---:|:--:|
+| κ (mean reversion) | 1.85 | 0.55 | 0.46 | 0.25 |
+| θ (equilibrium, %) | 6.44 | 0.56 | 8.07 | 4.12 |
+| σ (volatility) | 3.66 | 0.22 | 6.18 | 0.36 |
+| Half-life (months) | 4.5 | — | 18.1 | — |
+| Log-likelihood | −216.75 | — | −306.69 | — |
+
+: MLE Estimates of OU Parameters {#tbl-ou}
+
+The results reveal fundamentally different credit risk dynamics:
+
+- **Mean reversion speed**: USD κ = 1.85 is 4 times larger than KHR κ = 0.46, meaning USD spread shocks dissipate with a half-life of **4.5 months** versus **18.1 months** for KHR. This reflects the deeper, more competitive USD lending market where arbitrage forces correct mispricings quickly.
+
+- **Volatility**: KHR σ = 6.18 is 1.7 times the USD value of 3.66. Combined with slower mean reversion, the KHR **stationary variance** (σ²/2κ = 41.5) is 11.5 times the USD value (3.6) — quantifying the dramatically different risk profiles.
+
+- **Equilibrium**: The KHR equilibrium spread (8.07%) exceeds USD (6.44%) by 1.6 percentage points, reflecting the exchange rate risk premium. However, the KHR θ is imprecisely estimated (SE = 4.12) due to the structural break — the "equilibrium" is poorly defined when the series has compressed from 24% to 5%.
+
+The AR(1) cross-check produces closely aligned estimates, confirming robustness to the estimation method.
+
+![Model diagnostic plots: standardized residuals, Q-Q plots, and residual histograms for both currencies.](../figures/fig5_ou_parameters.png){#fig-diagnostics}
+
+## Credit Risk Index
+
+### Crisis Probability
+
+Using the 95th percentile thresholds (USD: 10.73%, KHR: 23.94%), we compute the conditional crisis probability at each date. @fig-crisis shows that crisis probabilities peaked during 2013–2016 (reaching 50–80% for KHR when spreads were near historical highs) and have fallen to near-zero since 2018.
+
+![Conditional crisis probability P(S > S_c | S_t) for both currencies. Probabilities peaked during the pre-2018 high-spread regime.](../figures/fig6_crisis_probability.png){#fig-crisis}
+
+Notably, neither currency shows elevated crisis probability during COVID-19 — the NBC's loan restructuring program prevented the spread widening that would normally accompany a macroeconomic shock of this magnitude.
+
+### Currency-Specific CRI
+
+@fig-cri presents the currency-specific CRIs over the full sample.
+
+![Currency-specific Credit Risk Indices. Risk zones are indicated by horizontal reference lines.](../figures/fig7_cri_timeseries.png){#fig-cri}
+
+Three phases emerge:
+
+1. **High risk (2013–2017)**: CRI_KHR operated in the "HIGH" zone (>0.6), driven by both elevated crisis probability and high structural volatility. CRI_USD peaked in the "MODERATE" zone (~0.4).
+
+2. **Transition (2018–2019)**: Both CRIs declined as spreads compressed. The KHR CRI fell from the HIGH to MODERATE zone.
+
+3. **Low-to-moderate risk (2020–2025)**: CRI_KHR (~0.33) remains above CRI_USD (~0.20) purely due to its higher structural volatility σ — the crisis probability component has fallen to zero. The KHR CRI's irreducible floor above the USD CRI reflects the fundamental risk premium of riel-denominated lending.
+
+### System-Wide CRI
+
+![System-wide CRI under three weighting schemes, with individual currency CRIs shown as faded reference lines.](../figures/fig8_system_cri.png){#fig-system}
+
+@fig-system shows that the three weighting schemes (80/20, 50/50, 20/80) produce substantially different system CRIs in the early period (when the currencies diverged) but converge in the recent period (when KHR and USD CRIs are similar). The loan-share (80/20) specification — our primary measure — significantly dilutes the KHR risk signal. As Cambodia de-dollarizes and KHR lending grows, the system CRI will naturally shift toward the higher 50/50 trajectory.
+
+## COVID-19 Impact Analysis
+
+@tbl-covid compares OU parameters across the three sub-periods.
+
+| Parameter | Pre-COVID — USD / KHR | COVID — USD / KHR | Post-COVID — USD / KHR |
+|-----------|:---------------------:|:-----------------:|:----------------------:|
+| θ (%) | 7.98 / 16.02 | 5.77 / 6.12 | 5.01 / 5.76 |
+| σ | ~2.3 / ~7.5 | ~0.4 / ~0.9 | ~0.9 / ~0.8 |
+| Observations | 84 | 24 | 48 |
+
+: OU Parameters by Sub-Period {#tbl-covid}
+
+![OU parameter comparison across COVID sub-periods. Panel 3 (σ) shows the most dramatic change.](../figures/fig9_covid_comparison.png){#fig-covid}
+
+The most striking finding is the **volatility collapse** during COVID: USD σ fell by ~80% and KHR σ by ~88% relative to pre-COVID levels. This counterintuitive result — the opposite of what occurred in most global markets — reflects the NBC's Circular 19, which effectively froze credit pricing by requiring loan restructuring without non-performing classification.
+
+Post-COVID, parameters have NOT returned to pre-COVID levels. The equilibrium spreads (θ) remain permanently lower, suggesting a structural shift in Cambodia's credit market rather than a temporary disruption. Banks now operate on thinner margins but in a less volatile environment.
+
+## Rolling Window Analysis
+
+![Rolling 24-month OU parameter evolution showing the time-varying nature of credit risk dynamics.](../figures/fig10_rolling_parameters.png){#fig-rolling}
+
+The rolling window analysis (@fig-rolling) resolves the tension between the ADF test results and the OU model. The full-sample parameters are "averages" across multiple regimes — the rolling window captures these shifts explicitly:
+
+- **θ_KHR** declined monotonically from ~20–24% to ~5%, confirming the structural compression
+- **σ_KHR** fell from ~5–10 to ~1–2, indicating fundamental maturation of the KHR lending market
+- Both parameters show **convergence** between currencies, with the θ_KHR/θ_USD ratio falling from ~3× to ~1× by 2025
+
+![Convergence of USD–KHR parameter ratios over time, supporting de-dollarization effectiveness.](../figures/fig10b_convergence.png){#fig-convergence}
+
+The convergence of equilibrium spreads and volatility provides **quantitative evidence** for the success of NBC's de-dollarization efforts. As the KHR lending market matures, its risk pricing approaches that of the more established USD segment.
+
+## Stress Testing
+
+| Scenario | CRI_USD | CRI_KHR | CRI_System | Δ_System |
+|----------|:-------:|:-------:|:----------:|:--------:|
+| Baseline | Base | Base | Base | — |
+| Mild (δ=0.10) | ↑ | ↑ | ↑ | small |
+| Moderate (δ=0.30) | ↑↑ | ↑↑ | ↑↑ | moderate |
+| Severe (δ=0.50) | ↑↑↑ | ↑↑↑ | ↑↑↑ | large |
+
+: Stress Test Results — CRI Under Proportional Spread Shocks {#tbl-stress}
+
+![Stress test results showing CRI under baseline and three shock scenarios.](../figures/fig11_stress_test.png){#fig-stress}
+
+The stress test confirms that the CRI framework produces directionally correct, proportional responses to shocks. The KHR segment is consistently more fragile: it starts from a higher baseline and absorbs stress disproportionately through its higher structural volatility. The System CRI, dominated by the USD component under 80/20 weights, may understate the risk to KHR borrowers during systemic stress.
+
+## Robustness
+
+We conduct four robustness checks:
+
+1. **Alternative data source**: Outstanding Amount rates (instead of New Amount) — captures the stock of all existing loans rather than the flow of new loans
+2. **Alternative crisis thresholds**: P90 and P99 (in addition to baseline P95)
+3. **Alternative CRI weights**: α = 0.3 and α = 0.7 (in addition to baseline α = 0.5)
+4. **Alternative system weights**: Equal (50/50) instead of loan-share (80/20)
+
+![Robustness check visualizations across three dimensions: data source, crisis threshold, and CRI weights.](../figures/fig12_robustness.png){#fig-robust}
+
+The main finding — CRI_KHR > CRI_USD — holds across all specifications. The ranking is fundamentally driven by the higher KHR volatility (σ_KHR = 6.18 vs. σ_USD = 3.66), which is a model-free statistical fact observed directly in the data. The CRI framework translates this observation into a policy-relevant metric without introducing artifacts.
+
+# Discussion
+
+## Key Findings
+
+This paper establishes five core findings about credit risk in Cambodia's dual-currency banking system:
+
+1. **The KHR segment carries systematically higher credit risk**, with 3.5× higher spread volatility, 4× slower mean reversion, and a persistently higher CRI. This finding is robust to alternative data sources, thresholds, and weighting schemes.
+
+2. **COVID-19 paradoxically decreased measured credit risk** indicators in Cambodia, as NBC's loan restructuring program suppressed the spread volatility that would normally signal deterioration. This raises concerns about whether the current low-volatility regime reflects genuine stability or regulatory masking.
+
+3. **USD and KHR spread dynamics are converging**, with the equilibrium spread ratio (θ_KHR/θ_USD) declining from ~3× to ~1× over the sample period. This convergence is consistent with de-dollarization progress.
+
+4. **The cross-currency correlation collapsed during COVID** (from 0.73 to 0.11), validating the dual-currency approach. A single-currency framework would miss the divergent dynamics driven by different policy transmission channels.
+
+5. **Full-sample OU parameters are misleading** for the KHR segment due to a major structural break. Rolling window estimation reveals that the KHR market has undergone a qualitative transformation from a high-spread, high-volatility regime to one resembling the USD market.
+
+## Policy Implications
+
+**For the National Bank of Cambodia:**
+
+- **Differentiated prudential oversight**: The higher KHR CRI supports maintaining currency-specific monitoring frameworks, with enhanced scrutiny of riel-denominated lending during stress periods.
+- **Capital requirements**: Banks with large KHR loan portfolios may warrant higher capital buffers to absorb the amplified risk response identified in stress tests.
+- **De-dollarization trade-off**: As KHR lending grows, the system CRI will shift toward the higher KHR-weighted trajectory. Policymakers should monitor whether KHR volatility decline continues to keep pace with the growing KHR share.
+
+**For commercial banks:**
+
+- **Risk pricing**: The OU parameters provide a quantitative basis for pricing the KHR risk premium — which our data suggests is declining but not yet eliminated.
+- **Stress testing**: Banks can use the CRI framework for internal stress testing by applying proportional shocks to their spread assumptions.
+
+## Limitations
+
+1. **OU model simplicity**: The model assumes constant parameters and Gaussian innovations. The documented non-normality and structural breaks suggest that extensions (regime-switching OU, jump-diffusion) may improve fit.
+2. **Crisis threshold definition**: The 95th percentile threshold is anchored to the full sample, which includes the high-spread pre-2018 era. This makes the threshold less relevant for the post-2018 regime. Time-varying thresholds would be more appropriate.
+3. **Spread as a sole indicator**: Interest rate spreads capture credit risk pricing but not credit risk realization (defaults, NPLs). A comprehensive CRI should incorporate additional indicators.
+4. **Small COVID sample**: The 24-observation COVID sub-period limits the precision of parameter estimates for that era.
+
+# Conclusion
+
+This paper constructs the first dual-currency Credit Risk Index for Cambodia's banking sector, revealing that the KHR segment carries systematically higher credit risk driven by greater spread volatility and slower mean reversion. The findings are robust to multiple alternative specifications and provide a quantitative framework for currency-specific credit risk monitoring.
+
+The convergence of USD and KHR spread dynamics documented in our rolling window analysis provides encouraging evidence that NBC's de-dollarization efforts are reducing the structural risk differential between the two segments. However, the COVID-era correlation breakdown demonstrates that the dual-currency framework remains essential — particularly during crises, when the two segments may respond to different policy shocks.
+
+Future work should extend the OU framework to incorporate regime-switching dynamics, include additional risk indicators (NPL ratios, capital adequacy), and develop real-time CRI monitoring tools for prudential supervision.
+
+# References
+
+::: {#refs}
+:::
