@@ -89,7 +89,7 @@ $$S_t^{KHR} = r_{\text{Term Loans},t}^{KHR} - r_{\text{Term Deposits},t}^{KHR}$$
 | Observations | 156 | 156 |
 
 **Key observations:**
-- KHR spread compressed dramatically from ~24% (2013) to ~4–5% (2025) — major structural shift reflecting financial sector maturation and de-dollarization progress
+- KHR spread compressed dramatically from ~24% (2013) to ~4–5% (2025) — major structural shift reflecting both financial sector maturation and the evaporation of an exchange rate risk premium as NBC stabilized the riel
 - KHR volatility is 3.5x higher than USD — the riel segment carries substantially more risk instability
 - No missing values, no negative spreads, no data gaps — pristine dataset
 - 156 observations is excellent for the 3-parameter OU model
@@ -181,7 +181,8 @@ $$S_t^{c,\text{stress}} = S_t^c(1 + \delta), \quad \delta \in \{0.10, 0.30, 0.50
 Estimate OU parameters and CRI separately for each sub-period, for each currency.
 
 **3.11 Rolling Window Analysis:**
-- 24-month rolling window to re-estimate parameters monthly
+- 36-month rolling window to re-estimate parameters monthly
+- 36 observations (35 transitions) ensure statistically stable MLE estimation; shorter windows (e.g., 24 months) produce noisy κ estimates because the log-likelihood surface becomes flat with only 23 transitions for 3 parameters
 - Produces time series of $\hat{\kappa}_t$, $\hat{\theta}_t$, $\hat{\sigma}_t$ for each currency
 
 **3.12 Robustness Checks:**
@@ -215,6 +216,7 @@ Present in this order — building from components to big picture:
 ### Section 6: Discussion (2–3 pages)
 
 - Dollarization and risk: Does USD segment stabilize or amplify?
+- **KHR Spread Decomposition:** Explicitly acknowledge that the KHR spread captures both *credit risk* and an *exchange rate risk premium* (compensation for the risk of KHR depreciating against USD). The massive ~24% → 5% compression reflects not only reduced credit risk but also the evaporation of the FX risk premium as public confidence in the riel grew and NBC stabilized the exchange rate. This nuance should be discussed rather than attributing the entire decline to credit risk alone.
 - COVID-19 impact: Temporary or structural?
 - Early warning value: Did CRI signal risk before it was obvious?
 - Policy implications for NBC, de-dollarization, and banks
@@ -239,7 +241,7 @@ Present in this order — building from components to big picture:
 | 8. System CRI | $\text{CRI}_{\text{Sys}} = w_{USD}\text{CRI}^{USD} + w_{KHR}\text{CRI}^{KHR}$ | Once |
 | 9. Stress test | $S_t^{c,\text{stress}} = S_t^c(1+\delta)$, recompute CRIs | Yes |
 | 10. Sub-period analysis | Re-estimate steps 2–7 for pre/during/post COVID | Yes |
-| 11. Rolling window | Re-estimate steps 2–7 on 24-month rolling window | Yes |
+| 11. Rolling window | Re-estimate steps 2–7 on 36-month rolling window | Yes |
 | 12. Robustness | Repeat with Outstanding Amount rates + alternatives | Yes |
 
 ---
@@ -259,13 +261,17 @@ cambodia-credit-risk/
 │       └── all_rates_wide_new_amount.csv   # Reference: all rates
 ├── notebooks/
 │   ├── 01_data_preparation.ipynb           # ✅ DONE
-│   ├── 02_exploratory_analysis.ipynb       # Deeper stats, figures
-│   ├── 03_parameter_estimation.ipynb       # MLE + AR(1) both currencies
-│   ├── 04_cri_computation.ipynb            # Crisis prob + CRI
-│   ├── 05_stress_testing.ipynb             # Stress scenarios
-│   ├── 06_covid_analysis.ipynb             # Sub-period comparison
-│   ├── 07_rolling_window.ipynb             # 24-month rolling evolution
-│   └── 08_robustness.ipynb                 # Outstanding Amount + checks
+│   ├── 02_exploratory_analysis.ipynb       # ✅ DONE
+│   ├── 03_parameter_estimation.ipynb       # ✅ DONE
+│   ├── 04_cri_computation.ipynb            # ✅ DONE
+│   ├── 05_stress_testing.ipynb             # ✅ DONE
+│   ├── 06_covid_analysis.ipynb             # ✅ DONE
+│   ├── 07_rolling_window.ipynb             # ✅ DONE
+│   ├── 08_robustness.ipynb                 # ✅ DONE
+│   ├── 09_regime_switching.ipynb           # ✅ DONE
+│   ├── 10_dynamic_threshold.ipynb          # ✅ DONE
+│   ├── 11_implied_pd.ipynb                 # ✅ DONE
+│   └── 12_policy_divergence.ipynb          # ✅ DONE
 ├── figures/
 │   ├── fig1_spread_timeseries.png
 │   ├── fig2_spread_histograms.png
@@ -288,16 +294,20 @@ cambodia-credit-risk/
 
 ### Notebook Details
 
-| # | Notebook | What It Does | Key Output |
-|---|----------|-------------|------------|
-| 01 | Data Preparation ✅ | Load NBC CSV, filter Term Loans/Deposits New Amount, compute spreads, quality checks | 6 processed CSVs, comparison plots |
-| 02 | Exploratory Analysis | Descriptive stats, distributions, normality tests, autocorrelation, structural break tests | Figures 1–4, Table 1 |
-| 03 | Parameter Estimation | MLE for $(\kappa, \theta, \sigma)$ per currency, AR(1) OLS cross-check, confidence intervals, half-life | Table 2 (parameters) |
-| 04 | CRI Computation | $m(t)$, $v(t)$, crisis probability, CRI for USD/KHR/System over time | Figures 6–8, Table 3 |
-| 05 | Stress Testing | Apply δ = 0.1, 0.3, 0.5 shocks, recompute CRIs, comparison charts | Figure 11, Table 4 |
-| 06 | COVID Analysis | Split into pre/during/post COVID, re-estimate per period, compare parameters | Figure 9, Table 5 |
-| 07 | Rolling Window | 24-month rolling re-estimation, parameter evolution plots | Figure 10 |
-| 08 | Robustness | Outstanding Amount rates, alternative thresholds/weights | Table 6 |
+| # | Notebook | What It Does | Key Output | Status |
+|---|----------|-------------|------------|--------|
+| 01 | Data Preparation | Load NBC CSV, filter Term Loans/Deposits New Amount, compute spreads, quality checks | 6 processed CSVs, comparison plots | ✅ DONE |
+| 02 | Exploratory Analysis | Descriptive stats, distributions, normality tests, autocorrelation, structural break tests | Figures 1–4, Table 1 | ✅ DONE |
+| 03 | Parameter Estimation | MLE for $(\kappa, \theta, \sigma)$ per currency, AR(1) OLS cross-check, confidence intervals, half-life | Table 2 (parameters) | ✅ DONE |
+| 04 | CRI Computation | $m(t)$, $v(t)$, crisis probability, CRI for USD/KHR/System over time | Figures 6–8, Table 3 | ✅ DONE |
+| 05 | Stress Testing | Apply δ = 0.1, 0.3, 0.5 shocks, recompute CRIs, comparison charts | Figure 11, Table 4 | ✅ DONE |
+| 06 | COVID Analysis | Split into pre/during/post COVID, re-estimate per period, compare parameters | Figure 9, Table 5 | ✅ DONE |
+| 07 | Rolling Window | 36-month rolling re-estimation, parameter evolution plots | Figure 10 | ✅ DONE |
+| 08 | Robustness | Outstanding Amount rates, alternative thresholds/weights | Table 6 | ✅ DONE |
+| 09 | Regime-Switching OU | 2-state Markov RS-OU (Hamilton filter + Kim smoother), BIC comparison | Figure 20 | ✅ DONE |
+| 10 | Dynamic Threshold | Rolling 36-month crisis thresholds, dynamic CRI vs static CRI | Figures 13–15 | ✅ DONE |
+| 11 | Implied PD | Hazard rate extraction, 1-year implied default probability, recovery sensitivity | Figures 16–17 | ✅ DONE |
+| 12 | Policy Divergence | VAR model, Granger causality (Fed vs NBC), impulse response functions | Figures 18–19 | ✅ DONE |
 
 ---
 
@@ -352,8 +362,11 @@ cambodia-credit-risk/
 **"What were your main findings?"**
 > [Frame as a story about USD vs. KHR risk dynamics — depends on actual results. Example: "The KHR spread compressed dramatically from 24% to 4% over the sample, reflecting financial sector maturation. The USD segment is more stable day-to-day but both segments responded to COVID. The rolling window revealed..."]
 
+**"Why didn't you use the CIR model instead of OU?"**
+> Good question. The CIR model adds level-dependent volatility ($\sigma\sqrt{S_t}$), which scales with the spread level and prevents negative values. That's theoretically appealing for emerging markets. However, the CIR exact transition density follows a non-central chi-squared distribution, which makes the MLE log-likelihood much harder to optimize — the non-central chi-squared has numerical instabilities near certain parameter boundaries. The OU model has a Gaussian transition density, giving a clean, convex log-likelihood that converges reliably. In our data, no spread ever approaches zero (USD min = 2.88%, KHR min = 4.24%), so the OU's theoretical possibility of negative values is not a practical concern. I chose analytical tractability over theoretical elegance.
+
 **"What are the limitations?"**
-> Three main ones. First, spreads capture operating costs and profit margins alongside credit risk, so I can't decompose exactly how much is pure credit risk. Second, I'm working with aggregate market rates — individual banks may behave differently. Third, the OU model assumes normally distributed shocks and constant parameters within each window, whereas reality may include jumps and regime changes.
+> Three main ones. First, spreads capture operating costs and profit margins alongside credit risk, so I can't decompose exactly how much is pure credit risk — in particular, the KHR spread also includes an exchange rate risk premium. Second, I'm working with aggregate market rates — individual banks may behave differently. Third, the OU model assumes normally distributed shocks and constant parameters within each window, whereas reality may include jumps and regime changes.
 
 ---
 
