@@ -248,7 +248,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Notebook 09 — Regime-Switching OU Model</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Notebook 09 — Regime-Switching OU Model</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -274,9 +274,7 @@ window.Quarto = {
 <p><span class="math display">\[P = \begin{pmatrix} p_{11} &amp; 1-p_{11} \\ 1-p_{22} &amp; p_{22} \end{pmatrix}\]</span></p>
 <p><strong>Parameters to estimate (per currency):</strong> <span class="math inline">\(\kappa_1, \theta_1, \sigma_1, \kappa_2, \theta_2, \sigma_2, p_{11}, p_{22}\)</span> (8 total)</p>
 <p><strong>Estimation:</strong> Hamilton (1989) filter for filtered probabilities + Kim (1994) smoother for full-sample regime classification.</p>
-<div id="2169671e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:32.372550Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:32.372323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.375377Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.375109Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="848a6ef0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:32.372550Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:32.372323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.375377Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.375109Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> sp_stats</span>
@@ -292,11 +290,8 @@ window.Quarto = {
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'legend.fontsize'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'serif'</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="c6472d4d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.391794Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.391622Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.404386Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.404152Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="9889e0b6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.391794Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.391622Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.404386Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.404152Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_usd_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>khr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_khr_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
@@ -310,7 +305,6 @@ window.Quarto = {
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>params_vanilla <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/ou_parameters_mle.csv'</span>).set_index(<span class="st">'parameter'</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Loaded </span><span class="sc">{</span><span class="bu">len</span>(S_usd)<span class="sc">}</span><span class="ss"> observations per currency'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>
@@ -322,9 +316,7 @@ window.Quarto = {
 <li><strong>Update step:</strong> <span class="math inline">\(\xi_{j|t}^{\text{updated}} = \frac{f_j(S_t | S_{t-1}) \cdot \xi_{j|t-1}}{\sum_{k=1}^{2} f_k(S_t | S_{t-1}) \cdot \xi_{k|t-1}}\)</span></li>
 </ol>
 <p>where <span class="math inline">\(f_j\)</span> is the Gaussian OU transition density under regime <span class="math inline">\(j\)</span>.</p>
-<div id="4c9c9f73" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.405643Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.405537Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.411796Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.411616Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="0f6f86cf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.405643Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.405537Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.411796Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.411616Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Regime-Switching OU: Hamilton Filter + MLE ────────────────────────────</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rs_ou_hamilton_filter(params, data, dt):</span>
@@ -439,11 +431,8 @@ window.Quarto = {
 <span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> smoothed</span>
 <span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hamilton filter, Kim smoother, and MLE functions defined.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="06715891" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.412933Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.412838Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:41.225543Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:41.225095Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="3f20853a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.412933Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.412838Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:41.225543Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:41.225095Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── MLE Estimation ──────────────────────────────────────────────────────────</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate_rs_ou(data, dt, label<span class="op">=</span><span class="st">''</span>):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Estimate 2-state RS-OU model via MLE with multiple restarts."""</span></span>
@@ -543,11 +532,8 @@ window.Quarto = {
 <span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Estimating RS-OU model...'</span>)</span>
 <span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>rs_usd <span class="op">=</span> estimate_rs_ou(S_usd, dt, <span class="st">'USD Spread'</span>)</span>
 <span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>rs_khr <span class="op">=</span> estimate_rs_ou(S_khr, dt, <span class="st">'KHR Spread'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="077dcf3d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:41.227600Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:41.227486Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:41.231557Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:41.231334Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="73f59a94" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:41.227600Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:41.227486Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:41.231557Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:41.231334Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── BIC Comparison: Vanilla OU vs RS-OU ─────────────────────────────────────</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Vanilla OU BIC (3 params)</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>vanilla_ll_usd <span class="op">=</span> params_vanilla.loc[<span class="st">'log_likelihood'</span>, <span class="st">'USD'</span>]</span>
@@ -571,11 +557,8 @@ window.Quarto = {
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'BIC penalizes RS-OU for 8 params vs 3 — RS-OU must explain'</span>)</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'substantially more variance to overcome the complexity penalty.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="a8e5f1d8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:41.232673Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:41.232598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.015367Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.015130Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="efde4a43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:41.232673Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:41.232598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.015367Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.015130Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Figure: Smoothed Regime Probabilities ───────────────────────────────────</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">10</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,7 +609,6 @@ window.Quarto = {
 <span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig20_regime_switching.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig20_regime_switching.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-regime-classification" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-regime-classification">Interpretation — Regime Classification</h3>
@@ -662,9 +644,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Both ΔBIC values are <strong>strongly negative</strong> (&gt;10 is considered “very strong” evidence in the Bayesian model comparison literature), meaning the 8-parameter RS-OU model explains substantially more variance than the 3-parameter vanilla OU — even after accounting for the additional 5 parameters. The KHR improvement (ΔBIC = −140) is extraordinary, confirming that the structural break is a <strong>dominant feature</strong> of the KHR data that the vanilla model completely misrepresents.</p>
-<div id="d8b197a7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:42.017761Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:42.017662Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.020903Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.020695Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="d84aceec" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:42.017761Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:42.017662Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.020903Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.020695Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Parameter Comparison Table ──────────────────────────────────────────────</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">═══════════════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'     Full Parameter Comparison: Vanilla OU vs RS-OU'</span>)</span>
@@ -688,11 +668,8 @@ window.Quarto = {
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="st">"Duration (months)"</span><span class="sc">:20s}</span><span class="ss"> </span><span class="sc">{</span><span class="st">"—"</span><span class="sc">:&gt;12s}</span><span class="ss"> </span><span class="sc">{</span>res_rs[<span class="st">"duration1"</span>]<span class="sc">:12.1f}</span><span class="ss"> </span><span class="sc">{</span>res_rs[<span class="st">"duration2"</span>]<span class="sc">:12.1f}</span><span class="ss">'</span>)</span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="3e59608f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:42.022116Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:42.022040Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.027471Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.027272Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="90f2dbbb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:42.022116Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:42.022040Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.027471Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.027272Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Save Results ────────────────────────────────────────────────────────────</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rs_export <span class="op">=</span> {}</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, res <span class="kw">in</span> [(<span class="st">'USD'</span>, rs_usd), (<span class="st">'KHR'</span>, rs_khr)]:</span>
@@ -708,7 +685,6 @@ window.Quarto = {
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: regime_switching_results.csv'</span>)</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Regime 1 (High) dominates for USD until: </span><span class="sc">{</span>dates[rs_usd[<span class="st">"smoothed"</span>][:, <span class="dv">0</span>] <span class="op">&gt;</span> <span class="fl">0.5</span>][<span class="op">-</span><span class="dv">1</span>] <span class="cf">if</span> np<span class="sc">.</span><span class="bu">any</span>(rs_usd[<span class="st">"smoothed"</span>][:, <span class="dv">0</span>] <span class="op">&gt;</span> <span class="fl">0.5</span>) <span class="cf">else</span> <span class="st">"never"</span><span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Regime 1 (High) dominates for KHR until: </span><span class="sc">{</span>dates[rs_khr[<span class="st">"smoothed"</span>][:, <span class="dv">0</span>] <span class="op">&gt;</span> <span class="fl">0.5</span>][<span class="op">-</span><span class="dv">1</span>] <span class="cf">if</span> np<span class="sc">.</span><span class="bu">any</span>(rs_khr[<span class="st">"smoothed"</span>][:, <span class="dv">0</span>] <span class="op">&gt;</span> <span class="fl">0.5</span>) <span class="cf">else</span> <span class="st">"never"</span><span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>

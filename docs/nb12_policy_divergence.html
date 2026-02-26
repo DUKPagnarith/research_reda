@@ -253,7 +253,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Notebook 12 — Policy Divergence Analysis</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Notebook 12 — Policy Divergence Analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -275,9 +275,7 @@ window.Quarto = {
 <p>Notebook 06 documented that the USD-KHR spread correlation collapsed from 0.73 pre-COVID to 0.11 during COVID. This notebook tests the hypothesis statistically: <strong>USD spread dynamics are driven by US Federal Reserve policy, while KHR spread dynamics are driven by NBC domestic monetary policy</strong>, and these two monetary channels decoupled during the pandemic.</p>
 <p><strong>Methods:</strong> 1. Vector Autoregression (VAR) model 2. Granger causality tests (full-sample and sub-period) 3. Impulse response functions (IRFs)</p>
 <p><strong>Data:</strong> Spreads (from processed data) + Fed Funds Rate (from FRED) + NBC policy proxy (KHR deposit rate from raw data)</p>
-<div id="cc2315ed" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:21.798269Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:21.797837Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:22.889630Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:22.889359Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="326f3d8b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:21.798269Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:21.797837Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:22.889630Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:22.889359Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> sp_stats</span>
@@ -305,11 +303,8 @@ window.Quarto = {
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'legend.fontsize'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'serif'</span></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="ef661c51" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:22.905969Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:22.905688Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:22.916090Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:22.915868Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="01f0ac93" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:22.905969Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:22.905688Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:22.916090Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:22.915868Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Spread Data ────────────────────────────────────────────────────────</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_usd_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>khr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_khr_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
@@ -320,11 +315,8 @@ window.Quarto = {
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Available rate columns:'</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> all_rates.columns:</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="2b7190b0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:22.917147Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:22.917083Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:22.920899Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:22.920708Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="ba7512cb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:22.917147Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:22.917083Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:22.920899Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:22.920708Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Fed Funds Rate ──────────────────────────────────────────────────────────</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Loading Fed Funds Rate from processed data...'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ffr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/FEDFUNDS.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'observation_date'</span>], index_col<span class="op">=</span><span class="st">'observation_date'</span>)</span>
@@ -334,11 +326,8 @@ window.Quarto = {
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ffr <span class="op">=</span> ffr.loc[<span class="st">'2013-01-01'</span>:<span class="st">'2025-12-31'</span>]</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Fed Funds Rate loaded: </span><span class="sc">{</span><span class="bu">len</span>(ffr)<span class="sc">}</span><span class="ss"> observations'</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'FFR range: [</span><span class="sc">{</span>ffr[<span class="st">"FFR"</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.3f}</span><span class="ss">%, </span><span class="sc">{</span>ffr[<span class="st">"FFR"</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.3f}</span><span class="ss">%]'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="395b9e4e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:22.922033Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:22.921974Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:22.927190Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:22.927010Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="75fd59f0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:22.922033Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:22.921974Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:22.927190Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:22.927010Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Build Combined Dataset ──────────────────────────────────────────────────</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use KHR Term Deposit rate as NBC monetary policy proxy</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nbc_proxy <span class="op">=</span> all_rates[<span class="st">'KHR_Term_Deposits'</span>]</span>
@@ -364,16 +353,13 @@ window.Quarto = {
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.dropna()</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Combined dataset: </span><span class="sc">{</span><span class="bu">len</span>(data)<span class="sc">}</span><span class="ss"> observations'</span>)</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>
 <section id="rolling-correlation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="rolling-correlation-analysis">1. Rolling Correlation Analysis</h2>
 <p>Before formal Granger tests, visualize the time-varying correlation to confirm the decoupling.</p>
-<div id="8593b3e3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:22.928237Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:22.928160Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:23.326770Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:23.326556Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="ef1f015c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:22.928237Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:22.928160Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:23.326770Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:23.326556Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Rolling Correlations ────────────────────────────────────────────────────</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> <span class="dv">24</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>corr_usd_khr <span class="op">=</span> data[<span class="st">'S_USD'</span>].rolling(window).corr(data[<span class="st">'S_KHR'</span>])</span>
@@ -403,7 +389,6 @@ window.Quarto = {
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig18_rolling_correlations.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig18_rolling_correlations.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>
@@ -411,9 +396,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="granger-causality-tests">2. Granger Causality Tests</h2>
 <p>Granger causality tests whether past values of variable <span class="math inline">\(X\)</span> contain information useful for predicting <span class="math inline">\(Y\)</span>, beyond what is already contained in past values of <span class="math inline">\(Y\)</span> itself.</p>
 <p>We test: - <strong>FFR → USD Spread</strong> (expect: significant, especially post-2022) - <strong>FFR → KHR Spread</strong> (expect: weaker or insignificant, especially post-2020) - <strong>NBC Proxy → KHR Spread</strong> (expect: significant throughout) - <strong>NBC Proxy → USD Spread</strong> (expect: weaker)</p>
-<div id="faca706f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:23.328582Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:23.328482Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:23.379339Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:23.379101Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="43fee7b1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:23.328582Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:23.328482Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:23.379339Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:23.379101Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Granger Causality Tests ─────────────────────────────────────────────────</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>max_lag <span class="op">=</span> <span class="dv">6</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -470,7 +453,6 @@ window.Quarto = {
 <span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>row[<span class="st">'test'</span>]<span class="sc">:25s}</span><span class="ss">  p = </span><span class="sc">{</span>row[<span class="st">'min_p'</span>]<span class="sc">:.4f}</span><span class="ss"> </span><span class="sc">{</span>sig<span class="sc">:3s}</span><span class="ss">  (lag = </span><span class="sc">{</span>row[<span class="st">'best_lag'</span>]<span class="sc">:.0f}</span><span class="ss">, n = </span><span class="sc">{</span>row[<span class="st">'n_obs'</span>]<span class="sc">:.0f}</span><span class="ss">)"</span>)</span>
 <span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═════════════════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Significance: *** p&lt;0.01, ** p&lt;0.05, * p&lt;0.10'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-granger-causality-results" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-granger-causality-results">Interpretation — Granger Causality Results</h3>
@@ -521,9 +503,7 @@ window.Quarto = {
 </section>
 <section id="var-model-and-impulse-response-functions" class="level2">
 <h2 class="anchored" data-anchor-id="var-model-and-impulse-response-functions">3. VAR Model and Impulse Response Functions</h2>
-<div id="e1797b55" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:23.380641Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:23.380553Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:23.391842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:23.391662Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="0977b201" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:23.380641Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:23.380553Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:23.391842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:23.391662Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── VAR Model ───────────────────────────────────────────────────────────────</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use first differences for stationarity</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>var_cols <span class="op">=</span> [<span class="st">'S_USD'</span>, <span class="st">'S_KHR'</span>, <span class="st">'FFR'</span>]</span>
@@ -545,11 +525,8 @@ window.Quarto = {
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>var_result <span class="op">=</span> model.fit(optimal_lag)</span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">VAR(</span><span class="sc">{</span>optimal_lag<span class="sc">}</span><span class="ss">) fitted on </span><span class="sc">{</span><span class="bu">len</span>(data_diff)<span class="sc">}</span><span class="ss"> observations'</span>)</span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var_result.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="22ec8f3c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:23.392994Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:23.392939Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:24.021952Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:24.021742Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="c490cec1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:23.392994Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:23.392939Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:24.021952Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:24.021742Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Impulse Response Functions ──────────────────────────────────────────────</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>irf <span class="op">=</span> var_result.irf(periods<span class="op">=</span><span class="dv">12</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -610,7 +587,6 @@ window.Quarto = {
 <span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig19_irf.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig19_irf.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-impulse-response-functions" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-impulse-response-functions">Interpretation — Impulse Response Functions</h3>
@@ -619,9 +595,7 @@ window.Quarto = {
 <p><strong>FFR → KHR Spread (top-right):</strong> The confidence band is expected to include zero at most horizons, confirming the weak/insignificant Granger result. The KHR segment is insulated from US monetary policy.</p>
 <p><strong>Cross-Currency Spillovers (bottom panels):</strong> USD → KHR spillover captures the degree to which dollar-segment stress contaminates the riel segment. If this spillover has weakened over time, it confirms that the two markets are becoming more independent — exactly the outcome that NBC’s de-dollarization program aims to achieve.</p>
 <p><strong>Policy Significance:</strong> These IRFs can be used to forecast how future Fed rate decisions will affect Cambodia. Given the decoupling, aggressive Fed tightening cycles (like 2022–2023) should pressure USD spreads but leave KHR spreads largely unaffected — providing NBC with genuine monetary policy independence for the riel segment.</p>
-<div id="ee551ac3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:24.024269Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:24.024155Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:24.035758Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:24.035218Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="b8e89b53" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-26T02:11:24.024269Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-26T02:11:24.024155Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-26T02:11:24.035758Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-26T02:11:24.035218Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Summary Table ───────────────────────────────────────────────────────────</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">═════════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'    Granger Causality Summary — p-values by Period'</span>)</span>
@@ -649,7 +623,6 @@ window.Quarto = {
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">*** p&lt;0.01  ** p&lt;0.05  * p&lt;0.10'</span>)</span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Key finding: Compare FFR → KHR Spread across sub-periods.'</span>)</span>
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'If p-value INCREASES from pre-COVID to post-COVID, the policy decoupling is confirmed.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>

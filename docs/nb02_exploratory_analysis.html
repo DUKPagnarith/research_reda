@@ -278,7 +278,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Notebook 02 — Exploratory Data Analysis</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Notebook 02 — Exploratory Data Analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -299,9 +299,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="credit-risk-and-dollarization-in-cambodia-dual-currency-spread-analysis">Credit Risk and Dollarization in Cambodia: Dual-Currency Spread Analysis</h2>
 <p>This notebook performs comprehensive exploratory analysis of the USD and KHR interest rate spreads (term loan rate − term deposit rate) computed in Notebook 01.</p>
 <p><strong>Contents:</strong> 1. Descriptive Statistics (full sample &amp; sub-period) 2. Normality Tests (Shapiro-Wilk, Jarque-Bera) 3. Stationarity Tests (Augmented Dickey-Fuller) 4. Autocorrelation Analysis (ACF/PACF) 5. Correlation Analysis 6. Publication-Quality Visualizations (Figures 1–5)</p>
-<div id="4ddad3e8" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="1fb690da" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -328,11 +326,8 @@ window.Quarto = {
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded successfully.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="da36ea3c" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="0c037018" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_usd_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>khr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_khr_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
@@ -347,15 +342,12 @@ window.Quarto = {
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample period: </span><span class="sc">{</span>spreads<span class="sc">.</span>index[<span class="dv">0</span>]<span class="sc">.</span>strftime(<span class="st">"%b %Y"</span>)<span class="sc">}</span><span class="ss"> – </span><span class="sc">{</span>spreads<span class="sc">.</span>index[<span class="op">-</span><span class="dv">1</span>]<span class="sc">.</span>strftime(<span class="st">"%b %Y"</span>)<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Total observations: </span><span class="sc">{</span><span class="bu">len</span>(spreads)<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>spreads.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>
 <section id="descriptive-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-statistics">1. Descriptive Statistics</h2>
-<div id="58f16cde" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="99b4b0cc" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Full-Sample Descriptive Statistics ──────────────────────────────────────</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> descriptive_stats(series, name):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute comprehensive descriptive statistics for a spread series."""</span></span>
@@ -385,7 +377,6 @@ window.Quarto = {
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'══════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stats_table.<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'══════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-table-1-full-sample-descriptive-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-table-1-full-sample-descriptive-statistics">Interpretation — Table 1: Full-Sample Descriptive Statistics</h3>
@@ -395,9 +386,7 @@ window.Quarto = {
 <p><strong>3. Mean vs.&nbsp;Median Divergence:</strong> The KHR median (6.95%) is <strong>far below</strong> its mean (11.34%), indicating the distribution is <strong>heavily right-skewed</strong> — dominated by the early-sample high values when KHR spreads exceeded 20%. By contrast, the USD median (6.04%) is closer to its mean, suggesting a more symmetric distribution around typical values.</p>
 <p><strong>4. Skewness and Kurtosis:</strong> Both spreads are positively skewed (USD: 0.74, KHR: 0.76), meaning extreme <strong>widenings</strong> are more common than extreme compressions — consistent with credit risk theory where risk materializes through sudden spread blowouts. The negative kurtosis for KHR (−1.12) indicates a <strong>platykurtic</strong> distribution — fat but spread out, without the extreme tails one might expect. This suggests risk in the KHR segment manifests as <strong>sustained elevated spreads</strong> rather than sudden spikes.</p>
 <p><strong>5. Percentile Analysis:</strong> The 95th percentile values (USD: 10.73%, KHR: 23.94%) will serve as <strong>crisis thresholds</strong> in Notebook 04. When spreads exceed these levels, the CRI will signal elevated credit risk conditions.</p>
-<div id="489b625a" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="4d12d155" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Sub-Period Descriptive Statistics ────────────────────────────────────────</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>periods <span class="op">=</span> {</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Pre-COVID (2013–2019)'</span>: (<span class="st">'2013-01-01'</span>, <span class="st">'2019-12-31'</span>),</span>
@@ -426,7 +415,6 @@ window.Quarto = {
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sub_df.<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-table-1b-sub-period-summary-statistics" class="level3">
@@ -441,9 +429,7 @@ window.Quarto = {
 </section>
 <section id="normality-tests" class="level2">
 <h2 class="anchored" data-anchor-id="normality-tests">2. Normality Tests</h2>
-<div id="647590e0" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="e85c5bb0" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Normality Tests ─────────────────────────────────────────────────────────</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>normality_results <span class="op">=</span> []</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col, label <span class="kw">in</span> [(<span class="st">'USD_Spread'</span>, <span class="st">'USD Spread'</span>), (<span class="st">'KHR_Spread'</span>, <span class="st">'KHR Spread'</span>)]:</span>
@@ -464,7 +450,6 @@ window.Quarto = {
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(norm_df.<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-normality-tests" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-normality-tests">Interpretation — Normality Tests</h3>
@@ -481,9 +466,7 @@ window.Quarto = {
 </section>
 <section id="stationarity-tests-adf" class="level2">
 <h2 class="anchored" data-anchor-id="stationarity-tests-adf">3. Stationarity Tests (ADF)</h2>
-<div id="0b7ead9d" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="cb12e48e" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Augmented Dickey-Fuller Tests ───────────────────────────────────────────</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>adf_results <span class="op">=</span> []</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col, label <span class="kw">in</span> [(<span class="st">'USD_Spread'</span>, <span class="st">'USD Spread'</span>), (<span class="st">'KHR_Spread'</span>, <span class="st">'KHR Spread'</span>)]:</span>
@@ -505,7 +488,6 @@ window.Quarto = {
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(adf_df.<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-adf-stationarity-tests" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-adf-stationarity-tests">Interpretation — ADF Stationarity Tests</h3>
@@ -521,9 +503,7 @@ window.Quarto = {
 </section>
 <section id="autocorrelation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="autocorrelation-analysis">4. Autocorrelation Analysis</h2>
-<div id="1c9ae56b" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="debfb123" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── ACF / PACF Plots ────────────────────────────────────────────────────────</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">8</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -549,7 +529,6 @@ window.Quarto = {
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">AR(1) autocorrelation at lag 1:'</span>)</span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  USD Spread: </span><span class="sc">{</span>spreads[<span class="st">"USD_Spread"</span>]<span class="sc">.</span>autocorr(lag<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  KHR Spread: </span><span class="sc">{</span>spreads[<span class="st">"KHR_Spread"</span>]<span class="sc">.</span>autocorr(lag<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-acfpacf-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-acfpacf-analysis">Interpretation — ACF/PACF Analysis</h3>
@@ -565,9 +544,7 @@ window.Quarto = {
 </section>
 <section id="correlation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="correlation-analysis">5. Correlation Analysis</h2>
-<div id="7c82eaef" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="eb2c11b8" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Correlation Analysis ────────────────────────────────────────────────────</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>full_corr <span class="op">=</span> spreads[<span class="st">'USD_Spread'</span>].corr(spreads[<span class="st">'KHR_Spread'</span>])</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Full-sample Pearson correlation: </span><span class="sc">{</span>full_corr<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
@@ -577,7 +554,6 @@ window.Quarto = {
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> spreads[mask]</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    corr <span class="op">=</span> sub[<span class="st">'USD_Spread'</span>].corr(sub[<span class="st">'KHR_Spread'</span>])</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  </span><span class="sc">{</span>pname<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>corr<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-correlation-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-correlation-analysis">Interpretation — Correlation Analysis</h3>
@@ -627,9 +603,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="publication-quality-visualizations">6. Publication-Quality Visualizations</h2>
 <section id="figure-1-dual-time-series-with-covid-shading" class="level3">
 <h3 class="anchored" data-anchor-id="figure-1-dual-time-series-with-covid-shading">Figure 1: Dual Time Series with COVID Shading</h3>
-<div id="0ae21e3f" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="14642cf6" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 1: Dual Time Series ──────────────────────────────────────────────</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -670,7 +644,6 @@ window.Quarto = {
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig1_spread_timeseries.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig1_spread_timeseries.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-1-time-series-of-interest-rate-spreads" class="level3">
@@ -684,9 +657,7 @@ window.Quarto = {
 </section>
 <section id="figure-2-spread-histograms-with-normal-overlay" class="level3">
 <h3 class="anchored" data-anchor-id="figure-2-spread-histograms-with-normal-overlay">Figure 2: Spread Histograms with Normal Overlay</h3>
-<div id="25e9bf8e" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="f1c56a7f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 2: Histograms ────────────────────────────────────────────────────</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -717,7 +688,6 @@ window.Quarto = {
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig2_spread_histograms.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig2_spread_histograms.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-2-distribution-histograms" class="level3">
@@ -728,9 +698,7 @@ window.Quarto = {
 </section>
 <section id="figure-3-raw-rates-underlying-components" class="level3">
 <h3 class="anchored" data-anchor-id="figure-3-raw-rates-underlying-components">Figure 3: Raw Rates (Underlying Components)</h3>
-<div id="1d24ccc1" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="13c1c6d6" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 3: Raw Rates ─────────────────────────────────────────────────────</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">9</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -773,7 +741,6 @@ window.Quarto = {
 <span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig3_raw_rates.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig3_raw_rates.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-3-underlying-interest-rates" class="level3">
@@ -785,9 +752,7 @@ window.Quarto = {
 </section>
 <section id="figure-4-scatter-plot-usd-vs-khr-spread" class="level3">
 <h3 class="anchored" data-anchor-id="figure-4-scatter-plot-usd-vs-khr-spread">Figure 4: Scatter Plot — USD vs KHR Spread</h3>
-<div id="f89254f3" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="2ddb796c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 4: Scatter Plot ──────────────────────────────────────────────────</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">7</span>))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -831,7 +796,6 @@ window.Quarto = {
 <span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig4_correlation.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig4_correlation.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-4-cross-currency-scatter-plot" class="level3">
@@ -847,9 +811,7 @@ window.Quarto = {
 </section>
 <section id="figure-5-box-plots-by-year" class="level3">
 <h3 class="anchored" data-anchor-id="figure-5-box-plots-by-year">Figure 5: Box Plots by Year</h3>
-<div id="e41ea6af" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="6723bc3c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 5: Box Plots by Year ─────────────────────────────────────────────</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>spreads_year <span class="op">=</span> spreads.copy()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>spreads_year[<span class="st">'Year'</span>] <span class="op">=</span> spreads_year.index.year</span>
@@ -886,7 +848,6 @@ window.Quarto = {
 <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig5_boxplots_by_year.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig5_boxplots_by_year.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-5-annual-box-plots" class="level3">

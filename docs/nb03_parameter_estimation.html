@@ -263,7 +263,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Notebook 03 — Parameter Estimation</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Notebook 03 — Parameter Estimation</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -286,9 +286,7 @@ window.Quarto = {
 <p><span class="math display">\[dS_t^c = \kappa^c(\theta^c - S_t^c)dt + \sigma^c dW_t^c\]</span></p>
 <p>where <span class="math inline">\(c \in \{\text{USD}, \text{KHR}\}\)</span>, using maximum likelihood estimation (MLE) and an AR(1) OLS cross-check.</p>
 <p><strong>Contents:</strong> 1. MLE for OU Parameters (κ, θ, σ) with standard errors 2. AR(1) Cross-Check 3. Confidence Intervals &amp; Half-Lives 4. Model Diagnostics 5. Parameter Export for Downstream Use</p>
-<div id="42de388c" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="5e331b9b" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
@@ -303,11 +301,8 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'legend.fontsize'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'serif'</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="988519cf" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="01d77956" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_usd_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>khr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_khr_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
@@ -319,7 +314,6 @@ window.Quarto = {
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'USD: </span><span class="sc">{</span><span class="bu">len</span>(S_usd)<span class="sc">}</span><span class="ss"> observations, range [</span><span class="sc">{</span>S_usd<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2f}</span><span class="ss">%, </span><span class="sc">{</span>S_usd<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">%]'</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'KHR: </span><span class="sc">{</span><span class="bu">len</span>(S_khr)<span class="sc">}</span><span class="ss"> observations, range [</span><span class="sc">{</span>S_khr<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2f}</span><span class="ss">%, </span><span class="sc">{</span>S_khr<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">%]'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>
@@ -328,9 +322,7 @@ window.Quarto = {
 <p>The exact transition density of the OU process gives:</p>
 <p><span class="math display">\[S_{t+\Delta t} | S_t \sim \mathcal{N}\left(\theta + (S_t - \theta)e^{-\kappa\Delta t},\; \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\right)\]</span></p>
 <p>We maximize the resulting log-likelihood over (κ, θ, σ).</p>
-<div id="368a473d" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="008f5444" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── OU Negative Log-Likelihood ──────────────────────────────────────────────</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ou_neg_log_likelihood(params, data, dt):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Exact negative log-likelihood for the OU process."""</span></span>
@@ -425,7 +417,6 @@ window.Quarto = {
 <span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate for both currencies</span></span>
 <span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>mle_usd <span class="op">=</span> estimate_ou_mle(S_usd, dt, <span class="st">'USD Spread'</span>)</span>
 <span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>mle_khr <span class="op">=</span> estimate_ou_mle(S_khr, dt, <span class="st">'KHR Spread'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-mle-results-table-2" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-mle-results-table-2">Interpretation — MLE Results (Table 2)</h3>
@@ -510,9 +501,7 @@ window.Quarto = {
 </section>
 <section id="ar1-cross-check" class="level2">
 <h2 class="anchored" data-anchor-id="ar1-cross-check">2. AR(1) Cross-Check</h2>
-<div id="ca385b1f" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="cd0b6293" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── AR(1) Cross-Check ───────────────────────────────────────────────────────</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate_ou_ar1(data, dt, label<span class="op">=</span><span class="st">''</span>):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Estimate OU parameters via AR(1) regression."""</span></span>
@@ -560,7 +549,6 @@ window.Quarto = {
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>ar1_usd <span class="op">=</span> estimate_ou_ar1(S_usd, dt, <span class="st">'USD Spread'</span>)</span>
 <span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>ar1_khr <span class="op">=</span> estimate_ou_ar1(S_khr, dt, <span class="st">'KHR Spread'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-ar1-cross-check" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-ar1-cross-check">Interpretation — AR(1) Cross-Check</h3>
@@ -617,9 +605,7 @@ window.Quarto = {
 </section>
 <section id="confidence-intervals" class="level2">
 <h2 class="anchored" data-anchor-id="confidence-intervals">3. Confidence Intervals</h2>
-<div id="3b8bcdde" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="4858c0a9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Confidence Intervals ────────────────────────────────────────────────────</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">═══════════════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'           95% Confidence Intervals for OU Parameters'</span>)</span>
@@ -634,7 +620,6 @@ window.Quarto = {
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        t_stat <span class="op">=</span> val <span class="op">/</span> se <span class="cf">if</span> se <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> np.nan</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'    </span><span class="sc">{</span>param<span class="sc">:6s}</span><span class="ss">: </span><span class="sc">{</span>val<span class="sc">:.4f}</span><span class="ss"> ± </span><span class="sc">{</span><span class="fl">1.96</span><span class="op">*</span>se<span class="sc">:.4f}</span><span class="ss">  [</span><span class="sc">{</span>ci_lo<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>ci_hi<span class="sc">:.4f}</span><span class="ss">]  t = </span><span class="sc">{</span>t_stat<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-confidence-intervals" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-confidence-intervals">Interpretation — Confidence Intervals</h3>
@@ -646,9 +631,7 @@ window.Quarto = {
 </section>
 <section id="model-diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="model-diagnostics">4. Model Diagnostics</h2>
-<div id="a03610b6" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="c34f3349" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Model Diagnostics ───────────────────────────────────────────────────────</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">9</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -695,7 +678,6 @@ window.Quarto = {
 <span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig5_ou_parameters.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig5_ou_parameters.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-model-diagnostics-figure-5" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-model-diagnostics-figure-5">Interpretation — Model Diagnostics (Figure 5)</h3>
@@ -709,9 +691,7 @@ window.Quarto = {
 </section>
 <section id="save-parameters-for-downstream-notebooks" class="level2">
 <h2 class="anchored" data-anchor-id="save-parameters-for-downstream-notebooks">5. Save Parameters for Downstream Notebooks</h2>
-<div id="4f3b3f72" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="e4487b08" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Save Parameters ─────────────────────────────────────────────────────────</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>param_export <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'parameter'</span>: [<span class="st">'kappa'</span>, <span class="st">'theta'</span>, <span class="st">'sigma'</span>, <span class="st">'se_kappa'</span>, <span class="st">'se_theta'</span>, <span class="st">'se_sigma'</span>,</span>
@@ -730,7 +710,6 @@ window.Quarto = {
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(param_export.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>

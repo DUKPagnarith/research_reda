@@ -46,7 +46,6 @@ format:
     theme: cosmo
     toc: true
     toc-depth: 3
-    code-fold: true
     code-tools: true
     embed-resources: false
 

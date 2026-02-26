@@ -249,7 +249,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Notebook 05 — Stress Testing</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Notebook 05 — Stress Testing</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -270,9 +270,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="how-fragile-is-each-currency-segment-under-stress">How Fragile Is Each Currency Segment Under Stress?</h2>
 <p>This notebook applies hypothetical shocks to the interest rate spreads and examines how the CRI responds, answering: <strong>if spreads widened by 10%, 30%, or 50%, how much would credit risk increase?</strong></p>
 <p><strong>Stress Scenarios:</strong> - Mild (δ = 0.10): 10% proportional increase in spreads - Moderate (δ = 0.30): 30% increase (comparable to a sectoral slowdown) - Severe (δ = 0.50): 50% increase (comparable to a financial crisis)</p>
-<div id="0d94bbb4" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="02c6cfa2" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> sp_stats</span>
@@ -287,11 +285,8 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'legend.fontsize'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'serif'</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="294263e2" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="88edf184" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data and Define Functions ──────────────────────────────────────────</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_usd_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>khr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_khr_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
@@ -333,11 +328,8 @@ window.Quarto = {
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> sigma_norm <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> avg_prob</span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Functions defined.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="9240261b" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="4aae9a39" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Baseline ────────────────────────────────────────────────────────────────</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>baseline_usd <span class="op">=</span> estimate_ou(S_usd, dt)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>baseline_khr <span class="op">=</span> estimate_ou(S_khr, dt)</span>
@@ -349,11 +341,8 @@ window.Quarto = {
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>cri_baseline_khr <span class="op">=</span> compute_cri(S_khr, baseline_khr, Sc_khr, dt, sigma_max)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>cri_baseline_sys <span class="op">=</span> <span class="fl">0.80</span> <span class="op">*</span> cri_baseline_usd <span class="op">+</span> <span class="fl">0.20</span> <span class="op">*</span> cri_baseline_khr</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Baseline — USD: </span><span class="sc">{</span>cri_baseline_usd<span class="sc">:.4f}</span><span class="ss">, KHR: </span><span class="sc">{</span>cri_baseline_khr<span class="sc">:.4f}</span><span class="ss">, System: </span><span class="sc">{</span>cri_baseline_sys<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="92fabd35" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="9210bcd7" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Stress Testing ──────────────────────────────────────────────────────────</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>deltas <span class="op">=</span> [<span class="fl">0.10</span>, <span class="fl">0.30</span>, <span class="fl">0.50</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>delta_names <span class="op">=</span> [<span class="st">'Mild (δ=0.10)'</span>, <span class="st">'Moderate (δ=0.30)'</span>, <span class="st">'Severe (δ=0.50)'</span>]</span>
@@ -385,11 +374,8 @@ window.Quarto = {
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  CRI — USD: </span><span class="sc">{</span>cri_usd_s<span class="sc">:.4f}</span><span class="ss"> (Δ: </span><span class="sc">{</span>cri_usd_s <span class="op">-</span> cri_baseline_usd<span class="sc">:+.4f}</span><span class="ss">), '</span></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'KHR: </span><span class="sc">{</span>cri_khr_s<span class="sc">:.4f}</span><span class="ss"> (Δ: </span><span class="sc">{</span>cri_khr_s <span class="op">-</span> cri_baseline_khr<span class="sc">:+.4f}</span><span class="ss">), '</span></span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f'System: </span><span class="sc">{</span>cri_sys_s<span class="sc">:.4f}</span><span class="ss"> (Δ: </span><span class="sc">{</span>cri_sys_s <span class="op">-</span> cri_baseline_sys<span class="sc">:+.4f}</span><span class="ss">)'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="4b8fe6fa" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="30cdf8f5" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── TABLE 4: Stress Test Results ────────────────────────────────────────────</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>stress_df <span class="op">=</span> pd.DataFrame(results)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>stress_df[<span class="st">'Δ_CRI_USD'</span>] <span class="op">=</span> stress_df[<span class="st">'CRI_USD'</span>] <span class="op">-</span> cri_baseline_usd</span>
@@ -402,7 +388,6 @@ window.Quarto = {
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stress_df[display_cols].set_index(<span class="st">'Scenario'</span>).<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-table-4-stress-test-results" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-table-4-stress-test-results">Interpretation — Table 4: Stress Test Results</h3>
@@ -411,9 +396,7 @@ window.Quarto = {
 <p><strong>Proportionality Test:</strong> Since the shock is multiplicative, the OU parameters should scale linearly: θ by <span class="math inline">\((1+\delta)\)</span> and σ by <span class="math inline">\((1+\delta)\)</span>. This means the CRI increase is predictable — it tests whether the CRI framework produces <strong>sensible, proportional responses</strong> to shocks rather than exhibiting discontinuities or non-linearities.</p>
 <p><strong>Policy Relevance:</strong> These stress scenarios correspond to realistic economic events: - <strong>Mild (10%):</strong> A regional economic slowdown or modest currency depreciation - <strong>Moderate (30%):</strong> A significant financial shock, comparable to the impact of aggressive monetary tightening - <strong>Severe (50%):</strong> A full-blown financial crisis or a sudden exchange rate shock</p>
 <p>The results quantify the <strong>CRI sensitivity</strong> — how many CRI units of risk increase per 10% spread shock. A higher sensitivity indicates a more fragile segment.</p>
-<div id="1bb8bff0" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="e759976f" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 11: Stress Test Bar Chart ────────────────────────────────────────</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>scenarios <span class="op">=</span> [r[<span class="st">'Scenario'</span>] <span class="cf">for</span> r <span class="kw">in</span> results]</span>
@@ -446,7 +429,6 @@ window.Quarto = {
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig11_stress_test.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig11_stress_test.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-11-stress-test-visualization" class="level3">
@@ -455,9 +437,7 @@ window.Quarto = {
 <p><strong>Pattern Observed:</strong> All three CRI measures (USD, KHR, System) increase monotonically from Baseline → Mild → Moderate → Severe, confirming the CRI framework produces <strong>directionally correct</strong> responses to stress.</p>
 <p><strong>KHR bars consistently taller than USD bars:</strong> In every scenario, the KHR CRI exceeds the USD CRI, maintaining the fundamental ordering. This means the riel segment is <strong>more fragile under stress</strong> — not only does it start from a higher baseline, but it also absorbs shocks more severely due to its higher volatility.</p>
 <p><strong>System CRI (purple) tracks closer to USD:</strong> Because of the 80/20 loan-share weighting, the System CRI is dominated by the USD component. Even under severe stress, the System CRI may appear moderate while the KHR-specific CRI shows significant elevation — reinforcing the importance of monitoring <strong>currency-specific</strong> risk rather than relying solely on the aggregate.</p>
-<div id="2f2ba40a" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="496d48d9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Fragility Assessment ────────────────────────────────────────────────────</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>usd_sensitivity <span class="op">=</span> (results[<span class="op">-</span><span class="dv">1</span>][<span class="st">'CRI_USD'</span>] <span class="op">-</span> cri_baseline_usd) <span class="op">/</span> cri_baseline_usd <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>khr_sensitivity <span class="op">=</span> (results[<span class="op">-</span><span class="dv">1</span>][<span class="st">'CRI_KHR'</span>] <span class="op">-</span> cri_baseline_khr) <span class="op">/</span> cri_baseline_khr <span class="op">*</span> <span class="dv">100</span></span>
@@ -472,7 +452,6 @@ window.Quarto = {
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">  → USD segment is MORE fragile under stress.'</span>)</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'═══════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-fragility-assessment" class="level3">

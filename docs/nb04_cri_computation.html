@@ -264,7 +264,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Notebook 04 — CRI Computation</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Notebook 04 — CRI Computation</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -285,9 +285,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="crisis-probability-and-credit-risk-index-construction">Crisis Probability and Credit Risk Index Construction</h2>
 <p>This notebook constructs the core contribution of the paper: currency-specific and system-wide Credit Risk Indices based on OU model parameters.</p>
 <p><strong>Contents:</strong> 1. Crisis Thresholds (90th, 95th, 99th percentiles) 2. Crisis Probability Time Series 3. Currency-Specific CRIs 4. System-Wide Composite CRI 5. Visualizations (Figures 6–8)</p>
-<div id="f4d0d938" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="723a2e77" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> sp_stats</span>
@@ -304,11 +302,8 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="578af832" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="fcdb503c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data and Parameters ────────────────────────────────────────────────</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_usd_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>khr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_khr_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
@@ -335,15 +330,12 @@ window.Quarto = {
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">USD: κ=</span><span class="sc">{</span>kappa_usd<span class="sc">:.4f}</span><span class="ss">, θ=</span><span class="sc">{</span>theta_usd<span class="sc">:.4f}</span><span class="ss">%, σ=</span><span class="sc">{</span>sigma_usd<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'KHR: κ=</span><span class="sc">{</span>kappa_khr<span class="sc">:.4f}</span><span class="ss">, θ=</span><span class="sc">{</span>theta_khr<span class="sc">:.4f}</span><span class="ss">%, σ=</span><span class="sc">{</span>sigma_khr<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>
 <section id="crisis-thresholds" class="level2">
 <h2 class="anchored" data-anchor-id="crisis-thresholds">1. Crisis Thresholds</h2>
-<div id="c099d0ec" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="336f993d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Crisis Thresholds ───────────────────────────────────────────────────────</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> {}</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pct <span class="kw">in</span> [<span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">99</span>]:</span>
@@ -363,7 +355,6 @@ window.Quarto = {
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    marker <span class="op">=</span> <span class="st">' ← PRIMARY'</span> <span class="cf">if</span> pct <span class="op">==</span> <span class="dv">95</span> <span class="cf">else</span> <span class="st">''</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'P</span><span class="sc">{</span>pct<span class="sc">:&lt;14}</span><span class="ss"> </span><span class="sc">{</span>thresholds[<span class="ss">f"USD_P</span><span class="sc">{</span>pct<span class="sc">}</span><span class="ss">"</span>]<span class="sc">:&lt;18.4f}</span><span class="ss"> </span><span class="sc">{</span>thresholds[<span class="ss">f"KHR_P</span><span class="sc">{</span>pct<span class="sc">}</span><span class="ss">"</span>]<span class="sc">:&lt;18.4f}{</span>marker<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-crisis-thresholds" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-crisis-thresholds">Interpretation — Crisis Thresholds</h3>
@@ -381,9 +372,7 @@ window.Quarto = {
 <p>Using the OU transition density, the crisis probability at time <span class="math inline">\(t\)</span> is:</p>
 <p><span class="math display">\[P(S_{t+1}^c &gt; S_c^c \mid S_t^c) = 1 - \Phi\left(\frac{S_c^c - m^c(t)}{\sqrt{v^c(t)}}\right)\]</span></p>
 <p>where <span class="math inline">\(m^c(t) = \theta^c + (S_t^c - \theta^c)e^{-\kappa^c \Delta t}\)</span> and <span class="math inline">\(v^c(t) = \frac{(\sigma^c)^2}{2\kappa^c}(1 - e^{-2\kappa^c \Delta t})\)</span>.</p>
-<div id="0754f06c" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="16e493a4" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Compute Crisis Probabilities ────────────────────────────────────────────</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_crisis_probability(data, kappa, theta, sigma, Sc, dt):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute P(S_{t+1} &gt; Sc | S_t) at each time step."""</span></span>
@@ -409,16 +398,13 @@ window.Quarto = {
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'USD crisis prob — mean: </span><span class="sc">{</span>P_usd<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">, max: </span><span class="sc">{</span>P_usd<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss">, min: </span><span class="sc">{</span>P_usd<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'KHR crisis prob — mean: </span><span class="sc">{</span>P_khr<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">, max: </span><span class="sc">{</span>P_khr<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss">, min: </span><span class="sc">{</span>P_khr<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-crisis-probabilities" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-crisis-probabilities">Interpretation — Crisis Probabilities</h3>
 <p>The crisis probability <span class="math inline">\(P(S_{t+1} &gt; S_c | S_t)\)</span> measures the <strong>likelihood that next month’s spread will breach the crisis threshold</strong>, given the current spread level and the OU dynamics.</p>
 <p><strong>How It Works Intuitively:</strong> - When the current spread <span class="math inline">\(S_t\)</span> is <strong>well below</strong> the threshold <span class="math inline">\(S_c\)</span>, the conditional mean <span class="math inline">\(m(t)\)</span> is far below <span class="math inline">\(S_c\)</span>, and the probability of breaching it is <strong>low</strong>. - When <span class="math inline">\(S_t\)</span> is <strong>near or above</strong> <span class="math inline">\(S_c\)</span>, the conditional mean may be near <span class="math inline">\(S_c\)</span>, making the probability of continued crisis <strong>high</strong>. - The probability depends not just on the current level but also on <strong>volatility</strong> (σ) and <strong>mean reversion speed</strong> (κ) — higher σ makes threshold exceedances more likely, while higher κ pulls the spread back more quickly.</p>
 <p><strong>Key Observation:</strong> Both currencies will show <strong>time-varying crisis probabilities</strong> that spike during periods of elevated spreads (early sample for both, and any stress events) and fall to near-zero during the post-2018 compressed-spread regime.</p>
-<div id="87341816" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="28deb1ed" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 6: Crisis Probability Over Time ──────────────────────────────────</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -454,7 +440,6 @@ window.Quarto = {
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig6_crisis_probability.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig6_crisis_probability.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-6-crisis-probability-time-series" class="level3">
@@ -471,9 +456,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="currency-specific-cris">3. Currency-Specific CRIs</h2>
 <p><span class="math display">\[\text{CRI}^c_t = 0.5 \cdot \hat{\sigma}^c_{\text{norm}} + 0.5 \cdot P(S_t^c &gt; S_c^c)\]</span></p>
 <p>The CRI combines two dimensions: <strong>structural risk</strong> (captured by normalized volatility σ) and <strong>conditional risk</strong> (captured by crisis probability). Each is weighted equally.</p>
-<div id="df36ecc5" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="6e0709f4" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Currency-Specific CRI ───────────────────────────────────────────────────</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sigma_max <span class="op">=</span> <span class="bu">max</span>(sigma_usd, sigma_khr) <span class="op">*</span> <span class="fl">1.5</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sigma_usd_norm <span class="op">=</span> sigma_usd <span class="op">/</span> sigma_max</span>
@@ -487,7 +470,6 @@ window.Quarto = {
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">CRI Statistics:'</span>)</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  CRI_USD — mean: </span><span class="sc">{</span>CRI_usd<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">, max: </span><span class="sc">{</span>CRI_usd<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss">, min: </span><span class="sc">{</span>CRI_usd<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  CRI_KHR — mean: </span><span class="sc">{</span>CRI_khr<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">, max: </span><span class="sc">{</span>CRI_khr<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss">, min: </span><span class="sc">{</span>CRI_khr<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-currency-specific-cris" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-currency-specific-cris">Interpretation — Currency-Specific CRIs</h3>
@@ -498,9 +480,7 @@ window.Quarto = {
 </ol>
 <p><strong>CRI Composition:</strong> - For USD: The σ component contributes a fixed ~0.20 at each date. The crisis probability component ranges from ~0 (recently) to ~0.25 (2013–2015). Total CRI ranges from ~0.20 (floor) to ~0.45 (maximum). - For KHR: The σ component contributes a higher fixed ~0.33. The probability component ranges from ~0 (recently) to ~0.40 (2013–2016). Total CRI ranges from ~0.33 (floor) to ~0.73 (maximum).</p>
 <p><strong>Key Insight:</strong> Even when crisis probabilities are <strong>zero</strong> in the recent period, the KHR CRI remains above the USD CRI because of its higher structural volatility — the riel segment carries an <strong>irreducible risk premium</strong> embedded in the σ parameter.</p>
-<div id="4887c228" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="6a2af33c" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 7: Currency-Specific CRIs ────────────────────────────────────────</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -531,7 +511,6 @@ window.Quarto = {
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig7_cri_timeseries.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig7_cri_timeseries.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-7-currency-specific-cri-time-series" class="level3">
@@ -550,9 +529,7 @@ window.Quarto = {
 <section id="system-wide-composite-cri" class="level2">
 <h2 class="anchored" data-anchor-id="system-wide-composite-cri">4. System-Wide Composite CRI</h2>
 <p><span class="math display">\[\text{CRI}_{\text{System},t} = w_{USD} \cdot \text{CRI}^{USD}_t + w_{KHR} \cdot \text{CRI}^{KHR}_t\]</span></p>
-<div id="39c19432" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="9293c822" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── System-Wide CRI ─────────────────────────────────────────────────────────</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> {</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Loan-Share (80/20)'</span>: (<span class="fl">0.80</span>, <span class="fl">0.20</span>),</span>
@@ -564,7 +541,6 @@ window.Quarto = {
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (w_usd, w_khr) <span class="kw">in</span> weights.items():</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    CRI_system[name] <span class="op">=</span> w_usd <span class="op">*</span> CRI_usd <span class="op">+</span> w_khr <span class="op">*</span> CRI_khr</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'CRI_System (</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">) — mean: </span><span class="sc">{</span>CRI_system[name]<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">, max: </span><span class="sc">{</span>CRI_system[name]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-system-wide-cri-weighting" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-system-wide-cri-weighting">Interpretation — System-Wide CRI Weighting</h3>
@@ -575,9 +551,7 @@ window.Quarto = {
 <li><p><strong>Equal (50/50)</strong> — <em>Sensitivity check</em>: Gives equal importance to both currencies. This produces a higher system CRI (pulled up by the KHR component) and is useful for assessing whether the KHR segment is being “diluted” in the 80/20 specification.</p></li>
 <li><p><strong>KHR-Heavy (20/80)</strong> — <em>De-dollarization scenario</em>: Represents a hypothetical future where KHR lending dominates. If NBC’s de-dollarization goals are achieved, this weighting becomes relevant. It shows that a KHR-dominant banking sector would face <strong>higher system-wide credit risk</strong> due to the riel’s inherently more volatile spread dynamics.</p></li>
 </ol>
-<div id="60a6dfb8" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="d1cb9535" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 8: System CRI ────────────────────────────────────────────────────</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -606,7 +580,6 @@ window.Quarto = {
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig8_system_cri.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig8_system_cri.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-figure-8-system-wide-cri" class="level3">
@@ -616,9 +589,7 @@ window.Quarto = {
 <p><strong>In the Recent Period (2020–2025):</strong> All three system CRI lines <strong>converge</strong> to a narrow band around 0.20–0.30. This convergence reflects two things: (1) both currency CRIs have fallen to similar levels, so the weights matter less; (2) the crisis probability component has gone to zero, leaving only the structural σ difference to separate the lines.</p>
 <p><strong>Faded individual CRIs (dashed):</strong> The individual USD and KHR CRIs are shown as faded dashed lines for reference. In the early period, the KHR CRI (red dashed) sits far above the system CRI under 80/20 weighting — this means the <strong>riel segment’s risk is substantially diluted</strong> in the 80/20 composite. If one is concerned about KHR borrowers specifically, the aggregate system CRI may be <strong>misleadingly reassuring</strong>.</p>
 <p><strong>Policy Implication:</strong> As Cambodia de-dollarizes and KHR lending grows, the system CRI will naturally <strong>shift from the 80/20 line toward the 50/50 or even 20/80 line</strong>. If KHR spreads retain their higher structural volatility, this could mean the system-level credit risk <strong>increases</strong> even as the economy transitions away from dollar dependence — an important cautionary finding.</p>
-<div id="19dc5905" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="0a12bb34" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── TABLE 3: CRI Summary &amp; Save ────────────────────────────────────────────</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cri_df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Date'</span>: dates,</span>
@@ -647,7 +618,6 @@ window.Quarto = {
 <span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary.<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span>
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════'</span>)</span>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Saved: cri_results.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-table-3-cri-summary-statistics" class="level3">

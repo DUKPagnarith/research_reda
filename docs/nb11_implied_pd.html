@@ -249,7 +249,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Notebook 11 — Implied Default Probability</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Notebook 11 — Implied Default Probability</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -274,9 +274,7 @@ window.Quarto = {
 <p>where <span class="math inline">\(\lambda_t\)</span> is the hazard rate (instantaneous default intensity) and <span class="math inline">\(R\)</span> is the recovery rate. The 1-year implied PD is:</p>
 <p><span class="math display">\[PD_t(1\text{yr}) = 1 - e^{-\lambda_t} = 1 - e^{-S_t / (1-R)}\]</span></p>
 <p><strong>Caveat:</strong> This is an <strong>upper bound</strong> because spreads also include operating costs, profit margins, and (for KHR) an exchange rate risk premium. We discuss this explicitly in the interpretation.</p>
-<div id="ec89a89c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:50.869397Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:50.868937Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:51.426052Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:51.425813Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="9c36aae5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:50.869397Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:50.868937Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:51.426052Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:51.425813Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -290,11 +288,8 @@ window.Quarto = {
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'legend.fontsize'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'serif'</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="8675c632" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:51.442125Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:51.441960Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:51.453001Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:51.452785Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="bac6bcb6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:51.442125Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:51.441960Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:51.453001Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:51.452785Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_usd_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>khr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_khr_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
@@ -306,7 +301,6 @@ window.Quarto = {
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Loaded </span><span class="sc">{</span><span class="bu">len</span>(S_usd)<span class="sc">}</span><span class="ss"> observations per currency'</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'USD spread range: [</span><span class="sc">{</span>S_usd<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2f}</span><span class="ss">%, </span><span class="sc">{</span>S_usd<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">%]'</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'KHR spread range: [</span><span class="sc">{</span>S_khr<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2f}</span><span class="ss">%, </span><span class="sc">{</span>S_khr<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">%]'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>
@@ -315,9 +309,7 @@ window.Quarto = {
 <p>From <span class="math inline">\(S_t \approx \lambda_t \cdot (1-R)\)</span>:</p>
 <p><span class="math display">\[\lambda_t = \frac{S_t}{100 \cdot (1-R)}\]</span></p>
 <p>where we divide by 100 to convert the spread from percentage points to a decimal rate. We compute implied hazard rates for three recovery rate scenarios: <span class="math inline">\(R \in \{0.30, 0.40, 0.50\}\)</span>.</p>
-<div id="1b7d3bbc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:51.454170Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:51.454082Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:51.456657Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:51.456459Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="af2a4881" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:51.454170Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:51.454082Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:51.456657Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:51.456459Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Implied Hazard Rate &amp; PD ────────────────────────────────────────────────</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>recovery_rates <span class="op">=</span> [<span class="fl">0.30</span>, <span class="fl">0.40</span>, <span class="fl">0.50</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -341,11 +333,8 @@ window.Quarto = {
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Recovery Rate R = </span><span class="sc">{</span>R<span class="sc">:.0%}</span><span class="ss"> (LGD = </span><span class="sc">{</span>lgd<span class="sc">:.0%}</span><span class="ss">):'</span>)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  USD — λ: [</span><span class="sc">{</span>lambda_usd<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>lambda_usd<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss">]  →  PD: [</span><span class="sc">{</span>pd_usd<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2%}</span><span class="ss">, </span><span class="sc">{</span>pd_usd<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2%}</span><span class="ss">]  mean PD = </span><span class="sc">{</span>pd_usd<span class="sc">.</span>mean()<span class="sc">:.2%}</span><span class="ss">'</span>)</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  KHR — λ: [</span><span class="sc">{</span>lambda_khr<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>lambda_khr<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss">]  →  PD: [</span><span class="sc">{</span>pd_khr<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2%}</span><span class="ss">, </span><span class="sc">{</span>pd_khr<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2%}</span><span class="ss">]  mean PD = </span><span class="sc">{</span>pd_khr<span class="sc">.</span>mean()<span class="sc">:.2%}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="e6175951" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:51.457815Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:51.457736Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:52.114852Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:52.114582Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="4afd6b74" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:51.457815Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:51.457736Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:52.114852Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:52.114582Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Figure: Implied PD Time Series ──────────────────────────────────────────</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -382,16 +371,13 @@ window.Quarto = {
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig16_implied_pd.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig16_implied_pd.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="interpretation-implied-default-probabilities" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-implied-default-probabilities">Interpretation — Implied Default Probabilities</h3>
 <p><strong>USD Implied PD (R = 40%):</strong> - Ranges from <strong>4.7% to 17.2%</strong> over the sample, with a full-sample mean of <strong>10.6%</strong>. - Peaked in 2013–2014 when spreads were 9–11%. By 2024–2025, the implied PD has declined to approximately 5–7%, reflecting the sustained spread compression. - The recovery rate sensitivity band shows that varying R from 30% to 50% shifts the mean PD from 9.1% to 12.5% — a meaningful but not radical change.</p>
 <p><strong>KHR Implied PD (R = 40%):</strong> - Ranges from <strong>6.8% to 35.9%</strong>, with a full-sample mean of <strong>16.7%</strong>. - The peak KHR implied PD of ~36% in 2013–2014 is dramatic, reflecting the 20%+ KHR spreads that prevailed before the structural compression. - By 2024–2025, the KHR implied PD has converged to approximately 7–9%, close to the USD level.</p>
 <p><strong>Critical Caveats:</strong> 1. These are <strong>upper bounds</strong>, not point estimates of true default rates. The spread includes bank operating costs (staff, branches, compliance), profit margins, and for KHR, an exchange rate risk premium. 2. The actual NPL ratio for Cambodian banks has historically been 2–3% — significantly lower than our implied PDs. The gap quantifies the <strong>non-credit-risk components</strong> embedded in the spread (approximately 5–10 pp of the spread is operations + margins + FX premium). 3. Despite being upper bounds, the implied PDs are useful for <strong>trend analysis</strong>: the monotonic decline from 2013 to 2025 confirms improving credit conditions regardless of the absolute calibration.</p>
-<div id="01bb9836" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:52.117486Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:52.117412Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:52.646865Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:52.646584Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="1d329b36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:52.117486Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:52.117412Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:52.646865Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:52.646584Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Dual-Currency Implied PD Comparison ─────────────────────────────────────</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">0.40</span>  <span class="co"># Central scenario</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pd_usd <span class="op">=</span> results[R][<span class="st">'pd_usd'</span>] <span class="op">*</span> <span class="dv">100</span></span>
@@ -428,7 +414,6 @@ window.Quarto = {
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> pd_ratio[<span class="op">-</span><span class="dv">1</span>] <span class="op">&lt;</span> pd_ratio[<span class="dv">0</span>]:</span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'→ KHR and USD implied default risk are CONVERGING.'</span>)</span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig17_implied_pd_ratio.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="interpretation-pd-convergence" class="level3">
@@ -471,9 +456,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>The COVID period is when the convergence became nearly complete (1.06×), driven by the dramatic collapse in KHR spreads during NBC’s regulatory forbearance.</p>
-<div id="4e8cf9fa" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:52.648824Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:52.648724Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:52.659570Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:52.659333Z&quot;}}">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="66b598db" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:31:52.648824Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:31:52.648724Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:31:52.659570Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:31:52.659333Z&quot;}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Summary Table &amp; Save ────────────────────────────────────────────────────</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">0.40</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> pd.DataFrame({</span>
@@ -520,7 +503,6 @@ window.Quarto = {
 <span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>pd_export.to_csv(<span class="st">'../data/processed/implied_pd.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Saved: implied_pd.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <hr>
 </section>

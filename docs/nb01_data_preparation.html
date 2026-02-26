@@ -254,7 +254,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Notebook 01: Data Preparation</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Notebook 01: Data Preparation</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -274,9 +274,7 @@ window.Quarto = {
 <p><strong>Goal</strong>: Load the raw NBC interest rate data, extract Term Loans and Term Deposits for both currencies (KHR and USD), compute interest rate spreads, and save clean CSVs.</p>
 <p><strong>Data Source</strong>: National Bank of Cambodia — Deposit Money Banks’ Interest Rates on Deposits and Loans</p>
 <p><strong>Rate Type</strong>: Weighted Average Rate on New Amount (primary) + Outstanding Amount (robustness)</p>
-<div id="c0b907ad" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="fe87d23d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -289,13 +287,10 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.size'</span>] <span class="op">=</span> <span class="dv">11</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.grid'</span>] <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'grid.alpha'</span>] <span class="op">=</span> <span class="fl">0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <section id="load-raw-data" class="level2">
 <h2 class="anchored" data-anchor-id="load-raw-data">1. Load Raw Data</h2>
-<div id="2fe11cd2" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="f3f68932" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the combined NBC data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/Users/dukpagnarith/Documents/Research_Reda/combined_interest_rates_long.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'Date'</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -308,23 +303,17 @@ window.Quarto = {
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique values:"</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">'Currency'</span>, <span class="st">'Category'</span>, <span class="st">'Product'</span>, <span class="st">'Rate_Type'</span>]:</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">sorted</span>(df[col].unique())<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="cf1b185b" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="cae058fc" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick look at the data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="extract-term-loans-term-deposits-new-amount" class="level2">
 <h2 class="anchored" data-anchor-id="extract-term-loans-term-deposits-new-amount">2. Extract Term Loans &amp; Term Deposits (New Amount)</h2>
 <p><strong>Why these products?</strong> - <strong>Term Loans</strong>: Most representative of standard bank lending — pricing directly reflects credit risk assessment - <strong>Term Deposits</strong>: Best maturity match with term loans — avoids liquidity-driven pricing of demand/saving deposits</p>
 <p><strong>Why New Amount rates?</strong> - Reflects banks’ <em>current</em> risk pricing on newly issued loans - Responds faster to changes in risk perception than Outstanding Amount (which is diluted by legacy rates)</p>
-<div id="d9bcd088" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="86d6af19" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PRIMARY DATA: Weighted Average on New Amount</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -341,11 +330,8 @@ window.Quarto = {
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Filtered rows: </span><span class="sc">{</span><span class="bu">len</span>(df_filtered)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Breakdown:"</span>)</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_filtered.groupby([<span class="st">'Currency'</span>, <span class="st">'Product'</span>]).size().unstack(fill_value<span class="op">=</span><span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="816a9b17" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="bd31f639" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot to wide format: one row per date, columns for each rate</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_wide <span class="op">=</span> df_filtered.pivot_table(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">'Date'</span>,</span>
@@ -361,16 +347,13 @@ window.Quarto = {
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Shape: </span><span class="sc">{</span>df_wide<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Columns: </span><span class="sc">{</span><span class="bu">list</span>(df_wide.columns)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>df_wide.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="compute-interest-rate-spreads" class="level2">
 <h2 class="anchored" data-anchor-id="compute-interest-rate-spreads">3. Compute Interest Rate Spreads</h2>
 <p><span class="math display">\[S_t^{USD} = r_{\text{Term Loans},t}^{USD} - r_{\text{Term Deposits},t}^{USD}\]</span></p>
 <p><span class="math display">\[S_t^{KHR} = r_{\text{Term Loans},t}^{KHR} - r_{\text{Term Deposits},t}^{KHR}\]</span></p>
-<div id="73cfad9d" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="2dd00c0e" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute spreads</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_wide[<span class="st">'spread_usd'</span>] <span class="op">=</span> df_wide[<span class="st">'USD_Term_Loans'</span>] <span class="op">-</span> df_wide[<span class="st">'USD_Term_Deposits'</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_wide[<span class="st">'spread_khr'</span>] <span class="op">=</span> df_wide[<span class="st">'KHR_Term_Loans'</span>] <span class="op">-</span> df_wide[<span class="st">'KHR_Term_Deposits'</span>]</span>
@@ -379,14 +362,11 @@ window.Quarto = {
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">First 3 rows (verification):"</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_wide[[<span class="st">'Date'</span>, <span class="st">'USD_Term_Loans'</span>, <span class="st">'USD_Term_Deposits'</span>, <span class="st">'spread_usd'</span>,</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>               <span class="st">'KHR_Term_Loans'</span>, <span class="st">'KHR_Term_Deposits'</span>, <span class="st">'spread_khr'</span>]].head(<span class="dv">3</span>).to_string(index<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="data-quality-checks" class="level2">
 <h2 class="anchored" data-anchor-id="data-quality-checks">4. Data Quality Checks</h2>
-<div id="9b706081" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="88408096" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for missing values</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Missing Values ==="</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_wide[[<span class="st">'Date'</span>, <span class="st">'USD_Term_Loans'</span>, <span class="st">'USD_Term_Deposits'</span>, <span class="st">'spread_usd'</span>,</span>
@@ -415,11 +395,8 @@ window.Quarto = {
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"    </span><span class="sc">{</span>df_wide<span class="sc">.</span>loc[idx<span class="op">-</span><span class="dv">1</span>, <span class="st">'Date'</span>]<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss"> → </span><span class="sc">{</span>df_wide<span class="sc">.</span>loc[idx, <span class="st">'Date'</span>]<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="bu">int</span>(gaps[idx])<span class="sc">}</span><span class="ss"> days)"</span>)</span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  No gaps found — continuous monthly series."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="43bc4b1a" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="1768ae06" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descriptive statistics for the spreads</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DESCRIPTIVE STATISTICS — Interest Rate Spreads (%)"</span>)</span>
@@ -439,14 +416,11 @@ window.Quarto = {
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  USD: </span><span class="sc">{</span>df_wide[<span class="st">'spread_usd'</span>]<span class="sc">.</span>kurtosis()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  KHR: </span><span class="sc">{</span>df_wide[<span class="st">'spread_khr'</span>]<span class="sc">.</span>kurtosis()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Correlation between USD and KHR spreads: </span><span class="sc">{</span>df_wide[<span class="st">'spread_usd'</span>]<span class="sc">.</span>corr(df_wide[<span class="st">'spread_khr'</span>])<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="quick-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="quick-visualization">5. Quick Visualization</h2>
-<div id="dd6fcf18" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="47e1f720" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Top panel: Raw rates ---</span></span>
@@ -476,15 +450,12 @@ window.Quarto = {
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'fig_preview_spreads.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Figure saved: fig_preview_spreads.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="save-clean-csvs" class="level2">
 <h2 class="anchored" data-anchor-id="save-clean-csvs">6. Save Clean CSVs</h2>
 <p>We save two separate spread files (primary analysis) plus the full wide table for reference.</p>
-<div id="30e1f10e" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="c8147f29" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Primary: USD Spread ---</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_usd <span class="op">=</span> df_wide[[<span class="st">'Date'</span>, <span class="st">'USD_Term_Loans'</span>, <span class="st">'USD_Term_Deposits'</span>, <span class="st">'spread_usd'</span>]].copy()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_usd.columns <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'term_loan_rate'</span>, <span class="st">'term_deposit_rate'</span>, <span class="st">'spread'</span>]</span>
@@ -500,15 +471,12 @@ window.Quarto = {
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Full wide table (for reference) ---</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>df_wide.to_csv(<span class="st">'all_rates_wide_new_amount.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: all_rates_wide_new_amount.csv (</span><span class="sc">{</span><span class="bu">len</span>(df_wide)<span class="sc">}</span><span class="ss"> rows)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="robustness-data-outstanding-amount-spreads" class="level2">
 <h2 class="anchored" data-anchor-id="robustness-data-outstanding-amount-spreads">7. Robustness Data: Outstanding Amount Spreads</h2>
 <p>For the robustness section of the paper, we also prepare the Outstanding Amount version.</p>
-<div id="bce1e8fd" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="0735fe65" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ROBUSTNESS: Weighted Average on Outstanding Amount</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -547,11 +515,8 @@ window.Quarto = {
 <span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: spreads_usd_outstanding.csv (</span><span class="sc">{</span><span class="bu">len</span>(df_usd_robust)<span class="sc">}</span><span class="ss"> rows)"</span>)</span>
 <span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: spreads_khr_outstanding.csv (</span><span class="sc">{</span><span class="bu">len</span>(df_khr_robust)<span class="sc">}</span><span class="ss"> rows)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="61bdc480" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="0f417e57" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick comparison: New Amount vs Outstanding Amount spreads</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -579,7 +544,6 @@ window.Quarto = {
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'fig_new_vs_outstanding.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">This comparison will be useful for your robustness section."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
 <section id="summary" class="level2">
@@ -631,9 +595,7 @@ window.Quarto = {
 <section id="next-step" class="level3">
 <h3 class="anchored" data-anchor-id="next-step">Next Step</h3>
 <p>→ <strong>Notebook 02: Exploratory Analysis</strong> — Deeper statistical analysis, distribution plots, correlation analysis, and all figures needed for Section 4 (Data Description) of your paper.</p>
-<div id="6d0126e8" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="f5b85cca" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Final summary</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DATA PREPARATION COMPLETE"</span>)</span>
@@ -648,7 +610,6 @@ window.Quarto = {
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✓ 6 CSV files saved"</span>)</span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ 2 preview figures saved"</span>)</span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">→ Next: Notebook 02 (Exploratory Analysis)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 
 
