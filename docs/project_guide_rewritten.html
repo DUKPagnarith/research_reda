@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Section 3: Methodology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="project_guide_rewritten_files/libs/clipboard/clipboard.min.js"></script>
+<script src="project_guide_rewritten_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="project_guide_rewritten_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="project_guide_rewritten_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="project_guide_rewritten_files/libs/quarto-html/popper.min.js"></script>
+<script src="project_guide_rewritten_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="project_guide_rewritten_files/libs/quarto-html/anchor.min.js"></script>
+<link href="project_guide_rewritten_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="project_guide_rewritten_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="project_guide_rewritten_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="project_guide_rewritten_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="project_guide_rewritten_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Section 3: Methodology</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Credit Risk and Dollarization in Cambodia: A Dual-Currency Analysis Using Interest Rate Spreads (2013–2025)</strong></p>
+<hr>
+<p>This section presents the complete methodological framework for constructing currency-specific and system-wide Credit Risk Indices (CRIs) for Cambodia’s dual-currency banking sector. Each methodology is structured around four dimensions: <strong>Framework</strong> (the conceptual basis), <strong>What</strong> (what is being done), <strong>Why</strong> (the justification), and <strong>How</strong> (the implementation). The framework applies identically to both USD and KHR segments, enabling direct cross-currency comparison.</p>
+<section id="data-selection-rationale" class="level2">
+<h2 class="anchored" data-anchor-id="data-selection-rationale">3.1 Data Selection Rationale</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework" class="level3">
+<h3 class="anchored" data-anchor-id="framework">🔷 Framework</h3>
+<p>Constructing a reliable credit risk signal requires selecting interest rate data that is clean, comparable across currencies, and responsive to changing credit conditions. The National Bank of Cambodia (NBC) publishes monthly interest rate data for deposit money banks, disaggregated by currency (KHR and USD), product type, and rate version. Three deliberate choices shape our data selection: rate version, loan product, and deposit product.</p>
+<hr>
+</section>
+<section id="what" class="level3">
+<h3 class="anchored" data-anchor-id="what">📌 What</h3>
+<p>We select <strong>Weighted Average Rates on New Amounts</strong> for <strong>Term Loans</strong> (asset side) and <strong>Term Deposits</strong> (liability side) in both USD and KHR. These are sourced from NBC’s published monthly banking statistics covering January 2013 – December 2025 (156 monthly observations per currency).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Selection</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rate Version</td>
+<td>New Amount (not Outstanding Amount)</td>
+</tr>
+<tr class="even">
+<td>Loan Product</td>
+<td>Term Loans only</td>
+</tr>
+<tr class="odd">
+<td>Deposit Product</td>
+<td>Term Deposits only</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="why" class="level3">
+<h3 class="anchored" data-anchor-id="why">❓ Why</h3>
+<p><strong>Rate Version — New Amount over Outstanding Amount:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 46%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Version</th>
+<th style="text-align: center;">Speed of Response</th>
+<th>Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>New Amount</strong></td>
+<td style="text-align: center;">Fast — reflects banks’ current risk pricing</td>
+<td>Best for early warning</td>
+</tr>
+<tr class="even">
+<td>Outstanding Amount</td>
+<td style="text-align: center;">Slow — diluted by legacy contracts from prior years</td>
+<td>Lags true conditions</td>
+</tr>
+</tbody>
+</table>
+<p>When a bank perceives rising credit risk, it immediately adjusts rates on new loans; outstanding amount rates remain anchored by legacy contracts issued months or years earlier. An effective early warning indicator must use the series that reacts fastest to changing conditions.</p>
+<p><strong>Product Selection:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 36%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Product</th>
+<th style="text-align: center;">Selected?</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Term Loans</strong></td>
+<td style="text-align: center;">✅</td>
+<td>Fixed maturity; pricing directly reflects credit assessment</td>
+</tr>
+<tr class="even">
+<td>Overdraft</td>
+<td style="text-align: center;">✗</td>
+<td>Priced for liquidity provision, not pure credit risk</td>
+</tr>
+<tr class="odd">
+<td>Credit Card</td>
+<td style="text-align: center;">✗</td>
+<td>Bundles convenience premiums and unsecured risk</td>
+</tr>
+<tr class="even">
+<td>Other Loans</td>
+<td style="text-align: center;">✗</td>
+<td>Ambiguous composition makes interpretation unreliable</td>
+</tr>
+<tr class="odd">
+<td><strong>Term Deposits</strong></td>
+<td style="text-align: center;">✅</td>
+<td>Best maturity match with term loans; reflects time value of money</td>
+</tr>
+<tr class="even">
+<td>Demand Deposits</td>
+<td style="text-align: center;">✗</td>
+<td>Near-zero rates driven by liquidity, not credit dynamics</td>
+</tr>
+<tr class="odd">
+<td>Saving Deposits</td>
+<td style="text-align: center;">✗</td>
+<td>Partially liquidity-driven; poor maturity match</td>
+</tr>
+<tr class="even">
+<td>Other Deposits</td>
+<td style="text-align: center;">✗</td>
+<td>Ambiguous composition</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="how" class="level3">
+<h3 class="anchored" data-anchor-id="how">⚙️ How</h3>
+<ol type="1">
+<li>Download the NBC monthly interest rate tables for Deposit Money Banks.</li>
+<li>Filter to rows corresponding to: (a) New Amount, (b) Term Loans, (c) Term Deposits.</li>
+<li>Split into two separate DataFrames — one for USD, one for KHR.</li>
+<li>Align on a common monthly date index from January 2013 to December 2025.</li>
+<li>Outstanding Amount rates are retained as a separate dataset for robustness checks (Section 3.12).</li>
+</ol>
+</section>
+</section>
+<section id="interest-rate-spread-definition" class="level2">
+<h2 class="anchored" data-anchor-id="interest-rate-spread-definition">3.2 Interest Rate Spread Definition</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-1" class="level3">
+<h3 class="anchored" data-anchor-id="framework-1">🔷 Framework</h3>
+<p>The interest rate spread — the gap between lending rates and deposit rates — is a classical proxy for credit risk compensation in banking. A widening spread signals that banks are demanding a higher premium for bearing credit risk, while a narrowing spread indicates easing risk conditions. This spread forms the core input series for all subsequent modeling.</p>
+<hr>
+</section>
+<section id="what-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-1">📌 What</h3>
+<p>For each currency <span class="math inline">\(c \in \{\text{USD}, \text{KHR}\}\)</span>, we compute the credit spread as:</p>
+<p><span class="math display">\[
+S_t^c = r_{\text{Term Loans},t}^{c} - r_{\text{Term Deposits},t}^{c}
+\]</span></p>
+<p>where: - <span class="math inline">\(r_{\text{Term Loans},t}^{c}\)</span> = weighted average rate on new term loans in currency <span class="math inline">\(c\)</span> at month <span class="math inline">\(t\)</span> - <span class="math inline">\(r_{\text{Term Deposits},t}^{c}\)</span> = weighted average rate on new term deposits in currency <span class="math inline">\(c\)</span> at month <span class="math inline">\(t\)</span></p>
+<p>This yields two time series — <span class="math inline">\(S_t^{\text{USD}}\)</span> and <span class="math inline">\(S_t^{\text{KHR}}\)</span> — each with <strong>156 monthly observations</strong>.</p>
+<hr>
+</section>
+<section id="why-1" class="level3">
+<h3 class="anchored" data-anchor-id="why-1">❓ Why</h3>
+<p>USD and KHR lending operate under fundamentally different risk environments:</p>
+<ul>
+<li><strong>USD lending</strong> is influenced by global dollar conditions, U.S. Federal Reserve monetary policy, and international capital flows.</li>
+<li><strong>KHR lending</strong> is more sensitive to domestic monetary policy, NBC reserve requirement changes, and exchange rate expectations.</li>
+</ul>
+<p>Just as credit risk practitioners build separate models for different portfolio segments — a principle enshrined in the Basel framework — constructing separate spreads for each currency allows us to capture these distinct dynamics rather than masking them through aggregation. Pooling the two currencies into a single spread would conflate structurally different risk premia.</p>
+<hr>
+</section>
+<section id="how-1" class="level3">
+<h3 class="anchored" data-anchor-id="how-1">⚙️ How</h3>
+<ol type="1">
+<li>For each month <span class="math inline">\(t\)</span> and each currency <span class="math inline">\(c\)</span>, subtract the term deposit rate from the term loan rate: <span class="math inline">\(S_t^c = r_{\text{loan},t}^c - r_{\text{deposit},t}^c\)</span>.</li>
+<li>Inspect for missing values; interpolate linearly if gaps are isolated (≤ 2 consecutive months).</li>
+<li>Plot both spread series to verify plausibility: KHR spreads should be structurally wider than USD spreads due to the exchange rate risk premium embedded in riel lending.</li>
+<li>Store as two pandas Series indexed by date: <code>spread_usd</code> and <code>spread_khr</code>.</li>
+</ol>
+</section>
+</section>
+<section id="the-ornsteinuhlenbeck-ou-stochastic-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-ornsteinuhlenbeck-ou-stochastic-model">3.3 The Ornstein–Uhlenbeck (OU) Stochastic Model</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-2" class="level3">
+<h3 class="anchored" data-anchor-id="framework-2">🔷 Framework</h3>
+<p>Interest rate spreads are not random walks — they are pulled back toward a long-run equilibrium by market forces (competition, arbitrage, monetary policy). The Ornstein–Uhlenbeck (OU) process, first introduced into finance by Vasicek (1977) for short-rate modeling, is the canonical continuous-time model for mean-reverting processes. It provides a mathematically tractable yet economically realistic description of spread dynamics.</p>
+<hr>
+</section>
+<section id="what-2" class="level3">
+<h3 class="anchored" data-anchor-id="what-2">📌 What</h3>
+<p>For each currency <span class="math inline">\(c\)</span>, we model the spread as a <strong>mean-reverting diffusion process</strong> governed by the stochastic differential equation (SDE):</p>
+<p><span class="math display">\[
+dS_t^c = \kappa^c\left(\theta^c - S_t^c\right)dt + \sigma^c\,dW_t^c
+\]</span></p>
+<p>where <span class="math inline">\(W_t^c\)</span> is a standard Wiener process (Brownian motion), and the three parameters are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 28%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th style="text-align: center;">Symbol</th>
+<th style="text-align: right;">Economic Meaning</th>
+<th style="text-align: center;">Cross-Currency Comparison</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Long-run equilibrium</td>
+<td style="text-align: center;"><span class="math inline">\(\theta^c\)</span></td>
+<td style="text-align: right;">The “normal” spread level toward which the process gravitates</td>
+<td style="text-align: center;">Is the structural spread higher for KHR or USD?</td>
+</tr>
+<tr class="even">
+<td>Mean-reversion speed</td>
+<td style="text-align: center;"><span class="math inline">\(\kappa^c\)</span></td>
+<td style="text-align: right;">How quickly the spread returns to equilibrium after a shock</td>
+<td style="text-align: center;">Which currency recovers faster from credit stress?</td>
+</tr>
+<tr class="odd">
+<td>Volatility</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^c\)</span></td>
+<td style="text-align: right;">The magnitude of random fluctuations around the mean</td>
+<td style="text-align: center;">Which currency exhibits more spread instability?</td>
+</tr>
+</tbody>
+</table>
+<p>A useful derived quantity is the <strong>half-life</strong> — the time for a shock to decay to half its initial magnitude:</p>
+<p><span class="math display">\[
+t_{1/2}^c = \frac{\ln 2}{\kappa^c}
+\]</span></p>
+<hr>
+</section>
+<section id="why-2" class="level3">
+<h3 class="anchored" data-anchor-id="why-2">❓ Why</h3>
+<ol type="1">
+<li><p><strong>Mean reversion is economically natural</strong>: Competitive forces, monetary policy, and arbitrage pull spreads back toward a long-run level. A pure random walk model (e.g., Geometric Brownian Motion) would imply that spreads drift to zero or infinity — economically implausible.</p></li>
+<li><p><strong>Analytical tractability</strong>: The OU process has a <strong>closed-form Gaussian transition density</strong>, enabling exact Maximum Likelihood Estimation and analytical computation of crisis probabilities without Monte Carlo simulation.</p></li>
+<li><p><strong>Parsimony</strong>: Only three parameters per currency are estimated from 156 observations — a well-identified, statistically stable estimation problem.</p></li>
+</ol>
+<hr>
+</section>
+<section id="how-2" class="level3">
+<h3 class="anchored" data-anchor-id="how-2">⚙️ How</h3>
+<p>The SDE has the closed-form solution:</p>
+<p><span class="math display">\[
+S_t^c = \theta^c + \left(S_0^c - \theta^c\right)e^{-\kappa^c t} + \sigma^c\int_0^t e^{-\kappa^c(t-s)}\,dW_s^c
+\]</span></p>
+<p>Since the stochastic integral of a deterministic function with respect to Brownian motion is Gaussian, the spread follows a <strong>normal distribution</strong> <span class="math inline">\(S_t^c \sim \mathcal{N}\!\left(m^c(t),\; v^c(t)\right)\)</span> with:</p>
+<p><span class="math display">\[
+m^c(t) = \theta^c + \left(S_0^c - \theta^c\right)e^{-\kappa^c t}, \qquad
+v^c(t) = \frac{(\sigma^c)^2}{2\kappa^c}\left(1 - e^{-2\kappa^c t}\right)
+\]</span></p>
+<p>Implementation steps: 1. Define the three-parameter OU model class for each currency. 2. Derive the conditional mean <span class="math inline">\(m^c(t)\)</span> and variance <span class="math inline">\(v^c(t)\)</span> expressions. 3. Compute the half-life <span class="math inline">\(t_{1/2}^c = \ln 2 / \kappa^c\)</span> as a reported diagnostic. 4. A half-life of 6 months, for instance, means a spread shocked 2 pp above equilibrium will be approximately 1 pp above equilibrium six months later.</p>
+</section>
+</section>
+<section id="parameter-estimation-maximum-likelihood-estimation-mle" class="level2">
+<h2 class="anchored" data-anchor-id="parameter-estimation-maximum-likelihood-estimation-mle">3.4 Parameter Estimation: Maximum Likelihood Estimation (MLE)</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-3" class="level3">
+<h3 class="anchored" data-anchor-id="framework-3">🔷 Framework</h3>
+<p>Given a parametric model with known distributional form, Maximum Likelihood Estimation (MLE) finds the parameter values that make the observed data most probable. Because the OU process has an exact Gaussian transition density, MLE is both feasible and optimal for our setting — it yields consistent, asymptotically efficient estimates with known standard errors.</p>
+<hr>
+</section>
+<section id="what-3" class="level3">
+<h3 class="anchored" data-anchor-id="what-3">📌 What</h3>
+<p>For discretely observed data with equal time spacing <span class="math inline">\(\Delta t = 1/12\)</span> (monthly), the exact transition density gives:</p>
+<p><span class="math display">\[
+S_{t_{i+1}}^c \mid S_{t_i}^c \sim \mathcal{N}\!\left(\mu_i^c,\;\gamma^{c\,2}\right)
+\]</span></p>
+<p><span class="math display">\[
+\mu_i^c = \theta^c + \left(S_{t_i}^c - \theta^c\right)e^{-\kappa^c \Delta t}, \qquad
+\gamma^{c\,2} = \frac{(\sigma^c)^2}{2\kappa^c}\left(1 - e^{-2\kappa^c \Delta t}\right)
+\]</span></p>
+<p>Given <span class="math inline">\(n\)</span> transitions, the log-likelihood is:</p>
+<p><span class="math display">\[
+\ell\!\left(\kappa^c, \theta^c, \sigma^c\right) = -\frac{n}{2}\ln(2\pi) - \frac{n}{2}\ln\!\left(\gamma^{c\,2}\right) - \sum_{i=1}^{n}\frac{\left(S_{t_i}^c - \mu_{i-1}^c\right)^2}{2\,\gamma^{c\,2}}
+\]</span></p>
+<p>We additionally cross-check via the <strong>AR(1) equivalence</strong>: the OU process observed at discrete intervals is equivalent to:</p>
+<p><span class="math display">\[
+S_{t+1}^c = a^c + b^c S_t^c + \varepsilon_t^c, \qquad \varepsilon_t^c \sim \mathcal{N}(0, \gamma^{c\,2})
+\]</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 53%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">AR(1) Parameter</th>
+<th style="text-align: center;">OU Equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(b^c = e^{-\kappa^c \Delta t}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\kappa^c = -\frac{\ln b^c}{\Delta t}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(a^c = \theta^c(1 - b^c)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta^c = \frac{a^c}{1 - b^c}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\text{Var}(\varepsilon^c)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^c = \sqrt{\frac{2\kappa^c \cdot \text{Var}(\varepsilon^c)}{1 - (b^c)^2}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="why-3" class="level3">
+<h3 class="anchored" data-anchor-id="why-3">❓ Why</h3>
+<ul>
+<li><strong>MLE is optimal for Gaussian models</strong>: it is consistent, asymptotically unbiased, and achieves the Cramér–Rao lower bound. No simulation is required.</li>
+<li><strong>Exact transition density</strong>: unlike approximate methods (e.g., Euler–Maruyama discretization), the Gaussian transition density is exact for the OU process, so our likelihood is free of discretization bias.</li>
+<li><strong>AR(1) cross-check</strong>: simple OLS regression of <span class="math inline">\(S_{t+1}\)</span> on <span class="math inline">\(S_t\)</span> provides an independent validation. Agreement between MLE and AR(1)-derived parameters adds credibility and helps detect numerical optimization failures.</li>
+</ul>
+<hr>
+</section>
+<section id="how-3" class="level3">
+<h3 class="anchored" data-anchor-id="how-3">⚙️ How</h3>
+<ol type="1">
+<li>Define the negative log-likelihood function <code>neg_loglik(params, spread, dt)</code> for each currency.</li>
+<li>Maximize via <code>scipy.optimize.minimize</code> using the <strong>L-BFGS-B</strong> method (or Nelder-Mead as fallback), with positivity constraints on <span class="math inline">\(\kappa\)</span> and <span class="math inline">\(\sigma\)</span>.</li>
+<li>Recover MLE estimates <span class="math inline">\(\hat{\kappa}^c\)</span>, <span class="math inline">\(\hat{\theta}^c\)</span>, <span class="math inline">\(\hat{\sigma}^c\)</span>.</li>
+<li>Compute standard errors from the inverse Hessian (Fisher information matrix) at the optimum. Construct 95% confidence intervals as <span class="math inline">\(\hat{\psi} \pm 1.96 \cdot \text{SE}(\hat{\psi})\)</span>.</li>
+<li>Cross-check via OLS: regress <span class="math inline">\(S_{t+1}\)</span> on <span class="math inline">\(S_t\)</span> using <code>statsmodels.OLS</code>; convert AR(1) coefficients <span class="math inline">\((a, b)\)</span> to OU parameters using the mapping in the table above.</li>
+<li>Flag any discrepancy between MLE and AR(1) estimates exceeding 10% as a diagnostic warning.</li>
+</ol>
+</section>
+</section>
+<section id="crisis-threshold-definition" class="level2">
+<h2 class="anchored" data-anchor-id="crisis-threshold-definition">3.5 Crisis Threshold Definition</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-4" class="level3">
+<h3 class="anchored" data-anchor-id="framework-4">🔷 Framework</h3>
+<p>A credit risk index requires a reference point — a threshold above which spread conditions are classified as abnormal or crisis-level. Rather than imposing an arbitrary absolute threshold, we derive thresholds empirically from each currency’s own historical distribution, anchoring the definition of “crisis” in observed data.</p>
+<hr>
+</section>
+<section id="what-4" class="level3">
+<h3 class="anchored" data-anchor-id="what-4">📌 What</h3>
+<p>For each currency, we define the crisis threshold <span class="math inline">\(S_c^c\)</span> as the <strong>95th percentile</strong> of the historical spread distribution:</p>
+<p><span class="math display">\[
+S_c^{\text{USD}} = P_{95}\!\left(S_t^{\text{USD}}\right), \qquad S_c^{\text{KHR}} = P_{95}\!\left(S_t^{\text{KHR}}\right)
+\]</span></p>
+<p>Sensitivity thresholds at the <strong>90th and 99th percentiles</strong> are also computed for robustness analysis.</p>
+<hr>
+</section>
+<section id="why-4" class="level3">
+<h3 class="anchored" data-anchor-id="why-4">❓ Why</h3>
+<ul>
+<li><strong>Currency-specific thresholds are essential</strong>: KHR spreads are structurally wider than USD spreads due to the exchange rate risk premium embedded in riel lending. A single absolute threshold applied to both currencies would be economically meaningless — what is “normal” for KHR would register as “crisis” for USD.</li>
+<li><strong>Empirical calibration</strong>: The 95th percentile anchors the crisis threshold to the actual historical distribution of each currency rather than to an externally imposed absolute level, which would be arbitrary in Cambodia’s context.</li>
+<li><strong>Sensitivity analysis</strong> at 90th and 99th percentiles verifies that the CRI’s qualitative behavior and the relative risk ranking of USD vs.&nbsp;KHR are robust to threshold choice.</li>
+</ul>
+<hr>
+</section>
+<section id="how-4" class="level3">
+<h3 class="anchored" data-anchor-id="how-4">⚙️ How</h3>
+<ol type="1">
+<li>For each currency series <code>spread_usd</code> and <code>spread_khr</code>, compute: <code>threshold_usd = np.percentile(spread_usd, 95)</code> and <code>threshold_khr = np.percentile(spread_khr, 95)</code>.</li>
+<li>Store the primary (95th) and alternative (90th, 99th) thresholds in a dictionary for downstream use.</li>
+<li>Plot horizontal threshold lines on the spread time series charts to visually confirm that the threshold correctly identifies historically stressed periods.</li>
+</ol>
+</section>
+</section>
+<section id="crisis-probability" class="level2">
+<h2 class="anchored" data-anchor-id="crisis-probability">3.6 Crisis Probability</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-5" class="level3">
+<h3 class="anchored" data-anchor-id="framework-5">🔷 Framework</h3>
+<p>Rather than a binary signal (“in crisis” or “not in crisis”), a probabilistic approach provides a continuous, time-varying measure of how close the system is to crisis conditions. The Gaussian structure of the OU model makes this probability analytically computable at every point in time without simulation.</p>
+<hr>
+</section>
+<section id="what-5" class="level3">
+<h3 class="anchored" data-anchor-id="what-5">📌 What</h3>
+<p>Using the OU model’s Gaussian transition density, we compute the probability that the spread exceeds the crisis threshold at each time <span class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[
+P\!\left(S_t^c &gt; S_c^c\right) = 1 - \Phi\!\left(\frac{S_c^c - m^c(t)}{\sqrt{v^c(t)}}\right)
+\]</span></p>
+<p>where: - <span class="math inline">\(\Phi(\cdot)\)</span> is the standard normal CDF - <span class="math inline">\(m^c(t)\)</span> is the conditional mean of the spread at time <span class="math inline">\(t\)</span> (from Section 3.3) - <span class="math inline">\(v^c(t)\)</span> is the conditional variance at time <span class="math inline">\(t\)</span> (from Section 3.3)</p>
+<hr>
+</section>
+<section id="why-5" class="level3">
+<h3 class="anchored" data-anchor-id="why-5">❓ Why</h3>
+<ul>
+<li><strong>Continuous risk signal</strong>: a probability smoothly interpolates between “low risk” and “high risk”, providing more information than a binary crisis flag and making it easier to track the build-up and unwinding of credit stress over time.</li>
+<li><strong>Model-consistency</strong>: the probability is derived directly from the OU model’s own distributional assumptions, ensuring it is internally consistent with the parameter estimates.</li>
+<li><strong>No simulation required</strong>: the analytical Gaussian CDF formula eliminates Monte Carlo noise and computational overhead, making the approach fast and reproducible.</li>
+</ul>
+<hr>
+</section>
+<section id="how-5" class="level3">
+<h3 class="anchored" data-anchor-id="how-5">⚙️ How</h3>
+<ol type="1">
+<li>At each month <span class="math inline">\(t\)</span>, compute <span class="math inline">\(m^c(t)\)</span> and <span class="math inline">\(v^c(t)\)</span> using the fitted parameters <span class="math inline">\((\hat{\kappa}^c, \hat{\theta}^c, \hat{\sigma}^c)\)</span> and the current spread level <span class="math inline">\(S_t^c\)</span> as the starting condition.</li>
+<li>Compute the standardized distance to threshold: <code>z = (threshold_c - m) / np.sqrt(v)</code>.</li>
+<li>Compute crisis probability: <code>prob_crisis = 1 - scipy.stats.norm.cdf(z)</code>.</li>
+<li>Store the resulting time series <code>prob_crisis_usd</code> and <code>prob_crisis_khr</code>.</li>
+<li>Verify that crisis probability is high (close to 1) during known stress episodes (e.g., COVID-19 peak) and low (close to 0) during calm periods.</li>
+</ol>
+</section>
+</section>
+<section id="currency-specific-credit-risk-index-cri" class="level2">
+<h2 class="anchored" data-anchor-id="currency-specific-credit-risk-index-cri">3.7 Currency-Specific Credit Risk Index (CRI)</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-6" class="level3">
+<h3 class="anchored" data-anchor-id="framework-6">🔷 Framework</h3>
+<p>A composite index that combines multiple risk dimensions captures credit risk more completely than any single measure alone. The CRI is designed to reflect two complementary aspects of risk: the inherent volatility of the spread environment and the proximity of current conditions to historically extreme levels. This dual-component structure is inspired by financial stress indices used in the literature (e.g., the Kansas City Fed’s FSI).</p>
+<hr>
+</section>
+<section id="what-6" class="level3">
+<h3 class="anchored" data-anchor-id="what-6">📌 What</h3>
+<p>For each currency <span class="math inline">\(c\)</span>, the Credit Risk Index is defined as:</p>
+<p><span class="math display">\[
+\text{CRI}^c = \alpha \cdot \hat{\sigma}^c_{\text{norm}} + \beta \cdot P\!\left(S_t^c &gt; S_c^c\right)
+\]</span></p>
+<p>where: - <span class="math inline">\(\hat{\sigma}^c_{\text{norm}}\)</span> is the OU volatility parameter normalized to <span class="math inline">\([0,1]\)</span> across currencies - <span class="math inline">\(P(S_t^c &gt; S_c^c)\)</span> is the model-implied crisis probability from Section 3.6 - <strong>Baseline weights</strong>: <span class="math inline">\(\alpha = \beta = 0.5\)</span> (equal weight to both dimensions)</p>
+<p>Each component captures a distinct dimension:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 25%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Captures</th>
+<th>High Value Signals</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat{\sigma}^c_{\text{norm}}\)</span></td>
+<td>Spread volatility — how erratically spreads move</td>
+<td>Unstable risk environment</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(P(S_t^c &gt; S_c^c)\)</span></td>
+<td>Crisis proximity — how close to historically extreme levels</td>
+<td>Imminent credit stress</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="why-6" class="level3">
+<h3 class="anchored" data-anchor-id="why-6">❓ Why</h3>
+<ul>
+<li><strong>Volatility alone is insufficient</strong>: a period of stably high spreads would not trigger high volatility even though it reflects persistent elevated risk. Crisis probability captures this dimension.</li>
+<li><strong>Crisis probability alone is insufficient</strong>: a period of rapidly fluctuating spreads (high volatility) may not yet have breached the threshold. Volatility captures the instability before the threshold is crossed.</li>
+<li><strong>Equal weighting as baseline</strong>: in the absence of a strong prior reason to favor one component, equal weights provide a neutral baseline. Robustness checks (<span class="math inline">\(\alpha = 0.3, \beta = 0.7\)</span> and <span class="math inline">\(\alpha = 0.7, \beta = 0.3\)</span>) verify that findings are not weight-sensitive.</li>
+</ul>
+<hr>
+</section>
+<section id="how-6" class="level3">
+<h3 class="anchored" data-anchor-id="how-6">⚙️ How</h3>
+<ol type="1">
+<li>Normalize <span class="math inline">\(\hat{\sigma}^c\)</span> across the two currencies using min-max normalization: <code>sigma_norm = (sigma - sigma_min) / (sigma_max - sigma_min)</code>.</li>
+<li>Compute <code>CRI_c = 0.5 * sigma_norm_c + 0.5 * prob_crisis_c</code> for each currency.</li>
+<li>Produce time series plots of <code>CRI_usd</code> and <code>CRI_khr</code> on the same axis for direct visual comparison.</li>
+<li>Repeat with alternative weights <span class="math inline">\((0.3, 0.7)\)</span> and <span class="math inline">\((0.7, 0.3)\)</span> for robustness.</li>
+</ol>
+</section>
+</section>
+<section id="system-wide-composite-cri" class="level2">
+<h2 class="anchored" data-anchor-id="system-wide-composite-cri">3.8 System-Wide Composite CRI</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-7" class="level3">
+<h3 class="anchored" data-anchor-id="framework-7">🔷 Framework</h3>
+<p>Policy makers and financial regulators require a single system-level indicator of banking sector credit risk, not two separate currency-specific indicators. Aggregating the currency CRIs into a system-wide index requires a weighting scheme that reflects the economic importance of each currency segment.</p>
+<hr>
+</section>
+<section id="what-7" class="level3">
+<h3 class="anchored" data-anchor-id="what-7">📌 What</h3>
+<p>The System CRI is a weighted average of the two currency CRIs:</p>
+<p><span class="math display">\[
+\text{CRI}_{\text{System}} = w_{\text{USD}} \cdot \text{CRI}^{\text{USD}} + w_{\text{KHR}} \cdot \text{CRI}^{\text{KHR}}
+\]</span></p>
+<p>Three weighting schemes are considered:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Weighting Approach</th>
+<th style="text-align: center;"><span class="math inline">\(w_{\text{USD}}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(w_{\text{KHR}}\)</span></th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Loan-share weighted</strong> <em>(primary)</em></td>
+<td style="text-align: center;">~0.80</td>
+<td style="text-align: center;">~0.20</td>
+<td>Reflects actual composition of Cambodia’s banking system</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Equal weighted</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">0.50</td>
+<td>Gives equal attention to both currency segments</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Time-varying</td>
+<td style="text-align: center;">Changes annually</td>
+<td style="text-align: center;">Changes annually</td>
+<td>Captures the gradual de-dollarization trend</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="why-7" class="level3">
+<h3 class="anchored" data-anchor-id="why-7">❓ Why</h3>
+<ul>
+<li><strong>Loan-share weighting is the primary specification</strong> because it reflects economic reality: a shock to USD lending (~80% of the system) has a far larger systemic impact than an equivalent shock to KHR lending (~20%). A system-level index must be proportional to actual exposure.</li>
+<li><strong>Equal weighting</strong> serves as a robustness check and is appropriate from a supervisory standpoint — both currency segments matter regardless of size for financial stability monitoring.</li>
+<li><strong>Time-varying weighting</strong> captures Cambodia’s ongoing de-dollarization policy and prevents the index from ignoring the growing KHR share in later years.</li>
+</ul>
+<hr>
+</section>
+<section id="how-7" class="level3">
+<h3 class="anchored" data-anchor-id="how-7">⚙️ How</h3>
+<ol type="1">
+<li>Obtain annual loan-share weights from NBC statistical bulletins: <span class="math inline">\(w_{\text{USD},t}\)</span> and <span class="math inline">\(w_{\text{KHR},t} = 1 - w_{\text{USD},t}\)</span>.</li>
+<li>Compute primary system CRI: <code>CRI_system = 0.80 * CRI_usd + 0.20 * CRI_khr</code>.</li>
+<li>Compute equal-weighted alternative: <code>CRI_equal = 0.50 * CRI_usd + 0.50 * CRI_khr</code>.</li>
+<li>Compute time-varying version by merging annual weights onto the monthly index and applying them dynamically.</li>
+<li>Plot all three system CRI variants on a single chart to assess robustness to aggregation method.</li>
+</ol>
+</section>
+</section>
+<section id="stress-testing" class="level2">
+<h2 class="anchored" data-anchor-id="stress-testing">3.9 Stress Testing</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-8" class="level3">
+<h3 class="anchored" data-anchor-id="framework-8">🔷 Framework</h3>
+<p>Stress testing is a standard tool in prudential risk management (mandated under Basel III/IV and IMF financial sector assessment programs) for evaluating how a risk indicator responds to hypothetical adverse shocks. Rather than relying solely on historical data, stress tests simulate how the CRI would behave if credit conditions deteriorate beyond observed levels.</p>
+<hr>
+</section>
+<section id="what-8" class="level3">
+<h3 class="anchored" data-anchor-id="what-8">📌 What</h3>
+<p>We apply multiplicative stress shocks to the observed spreads:</p>
+<p><span class="math display">\[
+S_t^{c,\text{stress}} = S_t^c\left(1 + \delta\right)
+\]</span></p>
+<p>Three stress scenarios are applied:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 34%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Scenario</th>
+<th style="text-align: center;">Shock (<span class="math inline">\(\delta\)</span>)</th>
+<th>Economic Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Mild</td>
+<td style="text-align: center;">0.10 (10%)</td>
+<td>Minor economic slowdown or sectoral stress</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Moderate</td>
+<td style="text-align: center;">0.30 (30%)</td>
+<td>Significant financial stress (comparable to a regional crisis)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Severe</td>
+<td style="text-align: center;">0.50 (50%)</td>
+<td>Major crisis scenario (comparable to the GFC or severe pandemic impact)</td>
+</tr>
+</tbody>
+</table>
+<p>Under each scenario, <span class="math inline">\(\text{CRI}^{\text{USD}}\)</span>, <span class="math inline">\(\text{CRI}^{\text{KHR}}\)</span>, and <span class="math inline">\(\text{CRI}_{\text{System}}\)</span> are recomputed and compared to the baseline.</p>
+<hr>
+</section>
+<section id="why-8" class="level3">
+<h3 class="anchored" data-anchor-id="why-8">❓ Why</h3>
+<ul>
+<li><strong>Identifies which segment is more fragile</strong>: if the dominant USD segment (80% of lending) is more stress-sensitive, the current dollarized structure poses greater systemic risk. If the KHR segment is more sensitive, this informs the risk management of the de-dollarization transition.</li>
+<li><strong>Multiplicative shocks are scale-invariant</strong>: they preserve the proportional structure of spreads across currencies, avoiding the problem that an additive shock of equal magnitude would be trivial for KHR (which has high baseline spreads) but severe for USD.</li>
+<li><strong>Three scenarios bracket a plausible adverse range</strong> without requiring specific scenario narratives, keeping the analysis tractable and comparable across currencies.</li>
+</ul>
+<hr>
+</section>
+<section id="how-8" class="level3">
+<h3 class="anchored" data-anchor-id="how-8">⚙️ How</h3>
+<ol type="1">
+<li>For each scenario <span class="math inline">\(\delta \in \{0.10, 0.30, 0.50\}\)</span> and each currency: compute <code>spread_stressed = spread_c * (1 + delta)</code>.</li>
+<li>Re-estimate OU parameters via MLE on the stressed spreads.</li>
+<li>Recompute crisis probability and CRI using the stressed parameters.</li>
+<li>Tabulate: baseline CRI vs.&nbsp;stressed CRI for each scenario and each currency.</li>
+<li>Compute the <strong>stress sensitivity ratio</strong>: <span class="math inline">\(\Delta\text{CRI} / \delta\)</span> per currency to identify which segment amplifies stress more strongly.</li>
+</ol>
+</section>
+</section>
+<section id="covid-19-sub-period-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="covid-19-sub-period-analysis">3.10 COVID-19 Sub-Period Analysis</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-9" class="level3">
+<h3 class="anchored" data-anchor-id="framework-9">🔷 Framework</h3>
+<p>Sub-period analysis partitions a long time series around a known structural event to test whether model parameters shift — and whether those shifts are temporary or permanent. This is the “difference-in-differences” logic applied to time series: the COVID-19 pandemic acts as an exogenous shock whose effect on each currency segment’s credit risk dynamics can be isolated.</p>
+<hr>
+</section>
+<section id="what-9" class="level3">
+<h3 class="anchored" data-anchor-id="what-9">📌 What</h3>
+<p>The 13-year sample is divided into three sub-periods, treating COVID-19 as a <strong>natural experiment</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Period</th>
+<th style="text-align: center;">Dates</th>
+<th style="text-align: center;">Label</th>
+<th style="text-align: center;">Observations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Pre-COVID</td>
+<td style="text-align: center;">Jan 2013 – Dec 2019</td>
+<td style="text-align: center;">Baseline</td>
+<td style="text-align: center;">84</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">COVID</td>
+<td style="text-align: center;">Jan 2020 – Dec 2021</td>
+<td style="text-align: center;">Shock</td>
+<td style="text-align: center;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Post-COVID</td>
+<td style="text-align: center;">Jan 2022 – Dec 2025</td>
+<td style="text-align: center;">Recovery</td>
+<td style="text-align: center;">48</td>
+</tr>
+</tbody>
+</table>
+<p>For each sub-period and each currency, OU parameters <span class="math inline">\((\kappa^c, \theta^c, \sigma^c)\)</span> are re-estimated via MLE, and crisis probabilities and CRIs are recomputed.</p>
+<hr>
+</section>
+<section id="why-9" class="level3">
+<h3 class="anchored" data-anchor-id="why-9">❓ Why</h3>
+<ul>
+<li><strong>COVID-19 is the most significant exogenous shock</strong> in the sample period, making it the ideal event for testing the CRI’s responsiveness and for identifying parameter instability.</li>
+<li><strong>Sub-period estimation reveals whether changes are structural</strong>: if post-COVID parameters have not reverted to pre-COVID levels, this indicates a permanent shift in Cambodia’s credit risk dynamics rather than a transitory shock.</li>
+<li><strong>Currency-differentiated impact</strong>: the USD and KHR segments were exposed differently to COVID (USD via global trade disruption; KHR via domestic economic contraction). Comparing parameter shifts across currencies reveals which segment absorbed more of the shock.</li>
+</ul>
+<hr>
+</section>
+<section id="how-9" class="level3">
+<h3 class="anchored" data-anchor-id="how-9">⚙️ How</h3>
+<ol type="1">
+<li>Slice the spread data: <code>spread_pre = spread[:'2019-12']</code>, <code>spread_covid = spread['2020-01':'2021-12']</code>, <code>spread_post = spread['2022-01':]</code>.</li>
+<li>For each sub-period and each currency, run MLE estimation to obtain period-specific <span class="math inline">\((\hat{\kappa}, \hat{\theta}, \hat{\sigma})\)</span>.</li>
+<li>Compile a summary table comparing parameters across the three periods for both currencies.</li>
+<li>Use confidence intervals to test whether post-COVID parameters are statistically distinguishable from pre-COVID parameters.</li>
+<li>Key questions to answer: Did COVID cause a <strong>temporary</strong> or <strong>structural</strong> shift? Which currency was more affected? Has a new equilibrium emerged post-COVID?</li>
+</ol>
+</section>
+</section>
+<section id="rolling-window-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="rolling-window-analysis">3.11 Rolling Window Analysis</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-10" class="level3">
+<h3 class="anchored" data-anchor-id="framework-10">🔷 Framework</h3>
+<p>Full-sample estimation assumes parameter stationarity over the entire 13-year period — an assumption that may be violated given structural changes in Cambodia’s banking sector (de-dollarization, post-COVID recovery, external shocks). Rolling window estimation relaxes this assumption by tracking parameter evolution over time, producing a dynamic view of credit risk dynamics.</p>
+<hr>
+</section>
+<section id="what-10" class="level3">
+<h3 class="anchored" data-anchor-id="what-10">📌 What</h3>
+<p>A <strong>36-month rolling window</strong> re-estimation is applied: at each month <span class="math inline">\(t\)</span> (starting from month 37), the OU parameters are estimated using only the most recent 36 observations:</p>
+<p><span class="math display">\[
+\{S_{t-35}^c, S_{t-34}^c, \ldots, S_t^c\}
+\quad\longrightarrow\quad
+\hat{\kappa}_t^c,\; \hat{\theta}_t^c,\; \hat{\sigma}_t^c
+\]</span></p>
+<p>This produces <strong>time series of parameter estimates</strong> that show how credit risk dynamics have evolved across the full sample.</p>
+<hr>
+</section>
+<section id="why-10" class="level3">
+<h3 class="anchored" data-anchor-id="why-10">❓ Why</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 46%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Consideration</th>
+<th style="text-align: left;">Shorter Window (24 months)</th>
+<th style="text-align: left;">36-Month Window</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Responsiveness</td>
+<td style="text-align: left;">More responsive</td>
+<td style="text-align: left;">Moderately responsive</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Estimation stability</td>
+<td style="text-align: left;">Noisy — only 23 transitions for 3 parameters</td>
+<td style="text-align: left;">35 transitions provide statistically stable MLE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Output length</td>
+<td style="text-align: left;">Shorter output</td>
+<td style="text-align: left;">Good balance of history and coverage</td>
+</tr>
+</tbody>
+</table>
+<p>With 35 transitions (from 36 observations), the MLE for 3 parameters is well-identified. A shorter window would produce an ill-conditioned log-likelihood surface and unreliable estimates, while a longer window (e.g., 48 months) would be less responsive to structural changes.</p>
+<hr>
+</section>
+<section id="how-10" class="level3">
+<h3 class="anchored" data-anchor-id="how-10">⚙️ How</h3>
+<ol type="1">
+<li>Set <code>window = 36</code>. Initialize empty lists for rolling parameter estimates.</li>
+<li>Loop: for each <code>t</code> from <code>window</code> to <code>T</code>: fit MLE on <code>spread[t-window:t]</code>; append <span class="math inline">\(\hat{\kappa}_t, \hat{\theta}_t, \hat{\sigma}_t\)</span> to lists.</li>
+<li>Convert lists to time series indexed from month 37 onward.</li>
+<li>Produce a three-panel figure showing rolling <span class="math inline">\(\hat{\kappa}_t, \hat{\theta}_t, \hat{\sigma}_t\)</span> for both currencies on the same axes.</li>
+<li>Annotate the plots with key events (COVID onset, Fed rate hike cycle, NBC policy changes) to identify visible parameter shifts.</li>
+<li>Assess whether USD and KHR risk dynamics are <strong>converging or diverging</strong> over time.</li>
+</ol>
+</section>
+</section>
+<section id="robustness-checks" class="level2">
+<h2 class="anchored" data-anchor-id="robustness-checks">3.12 Robustness Checks</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-11" class="level3">
+<h3 class="anchored" data-anchor-id="framework-11">🔷 Framework</h3>
+<p>Every empirical methodology requires verification that findings are not artifacts of specific modeling choices. Robustness checks systematically vary key assumptions and test whether the principal conclusions are preserved. This is standard practice in applied econometrics and financial risk research.</p>
+<hr>
+</section>
+<section id="what-11" class="level3">
+<h3 class="anchored" data-anchor-id="what-11">📌 What</h3>
+<p>We perform a battery of four robustness checks:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 51%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Check</th>
+<th style="text-align: center;">What Is Varied</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Alternative rate measure</strong></td>
+<td style="text-align: center;">Outstanding Amount rates instead of New Amount</td>
+<td>Confirms results hold regardless of rate version</td>
+</tr>
+<tr class="even">
+<td><strong>Alternative crisis thresholds</strong></td>
+<td style="text-align: center;">90th and 99th percentiles instead of 95th</td>
+<td>Shows CRI behavior is not threshold-sensitive</td>
+</tr>
+<tr class="odd">
+<td><strong>Alternative CRI component weights</strong></td>
+<td style="text-align: center;"><span class="math inline">\((\alpha=0.3, \beta=0.7)\)</span> and <span class="math inline">\((\alpha=0.7, \beta=0.3)\)</span></td>
+<td>Shows relative ranking of USD vs.&nbsp;KHR is stable</td>
+</tr>
+<tr class="even">
+<td><strong>Alternative system weights</strong></td>
+<td style="text-align: center;">Equal (0.50/0.50) vs.&nbsp;loan-share (0.80/0.20)</td>
+<td>Shows System CRI is robust to aggregation method</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="why-11" class="level3">
+<h3 class="anchored" data-anchor-id="why-11">❓ Why</h3>
+<p>Robustness checks are essential because: - <strong>Data choices</strong> (rate version) could bias results if New Amount rates are anomalously volatile. - <strong>Threshold choices</strong> are inherently arbitrary; the 95th percentile is conventional but other values could change the crisis probability dynamics. - <strong>Index weight choices</strong> are not uniquely determined by theory; showing the principal findings survive re-weighting strengthens the argument for the baseline.</p>
+<p>If the core findings — the relative risk ranking of USD and KHR, the temporal pattern of the CRI, and the directional response to COVID-19 — are preserved across all four variations, the framework’s validity is reinforced.</p>
+<hr>
+</section>
+<section id="how-11" class="level3">
+<h3 class="anchored" data-anchor-id="how-11">⚙️ How</h3>
+<ol type="1">
+<li><strong>Outstanding Amount rates</strong>: load the alternative rate dataset; rerun Sections 3.2–3.7 end-to-end; compare CRI time series and parameter estimates to the baseline.</li>
+<li><strong>Alternative thresholds</strong>: substitute <code>percentile=90</code> and <code>percentile=99</code>; recompute crisis probabilities and CRIs; overlay on the baseline CRI chart.</li>
+<li><strong>Alternative CRI weights</strong>: recompute <code>CRI_c = alpha * sigma_norm + beta * prob_crisis</code> for <span class="math inline">\((0.3, 0.7)\)</span> and <span class="math inline">\((0.7, 0.3)\)</span>; tabulate the USD/KHR risk ratio under each specification.</li>
+<li><strong>Alternative system weights</strong>: recompute <code>CRI_system</code> under equal weighting; compare time series patterns.</li>
+<li>Summarize all robustness results in a single comparison table, flagging any specification where qualitative conclusions change.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="extended-analyses" class="level1">
+<h1>Extended Analyses</h1>
+<section id="regime-switching-ornsteinuhlenbeck-model" class="level2">
+<h2 class="anchored" data-anchor-id="regime-switching-ornsteinuhlenbeck-model">3.13 Regime-Switching Ornstein–Uhlenbeck Model</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-12" class="level3">
+<h3 class="anchored" data-anchor-id="framework-12">🔷 Framework</h3>
+<p>The standard OU model assumes constant parameters throughout the entire sample. In reality, financial systems often alternate between distinct regimes — “calm” and “stress” — with different dynamics in each. The Markov Regime-Switching model (Hamilton, 1989) extends the OU framework by allowing parameters to shift between latent states, capturing structural breaks without requiring the researcher to prespecify their timing.</p>
+<hr>
+</section>
+<section id="what-12" class="level3">
+<h3 class="anchored" data-anchor-id="what-12">📌 What</h3>
+<p>We extend to a <strong>two-state Markov Regime-Switching OU (RS-OU) model</strong>:</p>
+<p><span class="math display">\[
+dS_t^c = \kappa_{s_t}^c\!\left(\theta_{s_t}^c - S_t^c\right)dt + \sigma_{s_t}^c\,dW_t^c, \qquad s_t \in \{1, 2\}
+\]</span></p>
+<p>where the latent state <span class="math inline">\(s_t\)</span> follows a first-order Markov chain with transition probability matrix:</p>
+<p><span class="math display">\[
+\mathbf{P} = \begin{pmatrix} p_{11} &amp; 1 - p_{11} \\ 1 - p_{22} &amp; p_{22} \end{pmatrix}
+\]</span></p>
+<ul>
+<li><strong>State 1</strong> (“Calm”): lower volatility, stable spread dynamics</li>
+<li><strong>State 2</strong> (“Stress”): higher volatility, potentially different mean-reversion behavior</li>
+</ul>
+<p>Model selection between the single-regime OU and the RS-OU is based on the <strong>Bayesian Information Criterion (BIC)</strong>.</p>
+<hr>
+</section>
+<section id="why-12" class="level3">
+<h3 class="anchored" data-anchor-id="why-12">❓ Why</h3>
+<ul>
+<li><strong>The standard OU model may mask regime heterogeneity</strong>: if calm and stress periods follow different dynamics, pooling them into a single set of parameters produces biased estimates and misleading risk signals.</li>
+<li><strong>Endogenous break detection</strong>: unlike the COVID sub-period analysis (Section 3.10), which fixes regime boundaries exogenously, the RS-OU model lets the data determine when regime switches occur — providing an independent check on the timing of structural breaks.</li>
+<li><strong>Do USD and KHR share the same regime structure?</strong> If the KHR segment switches between calm and stress regimes more frequently, this corroborates the finding of higher KHR instability from the standard OU analysis using a fully different methodology.</li>
+</ul>
+<hr>
+</section>
+<section id="how-12" class="level3">
+<h3 class="anchored" data-anchor-id="how-12">⚙️ How</h3>
+<ol type="1">
+<li>Define the RS-OU likelihood using the <strong>Hamilton filter</strong> (forward pass): iteratively compute filtered state probabilities <span class="math inline">\(P(s_t = j | S_{1:t})\)</span> using the Gaussian emission densities from the OU model in each state.</li>
+<li>Apply the <strong>Kim smoother</strong> (backward pass) to obtain smoothed probabilities <span class="math inline">\(P(s_t = j | S_{1:T})\)</span> using the full sample.</li>
+<li>Maximize the full log-likelihood over <span class="math inline">\((\kappa_1, \theta_1, \sigma_1, \kappa_2, \theta_2, \sigma_2, p_{11}, p_{22})\)</span> using <code>scipy.optimize.minimize</code>.</li>
+<li>Compare BIC of the RS-OU against the single-regime OU: if <span class="math inline">\(\text{BIC}_{\text{RS-OU}} &lt; \text{BIC}_{\text{OU}}\)</span>, the regime-switching extension is supported by the data.</li>
+<li>Plot smoothed state probabilities alongside the spread series to identify when each currency operated in the stress regime.</li>
+</ol>
+</section>
+</section>
+<section id="dynamic-threshold-cri" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-threshold-cri">3.14 Dynamic Threshold CRI</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-13" class="level3">
+<h3 class="anchored" data-anchor-id="framework-13">🔷 Framework</h3>
+<p>The baseline CRI uses a static threshold calibrated on the full sample. However, if the structural level of spreads has shifted over time (e.g., due to financial sector development or de-dollarization), a threshold anchored to early high-spread observations may become irrelevant for later periods. A dynamic threshold adapts the reference point to the evolving distribution of spreads, providing a more locally calibrated risk measure.</p>
+<hr>
+</section>
+<section id="what-13" class="level3">
+<h3 class="anchored" data-anchor-id="what-13">📌 What</h3>
+<p>Instead of a fixed 95th percentile, we compute a <strong>rolling 36-month threshold</strong> that updates each month:</p>
+<p><span class="math display">\[
+S_{c,t}^c = P_{95}\!\left(\{S_{t-35}^c, \ldots, S_t^c\}\right)
+\]</span></p>
+<p>This produces a time-varying threshold <span class="math inline">\(S_{c,t}^c\)</span> that is directly compared against the static-threshold CRI.</p>
+<hr>
+</section>
+<section id="why-13" class="level3">
+<h3 class="anchored" data-anchor-id="why-13">❓ Why</h3>
+<ul>
+<li><strong>KHR spreads exhibit structural compression over time</strong>: as Cambodia’s financial sector develops and riel lending matures, KHR spreads have declined from their early-sample highs. A static threshold calibrated on 2013–2015 KHR spreads would be irrelevant for assessing crisis conditions in 2023–2025.</li>
+<li><strong>Dynamic thresholds provide locally calibrated signals</strong>: what constitutes “abnormal” spread behavior should be judged against recent history, not a fixed historical benchmark that may no longer reflect current conditions.</li>
+<li><strong>Comparison against static CRI</strong>: if the two approaches tell the same story, it validates the simpler static threshold. If they diverge, it highlights periods where structural spread compression (or expansion) materially changes the risk signal.</li>
+</ul>
+<hr>
+</section>
+<section id="how-13" class="level3">
+<h3 class="anchored" data-anchor-id="how-13">⚙️ How</h3>
+<ol type="1">
+<li>Compute rolling 36-month 95th percentile thresholds for each currency: <code>threshold_dynamic_t = spread[:t].rolling(36).quantile(0.95)</code>.</li>
+<li>Substitute <code>threshold_dynamic_t</code> for the static threshold in the crisis probability formula (Section 3.6).</li>
+<li>Recompute dynamic CRI series <code>CRI_dynamic_usd</code> and <code>CRI_dynamic_khr</code>.</li>
+<li>Plot static vs.&nbsp;dynamic CRI on the same axes for both currencies.</li>
+<li>Identify periods of divergence and interpret whether they correspond to known structural shifts in Cambodia’s banking sector.</li>
+</ol>
+</section>
+</section>
+<section id="implied-default-probability" class="level2">
+<h2 class="anchored" data-anchor-id="implied-default-probability">3.15 Implied Default Probability</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-14" class="level3">
+<h3 class="anchored" data-anchor-id="framework-14">🔷 Framework</h3>
+<p>Reduced-form credit risk models (Duffie &amp; Singleton, 1999; Jarrow &amp; Turnbull, 1995) link observed credit spreads to implied default intensities via a no-arbitrage pricing identity: the spread compensates lenders for expected losses (default probability × loss given default). This identity allows us to extract market-implied default probabilities from the observed spreads, translating an abstract index into a concrete, economically interpretable quantity.</p>
+<hr>
+</section>
+<section id="what-14" class="level3">
+<h3 class="anchored" data-anchor-id="what-14">📌 What</h3>
+<p>Under the assumption that the spread compensates for expected losses:</p>
+<p><span class="math display">\[
+S_t^c \approx h_t^c \cdot (1 - R^c)
+\]</span></p>
+<p>where <span class="math inline">\(h_t^c\)</span> is the instantaneous hazard rate (default intensity) and <span class="math inline">\(R^c\)</span> is the recovery rate (baseline assumption: <span class="math inline">\(R = 0.40\)</span>, the standard Basel assumption).</p>
+<p>The extracted hazard rate and 1-year cumulative default probability are:</p>
+<p><span class="math display">\[
+h_t^c = \frac{S_t^c}{1 - R^c}, \qquad
+\text{PD}_{1\text{yr}}^c(t) = 1 - \exp\!\left(-h_t^c\right)
+\]</span></p>
+<p>Recovery rate sensitivity is assessed across <span class="math inline">\(R \in \{0.20, 0.30, 0.40, 0.50, 0.60\}\)</span>.</p>
+<hr>
+</section>
+<section id="why-14" class="level3">
+<h3 class="anchored" data-anchor-id="why-14">❓ Why</h3>
+<ul>
+<li><strong>Concrete interpretation</strong>: while the CRI is a dimensionless index, the implied PD is expressed in probability units — directly comparable to non-performing loan ratios, regulatory risk weights, and external credit rating benchmarks.</li>
+<li><strong>Bridging CRI to existing risk frameworks</strong>: policymakers familiar with Basel-style default probability metrics can immediately relate the CRI signal to standard credit risk terminology.</li>
+<li><strong>Recovery rate sensitivity is critical for Cambodia</strong>: empirical recovery rate data is scarce in the Cambodian context. The sensitivity analysis makes transparent how much implied PD estimates depend on this assumption, quantifying the uncertainty in the recovery rate mapping.</li>
+</ul>
+<hr>
+</section>
+<section id="how-14" class="level3">
+<h3 class="anchored" data-anchor-id="how-14">⚙️ How</h3>
+<ol type="1">
+<li>Set baseline recovery rate: <code>R = 0.40</code>.</li>
+<li>For each currency and each month: <code>hazard_t = spread_t / (1 - R)</code>; <code>PD_1yr_t = 1 - np.exp(-hazard_t)</code>.</li>
+<li>Plot <code>PD_1yr_usd</code> and <code>PD_1yr_khr</code> time series.</li>
+<li>Conduct sensitivity analysis: loop over <code>R_values = [0.20, 0.30, 0.40, 0.50, 0.60]</code>; recompute <code>PD_1yr</code> for each; display as a fan chart showing the range of PD estimates under different recovery assumptions.</li>
+<li>Report the range of PD estimates at the most recent observation to communicate model uncertainty to the reader.</li>
+</ol>
+</section>
+</section>
+<section id="policy-divergence-analysis-var-framework" class="level2">
+<h2 class="anchored" data-anchor-id="policy-divergence-analysis-var-framework">3.16 Policy Divergence Analysis (VAR Framework)</h2>
+<blockquote class="blockquote">
+<p><strong>Framework</strong> | <strong>What</strong> | <strong>Why</strong> | <strong>How</strong></p>
+</blockquote>
+<hr>
+<section id="framework-15" class="level3">
+<h3 class="anchored" data-anchor-id="framework-15">🔷 Framework</h3>
+<p>Vector Autoregression (VAR) models the joint dynamics of multiple time series without imposing a priori restrictions on which variables cause which. Developed by Sims (1980) as an atheoretical alternative to structural macroeconomic models, VAR is the standard tool for examining transmission channels and dynamic interdependencies between macroeconomic and financial variables. In this context, it allows us to test empirically whether Cambodia’s dollarization effectively transmits U.S. monetary policy into domestic credit risk conditions.</p>
+<hr>
+</section>
+<section id="what-15" class="level3">
+<h3 class="anchored" data-anchor-id="what-15">📌 What</h3>
+<p>We employ a VAR model with the following variable vector:</p>
+<p><span class="math display">\[
+\mathbf{Y}_t = \mathbf{c} + \sum_{j=1}^{p} \mathbf{A}_j \mathbf{Y}_{t-j} + \mathbf{u}_t, \qquad
+\mathbf{Y}_t = \begin{pmatrix} S_t^{\text{USD}} \\ S_t^{\text{KHR}} \\ \text{FedFunds}_t \end{pmatrix}
+\]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the optimal lag order selected by the BIC. Three analytical tools are applied:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Question Answered</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Granger Causality Tests</strong></td>
+<td>Does the Fed Funds Rate Granger-cause USD or KHR spreads? Does one currency’s spread predict the other’s?</td>
+</tr>
+<tr class="even">
+<td><strong>Impulse Response Functions (IRFs)</strong></td>
+<td>How do USD and KHR spreads respond dynamically to a one-SD shock in the Fed Funds Rate? How long does the effect persist?</td>
+</tr>
+<tr class="odd">
+<td><strong>Variance Decomposition</strong></td>
+<td>What share of forecast error variance in each spread is attributable to Fed policy shocks vs.&nbsp;innovations in the other currency’s spread?</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="why-15" class="level3">
+<h3 class="anchored" data-anchor-id="why-15">❓ Why</h3>
+<ul>
+<li><strong>Testing the “monetary policy outsourcing” hypothesis</strong>: Cambodia’s lack of an independent monetary policy instrument (due to high dollarization) is a central policy concern. If USD spreads respond strongly to Fed shocks while KHR spreads do not, this provides empirical support for the argument that de-dollarization would enhance NBC’s policy autonomy.</li>
+<li><strong>Granger causality reveals information flow</strong>: knowing whether Fed policy leads or lags domestic credit spreads helps NBC anticipate when to deploy macroprudential tools.</li>
+<li><strong>IRFs quantify the duration and magnitude</strong> of external shocks on domestic credit conditions — directly relevant for stress scenario design and macroprudential policy timing.</li>
+<li><strong>VAR is appropriate for non-structural policy analysis</strong>: without imposing a specific structural model, VAR allows the data to reveal the empirical transmission dynamics.</li>
+</ul>
+<hr>
+</section>
+<section id="how-15" class="level3">
+<h3 class="anchored" data-anchor-id="how-15">⚙️ How</h3>
+<ol type="1">
+<li><strong>Pre-estimation tests</strong>: apply ADF unit root tests to each variable; difference as needed to achieve stationarity. Test for cointegration if variables are integrated.</li>
+<li><strong>Lag selection</strong>: estimate VAR models for <span class="math inline">\(p = 1, \ldots, 12\)</span>; select optimal <span class="math inline">\(p\)</span> by minimizing BIC.</li>
+<li><strong>Estimation</strong>: fit the VAR(<span class="math inline">\(p\)</span>) model using <code>statsmodels.tsa.vector_ar.var_model.VAR</code>.</li>
+<li><strong>Granger causality</strong>: use <code>var_result.test_causality()</code> for each direction; report <span class="math inline">\(\chi^2\)</span> statistics and <span class="math inline">\(p\)</span>-values.</li>
+<li><strong>IRFs</strong>: compute orthogonalized IRFs using Cholesky decomposition (ordering: FedFunds → USD spread → KHR spread, reflecting the hypothesis that global policy drives USD conditions which in turn influence KHR conditions). Plot 12-month IRFs with 95% bootstrap confidence bands.</li>
+<li><strong>Variance decomposition</strong>: compute and display forecast error variance decomposition at horizons 1, 3, 6, and 12 months.</li>
+<li>Interpret results against the de-dollarization policy context: does the data support the hypothesis that NBC lacks effective monetary transmission?</li>
+</ol>
+<hr>
+</section>
+</section>
+</section>
+<section id="complete-methodological-pipeline" class="level1">
+<h1>Complete Methodological Pipeline</h1>
+<p>The following table summarizes the complete analytical pipeline:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 37%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Step</th>
+<th>Method</th>
+<th>Formula / Description</th>
+<th style="text-align: center;">Applied Per Currency?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td>Spread computation</td>
+<td><span class="math inline">\(S_t^c = r_{\text{loan},t}^c - r_{\text{deposit},t}^c\)</span></td>
+<td style="text-align: center;">Yes (USD + KHR)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td>OU model fitting</td>
+<td><span class="math inline">\(dS_t^c = \kappa^c(\theta^c - S_t^c)dt + \sigma^c dW_t^c\)</span></td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td>MLE estimation</td>
+<td>Maximize log-likelihood for <span class="math inline">\((\kappa^c, \theta^c, \sigma^c)\)</span></td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td>AR(1) cross-check</td>
+<td>Regress <span class="math inline">\(S_{t+1}^c\)</span> on <span class="math inline">\(S_t^c\)</span>, recover OU parameters</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td>Crisis threshold</td>
+<td><span class="math inline">\(S_c^c = P_{95}(S_t^c)\)</span></td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td>Crisis probability</td>
+<td><span class="math inline">\(P(S_t^c &gt; S_c^c) = 1 - \Phi\!\left(\frac{S_c^c - m^c(t)}{\sqrt{v^c(t)}}\right)\)</span></td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td>Currency CRI</td>
+<td><span class="math inline">\(\text{CRI}^c = 0.5\hat{\sigma}^c + 0.5 P(S_t^c &gt; S_c^c)\)</span></td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td>System CRI</td>
+<td><span class="math inline">\(\text{CRI}_{\text{Sys}} = w_{\text{USD}}\text{CRI}^{\text{USD}} + w_{\text{KHR}}\text{CRI}^{\text{KHR}}\)</span></td>
+<td style="text-align: center;">Once (combined)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td>Stress testing</td>
+<td><span class="math inline">\(S_t^{c,\text{stress}} = S_t^c(1+\delta)\)</span>; recompute CRIs</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td>COVID sub-periods</td>
+<td>Re-estimate steps 2–7 for pre/during/post COVID</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">11</td>
+<td>Rolling window</td>
+<td>Re-estimate steps 2–7 on 36-month rolling window</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">12</td>
+<td>Robustness</td>
+<td>Repeat with Outstanding Amount rates + alternative specifications</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">13</td>
+<td>Regime switching</td>
+<td>2-state Markov RS-OU with Hamilton filter + Kim smoother</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">14</td>
+<td>Dynamic threshold</td>
+<td>Rolling 36-month crisis threshold; dynamic CRI vs.&nbsp;static CRI</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">15</td>
+<td>Implied PD</td>
+<td>Hazard rate extraction; 1-year default probability; recovery sensitivity</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">16</td>
+<td>Policy divergence</td>
+<td>VAR model; Granger causality; impulse response functions</td>
+<td style="text-align: center;">Once (multivariate)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<section id="methodological-flow-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="methodological-flow-diagram">Methodological Flow Diagram</h2>
+<pre><code>┌──────────────────────────────────────────────────────────────────┐
+│                        NBC INTEREST RATE DATA                    │
+│   Term Loan + Term Deposit rates (USD &amp; KHR), New Amount        │
+│   January 2013 – December 2025 (156 monthly observations)       │
+└──────────────────────────┬───────────────────────────────────────┘
+                           │
+                ┌──────────┴──────────┐
+                ▼                     ▼
+         ┌─────────────┐       ┌─────────────┐
+         │  USD Spread  │       │  KHR Spread  │
+         │  Sᵗ(USD)     │       │  Sᵗ(KHR)     │
+         └──────┬──────┘       └──────┬──────┘
+                │                     │
+       ┌────────┴────────┐   ┌────────┴────────┐
+       ▼                 ▼   ▼                  ▼
+  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
+  │ OU Model │    │ RS-OU    │    │ OU Model │    │ RS-OU    │
+  │ (MLE)    │    │ Model    │    │ (MLE)    │    │ Model    │
+  │ κ, θ, σ  │    │ 2-state  │    │ κ, θ, σ  │    │ 2-state  │
+  └────┬─────┘    └──────────┘    └────┬─────┘    └──────────┘
+       │                               │
+       ▼                               ▼
+  ┌──────────┐                   ┌──────────┐
+  │ Crisis   │                   │ Crisis   │
+  │ Prob +   │                   │ Prob +   │
+  │ CRI(USD) │                   │ CRI(KHR) │
+  └────┬─────┘                   └────┬─────┘
+       │                               │
+       ├───────── Compare ─────────────┤
+       │                               │
+       └──────────┬────────────────────┘
+                  ▼
+         ┌───────────────┐
+         │ CRI (System)  │
+         │ = wUSD × USD  │
+         │ + wKHR × KHR  │
+         └───────┬───────┘
+                 │
+    ┌────────────┼────────────┬───────────────┐
+    ▼            ▼            ▼               ▼
+┌────────┐ ┌──────────┐ ┌──────────┐  ┌────────────┐
+│ Stress │ │ COVID    │ │ Rolling  │  │ VAR /      │
+│ Tests  │ │ Sub-     │ │ Window   │  │ Granger /  │
+│ δ=0.1, │ │ Period   │ │ (36-mo)  │  │ IRF        │
+│ 0.3,0.5│ │ Analysis │ │ Analysis │  │ Analysis   │
+└────────┘ └──────────┘ └──────────┘  └────────────┘</code></pre>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
