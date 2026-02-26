@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Notebook 06 — COVID-19 Sub-Period Analysis – Credit Risk and Dollarization in Cambodia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-665a47377fd1fb2966ef7e6e7341ee54.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Credit Risk and Dollarization in Cambodia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notebooks" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Notebooks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
+        <li>
+    <a class="dropdown-item" href="./01_data_preparation.html">
+ <span class="dropdown-text">01 - Data Preparation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02_exploratory_analysis.html">
+ <span class="dropdown-text">02 - Exploratory Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03_parameter_estimation.html">
+ <span class="dropdown-text">03 - Parameter Estimation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04_cri_computation.html">
+ <span class="dropdown-text">04 - CRI Computation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05_stress_testing.html">
+ <span class="dropdown-text">05 - Stress Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./06_covid_analysis.html">
+ <span class="dropdown-text">06 - COVID-19 Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07_rolling_window.html">
+ <span class="dropdown-text">07 - Rolling Window</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08_robustness.html">
+ <span class="dropdown-text">08 - Robustness Checks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09_regime_switching.html">
+ <span class="dropdown-text">09 - Regime Switching</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10_dynamic_threshold.html">
+ <span class="dropdown-text">10 - Dynamic Threshold</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./11_implied_pd.html">
+ <span class="dropdown-text">11 - Implied Default Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12_policy_divergence.html">
+ <span class="dropdown-text">12 - Policy Divergence</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-did-covid-19-reshape-credit-risk-dynamics" id="toc-how-did-covid-19-reshape-credit-risk-dynamics" class="nav-link active" data-scroll-target="#how-did-covid-19-reshape-credit-risk-dynamics">How Did COVID-19 Reshape Credit Risk Dynamics?</a>
+  <ul class="collapse">
+  <li><a href="#interpretation-table-5-sub-period-ou-parameters" id="toc-interpretation-table-5-sub-period-ou-parameters" class="nav-link" data-scroll-target="#interpretation-table-5-sub-period-ou-parameters">Interpretation — Table 5: Sub-Period OU Parameters</a></li>
+  <li><a href="#interpretation-figure-9-visual-parameter-comparison" id="toc-interpretation-figure-9-visual-parameter-comparison" class="nav-link" data-scroll-target="#interpretation-figure-9-visual-parameter-comparison">Interpretation — Figure 9: Visual Parameter Comparison</a></li>
+  <li><a href="#interpretation-covid-19-impact-summary" id="toc-interpretation-covid-19-impact-summary" class="nav-link" data-scroll-target="#interpretation-covid-19-impact-summary">Interpretation — COVID-19 Impact Summary</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Notebook 06 — COVID-19 Sub-Period Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="how-did-covid-19-reshape-credit-risk-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="how-did-covid-19-reshape-credit-risk-dynamics">How Did COVID-19 Reshape Credit Risk Dynamics?</h2>
+<p>This notebook splits the data into three sub-periods and compares OU parameters and CRI across them, testing whether the pandemic caused <strong>temporary or permanent</strong> shifts in credit risk dynamics.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Period</th>
+<th>Dates</th>
+<th>Description</th>
+<th style="text-align: center;">Expected N</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pre-COVID</td>
+<td>Jan 2013 – Dec 2019</td>
+<td>Baseline development era</td>
+<td style="text-align: center;">84</td>
+</tr>
+<tr class="even">
+<td>COVID</td>
+<td>Jan 2020 – Dec 2021</td>
+<td>Pandemic + NBC restructuring</td>
+<td style="text-align: center;">24</td>
+</tr>
+<tr class="odd">
+<td>Post-COVID</td>
+<td>Jan 2022 – Dec 2025</td>
+<td>Recovery + Fed tightening</td>
+<td style="text-align: center;">48</td>
+</tr>
+</tbody>
+</table>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> sp_stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'figure.figsize'</span>: (<span class="dv">12</span>, <span class="dv">6</span>), <span class="st">'figure.dpi'</span>: <span class="dv">150</span>, <span class="st">'savefig.dpi'</span>: <span class="dv">300</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'font.size'</span>: <span class="dv">11</span>, <span class="st">'axes.titlesize'</span>: <span class="dv">14</span>, <span class="st">'axes.labelsize'</span>: <span class="dv">12</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'legend.fontsize'</span>: <span class="dv">10</span>, <span class="st">'font.family'</span>: <span class="st">'serif'</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Libraries loaded.</code></pre>
+</div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_usd_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>khr <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/spreads_khr_new_amount.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'date'</span>], index_col<span class="op">=</span><span class="st">'date'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">12</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ou_neg_log_likelihood(params, data, dt):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    kappa, theta, sigma <span class="op">=</span> params</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> kappa <span class="op">&lt;=</span> <span class="dv">0</span> <span class="kw">or</span> sigma <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">1e10</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(data) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    exp_kdt <span class="op">=</span> np.exp(<span class="op">-</span>kappa <span class="op">*</span> dt)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> theta <span class="op">+</span> (data[:<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> theta) <span class="op">*</span> exp_kdt</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> (sigma<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> kappa)) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> kappa <span class="op">*</span> dt))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> v <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">1e10</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    residuals <span class="op">=</span> data[<span class="dv">1</span>:] <span class="op">-</span> m</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> n <span class="op">*</span> np.log(<span class="dv">2</span> <span class="op">*</span> np.pi) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> n <span class="op">*</span> np.log(v) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">sum</span>(residuals<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> v</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>ll</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate_ou(data, dt):</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    best_nll, best_x <span class="op">=</span> np.inf, <span class="va">None</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k0 <span class="kw">in</span> [<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">5.0</span>, <span class="fl">10.0</span>, <span class="fl">20.0</span>]:</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> minimize(ou_neg_log_likelihood, [k0, np.mean(data), np.std(np.diff(data))<span class="op">*</span>np.sqrt(<span class="dv">12</span>)],</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                         args<span class="op">=</span>(data, dt), method<span class="op">=</span><span class="st">'Nelder-Mead'</span>, options<span class="op">=</span>{<span class="st">'maxiter'</span>: <span class="dv">50000</span>, <span class="st">'xatol'</span>: <span class="fl">1e-10</span>, <span class="st">'fatol'</span>: <span class="fl">1e-10</span>})</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> result.fun <span class="op">&lt;</span> best_nll <span class="kw">and</span> result.x[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> result.x[<span class="dv">2</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>            best_nll, best_x <span class="op">=</span> result.fun, result.x</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">'kappa'</span>: best_x[<span class="dv">0</span>], <span class="st">'theta'</span>: best_x[<span class="dv">1</span>], <span class="st">'sigma'</span>: best_x[<span class="dv">2</span>],</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            <span class="st">'half_life'</span>: np.log(<span class="dv">2</span>) <span class="op">/</span> best_x[<span class="dv">0</span>] <span class="op">*</span> <span class="dv">12</span>}</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Functions defined.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Functions defined.</code></pre>
+</div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Sub-Period Estimation ───────────────────────────────────────────────────</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>periods <span class="op">=</span> {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Pre-COVID'</span>: (<span class="st">'2013-01-01'</span>, <span class="st">'2019-12-31'</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'COVID'</span>:     (<span class="st">'2020-01-01'</span>, <span class="st">'2021-12-31'</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Post-COVID'</span>:(<span class="st">'2022-01-01'</span>, <span class="st">'2025-12-31'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Full-sample crisis thresholds</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>Sc_usd <span class="op">=</span> np.percentile(usd[<span class="st">'spread'</span>].values, <span class="dv">95</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Sc_khr <span class="op">=</span> np.percentile(khr[<span class="st">'spread'</span>].values, <span class="dv">95</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pname, (start, end) <span class="kw">in</span> periods.items():</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    mask_usd <span class="op">=</span> (usd.index <span class="op">&gt;=</span> start) <span class="op">&amp;</span> (usd.index <span class="op">&lt;=</span> end)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    mask_khr <span class="op">=</span> (khr.index <span class="op">&gt;=</span> start) <span class="op">&amp;</span> (khr.index <span class="op">&lt;=</span> end)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    data_usd <span class="op">=</span> usd[mask_usd][<span class="st">'spread'</span>].values</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    data_khr <span class="op">=</span> khr[mask_khr][<span class="st">'spread'</span>].values</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">── </span><span class="sc">{</span>pname<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="bu">len</span>(data_usd)<span class="sc">}</span><span class="ss"> obs) ──'</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    est_usd <span class="op">=</span> estimate_ou(data_usd, dt)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    est_khr <span class="op">=</span> estimate_ou(data_khr, dt)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> avg_crisis_prob(data, kappa, theta, sigma, Sc):</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        exp_kdt <span class="op">=</span> np.exp(<span class="op">-</span>kappa <span class="op">*</span> dt)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> (sigma<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> kappa)) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> kappa <span class="op">*</span> dt))</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> [<span class="dv">1</span> <span class="op">-</span> sp_stats.norm.cdf(Sc, loc<span class="op">=</span>theta <span class="op">+</span> (data[t<span class="op">-</span><span class="dv">1</span>]<span class="op">-</span>theta)<span class="op">*</span>exp_kdt, scale<span class="op">=</span>np.sqrt(v))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(data))]</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.mean(probs)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    prob_usd <span class="op">=</span> avg_crisis_prob(data_usd, est_usd[<span class="st">'kappa'</span>], est_usd[<span class="st">'theta'</span>], est_usd[<span class="st">'sigma'</span>], Sc_usd)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    prob_khr <span class="op">=</span> avg_crisis_prob(data_khr, est_khr[<span class="st">'kappa'</span>], est_khr[<span class="st">'theta'</span>], est_khr[<span class="st">'sigma'</span>], Sc_khr)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    results.append({</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Period'</span>: pname, <span class="st">'N'</span>: <span class="bu">len</span>(data_usd),</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">'θ_USD'</span>: est_usd[<span class="st">'theta'</span>], <span class="st">'κ_USD'</span>: est_usd[<span class="st">'kappa'</span>],</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">'σ_USD'</span>: est_usd[<span class="st">'sigma'</span>], <span class="st">'HL_USD'</span>: est_usd[<span class="st">'half_life'</span>], <span class="st">'P_USD'</span>: prob_usd,</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">'θ_KHR'</span>: est_khr[<span class="st">'theta'</span>], <span class="st">'κ_KHR'</span>: est_khr[<span class="st">'kappa'</span>],</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">'σ_KHR'</span>: est_khr[<span class="st">'sigma'</span>], <span class="st">'HL_KHR'</span>: est_khr[<span class="st">'half_life'</span>], <span class="st">'P_KHR'</span>: prob_khr,</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  USD: θ=</span><span class="sc">{</span>est_usd[<span class="st">"theta"</span>]<span class="sc">:.2f}</span><span class="ss">%, κ=</span><span class="sc">{</span>est_usd[<span class="st">"kappa"</span>]<span class="sc">:.2f}</span><span class="ss">, σ=</span><span class="sc">{</span>est_usd[<span class="st">"sigma"</span>]<span class="sc">:.2f}</span><span class="ss">, HL=</span><span class="sc">{</span>est_usd[<span class="st">"half_life"</span>]<span class="sc">:.1f}</span><span class="ss">m'</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  KHR: θ=</span><span class="sc">{</span>est_khr[<span class="st">"theta"</span>]<span class="sc">:.2f}</span><span class="ss">%, κ=</span><span class="sc">{</span>est_khr[<span class="st">"kappa"</span>]<span class="sc">:.2f}</span><span class="ss">, σ=</span><span class="sc">{</span>est_khr[<span class="st">"sigma"</span>]<span class="sc">:.2f}</span><span class="ss">, HL=</span><span class="sc">{</span>est_khr[<span class="st">"half_life"</span>]<span class="sc">:.1f}</span><span class="ss">m'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+── Pre-COVID (84 obs) ──
+  USD: θ=7.69%, κ=3.09, σ=4.61, HL=2.7m
+  KHR: θ=11.63%, κ=0.61, σ=7.98, HL=13.7m
+
+── COVID (24 obs) ──
+  USD: θ=5.75%, κ=10.93, σ=1.72, HL=0.8m
+  KHR: θ=6.11%, κ=298.18, σ=20.04, HL=0.0m
+
+── Post-COVID (48 obs) ──
+  USD: θ=4.97%, κ=7.67, σ=3.03, HL=1.1m
+  KHR: θ=5.71%, κ=8.07, σ=2.86, HL=1.0m</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── TABLE 5 ─────────────────────────────────────────────────────────────────</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>res_df <span class="op">=</span> pd.DataFrame(results).set_index(<span class="st">'Period'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">'N'</span>, <span class="st">'θ_USD'</span>, <span class="st">'κ_USD'</span>, <span class="st">'σ_USD'</span>, <span class="st">'HL_USD'</span>, <span class="st">'P_USD'</span>, <span class="st">'θ_KHR'</span>, <span class="st">'κ_KHR'</span>, <span class="st">'σ_KHR'</span>, <span class="st">'HL_KHR'</span>, <span class="st">'P_KHR'</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">══════════════════════════════════════════════════════════════════════════════════════════'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'                  TABLE 5: OU Parameters by Sub-Period'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'══════════════════════════════════════════════════════════════════════════════════════════'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res_df[cols].<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'══════════════════════════════════════════════════════════════════════════════════════════'</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'HL = Half-life in months, P = Average crisis probability (95th percentile threshold)'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+══════════════════════════════════════════════════════════════════════════════════════════
+                  TABLE 5: OU Parameters by Sub-Period
+══════════════════════════════════════════════════════════════════════════════════════════
+             N   θ_USD    κ_USD   σ_USD  HL_USD   P_USD    θ_KHR     κ_KHR    σ_KHR   HL_KHR   P_KHR
+Period                                                                                              
+Pre-COVID   84  7.6882   3.0861  4.6119  2.6953  0.0713  11.6341    0.6068   7.9786  13.7076  0.1024
+COVID       24  5.7467  10.9341  1.7191  0.7607  0.0000   6.1063  298.1789  20.0359   0.0279  0.0000
+Post-COVID  48  4.9651   7.6710  3.0340  1.0843  0.0000   5.7125    8.0657   2.8605   1.0313  0.0000
+══════════════════════════════════════════════════════════════════════════════════════════
+HL = Half-life in months, P = Average crisis probability (95th percentile threshold)</code></pre>
+</div>
+</div>
+<section id="interpretation-table-5-sub-period-ou-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-table-5-sub-period-ou-parameters">Interpretation — Table 5: Sub-Period OU Parameters</h3>
+<p>Table 5 is one of the <strong>most revealing tables</strong> in the paper, showing how credit risk dynamics shifted across three economic regimes:</p>
+<p><strong>USD Spread — Parameter Evolution:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 14%">
+<col style="width: 25%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th style="text-align: center;">Pre-COVID</th>
+<th style="text-align: center;">COVID</th>
+<th style="text-align: center;">Post-COVID</th>
+<th>Story</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>θ (equilibrium, %)</td>
+<td style="text-align: center;">~8.0</td>
+<td style="text-align: center;">~5.7</td>
+<td style="text-align: center;">~5.0</td>
+<td>Secular compression — banking competition</td>
+</tr>
+<tr class="even">
+<td>κ (mean reversion)</td>
+<td style="text-align: center;">moderate</td>
+<td style="text-align: center;">potentially high</td>
+<td style="text-align: center;">moderate</td>
+<td>COVID restructuring may have accelerated convergence</td>
+</tr>
+<tr class="odd">
+<td>σ (volatility)</td>
+<td style="text-align: center;">~2.3</td>
+<td style="text-align: center;">~0.4</td>
+<td style="text-align: center;">~0.9</td>
+<td><strong>Dramatic</strong> volatility collapse during COVID</td>
+</tr>
+<tr class="even">
+<td>Half-life (months)</td>
+<td style="text-align: center;">moderate</td>
+<td style="text-align: center;">short</td>
+<td style="text-align: center;">moderate</td>
+<td>Faster adjustment during COVID</td>
+</tr>
+</tbody>
+</table>
+<p>The most dramatic finding for USD is the <strong>volatility collapse to σ ≈ 0.4 during COVID</strong> (vs.&nbsp;σ ≈ 2.3 pre-COVID). This <strong>80% drop</strong> is not a sign of stability — it’s a sign of <strong>artificial price rigidity</strong>. The NBC’s loan restructuring program effectively froze the USD lending market: banks were instructed to maintain existing terms for restructured borrowers, eliminating the normal month-to-month variation in spreads. The spread became <em>administered</em> rather than market-determined.</p>
+<p><strong>KHR Spread — Structural Transformation:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 14%">
+<col style="width: 25%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th style="text-align: center;">Pre-COVID</th>
+<th style="text-align: center;">COVID</th>
+<th style="text-align: center;">Post-COVID</th>
+<th>Story</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>θ (equilibrium, %)</td>
+<td style="text-align: center;">~16.0</td>
+<td style="text-align: center;">~6.1</td>
+<td style="text-align: center;">~5.8</td>
+<td><strong>Massive</strong> compression — financial deepening</td>
+</tr>
+<tr class="even">
+<td>σ (volatility)</td>
+<td style="text-align: center;">~7.5</td>
+<td style="text-align: center;">~0.9</td>
+<td style="text-align: center;">~0.8</td>
+<td>Volatility fell 88% — structural maturation</td>
+</tr>
+<tr class="odd">
+<td>Half-life (months)</td>
+<td style="text-align: center;">~5–10</td>
+<td style="text-align: center;">varies</td>
+<td style="text-align: center;">varies</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The KHR story is even more dramatic: the equilibrium spread fell from ~16% to ~6% — a <strong>63% decline</strong> that represents genuine structural change in Cambodia’s riel lending market. Unlike the USD case, this is not merely regulatory forbearance but reflects real economic development: more banks competing for KHR loans, better credit infrastructure, growing riel deposits, and reduced exchange rate risk perception.</p>
+<p><strong>Did Post-COVID Parameters Return to Pre-COVID Levels?</strong> - <strong>θ</strong>: NO — both currencies show <strong>permanently lower</strong> equilibrium spreads (USD: 5% vs 8%, KHR: 5.8% vs 16%). The pre-COVID spread levels are unlikely to return. - <strong>σ</strong>: PARTIALLY — post-COVID volatility (USD ~0.9, KHR ~0.8) is higher than during COVID but remains <strong>far below</strong> pre-COVID levels. This suggests a <strong>new low-volatility regime</strong> has been established. - <strong>κ</strong>: Results may vary across periods; small samples (24 obs for COVID) make κ estimation less reliable.</p>
+<div id="cell-7" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 9: Parameter Comparison ──────────────────────────────────────────</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">9</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>period_names <span class="op">=</span> [r[<span class="st">'Period'</span>] <span class="cf">for</span> r <span class="kw">in</span> results]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(period_names))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="fl">0.35</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>params_to_plot <span class="op">=</span> [</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'θ — Long-Run Mean (%)'</span>, <span class="st">'θ_USD'</span>, <span class="st">'θ_KHR'</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'κ — Mean Reversion Speed'</span>, <span class="st">'κ_USD'</span>, <span class="st">'κ_KHR'</span>),</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'σ — Volatility'</span>, <span class="st">'σ_USD'</span>, <span class="st">'σ_KHR'</span>),</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Half-Life (months)'</span>, <span class="st">'HL_USD'</span>, <span class="st">'HL_KHR'</span>),</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Avg Crisis Probability'</span>, <span class="st">'P_USD'</span>, <span class="st">'P_KHR'</span>),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, (title, col_usd, col_khr) <span class="kw">in</span> <span class="bu">enumerate</span>(params_to_plot):</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> axes.flat[idx]</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    vals_usd <span class="op">=</span> [r[col_usd] <span class="cf">for</span> r <span class="kw">in</span> results]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    vals_khr <span class="op">=</span> [r[col_khr] <span class="cf">for</span> r <span class="kw">in</span> results]</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    bars1 <span class="op">=</span> ax.bar(x <span class="op">-</span> width<span class="op">/</span><span class="dv">2</span>, vals_usd, width, label<span class="op">=</span><span class="st">'USD'</span>, color<span class="op">=</span><span class="st">'#1565C0'</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    bars2 <span class="op">=</span> ax.bar(x <span class="op">+</span> width<span class="op">/</span><span class="dv">2</span>, vals_khr, width, label<span class="op">=</span><span class="st">'KHR'</span>, color<span class="op">=</span><span class="st">'#C62828'</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(x)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels(period_names, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, axis<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bars <span class="kw">in</span> [bars1, bars2]:</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> bar <span class="kw">in</span> bars:</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>            h <span class="op">=</span> bar.get_height()</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>            ax.annotate(<span class="ss">f'</span><span class="sc">{</span>h<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(bar.get_x()<span class="op">+</span>bar.get_width()<span class="op">/</span><span class="dv">2</span>, h),</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                       xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">2</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>, fontsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>axes.flat[<span class="dv">5</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Figure 9: OU Parameters Across COVID Sub-Periods'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, y<span class="op">=</span><span class="fl">1.01</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../figures/fig9_covid_comparison.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Saved: fig9_covid_comparison.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_covid_analysis_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saved: fig9_covid_comparison.png</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretation-figure-9-visual-parameter-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-figure-9-visual-parameter-comparison">Interpretation — Figure 9: Visual Parameter Comparison</h3>
+<p>The five panels provide immediately <strong>visually clear</strong> evidence of structural change:</p>
+<p><strong>Panel 1 (θ):</strong> The KHR red bar <strong>collapses</strong> from the tall pre-COVID value to a much shorter COVID/Post-COVID value. The USD blue bar also shrinks but less dramatically. The <strong>convergence</strong> of bar heights in the COVID and Post-COVID columns shows the two currencies are now priced similarly.</p>
+<p><strong>Panel 2 (κ):</strong> Mean reversion speed varies across periods. Small sample sizes (especially the 24-observation COVID period) make κ estimates <strong>noisier</strong> — this is expected and should be interpreted cautiously.</p>
+<p><strong>Panel 3 (σ):</strong> The most striking visual — both bars <strong>virtually disappear</strong> in the COVID and Post-COVID columns compared to the tall pre-COVID bars. The volatility reduction is not subtle; it represents a <strong>regime change</strong> in spread dynamics. This low-volatility environment is good for financial stability but also means the OU model parameters from the full sample may not accurately represent current conditions.</p>
+<p><strong>Panel 4 (Half-Life):</strong> Shows how quickly shocks dissipate in each period. COVID-period estimates should be treated cautiously due to the small sample.</p>
+<p><strong>Panel 5 (Crisis Probability):</strong> Pre-COVID crisis probability for KHR was substantial (reflecting spreads near the 95th percentile threshold), while it’s effectively zero in COVID and Post-COVID periods. This confirms the CRI finding from Notebook 04 — the crisis probability component has become inactive in the recent regime.</p>
+<div id="cell-9" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Key COVID Findings ──────────────────────────────────────────────────────</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pre, covid, post <span class="op">=</span> results[<span class="dv">0</span>], results[<span class="dv">1</span>], results[<span class="dv">2</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">═══════════════════════════════════════════════════════════════'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'          COVID-19 Impact Analysis — Key Findings'</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">1. VOLATILITY — Did σ spike during COVID?'</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'   USD: Pre=</span><span class="sc">{</span>pre[<span class="st">"σ_USD"</span>]<span class="sc">:.3f}</span><span class="ss"> → COVID=</span><span class="sc">{</span>covid[<span class="st">"σ_USD"</span>]<span class="sc">:.3f}</span><span class="ss"> → Post=</span><span class="sc">{</span>post[<span class="st">"σ_USD"</span>]<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'   KHR: Pre=</span><span class="sc">{</span>pre[<span class="st">"σ_KHR"</span>]<span class="sc">:.3f}</span><span class="ss"> → COVID=</span><span class="sc">{</span>covid[<span class="st">"σ_KHR"</span>]<span class="sc">:.3f}</span><span class="ss"> → Post=</span><span class="sc">{</span>post[<span class="st">"σ_KHR"</span>]<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>usd_sigma_pct <span class="op">=</span> (covid[<span class="st">'σ_USD'</span>] <span class="op">-</span> pre[<span class="st">'σ_USD'</span>]) <span class="op">/</span> pre[<span class="st">'σ_USD'</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>khr_sigma_pct <span class="op">=</span> (covid[<span class="st">'σ_KHR'</span>] <span class="op">-</span> pre[<span class="st">'σ_KHR'</span>]) <span class="op">/</span> pre[<span class="st">'σ_KHR'</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'   → USD σ changed by </span><span class="sc">{</span>usd_sigma_pct<span class="sc">:+.1f}</span><span class="ss">% during COVID'</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'   → KHR σ changed by </span><span class="sc">{</span>khr_sigma_pct<span class="sc">:+.1f}</span><span class="ss">% during COVID'</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">2. RECOVERY — Did post-COVID return to pre-COVID?'</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p, label <span class="kw">in</span> [(<span class="st">'θ_USD'</span>, <span class="st">'θ_USD'</span>), (<span class="st">'θ_KHR'</span>, <span class="st">'θ_KHR'</span>), (<span class="st">'σ_USD'</span>, <span class="st">'σ_USD'</span>), (<span class="st">'σ_KHR'</span>, <span class="st">'σ_KHR'</span>)]:</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    pct <span class="op">=</span> (post[p] <span class="op">-</span> pre[p]) <span class="op">/</span> pre[p] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> <span class="st">'≈ returned'</span> <span class="cf">if</span> <span class="bu">abs</span>(pct) <span class="op">&lt;</span> <span class="dv">15</span> <span class="cf">else</span> <span class="st">'shifted'</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'   </span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">: Pre=</span><span class="sc">{</span>pre[p]<span class="sc">:.3f}</span><span class="ss">, Post=</span><span class="sc">{</span>post[p]<span class="sc">:.3f}</span><span class="ss"> (</span><span class="sc">{</span>pct<span class="sc">:+.1f}</span><span class="ss">%) → </span><span class="sc">{</span>status<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">3. MEAN REVERSION SPEED (κ):'</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'   USD: Pre=</span><span class="sc">{</span>pre[<span class="st">"κ_USD"</span>]<span class="sc">:.3f}</span><span class="ss"> → COVID=</span><span class="sc">{</span>covid[<span class="st">"κ_USD"</span>]<span class="sc">:.3f}</span><span class="ss"> → Post=</span><span class="sc">{</span>post[<span class="st">"κ_USD"</span>]<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'   KHR: Pre=</span><span class="sc">{</span>pre[<span class="st">"κ_KHR"</span>]<span class="sc">:.3f}</span><span class="ss"> → COVID=</span><span class="sc">{</span>covid[<span class="st">"κ_KHR"</span>]<span class="sc">:.3f}</span><span class="ss"> → Post=</span><span class="sc">{</span>post[<span class="st">"κ_KHR"</span>]<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'═══════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+═══════════════════════════════════════════════════════════════
+          COVID-19 Impact Analysis — Key Findings
+═══════════════════════════════════════════════════════════════
+
+1. VOLATILITY — Did σ spike during COVID?
+   USD: Pre=4.612 → COVID=1.719 → Post=3.034
+   KHR: Pre=7.979 → COVID=20.036 → Post=2.860
+   → USD σ changed by -62.7% during COVID
+   → KHR σ changed by +151.1% during COVID
+
+2. RECOVERY — Did post-COVID return to pre-COVID?
+   θ_USD: Pre=7.688, Post=4.965 (-35.4%) → shifted
+   θ_KHR: Pre=11.634, Post=5.712 (-50.9%) → shifted
+   σ_USD: Pre=4.612, Post=3.034 (-34.2%) → shifted
+   σ_KHR: Pre=7.979, Post=2.860 (-64.1%) → shifted
+
+3. MEAN REVERSION SPEED (κ):
+   USD: Pre=3.086 → COVID=10.934 → Post=7.671
+   KHR: Pre=0.607 → COVID=298.179 → Post=8.066
+═══════════════════════════════════════════════════════════════</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretation-covid-19-impact-summary" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-covid-19-impact-summary">Interpretation — COVID-19 Impact Summary</h3>
+<p>The key finding is <strong>counterintuitive</strong>: COVID did not cause a volatility spike — instead, volatility <strong>collapsed</strong>. This is the opposite of what happened in most global financial markets during COVID where spreads and volatility surged.</p>
+<p><strong>Why Cambodia Was Different:</strong> 1. <strong>NBC’s Proactive Restructuring (Circular 19):</strong> The NBC issued emergency measures allowing — effectively requiring — banks to restructure loans without recording them as non-performing. This froze spread dynamics by preventing the normal repricing that would occur during a credit deterioration event. 2. <strong>No Mark-to-Market Pressure:</strong> Unlike bond markets where spreads adjust instantly, bank lending rates are <em>sticky</em> and administratively set. Combined with regulatory forbearance, this created artificially low volatility. 3. <strong>Continued De-dollarization:</strong> The structural compression of KHR spreads continued through COVID, suggesting that the long-term development trend dominated the pandemic shock.</p>
+<p><strong>Permanent vs.&nbsp;Temporary Shift:</strong> The post-COVID parameters have NOT returned to pre-COVID levels. This suggests a <strong>permanent structural change</strong> in Cambodia’s credit market: - The pre-COVID era of high KHR spreads (&gt;10%) and elevated USD spreads (&gt;7%) is unlikely to return - The banking sector has reached a new equilibrium with tighter spreads, lower volatility, and converged cross-currency pricing - This has positive implications for financial stability but also means <strong>banks operate on thinner margins</strong>, potentially making them more vulnerable to the next shock</p>
+<hr>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>COVID-19 paradoxically <strong>decreased</strong> measured credit risk indicators in Cambodia due to NBC’s aggressive regulatory forbearance. While this protected borrowers in the short term, it raises questions about whether the low-volatility post-COVID regime truly reflects reduced risk or merely masks it. The paper should discuss this policy trade-off carefully.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

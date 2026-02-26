@@ -2,45 +2,44 @@ project:
   type: website
   output-dir: docs
   render:
-    - "*.qmd"
-
+  - '*.qmd'
+  - '*.ipynb'
 website:
-  title: "Credit Risk and Dollarization in Cambodia"
+  title: Credit Risk and Dollarization in Cambodia
   navbar:
-    background: "#1a1a2e"
-    foreground: "#ffffff"
+    background: '#1a1a2e'
+    foreground: '#ffffff'
     left:
-      - text: "Home"
-        href: index.qmd
-      - text: "Methodology"
-        href: methodology.qmd
-      - text: "Notebooks"
-        menu:
-          - text: "01 - Data Preparation"
-            href: nb01_data_preparation.qmd
-          - text: "02 - Exploratory Analysis"
-            href: nb02_exploratory_analysis.qmd
-          - text: "03 - Parameter Estimation"
-            href: nb03_parameter_estimation.qmd
-          - text: "04 - CRI Computation"
-            href: nb04_cri_computation.qmd
-          - text: "05 - Stress Testing"
-            href: nb05_stress_testing.qmd
-          - text: "06 - COVID-19 Analysis"
-            href: nb06_covid_analysis.qmd
-          - text: "07 - Rolling Window"
-            href: nb07_rolling_window.qmd
-          - text: "08 - Robustness Checks"
-            href: nb08_robustness.qmd
-          - text: "09 - Regime Switching"
-            href: nb09_regime_switching.qmd
-          - text: "10 - Dynamic Threshold"
-            href: nb10_dynamic_threshold.qmd
-          - text: "11 - Implied Default Probability"
-            href: nb11_implied_pd.qmd
-          - text: "12 - Policy Divergence"
-            href: nb12_policy_divergence.qmd
-
+    - text: Home
+      href: index.qmd
+    - text: Methodology
+      href: methodology.qmd
+    - text: Notebooks
+      menu:
+      - text: 01 - Data Preparation
+        href: 01_data_preparation.ipynb
+      - text: 02 - Exploratory Analysis
+        href: 02_exploratory_analysis.ipynb
+      - text: 03 - Parameter Estimation
+        href: 03_parameter_estimation.ipynb
+      - text: 04 - CRI Computation
+        href: 04_cri_computation.ipynb
+      - text: 05 - Stress Testing
+        href: 05_stress_testing.ipynb
+      - text: 06 - COVID-19 Analysis
+        href: 06_covid_analysis.ipynb
+      - text: 07 - Rolling Window
+        href: 07_rolling_window.ipynb
+      - text: 08 - Robustness Checks
+        href: 08_robustness.ipynb
+      - text: 09 - Regime Switching
+        href: 09_regime_switching.ipynb
+      - text: 10 - Dynamic Threshold
+        href: 10_dynamic_threshold.ipynb
+      - text: 11 - Implied Default Probability
+        href: 11_implied_pd.ipynb
+      - text: 12 - Policy Divergence
+        href: 12_policy_divergence.ipynb
 format:
   html:
     theme: cosmo
@@ -48,6 +47,6 @@ format:
     toc-depth: 3
     code-tools: true
     embed-resources: false
-
 execute:
-  freeze: true
+  eval: false
+  echo: true

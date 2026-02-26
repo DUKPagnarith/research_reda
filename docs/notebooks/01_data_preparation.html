@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Notebook 01: Data Preparation – Credit Risk and Dollarization in Cambodia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-665a47377fd1fb2966ef7e6e7341ee54.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Credit Risk and Dollarization in Cambodia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notebooks" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Notebooks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
+        <li>
+    <a class="dropdown-item" href="../01_data_preparation.html">
+ <span class="dropdown-text">01 - Data Preparation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../02_exploratory_analysis.html">
+ <span class="dropdown-text">02 - Exploratory Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../03_parameter_estimation.html">
+ <span class="dropdown-text">03 - Parameter Estimation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../04_cri_computation.html">
+ <span class="dropdown-text">04 - CRI Computation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../05_stress_testing.html">
+ <span class="dropdown-text">05 - Stress Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../06_covid_analysis.html">
+ <span class="dropdown-text">06 - COVID-19 Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../07_rolling_window.html">
+ <span class="dropdown-text">07 - Rolling Window</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../08_robustness.html">
+ <span class="dropdown-text">08 - Robustness Checks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../09_regime_switching.html">
+ <span class="dropdown-text">09 - Regime Switching</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../10_dynamic_threshold.html">
+ <span class="dropdown-text">10 - Dynamic Threshold</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../11_implied_pd.html">
+ <span class="dropdown-text">11 - Implied Default Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../12_policy_divergence.html">
+ <span class="dropdown-text">12 - Policy Divergence</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-raw-data" id="toc-load-raw-data" class="nav-link active" data-scroll-target="#load-raw-data">1. Load Raw Data</a></li>
+  <li><a href="#extract-term-loans-term-deposits-new-amount" id="toc-extract-term-loans-term-deposits-new-amount" class="nav-link" data-scroll-target="#extract-term-loans-term-deposits-new-amount">2. Extract Term Loans &amp; Term Deposits (New Amount)</a></li>
+  <li><a href="#compute-interest-rate-spreads" id="toc-compute-interest-rate-spreads" class="nav-link" data-scroll-target="#compute-interest-rate-spreads">3. Compute Interest Rate Spreads</a></li>
+  <li><a href="#data-quality-checks" id="toc-data-quality-checks" class="nav-link" data-scroll-target="#data-quality-checks">4. Data Quality Checks</a></li>
+  <li><a href="#quick-visualization" id="toc-quick-visualization" class="nav-link" data-scroll-target="#quick-visualization">5. Quick Visualization</a></li>
+  <li><a href="#save-clean-csvs" id="toc-save-clean-csvs" class="nav-link" data-scroll-target="#save-clean-csvs">6. Save Clean CSVs</a></li>
+  <li><a href="#robustness-data-outstanding-amount-spreads" id="toc-robustness-data-outstanding-amount-spreads" class="nav-link" data-scroll-target="#robustness-data-outstanding-amount-spreads">7. Robustness Data: Outstanding Amount Spreads</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">8. Summary</a>
+  <ul class="collapse">
+  <li><a href="#files-created" id="toc-files-created" class="nav-link" data-scroll-target="#files-created">Files Created</a></li>
+  <li><a href="#next-step" id="toc-next-step" class="nav-link" data-scroll-target="#next-step">Next Step</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Notebook 01: Data Preparation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Goal</strong>: Load the raw NBC interest rate data, extract Term Loans and Term Deposits for both currencies (KHR and USD), compute interest rate spreads, and save clean CSVs.</p>
+<p><strong>Data Source</strong>: National Bank of Cambodia — Deposit Money Banks’ Interest Rates on Deposits and Loans</p>
+<p><strong>Rate Type</strong>: Weighted Average Rate on New Amount (primary) + Outstanding Amount (robustness)</p>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.dates <span class="im">as</span> mdates</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plot style</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="dv">14</span>, <span class="dv">6</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.size'</span>] <span class="op">=</span> <span class="dv">11</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.grid'</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'grid.alpha'</span>] <span class="op">=</span> <span class="fl">0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="load-raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-raw-data">1. Load Raw Data</h2>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the combined NBC data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/Users/dukpagnarith/Documents/Research_Reda/combined_interest_rates_long.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'Date'</span>])</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Shape: </span><span class="sc">{</span>df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Date range: </span><span class="sc">{</span>df[<span class="st">'Date'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>df[<span class="st">'Date'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total months: </span><span class="sc">{</span>df[<span class="st">'Date'</span>]<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Columns:"</span>, <span class="bu">list</span>(df.columns))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique values:"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">'Currency'</span>, <span class="st">'Category'</span>, <span class="st">'Product'</span>, <span class="st">'Rate_Type'</span>]:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">sorted</span>(df[col].unique())<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Shape: (4992, 7)
+Date range: 2013-01 to 2025-12
+Total months: 156
+
+Columns: ['Date', 'Currency', 'Category', 'Product', 'Rate_Type', 'Value', 'Source']
+
+Unique values:
+  Currency: ['KHR', 'USD']
+  Category: ['Deposits', 'Loans']
+  Product: ['Credit Card', 'Demand Deposits', 'Other Deposits', 'Other Loans', 'Overdraft', 'Saving Deposits', 'Term Deposits', 'Term Loans']
+  Rate_Type: ['Weighted Average on New Amount', 'Weighted Average on Outstanding Amount']</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick look at the data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Currency</th>
+<th data-quarto-table-cell-role="th">Category</th>
+<th data-quarto-table-cell-role="th">Product</th>
+<th data-quarto-table-cell-role="th">Rate_Type</th>
+<th data-quarto-table-cell-role="th">Value</th>
+<th data-quarto-table-cell-role="th">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Deposits</td>
+<td>Demand Deposits</td>
+<td>Weighted Average on New Amount</td>
+<td>0.140016</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Deposits</td>
+<td>Other Deposits</td>
+<td>Weighted Average on New Amount</td>
+<td>0.000000</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Deposits</td>
+<td>Saving Deposits</td>
+<td>Weighted Average on New Amount</td>
+<td>1.123348</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Deposits</td>
+<td>Term Deposits</td>
+<td>Weighted Average on New Amount</td>
+<td>6.203495</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Loans</td>
+<td>Credit Card</td>
+<td>Weighted Average on New Amount</td>
+<td>0.000000</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Loans</td>
+<td>Other Loans</td>
+<td>Weighted Average on New Amount</td>
+<td>20.400000</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Loans</td>
+<td>Overdraft</td>
+<td>Weighted Average on New Amount</td>
+<td>0.000000</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Loans</td>
+<td>Term Loans</td>
+<td>Weighted Average on New Amount</td>
+<td>29.738981</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Deposits</td>
+<td>Demand Deposits</td>
+<td>Weighted Average on Outstanding Amount</td>
+<td>0.106246</td>
+<td>NBC_Excel</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>2013-01-01</td>
+<td>KHR</td>
+<td>Deposits</td>
+<td>Other Deposits</td>
+<td>Weighted Average on Outstanding Amount</td>
+<td>0.000000</td>
+<td>NBC_Excel</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="extract-term-loans-term-deposits-new-amount" class="level2">
+<h2 class="anchored" data-anchor-id="extract-term-loans-term-deposits-new-amount">2. Extract Term Loans &amp; Term Deposits (New Amount)</h2>
+<p><strong>Why these products?</strong> - <strong>Term Loans</strong>: Most representative of standard bank lending — pricing directly reflects credit risk assessment - <strong>Term Deposits</strong>: Best maturity match with term loans — avoids liquidity-driven pricing of demand/saving deposits</p>
+<p><strong>Why New Amount rates?</strong> - Reflects banks’ <em>current</em> risk pricing on newly issued loans - Responds faster to changes in risk perception than Outstanding Amount (which is diluted by legacy rates)</p>
+<div id="cell-7" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PRIMARY DATA: Weighted Average on New Amount</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>rate_type_primary <span class="op">=</span> <span class="st">'Weighted Average on New Amount'</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for Term Loans and Term Deposits only</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> (</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'Rate_Type'</span>] <span class="op">==</span> rate_type_primary) <span class="op">&amp;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'Product'</span>].isin([<span class="st">'Term Loans'</span>, <span class="st">'Term Deposits'</span>]))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df[mask].copy()</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Filtered rows: </span><span class="sc">{</span><span class="bu">len</span>(df_filtered)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Breakdown:"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_filtered.groupby([<span class="st">'Currency'</span>, <span class="st">'Product'</span>]).size().unstack(fill_value<span class="op">=</span><span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Filtered rows: 624
+
+Breakdown:
+Product   Term Deposits  Term Loans
+Currency                           
+KHR                 156         156
+USD                 156         156</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot to wide format: one row per date, columns for each rate</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_wide <span class="op">=</span> df_filtered.pivot_table(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">'Date'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">'Currency'</span>, <span class="st">'Product'</span>],</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    values<span class="op">=</span><span class="st">'Value'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    aggfunc<span class="op">=</span><span class="st">'first'</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>).sort_index()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten column names</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>df_wide.columns <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>currency<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>product<span class="sc">.</span>replace(<span class="st">' '</span>, <span class="st">'_'</span>)<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> currency, product <span class="kw">in</span> df_wide.columns]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>df_wide <span class="op">=</span> df_wide.reset_index()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Shape: </span><span class="sc">{</span>df_wide<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Columns: </span><span class="sc">{</span><span class="bu">list</span>(df_wide.columns)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>df_wide.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Shape: (156, 5)
+Columns: ['Date', 'KHR_Term_Deposits', 'KHR_Term_Loans', 'USD_Term_Deposits', 'USD_Term_Loans']</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">KHR_Term_Deposits</th>
+<th data-quarto-table-cell-role="th">KHR_Term_Loans</th>
+<th data-quarto-table-cell-role="th">USD_Term_Deposits</th>
+<th data-quarto-table-cell-role="th">USD_Term_Loans</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2013-01-01</td>
+<td>6.203495</td>
+<td>29.738981</td>
+<td>3.240062</td>
+<td>14.541092</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2013-02-01</td>
+<td>6.029433</td>
+<td>29.761882</td>
+<td>3.341841</td>
+<td>14.588371</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2013-03-01</td>
+<td>6.051077</td>
+<td>29.853643</td>
+<td>3.276668</td>
+<td>14.132688</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2013-04-01</td>
+<td>5.881582</td>
+<td>30.004437</td>
+<td>3.253917</td>
+<td>12.907449</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>2013-05-01</td>
+<td>6.114562</td>
+<td>30.051584</td>
+<td>3.465238</td>
+<td>12.761317</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="compute-interest-rate-spreads" class="level2">
+<h2 class="anchored" data-anchor-id="compute-interest-rate-spreads">3. Compute Interest Rate Spreads</h2>
+<p><span class="math display">\[S_t^{USD} = r_{\text{Term Loans},t}^{USD} - r_{\text{Term Deposits},t}^{USD}\]</span></p>
+<p><span class="math display">\[S_t^{KHR} = r_{\text{Term Loans},t}^{KHR} - r_{\text{Term Deposits},t}^{KHR}\]</span></p>
+<div id="cell-10" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute spreads</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_wide[<span class="st">'spread_usd'</span>] <span class="op">=</span> df_wide[<span class="st">'USD_Term_Loans'</span>] <span class="op">-</span> df_wide[<span class="st">'USD_Term_Deposits'</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_wide[<span class="st">'spread_khr'</span>] <span class="op">=</span> df_wide[<span class="st">'KHR_Term_Loans'</span>] <span class="op">-</span> df_wide[<span class="st">'KHR_Term_Deposits'</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Spread computation complete."</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">First 3 rows (verification):"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_wide[[<span class="st">'Date'</span>, <span class="st">'USD_Term_Loans'</span>, <span class="st">'USD_Term_Deposits'</span>, <span class="st">'spread_usd'</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>               <span class="st">'KHR_Term_Loans'</span>, <span class="st">'KHR_Term_Deposits'</span>, <span class="st">'spread_khr'</span>]].head(<span class="dv">3</span>).to_string(index<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Spread computation complete.
+
+First 3 rows (verification):
+      Date  USD_Term_Loans  USD_Term_Deposits  spread_usd  KHR_Term_Loans  KHR_Term_Deposits  spread_khr
+2013-01-01       14.541092           3.240062    11.30103       29.738981           6.203495   23.535486
+2013-02-01       14.588371           3.341841    11.24653       29.761882           6.029433   23.732449
+2013-03-01       14.132688           3.276668    10.85602       29.853643           6.051077   23.802566</code></pre>
+</div>
+</div>
+</section>
+<section id="data-quality-checks" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-checks">4. Data Quality Checks</h2>
+<div id="cell-12" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for missing values</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Missing Values ==="</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_wide[[<span class="st">'Date'</span>, <span class="st">'USD_Term_Loans'</span>, <span class="st">'USD_Term_Deposits'</span>, <span class="st">'spread_usd'</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">'KHR_Term_Loans'</span>, <span class="st">'KHR_Term_Deposits'</span>, <span class="st">'spread_khr'</span>]].isnull().<span class="bu">sum</span>())</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Zero Values (potential data gaps) ==="</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">'USD_Term_Loans'</span>, <span class="st">'USD_Term_Deposits'</span>, <span class="st">'KHR_Term_Loans'</span>, <span class="st">'KHR_Term_Deposits'</span>]:</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    zeros <span class="op">=</span> (df_wide[col] <span class="op">==</span> <span class="dv">0</span>).<span class="bu">sum</span>()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> zeros <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>zeros<span class="sc">}</span><span class="ss"> zero values"</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        zero_dates <span class="op">=</span> df_wide.loc[df_wide[col] <span class="op">==</span> <span class="dv">0</span>, <span class="st">'Date'</span>].dt.strftime(<span class="st">'%Y-%m'</span>).tolist()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"    Dates: </span><span class="sc">{</span>zero_dates[:<span class="dv">10</span>]<span class="sc">}{</span><span class="st">'...'</span> <span class="cf">if</span> <span class="bu">len</span>(zero_dates) <span class="op">&gt;</span> <span class="dv">10</span> <span class="cf">else</span> <span class="st">''</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Negative Spreads (should not exist) ==="</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>neg_usd <span class="op">=</span> (df_wide[<span class="st">'spread_usd'</span>] <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">sum</span>()</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>neg_khr <span class="op">=</span> (df_wide[<span class="st">'spread_khr'</span>] <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">sum</span>()</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  USD negative spreads: </span><span class="sc">{</span>neg_usd<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  KHR negative spreads: </span><span class="sc">{</span>neg_khr<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Checking for gaps in monthly sequence ==="</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>date_diffs <span class="op">=</span> df_wide[<span class="st">'Date'</span>].diff().dt.days.dropna()</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>gaps <span class="op">=</span> date_diffs[date_diffs <span class="op">&gt;</span> <span class="dv">35</span>]  <span class="co"># More than ~1 month</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(gaps) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Found </span><span class="sc">{</span><span class="bu">len</span>(gaps)<span class="sc">}</span><span class="ss"> gaps larger than 35 days:"</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx <span class="kw">in</span> gaps.index:</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"    </span><span class="sc">{</span>df_wide<span class="sc">.</span>loc[idx<span class="op">-</span><span class="dv">1</span>, <span class="st">'Date'</span>]<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss"> → </span><span class="sc">{</span>df_wide<span class="sc">.</span>loc[idx, <span class="st">'Date'</span>]<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="bu">int</span>(gaps[idx])<span class="sc">}</span><span class="ss"> days)"</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"  No gaps found — continuous monthly series."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Missing Values ===
+Date                 0
+USD_Term_Loans       0
+USD_Term_Deposits    0
+spread_usd           0
+KHR_Term_Loans       0
+KHR_Term_Deposits    0
+spread_khr           0
+dtype: int64
+
+=== Zero Values (potential data gaps) ===
+
+=== Negative Spreads (should not exist) ===
+  USD negative spreads: 0
+  KHR negative spreads: 0
+
+=== Checking for gaps in monthly sequence ===
+  No gaps found — continuous monthly series.</code></pre>
+</div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descriptive statistics for the spreads</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DESCRIPTIVE STATISTICS — Interest Rate Spreads (%)"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rate Type: Weighted Average on New Amount"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Products: Term Loans − Term Deposits"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> df_wide[[<span class="st">'spread_usd'</span>, <span class="st">'spread_khr'</span>]].describe(percentiles<span class="op">=</span>[<span class="fl">0.05</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>])</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>stats.columns <span class="op">=</span> [<span class="st">'USD Spread'</span>, <span class="st">'KHR Spread'</span>]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> stats.<span class="bu">round</span>(<span class="dv">4</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stats)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Skewness:"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  USD: </span><span class="sc">{</span>df_wide[<span class="st">'spread_usd'</span>]<span class="sc">.</span>skew()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  KHR: </span><span class="sc">{</span>df_wide[<span class="st">'spread_khr'</span>]<span class="sc">.</span>skew()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Kurtosis:"</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  USD: </span><span class="sc">{</span>df_wide[<span class="st">'spread_usd'</span>]<span class="sc">.</span>kurtosis()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  KHR: </span><span class="sc">{</span>df_wide[<span class="st">'spread_khr'</span>]<span class="sc">.</span>kurtosis()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Correlation between USD and KHR spreads: </span><span class="sc">{</span>df_wide[<span class="st">'spread_usd'</span>]<span class="sc">.</span>corr(df_wide[<span class="st">'spread_khr'</span>])<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>============================================================
+DESCRIPTIVE STATISTICS — Interest Rate Spreads (%)
+Rate Type: Weighted Average on New Amount
+Products: Term Loans − Term Deposits
+============================================================
+       USD Spread  KHR Spread
+count    156.0000    156.0000
+mean       6.7231     11.3415
+std        2.0158      7.1069
+min        2.8771      4.2383
+5%         4.2754      4.8265
+25%        5.4318      5.7037
+50%        6.0398      6.9478
+75%        8.2154     19.1597
+90%       10.0957     23.3258
+95%       10.7268     23.9373
+99%       11.1834     24.2558
+max       11.3010     26.6490
+
+Skewness:
+  USD: 0.7441
+  KHR: 0.7615
+
+Kurtosis:
+  USD: -0.4826
+  KHR: -1.1156
+
+Correlation between USD and KHR spreads: 0.8387</code></pre>
+</div>
+</div>
+</section>
+<section id="quick-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="quick-visualization">5. Quick Visualization</h2>
+<div id="cell-15" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Top panel: Raw rates ---</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> axes[<span class="dv">0</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>ax1.plot(df_wide[<span class="st">'Date'</span>], df_wide[<span class="st">'USD_Term_Loans'</span>], label<span class="op">=</span><span class="st">'USD Term Loan Rate'</span>, color<span class="op">=</span><span class="st">'#2166ac'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>ax1.plot(df_wide[<span class="st">'Date'</span>], df_wide[<span class="st">'USD_Term_Deposits'</span>], label<span class="op">=</span><span class="st">'USD Term Deposit Rate'</span>, color<span class="op">=</span><span class="st">'#2166ac'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>ax1.plot(df_wide[<span class="st">'Date'</span>], df_wide[<span class="st">'KHR_Term_Loans'</span>], label<span class="op">=</span><span class="st">'KHR Term Loan Rate'</span>, color<span class="op">=</span><span class="st">'#b2182b'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>ax1.plot(df_wide[<span class="st">'Date'</span>], df_wide[<span class="st">'KHR_Term_Deposits'</span>], label<span class="op">=</span><span class="st">'KHR Term Deposit Rate'</span>, color<span class="op">=</span><span class="st">'#b2182b'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>ax1.axvspan(pd.Timestamp(<span class="st">'2020-03-01'</span>), pd.Timestamp(<span class="st">'2021-12-31'</span>), alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'gray'</span>, label<span class="op">=</span><span class="st">'COVID-19 period'</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Interest Rate (%)'</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Term Loan and Term Deposit Rates — New Amount (KHR vs. USD)'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>ax1.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Bottom panel: Spreads ---</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> axes[<span class="dv">1</span>]</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>ax2.plot(df_wide[<span class="st">'Date'</span>], df_wide[<span class="st">'spread_usd'</span>], label<span class="op">=</span><span class="st">'USD Spread'</span>, color<span class="op">=</span><span class="st">'#2166ac'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>ax2.plot(df_wide[<span class="st">'Date'</span>], df_wide[<span class="st">'spread_khr'</span>], label<span class="op">=</span><span class="st">'KHR Spread'</span>, color<span class="op">=</span><span class="st">'#b2182b'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ax2.axvspan(pd.Timestamp(<span class="st">'2020-03-01'</span>), pd.Timestamp(<span class="st">'2021-12-31'</span>), alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'gray'</span>, label<span class="op">=</span><span class="st">'COVID-19 period'</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Spread (%)'</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Interest Rate Spreads: Term Loans − Term Deposits (KHR vs. USD)'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>ax2.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>ax2.xaxis.set_major_locator(mdates.YearLocator())</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>ax2.xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">'%Y'</span>))</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'fig_preview_spreads.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Figure saved: fig_preview_spreads.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_data_preparation_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Figure saved: fig_preview_spreads.png</code></pre>
+</div>
+</div>
+</section>
+<section id="save-clean-csvs" class="level2">
+<h2 class="anchored" data-anchor-id="save-clean-csvs">6. Save Clean CSVs</h2>
+<p>We save two separate spread files (primary analysis) plus the full wide table for reference.</p>
+<div id="cell-17" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Primary: USD Spread ---</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_usd <span class="op">=</span> df_wide[[<span class="st">'Date'</span>, <span class="st">'USD_Term_Loans'</span>, <span class="st">'USD_Term_Deposits'</span>, <span class="st">'spread_usd'</span>]].copy()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df_usd.columns <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'term_loan_rate'</span>, <span class="st">'term_deposit_rate'</span>, <span class="st">'spread'</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>df_usd.to_csv(<span class="st">'spreads_usd_new_amount.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: spreads_usd_new_amount.csv (</span><span class="sc">{</span><span class="bu">len</span>(df_usd)<span class="sc">}</span><span class="ss"> rows)"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Primary: KHR Spread ---</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>df_khr <span class="op">=</span> df_wide[[<span class="st">'Date'</span>, <span class="st">'KHR_Term_Loans'</span>, <span class="st">'KHR_Term_Deposits'</span>, <span class="st">'spread_khr'</span>]].copy()</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>df_khr.columns <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'term_loan_rate'</span>, <span class="st">'term_deposit_rate'</span>, <span class="st">'spread'</span>]</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>df_khr.to_csv(<span class="st">'spreads_khr_new_amount.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: spreads_khr_new_amount.csv (</span><span class="sc">{</span><span class="bu">len</span>(df_khr)<span class="sc">}</span><span class="ss"> rows)"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Full wide table (for reference) ---</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>df_wide.to_csv(<span class="st">'all_rates_wide_new_amount.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: all_rates_wide_new_amount.csv (</span><span class="sc">{</span><span class="bu">len</span>(df_wide)<span class="sc">}</span><span class="ss"> rows)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saved: spreads_usd_new_amount.csv (156 rows)
+Saved: spreads_khr_new_amount.csv (156 rows)
+Saved: all_rates_wide_new_amount.csv (156 rows)</code></pre>
+</div>
+</div>
+</section>
+<section id="robustness-data-outstanding-amount-spreads" class="level2">
+<h2 class="anchored" data-anchor-id="robustness-data-outstanding-amount-spreads">7. Robustness Data: Outstanding Amount Spreads</h2>
+<p>For the robustness section of the paper, we also prepare the Outstanding Amount version.</p>
+<div id="cell-19" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ROBUSTNESS: Weighted Average on Outstanding Amount</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>rate_type_robust <span class="op">=</span> <span class="st">'Weighted Average on Outstanding Amount'</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>mask_robust <span class="op">=</span> (</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'Rate_Type'</span>] <span class="op">==</span> rate_type_robust) <span class="op">&amp;</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    (df[<span class="st">'Product'</span>].isin([<span class="st">'Term Loans'</span>, <span class="st">'Term Deposits'</span>]))</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>df_robust <span class="op">=</span> df[mask_robust].copy()</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot to wide</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>df_wide_robust <span class="op">=</span> df_robust.pivot_table(</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">'Date'</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">'Currency'</span>, <span class="st">'Product'</span>],</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    values<span class="op">=</span><span class="st">'Value'</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    aggfunc<span class="op">=</span><span class="st">'first'</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>).sort_index()</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>df_wide_robust.columns <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>p<span class="sc">.</span>replace(<span class="st">' '</span>, <span class="st">'_'</span>)<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c, p <span class="kw">in</span> df_wide_robust.columns]</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>df_wide_robust <span class="op">=</span> df_wide_robust.reset_index()</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute spreads</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>df_wide_robust[<span class="st">'spread_usd'</span>] <span class="op">=</span> df_wide_robust[<span class="st">'USD_Term_Loans'</span>] <span class="op">-</span> df_wide_robust[<span class="st">'USD_Term_Deposits'</span>]</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>df_wide_robust[<span class="st">'spread_khr'</span>] <span class="op">=</span> df_wide_robust[<span class="st">'KHR_Term_Loans'</span>] <span class="op">-</span> df_wide_robust[<span class="st">'KHR_Term_Deposits'</span>]</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Save</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>df_usd_robust <span class="op">=</span> df_wide_robust[[<span class="st">'Date'</span>, <span class="st">'USD_Term_Loans'</span>, <span class="st">'USD_Term_Deposits'</span>, <span class="st">'spread_usd'</span>]].copy()</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>df_usd_robust.columns <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'term_loan_rate'</span>, <span class="st">'term_deposit_rate'</span>, <span class="st">'spread'</span>]</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>df_usd_robust.to_csv(<span class="st">'spreads_usd_outstanding.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>df_khr_robust <span class="op">=</span> df_wide_robust[[<span class="st">'Date'</span>, <span class="st">'KHR_Term_Loans'</span>, <span class="st">'KHR_Term_Deposits'</span>, <span class="st">'spread_khr'</span>]].copy()</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>df_khr_robust.columns <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'term_loan_rate'</span>, <span class="st">'term_deposit_rate'</span>, <span class="st">'spread'</span>]</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>df_khr_robust.to_csv(<span class="st">'spreads_khr_outstanding.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: spreads_usd_outstanding.csv (</span><span class="sc">{</span><span class="bu">len</span>(df_usd_robust)<span class="sc">}</span><span class="ss"> rows)"</span>)</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Saved: spreads_khr_outstanding.csv (</span><span class="sc">{</span><span class="bu">len</span>(df_khr_robust)<span class="sc">}</span><span class="ss"> rows)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saved: spreads_usd_outstanding.csv (156 rows)
+Saved: spreads_khr_outstanding.csv (156 rows)</code></pre>
+</div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick comparison: New Amount vs Outstanding Amount spreads</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># USD</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(df_wide[<span class="st">'Date'</span>], df_wide[<span class="st">'spread_usd'</span>], label<span class="op">=</span><span class="st">'New Amount'</span>, color<span class="op">=</span><span class="st">'#2166ac'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(df_wide_robust[<span class="st">'Date'</span>], df_wide_robust[<span class="st">'spread_usd'</span>], label<span class="op">=</span><span class="st">'Outstanding Amount'</span>, color<span class="op">=</span><span class="st">'#2166ac'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'USD Spread: New Amount vs Outstanding'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Spread (%)'</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend()</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># KHR</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(df_wide[<span class="st">'Date'</span>], df_wide[<span class="st">'spread_khr'</span>], label<span class="op">=</span><span class="st">'New Amount'</span>, color<span class="op">=</span><span class="st">'#b2182b'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(df_wide_robust[<span class="st">'Date'</span>], df_wide_robust[<span class="st">'spread_khr'</span>], label<span class="op">=</span><span class="st">'Outstanding Amount'</span>, color<span class="op">=</span><span class="st">'#b2182b'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'KHR Spread: New Amount vs Outstanding'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Spread (%)'</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend()</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes:</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_locator(mdates.YearLocator(<span class="dv">2</span>))</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">'%Y'</span>))</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'fig_new_vs_outstanding.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">This comparison will be useful for your robustness section."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_data_preparation_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+This comparison will be useful for your robustness section.</code></pre>
+</div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">8. Summary</h2>
+<section id="files-created" class="level3">
+<h3 class="anchored" data-anchor-id="files-created">Files Created</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 54%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Description</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>spreads_usd_new_amount.csv</code></td>
+<td>USD spread (primary)</td>
+<td>Main analysis</td>
+</tr>
+<tr class="even">
+<td><code>spreads_khr_new_amount.csv</code></td>
+<td>KHR spread (primary)</td>
+<td>Main analysis</td>
+</tr>
+<tr class="odd">
+<td><code>spreads_usd_outstanding.csv</code></td>
+<td>USD spread (robustness)</td>
+<td>Robustness check</td>
+</tr>
+<tr class="even">
+<td><code>spreads_khr_outstanding.csv</code></td>
+<td>KHR spread (robustness)</td>
+<td>Robustness check</td>
+</tr>
+<tr class="odd">
+<td><code>all_rates_wide_new_amount.csv</code></td>
+<td>All 4 rates + 2 spreads</td>
+<td>Reference</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="next-step" class="level3">
+<h3 class="anchored" data-anchor-id="next-step">Next Step</h3>
+<p>→ <strong>Notebook 02: Exploratory Analysis</strong> — Deeper statistical analysis, distribution plots, correlation analysis, and all figures needed for Section 4 (Data Description) of your paper.</p>
+<div id="cell-22" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Final summary</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DATA PREPARATION COMPLETE"</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Date range: </span><span class="sc">{</span>df_wide[<span class="st">'Date'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>df_wide[<span class="st">'Date'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Observations: </span><span class="sc">{</span><span class="bu">len</span>(df_wide)<span class="sc">}</span><span class="ss"> months (~</span><span class="sc">{</span><span class="bu">len</span>(df_wide)<span class="op">//</span><span class="dv">12</span><span class="sc">}</span><span class="ss"> years)"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Primary data: Weighted Average on New Amount"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Products: Term Loans − Term Deposits"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">USD spread — Mean: </span><span class="sc">{</span>df_wide[<span class="st">'spread_usd'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">%  Std: </span><span class="sc">{</span>df_wide[<span class="st">'spread_usd'</span>]<span class="sc">.</span>std()<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"KHR spread — Mean: </span><span class="sc">{</span>df_wide[<span class="st">'spread_khr'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">%  Std: </span><span class="sc">{</span>df_wide[<span class="st">'spread_khr'</span>]<span class="sc">.</span>std()<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation: </span><span class="sc">{</span>df_wide[<span class="st">'spread_usd'</span>]<span class="sc">.</span>corr(df_wide[<span class="st">'spread_khr'</span>])<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✓ 6 CSV files saved"</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ 2 preview figures saved"</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">→ Next: Notebook 02 (Exploratory Analysis)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>============================================================
+DATA PREPARATION COMPLETE
+============================================================
+
+Date range: 2013-01 to 2025-12
+Observations: 156 months (~13 years)
+
+Primary data: Weighted Average on New Amount
+Products: Term Loans − Term Deposits
+
+USD spread — Mean: 6.72%  Std: 2.02%
+KHR spread — Mean: 11.34%  Std: 7.11%
+Correlation: 0.8387
+
+✓ 6 CSV files saved
+✓ 2 preview figures saved
+
+→ Next: Notebook 02 (Exploratory Analysis)</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
