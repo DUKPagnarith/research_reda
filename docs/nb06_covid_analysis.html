@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<div id="9ed52d98" class="cell">
+<div id="9391c00b" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -289,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="09b73108" class="cell">
+<div id="cbecac39" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
@@ -322,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Functions defined.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cc5a273e" class="cell">
+<div id="26e394fa" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Sub-Period Estimation ───────────────────────────────────────────────────</span></span>
@@ -369,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  KHR: θ=</span><span class="sc">{</span>est_khr[<span class="st">"theta"</span>]<span class="sc">:.2f}</span><span class="ss">%, κ=</span><span class="sc">{</span>est_khr[<span class="st">"kappa"</span>]<span class="sc">:.2f}</span><span class="ss">, σ=</span><span class="sc">{</span>est_khr[<span class="st">"sigma"</span>]<span class="sc">:.2f}</span><span class="ss">, HL=</span><span class="sc">{</span>est_khr[<span class="st">"half_life"</span>]<span class="sc">:.1f}</span><span class="ss">m'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="2692874d" class="cell">
+<div id="dbcace52" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── TABLE 5 ─────────────────────────────────────────────────────────────────</span></span>
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>The KHR story is even more dramatic: the equilibrium spread fell from ~16% to ~6% — a <strong>63% decline</strong> that represents genuine structural change in Cambodia’s riel lending market. Unlike the USD case, this is not merely regulatory forbearance but reflects real economic development: more banks competing for KHR loans, better credit infrastructure, growing riel deposits, and reduced exchange rate risk perception.</p>
 <p><strong>Did Post-COVID Parameters Return to Pre-COVID Levels?</strong> - <strong>θ</strong>: NO — both currencies show <strong>permanently lower</strong> equilibrium spreads (USD: 5% vs 8%, KHR: 5.8% vs 16%). The pre-COVID spread levels are unlikely to return. - <strong>σ</strong>: PARTIALLY — post-COVID volatility (USD ~0.9, KHR ~0.8) is higher than during COVID but remains <strong>far below</strong> pre-COVID levels. This suggests a <strong>new low-volatility regime</strong> has been established. - <strong>κ</strong>: Results may vary across periods; small samples (24 obs for COVID) make κ estimation less reliable.</p>
-<div id="e42a75ca" class="cell">
+<div id="8709c885" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 9: Parameter Comparison ──────────────────────────────────────────</span></span>
@@ -531,7 +531,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Panel 3 (σ):</strong> The most striking visual — both bars <strong>virtually disappear</strong> in the COVID and Post-COVID columns compared to the tall pre-COVID bars. The volatility reduction is not subtle; it represents a <strong>regime change</strong> in spread dynamics. This low-volatility environment is good for financial stability but also means the OU model parameters from the full sample may not accurately represent current conditions.</p>
 <p><strong>Panel 4 (Half-Life):</strong> Shows how quickly shocks dissipate in each period. COVID-period estimates should be treated cautiously due to the small sample.</p>
 <p><strong>Panel 5 (Crisis Probability):</strong> Pre-COVID crisis probability for KHR was substantial (reflecting spreads near the 95th percentile threshold), while it’s effectively zero in COVID and Post-COVID periods. This confirms the CRI finding from Notebook 04 — the crisis probability component has become inactive in the recent regime.</p>
-<div id="030e0b75" class="cell">
+<div id="afe06df6" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Key COVID Findings ──────────────────────────────────────────────────────</span></span>

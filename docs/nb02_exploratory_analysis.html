@@ -299,7 +299,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="credit-risk-and-dollarization-in-cambodia-dual-currency-spread-analysis">Credit Risk and Dollarization in Cambodia: Dual-Currency Spread Analysis</h2>
 <p>This notebook performs comprehensive exploratory analysis of the USD and KHR interest rate spreads (term loan rate − term deposit rate) computed in Notebook 01.</p>
 <p><strong>Contents:</strong> 1. Descriptive Statistics (full sample &amp; sub-period) 2. Normality Tests (Shapiro-Wilk, Jarque-Bera) 3. Stationarity Tests (Augmented Dickey-Fuller) 4. Autocorrelation Analysis (ACF/PACF) 5. Correlation Analysis 6. Publication-Quality Visualizations (Figures 1–5)</p>
-<div id="74b45497" class="cell">
+<div id="4ddad3e8" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -330,7 +330,7 @@ window.Quarto = {
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded successfully.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="d9f5d79f" class="cell">
+<div id="da36ea3c" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
@@ -353,7 +353,7 @@ window.Quarto = {
 </section>
 <section id="descriptive-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-statistics">1. Descriptive Statistics</h2>
-<div id="446b6fd0" class="cell">
+<div id="58f16cde" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Full-Sample Descriptive Statistics ──────────────────────────────────────</span></span>
@@ -395,7 +395,7 @@ window.Quarto = {
 <p><strong>3. Mean vs.&nbsp;Median Divergence:</strong> The KHR median (6.95%) is <strong>far below</strong> its mean (11.34%), indicating the distribution is <strong>heavily right-skewed</strong> — dominated by the early-sample high values when KHR spreads exceeded 20%. By contrast, the USD median (6.04%) is closer to its mean, suggesting a more symmetric distribution around typical values.</p>
 <p><strong>4. Skewness and Kurtosis:</strong> Both spreads are positively skewed (USD: 0.74, KHR: 0.76), meaning extreme <strong>widenings</strong> are more common than extreme compressions — consistent with credit risk theory where risk materializes through sudden spread blowouts. The negative kurtosis for KHR (−1.12) indicates a <strong>platykurtic</strong> distribution — fat but spread out, without the extreme tails one might expect. This suggests risk in the KHR segment manifests as <strong>sustained elevated spreads</strong> rather than sudden spikes.</p>
 <p><strong>5. Percentile Analysis:</strong> The 95th percentile values (USD: 10.73%, KHR: 23.94%) will serve as <strong>crisis thresholds</strong> in Notebook 04. When spreads exceed these levels, the CRI will signal elevated credit risk conditions.</p>
-<div id="4f568b9b" class="cell">
+<div id="489b625a" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Sub-Period Descriptive Statistics ────────────────────────────────────────</span></span>
@@ -441,7 +441,7 @@ window.Quarto = {
 </section>
 <section id="normality-tests" class="level2">
 <h2 class="anchored" data-anchor-id="normality-tests">2. Normality Tests</h2>
-<div id="76383ec4" class="cell">
+<div id="647590e0" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Normality Tests ─────────────────────────────────────────────────────────</span></span>
@@ -481,7 +481,7 @@ window.Quarto = {
 </section>
 <section id="stationarity-tests-adf" class="level2">
 <h2 class="anchored" data-anchor-id="stationarity-tests-adf">3. Stationarity Tests (ADF)</h2>
-<div id="5c49ad5d" class="cell">
+<div id="0b7ead9d" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Augmented Dickey-Fuller Tests ───────────────────────────────────────────</span></span>
@@ -521,7 +521,7 @@ window.Quarto = {
 </section>
 <section id="autocorrelation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="autocorrelation-analysis">4. Autocorrelation Analysis</h2>
-<div id="0a2e6bee" class="cell">
+<div id="1c9ae56b" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── ACF / PACF Plots ────────────────────────────────────────────────────────</span></span>
@@ -565,7 +565,7 @@ window.Quarto = {
 </section>
 <section id="correlation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="correlation-analysis">5. Correlation Analysis</h2>
-<div id="ba1ba346" class="cell">
+<div id="7c82eaef" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Correlation Analysis ────────────────────────────────────────────────────</span></span>
@@ -627,7 +627,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="publication-quality-visualizations">6. Publication-Quality Visualizations</h2>
 <section id="figure-1-dual-time-series-with-covid-shading" class="level3">
 <h3 class="anchored" data-anchor-id="figure-1-dual-time-series-with-covid-shading">Figure 1: Dual Time Series with COVID Shading</h3>
-<div id="81a28850" class="cell">
+<div id="0ae21e3f" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 1: Dual Time Series ──────────────────────────────────────────────</span></span>
@@ -684,7 +684,7 @@ window.Quarto = {
 </section>
 <section id="figure-2-spread-histograms-with-normal-overlay" class="level3">
 <h3 class="anchored" data-anchor-id="figure-2-spread-histograms-with-normal-overlay">Figure 2: Spread Histograms with Normal Overlay</h3>
-<div id="001b8a88" class="cell">
+<div id="25e9bf8e" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 2: Histograms ────────────────────────────────────────────────────</span></span>
@@ -728,7 +728,7 @@ window.Quarto = {
 </section>
 <section id="figure-3-raw-rates-underlying-components" class="level3">
 <h3 class="anchored" data-anchor-id="figure-3-raw-rates-underlying-components">Figure 3: Raw Rates (Underlying Components)</h3>
-<div id="c517ac6b" class="cell">
+<div id="1d24ccc1" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 3: Raw Rates ─────────────────────────────────────────────────────</span></span>
@@ -785,7 +785,7 @@ window.Quarto = {
 </section>
 <section id="figure-4-scatter-plot-usd-vs-khr-spread" class="level3">
 <h3 class="anchored" data-anchor-id="figure-4-scatter-plot-usd-vs-khr-spread">Figure 4: Scatter Plot — USD vs KHR Spread</h3>
-<div id="6453faef" class="cell">
+<div id="f89254f3" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 4: Scatter Plot ──────────────────────────────────────────────────</span></span>
@@ -847,7 +847,7 @@ window.Quarto = {
 </section>
 <section id="figure-5-box-plots-by-year" class="level3">
 <h3 class="anchored" data-anchor-id="figure-5-box-plots-by-year">Figure 5: Box Plots by Year</h3>
-<div id="b4fce936" class="cell">
+<div id="e41ea6af" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 5: Box Plots by Year ─────────────────────────────────────────────</span></span>

@@ -286,7 +286,7 @@ window.Quarto = {
 <p><span class="math display">\[dS_t^c = \kappa^c(\theta^c - S_t^c)dt + \sigma^c dW_t^c\]</span></p>
 <p>where <span class="math inline">\(c \in \{\text{USD}, \text{KHR}\}\)</span>, using maximum likelihood estimation (MLE) and an AR(1) OLS cross-check.</p>
 <p><strong>Contents:</strong> 1. MLE for OU Parameters (κ, θ, σ) with standard errors 2. AR(1) Cross-Check 3. Confidence Intervals &amp; Half-Lives 4. Model Diagnostics 5. Parameter Export for Downstream Use</p>
-<div id="c8070529" class="cell">
+<div id="42de388c" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -305,7 +305,7 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="6ab1ac50" class="cell">
+<div id="988519cf" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
@@ -328,7 +328,7 @@ window.Quarto = {
 <p>The exact transition density of the OU process gives:</p>
 <p><span class="math display">\[S_{t+\Delta t} | S_t \sim \mathcal{N}\left(\theta + (S_t - \theta)e^{-\kappa\Delta t},\; \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\right)\]</span></p>
 <p>We maximize the resulting log-likelihood over (κ, θ, σ).</p>
-<div id="a1558dbb" class="cell">
+<div id="368a473d" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── OU Negative Log-Likelihood ──────────────────────────────────────────────</span></span>
@@ -510,7 +510,7 @@ window.Quarto = {
 </section>
 <section id="ar1-cross-check" class="level2">
 <h2 class="anchored" data-anchor-id="ar1-cross-check">2. AR(1) Cross-Check</h2>
-<div id="76d3022b" class="cell">
+<div id="ca385b1f" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── AR(1) Cross-Check ───────────────────────────────────────────────────────</span></span>
@@ -617,7 +617,7 @@ window.Quarto = {
 </section>
 <section id="confidence-intervals" class="level2">
 <h2 class="anchored" data-anchor-id="confidence-intervals">3. Confidence Intervals</h2>
-<div id="7336077e" class="cell">
+<div id="3b8bcdde" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Confidence Intervals ────────────────────────────────────────────────────</span></span>
@@ -646,7 +646,7 @@ window.Quarto = {
 </section>
 <section id="model-diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="model-diagnostics">4. Model Diagnostics</h2>
-<div id="5b44e7a1" class="cell">
+<div id="a03610b6" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Model Diagnostics ───────────────────────────────────────────────────────</span></span>
@@ -709,7 +709,7 @@ window.Quarto = {
 </section>
 <section id="save-parameters-for-downstream-notebooks" class="level2">
 <h2 class="anchored" data-anchor-id="save-parameters-for-downstream-notebooks">5. Save Parameters for Downstream Notebooks</h2>
-<div id="393ed9f8" class="cell">
+<div id="4f3b3f72" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Save Parameters ─────────────────────────────────────────────────────────</span></span>

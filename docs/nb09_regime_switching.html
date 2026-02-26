@@ -274,7 +274,7 @@ window.Quarto = {
 <p><span class="math display">\[P = \begin{pmatrix} p_{11} &amp; 1-p_{11} \\ 1-p_{22} &amp; p_{22} \end{pmatrix}\]</span></p>
 <p><strong>Parameters to estimate (per currency):</strong> <span class="math inline">\(\kappa_1, \theta_1, \sigma_1, \kappa_2, \theta_2, \sigma_2, p_{11}, p_{22}\)</span> (8 total)</p>
 <p><strong>Estimation:</strong> Hamilton (1989) filter for filtered probabilities + Kim (1994) smoother for full-sample regime classification.</p>
-<div id="bd7ae880" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:32.372550Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:32.372323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.375377Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.375109Z&quot;}}">
+<div id="2169671e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:32.372550Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:32.372323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.375377Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.375109Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -294,7 +294,7 @@ window.Quarto = {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="78b8e4b5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.391794Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.391622Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.404386Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.404152Z&quot;}}">
+<div id="c6472d4d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.391794Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.391622Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.404386Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.404152Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
@@ -322,7 +322,7 @@ window.Quarto = {
 <li><strong>Update step:</strong> <span class="math inline">\(\xi_{j|t}^{\text{updated}} = \frac{f_j(S_t | S_{t-1}) \cdot \xi_{j|t-1}}{\sum_{k=1}^{2} f_k(S_t | S_{t-1}) \cdot \xi_{k|t-1}}\)</span></li>
 </ol>
 <p>where <span class="math inline">\(f_j\)</span> is the Gaussian OU transition density under regime <span class="math inline">\(j\)</span>.</p>
-<div id="eb9b89e5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.405643Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.405537Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.411796Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.411616Z&quot;}}">
+<div id="4c9c9f73" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.405643Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.405537Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:06:33.411796Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:06:33.411616Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Regime-Switching OU: Hamilton Filter + MLE ────────────────────────────</span></span>
@@ -441,7 +441,7 @@ window.Quarto = {
 <span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hamilton filter, Kim smoother, and MLE functions defined.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="442ad4a0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.412933Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.412838Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:41.225543Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:41.225095Z&quot;}}">
+<div id="06715891" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:06:33.412933Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:06:33.412838Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:41.225543Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:41.225095Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── MLE Estimation ──────────────────────────────────────────────────────────</span></span>
@@ -545,7 +545,7 @@ window.Quarto = {
 <span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>rs_khr <span class="op">=</span> estimate_rs_ou(S_khr, dt, <span class="st">'KHR Spread'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="83cf7958" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:41.227600Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:41.227486Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:41.231557Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:41.231334Z&quot;}}">
+<div id="077dcf3d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:41.227600Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:41.227486Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:41.231557Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:41.231334Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── BIC Comparison: Vanilla OU vs RS-OU ─────────────────────────────────────</span></span>
@@ -573,7 +573,7 @@ window.Quarto = {
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'substantially more variance to overcome the complexity penalty.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cf3bdb0a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:41.232673Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:41.232598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.015367Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.015130Z&quot;}}">
+<div id="a8e5f1d8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:41.232673Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:41.232598Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.015367Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.015130Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Figure: Smoothed Regime Probabilities ───────────────────────────────────</span></span>
@@ -662,7 +662,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Both ΔBIC values are <strong>strongly negative</strong> (&gt;10 is considered “very strong” evidence in the Bayesian model comparison literature), meaning the 8-parameter RS-OU model explains substantially more variance than the 3-parameter vanilla OU — even after accounting for the additional 5 parameters. The KHR improvement (ΔBIC = −140) is extraordinary, confirming that the structural break is a <strong>dominant feature</strong> of the KHR data that the vanilla model completely misrepresents.</p>
-<div id="3b1924bb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:42.017761Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:42.017662Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.020903Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.020695Z&quot;}}">
+<div id="d8b197a7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:42.017761Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:42.017662Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.020903Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.020695Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Parameter Comparison Table ──────────────────────────────────────────────</span></span>
@@ -690,7 +690,7 @@ window.Quarto = {
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'═══════════════════════════════════════════════════════════════════════'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="690151ba" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:42.022116Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:42.022040Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.027471Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.027272Z&quot;}}">
+<div id="3e59608f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:07:42.022116Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:07:42.022040Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:07:42.027471Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:07:42.027272Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Save Results ────────────────────────────────────────────────────────────</span></span>

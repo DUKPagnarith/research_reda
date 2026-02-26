@@ -278,7 +278,7 @@ window.Quarto = {
 <p>Notebook 04 computed crisis probabilities using a <strong>static</strong> 95th percentile threshold based on the full 156-month sample. Because the KHR spread compressed from ~24% to ~5%, this static threshold (~24% for KHR) became unreachable after 2018, rendering the crisis probability component of the CRI effectively <strong>zero</strong> in the recent period.</p>
 <p>This notebook fixes that limitation by computing a <strong>rolling 36-month</strong> crisis threshold that adapts to the current spread regime. This makes the CRI a true <strong>forward-looking early warning indicator</strong> that remains relevant regardless of structural shifts.</p>
 <p><strong>Key Insight:</strong> The static CRI answers <em>“Is the spread at historically extreme levels?”</em> while the dynamic CRI answers <em>“Is the spread elevated relative to recent conditions?”</em> — the latter is far more useful for real-time monitoring.</p>
-<div id="c17fd85f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:02:59.258357Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:02:59.258132Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:00.458650Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:00.458388Z&quot;}}">
+<div id="f2182e50" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:02:59.258357Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:02:59.258132Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:00.458650Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:00.458388Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -298,7 +298,7 @@ window.Quarto = {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="9d28f8d7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:00.475019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:00.474848Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:00.488551Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:00.488323Z&quot;}}">
+<div id="6ddf46b1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:00.475019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:00.474848Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:00.488551Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:00.488323Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data ───────────────────────────────────────────────────────────────</span></span>
@@ -338,7 +338,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="rolling-crisis-thresholds">1. Rolling Crisis Thresholds</h2>
 <p>At each time <span class="math inline">\(t\)</span> (for <span class="math inline">\(t \geq 36\)</span>), compute: <span class="math display">\[S_c^c(t) = P_{95}\left(\{S_{t-35}^c, S_{t-34}^c, \ldots, S_t^c\}\right)\]</span></p>
 <p>This threshold adapts to the <strong>current spread regime</strong> rather than being anchored to historical extremes.</p>
-<div id="7b72c771" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:00.489762Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:00.489669Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:00.499365Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:00.499163Z&quot;}}">
+<div id="d960b41a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:00.489762Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:00.489669Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:00.499365Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:00.499163Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Compute Rolling 36-Month Crisis Thresholds ──────────────────────────────</span></span>
@@ -362,7 +362,7 @@ window.Quarto = {
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'  Static USD = </span><span class="sc">{</span>Sc_static_usd<span class="sc">:.2f}</span><span class="ss">%,  Static KHR = </span><span class="sc">{</span>Sc_static_khr<span class="sc">:.2f}</span><span class="ss">%'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="9460a7c9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:00.500499Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:00.500420Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:01.082823Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:01.082564Z&quot;}}">
+<div id="f1ff7021" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:00.500499Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:00.500420Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:01.082823Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:01.082564Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Figure: Rolling vs Static Thresholds ────────────────────────────────────</span></span>
@@ -412,7 +412,7 @@ window.Quarto = {
 <p>Using rolling OU parameters from Notebook 07 and the rolling threshold:</p>
 <p><span class="math display">\[P_{\text{dyn}}(S_{t+1} &gt; S_c(t) \mid S_t) = 1 - \Phi\left(\frac{S_c(t) - m_t}{\sqrt{v_t}}\right)\]</span></p>
 <p>where <span class="math inline">\(m_t\)</span> and <span class="math inline">\(v_t\)</span> use the <strong>rolling</strong> <span class="math inline">\(\kappa_t\)</span>, <span class="math inline">\(\theta_t\)</span>, <span class="math inline">\(\sigma_t\)</span> from the same 36-month window.</p>
-<div id="a2dfa510" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:01.084895Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:01.084777Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:01.128025Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:01.127765Z&quot;}}">
+<div id="e7f99fb7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:01.084895Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:01.084777Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:01.128025Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:01.127765Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Dynamic Crisis Probabilities ────────────────────────────────────────────</span></span>
@@ -472,7 +472,7 @@ window.Quarto = {
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Static  KHR — mean: </span><span class="sc">{</span>P_static_khr<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">, max: </span><span class="sc">{</span>P_static_khr<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="951e24c3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:01.129325Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:01.129222Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:01.617500Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:01.617248Z&quot;}}">
+<div id="0f7ba5ad" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:01.129325Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:01.129222Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:01.617500Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:01.617248Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Figure: Dynamic vs Static Crisis Probability ─────────────────────────────</span></span>
@@ -551,7 +551,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="dynamic-cri-construction">3. Dynamic CRI Construction</h2>
 <p><span class="math display">\[\text{CRI}^c_{\text{dyn},t} = 0.5 \cdot \frac{\sigma_t^c}{\sigma_{\max}} + 0.5 \cdot P_{\text{dyn}}(S_{t+1} &gt; S_c(t) \mid S_t)\]</span></p>
 <p>Using <strong>rolling</strong> σ values from Notebook 07 instead of the static full-sample σ.</p>
-<div id="c5466e98" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:01.619315Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:01.619066Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:01.622398Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:01.622137Z&quot;}}">
+<div id="3ddbcb30" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:01.619315Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:01.619066Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:01.622398Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:01.622137Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Dynamic CRI ─────────────────────────────────────────────────────────────</span></span>
@@ -584,7 +584,7 @@ window.Quarto = {
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="st">"CRI_Sys mean"</span><span class="sc">:15s}</span><span class="ss"> </span><span class="sc">{</span>CRI_dyn_sys<span class="sc">.</span>mean()<span class="sc">:12.4f}</span><span class="ss"> </span><span class="sc">{</span>CRI_static_sys<span class="sc">.</span>mean()<span class="sc">:12.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="e83ebbf7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:01.623614Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:01.623540Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:02.410638Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:02.410379Z&quot;}}">
+<div id="ac4e1f8f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:01.623614Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:01.623540Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:02.410638Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:02.410379Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Figure: Dynamic vs Static CRI Comparison ────────────────────────────────</span></span>
@@ -678,7 +678,7 @@ window.Quarto = {
 <li><p><strong>2020–2025 (Current):</strong> Static CRI flatlines at ~0.20 (USD) and ~0.33 (KHR) — these are just the floor from the σ component, since crisis probability is zero. The dynamic CRI is lower but <strong>responsive</strong>, fluctuating around 0.04 and capturing relative spread movements.</p></li>
 </ol>
 <p><strong>Recommendation for the Paper:</strong> Present both versions as complementary tools. The static CRI answers <em>“How extreme is the current spread compared to the full 13-year history?”</em> The dynamic CRI answers <em>“Is the spread elevated relative to recent conditions?”</em> The latter is far more useful for operational monitoring and early warning.</p>
-<div id="95c25fcd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:02.412748Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:02.412642Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:02.417784Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:02.417539Z&quot;}}">
+<div id="0fe1a4d0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-02-22T07:03:02.412748Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-02-22T07:03:02.412642Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-02-22T07:03:02.417784Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-02-22T07:03:02.417539Z&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Save Dynamic CRI Results ────────────────────────────────────────────────</span></span>

@@ -285,7 +285,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="crisis-probability-and-credit-risk-index-construction">Crisis Probability and Credit Risk Index Construction</h2>
 <p>This notebook constructs the core contribution of the paper: currency-specific and system-wide Credit Risk Indices based on OU model parameters.</p>
 <p><strong>Contents:</strong> 1. Crisis Thresholds (90th, 95th, 99th percentiles) 2. Crisis Probability Time Series 3. Currency-Specific CRIs 4. System-Wide Composite CRI 5. Visualizations (Figures 6–8)</p>
-<div id="2fc55a18" class="cell">
+<div id="f4d0d938" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -306,7 +306,7 @@ window.Quarto = {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Libraries loaded.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="9ebf2e16" class="cell">
+<div id="578af832" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Load Data and Parameters ────────────────────────────────────────────────</span></span>
@@ -341,7 +341,7 @@ window.Quarto = {
 </section>
 <section id="crisis-thresholds" class="level2">
 <h2 class="anchored" data-anchor-id="crisis-thresholds">1. Crisis Thresholds</h2>
-<div id="64bb85eb" class="cell">
+<div id="c099d0ec" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Crisis Thresholds ───────────────────────────────────────────────────────</span></span>
@@ -381,7 +381,7 @@ window.Quarto = {
 <p>Using the OU transition density, the crisis probability at time <span class="math inline">\(t\)</span> is:</p>
 <p><span class="math display">\[P(S_{t+1}^c &gt; S_c^c \mid S_t^c) = 1 - \Phi\left(\frac{S_c^c - m^c(t)}{\sqrt{v^c(t)}}\right)\]</span></p>
 <p>where <span class="math inline">\(m^c(t) = \theta^c + (S_t^c - \theta^c)e^{-\kappa^c \Delta t}\)</span> and <span class="math inline">\(v^c(t) = \frac{(\sigma^c)^2}{2\kappa^c}(1 - e^{-2\kappa^c \Delta t})\)</span>.</p>
-<div id="5ebdf0c7" class="cell">
+<div id="0754f06c" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Compute Crisis Probabilities ────────────────────────────────────────────</span></span>
@@ -416,7 +416,7 @@ window.Quarto = {
 <p>The crisis probability <span class="math inline">\(P(S_{t+1} &gt; S_c | S_t)\)</span> measures the <strong>likelihood that next month’s spread will breach the crisis threshold</strong>, given the current spread level and the OU dynamics.</p>
 <p><strong>How It Works Intuitively:</strong> - When the current spread <span class="math inline">\(S_t\)</span> is <strong>well below</strong> the threshold <span class="math inline">\(S_c\)</span>, the conditional mean <span class="math inline">\(m(t)\)</span> is far below <span class="math inline">\(S_c\)</span>, and the probability of breaching it is <strong>low</strong>. - When <span class="math inline">\(S_t\)</span> is <strong>near or above</strong> <span class="math inline">\(S_c\)</span>, the conditional mean may be near <span class="math inline">\(S_c\)</span>, making the probability of continued crisis <strong>high</strong>. - The probability depends not just on the current level but also on <strong>volatility</strong> (σ) and <strong>mean reversion speed</strong> (κ) — higher σ makes threshold exceedances more likely, while higher κ pulls the spread back more quickly.</p>
 <p><strong>Key Observation:</strong> Both currencies will show <strong>time-varying crisis probabilities</strong> that spike during periods of elevated spreads (early sample for both, and any stress events) and fall to near-zero during the post-2018 compressed-spread regime.</p>
-<div id="f15195d2" class="cell">
+<div id="87341816" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 6: Crisis Probability Over Time ──────────────────────────────────</span></span>
@@ -471,7 +471,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="currency-specific-cris">3. Currency-Specific CRIs</h2>
 <p><span class="math display">\[\text{CRI}^c_t = 0.5 \cdot \hat{\sigma}^c_{\text{norm}} + 0.5 \cdot P(S_t^c &gt; S_c^c)\]</span></p>
 <p>The CRI combines two dimensions: <strong>structural risk</strong> (captured by normalized volatility σ) and <strong>conditional risk</strong> (captured by crisis probability). Each is weighted equally.</p>
-<div id="1a327fd6" class="cell">
+<div id="df36ecc5" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Currency-Specific CRI ───────────────────────────────────────────────────</span></span>
@@ -498,7 +498,7 @@ window.Quarto = {
 </ol>
 <p><strong>CRI Composition:</strong> - For USD: The σ component contributes a fixed ~0.20 at each date. The crisis probability component ranges from ~0 (recently) to ~0.25 (2013–2015). Total CRI ranges from ~0.20 (floor) to ~0.45 (maximum). - For KHR: The σ component contributes a higher fixed ~0.33. The probability component ranges from ~0 (recently) to ~0.40 (2013–2016). Total CRI ranges from ~0.33 (floor) to ~0.73 (maximum).</p>
 <p><strong>Key Insight:</strong> Even when crisis probabilities are <strong>zero</strong> in the recent period, the KHR CRI remains above the USD CRI because of its higher structural volatility — the riel segment carries an <strong>irreducible risk premium</strong> embedded in the σ parameter.</p>
-<div id="3c93b3f2" class="cell">
+<div id="4887c228" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 7: Currency-Specific CRIs ────────────────────────────────────────</span></span>
@@ -550,7 +550,7 @@ window.Quarto = {
 <section id="system-wide-composite-cri" class="level2">
 <h2 class="anchored" data-anchor-id="system-wide-composite-cri">4. System-Wide Composite CRI</h2>
 <p><span class="math display">\[\text{CRI}_{\text{System},t} = w_{USD} \cdot \text{CRI}^{USD}_t + w_{KHR} \cdot \text{CRI}^{KHR}_t\]</span></p>
-<div id="168c573c" class="cell">
+<div id="39c19432" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── System-Wide CRI ─────────────────────────────────────────────────────────</span></span>
@@ -575,7 +575,7 @@ window.Quarto = {
 <li><p><strong>Equal (50/50)</strong> — <em>Sensitivity check</em>: Gives equal importance to both currencies. This produces a higher system CRI (pulled up by the KHR component) and is useful for assessing whether the KHR segment is being “diluted” in the 80/20 specification.</p></li>
 <li><p><strong>KHR-Heavy (20/80)</strong> — <em>De-dollarization scenario</em>: Represents a hypothetical future where KHR lending dominates. If NBC’s de-dollarization goals are achieved, this weighting becomes relevant. It shows that a KHR-dominant banking sector would face <strong>higher system-wide credit risk</strong> due to the riel’s inherently more volatile spread dynamics.</p></li>
 </ol>
-<div id="e0329a04" class="cell">
+<div id="60a6dfb8" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── FIGURE 8: System CRI ────────────────────────────────────────────────────</span></span>
@@ -616,7 +616,7 @@ window.Quarto = {
 <p><strong>In the Recent Period (2020–2025):</strong> All three system CRI lines <strong>converge</strong> to a narrow band around 0.20–0.30. This convergence reflects two things: (1) both currency CRIs have fallen to similar levels, so the weights matter less; (2) the crisis probability component has gone to zero, leaving only the structural σ difference to separate the lines.</p>
 <p><strong>Faded individual CRIs (dashed):</strong> The individual USD and KHR CRIs are shown as faded dashed lines for reference. In the early period, the KHR CRI (red dashed) sits far above the system CRI under 80/20 weighting — this means the <strong>riel segment’s risk is substantially diluted</strong> in the 80/20 composite. If one is concerned about KHR borrowers specifically, the aggregate system CRI may be <strong>misleadingly reassuring</strong>.</p>
 <p><strong>Policy Implication:</strong> As Cambodia de-dollarizes and KHR lending grows, the system CRI will naturally <strong>shift from the 80/20 line toward the 50/50 or even 20/80 line</strong>. If KHR spreads retain their higher structural volatility, this could mean the system-level credit risk <strong>increases</strong> even as the economy transitions away from dollar dependence — an important cautionary finding.</p>
-<div id="8a3257a4" class="cell">
+<div id="19dc5905" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── TABLE 3: CRI Summary &amp; Save ────────────────────────────────────────────</span></span>
