@@ -104,7 +104,7 @@ The KHR segment exhibits structurally higher credit risk than the USD segment ac
 
 The chart below shows how credit risk in the USD (blue) and KHR (red) segments has evolved from 2013 to 2025. The shaded area marks the COVID-19 period. Notice how KHR risk is consistently higher, and both currencies show a permanent shift after the pandemic.
 
-![Figure 7: Currency-Specific Credit Risk Indices — USD vs KHR (2013–2025)](docs/04_cri_computation_files/figure-html/cell-8-output-1.png)
+![Figure 7: Currency-Specific Credit Risk Indices — USD vs KHR (2013–2025)](notebooks/04_cri_computation_files/figure-html/cell-8-output-1.png)
 
 ### 5. Regime Switching Confirms Instability {.unnumbered}
 

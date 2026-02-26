@@ -86,7 +86,7 @@ This is not a temporary phenomenon — it is a structural feature of Cambodia's 
 
 The chart below shows how credit risk has evolved for both currencies over 13 years. **Red = riel (KHR), Blue = US dollar (USD).** The shaded grey area marks the COVID-19 period.
 
-![Credit risk in riel lending (red) is consistently higher than dollar lending (blue). Both currencies show a permanent shift after COVID-19.](docs/04_cri_computation_files/figure-html/cell-8-output-1.png)
+![Credit risk in riel lending (red) is consistently higher than dollar lending (blue). Both currencies show a permanent shift after COVID-19.](notebooks/04_cri_computation_files/figure-html/cell-8-output-1.png)
 
 Key things to notice:
 
