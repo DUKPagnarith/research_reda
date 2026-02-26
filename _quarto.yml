@@ -12,6 +12,8 @@ website:
     left:
     - text: Home
       href: index.qmd
+    - text: For Policymakers
+      href: summary.qmd
     - text: Methodology
       href: methodology.qmd
     - text: Notebooks

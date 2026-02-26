@@ -1,0 +1,132 @@
+---
+title: "For Policymakers"
+subtitle: "A Plain-English Summary of Key Findings"
+---
+
+::: {.callout-tip appearance="simple"}
+This page is designed for **non-technical readers** — bank executives, NBC officials, regulators, and business stakeholders. All findings are presented in everyday language. For the full technical details, see the [Methodology](methodology.qmd) page and the individual [analysis notebooks](index.qmd#analysis-notebooks).
+:::
+
+---
+
+## What We Did
+
+We built a **Credit Risk Index (CRI)** — a single number that tracks how risky bank lending is in Cambodia, month by month, from 2013 to 2025.
+
+Because Cambodia uses two currencies for lending — the **US dollar** (≈80% of loans) and the **Cambodian riel** (≈20% of loans) — we built separate risk indices for each currency, then combined them into a system-wide score.
+
+**The core idea is simple:** when the gap between what banks charge borrowers and what they pay depositors gets unusually wide, it signals rising credit risk. We track this gap over time and use statistical models to measure how dangerous it is relative to history.
+
+---
+
+## What We Found
+
+### Finding 1: Cambodia's Central Bank Is Gaining Influence
+
+::: {.callout-note appearance="simple"}
+**Bottom line:** NBC policy actions are now statistically influencing even dollar-denominated lending — something that didn't happen before COVID-19.
+:::
+
+Before the pandemic, Cambodia's dollarized economy meant the US Federal Reserve effectively controlled borrowing costs for the entire banking system. The NBC had limited tools to influence credit conditions.
+
+**After COVID-19, something changed.** Our statistical tests show that NBC domestic policy decisions now have a measurable, statistically significant impact on USD lending spreads. This is an early signal that de-dollarization efforts may be working — the NBC's own interest rate tools are beginning to shape borrowing costs even in the dollar segment.
+
+**Why it matters:** If this trend continues, it means Cambodia is gradually gaining more control over its own monetary policy, reducing dependence on decisions made in Washington, D.C.
+
+---
+
+### Finding 2: The Riel Market Has Broken Free from the US Fed
+
+::: {.callout-note appearance="simple"}
+**Bottom line:** Before COVID, when the Fed raised rates, both dollar and riel lending costs in Cambodia responded. After COVID, riel lending no longer follows the Fed — it has "decoupled."
+:::
+
+We tested this finding three independent ways, and all three agree:
+
+| What We Tested | Before COVID | After COVID |
+|---|---|---|
+| Does the Fed predict riel lending costs? | **Yes** (strong link) | **No** (link broken) |
+| How correlated are riel spreads with Fed rates? | **+0.77** (move together) | **−0.46** (move opposite) |
+| How does riel react to a Fed shock? | Responds clearly | Near-zero response |
+
+**Why it matters:** The riel lending market is developing its own dynamics, independent of US monetary policy. This is both an opportunity (NBC has more room to set policy) and a risk (the riel segment must be monitored separately).
+
+---
+
+### Finding 3: COVID-19 Permanently Changed the Risk Landscape
+
+::: {.callout-note appearance="simple"}
+**Bottom line:** COVID-19 didn't just cause a temporary spike in credit risk — it permanently shifted the risk environment for both currencies.
+:::
+
+After the pandemic, credit risk parameters settled at new levels and never returned to pre-COVID norms. The riel segment was hit harder: its "normal" spread level shifted upward, and its volatility remains elevated compared to the pre-pandemic baseline.
+
+**Why it matters:** Risk models calibrated on pre-COVID data are no longer valid. Banks and regulators should use post-COVID parameters for stress testing and capital planning.
+
+---
+
+### Finding 4: Riel Lending Is Structurally Riskier
+
+::: {.callout-note appearance="simple"}
+**Bottom line:** Lending in riel carries 2–4× higher implied default risk than lending in dollars, across all our measures.
+:::
+
+This is not a temporary phenomenon — it is a structural feature of Cambodia's dual-currency system. The riel segment has:
+
+- **Wider lending spreads** (banks charge more to compensate for risk)
+- **Higher volatility** (risk levels fluctuate more)
+- **Slower recovery** (after a shock, it takes longer to return to normal)
+- **More time in "stress" mode** (our regime-switching model confirms this)
+
+**Why it matters:** As Cambodia promotes riel lending through de-dollarization, banks need to price this additional risk appropriately. Regulatory capital buffers for riel lending should reflect the structurally higher risk.
+
+---
+
+## The Credit Risk Index at a Glance
+
+The chart below shows how credit risk has evolved for both currencies over 13 years. **Red = riel (KHR), Blue = US dollar (USD).** The shaded grey area marks the COVID-19 period.
+
+![Credit risk in riel lending (red) is consistently higher than dollar lending (blue). Both currencies show a permanent shift after COVID-19.](docs/04_cri_computation_files/figure-html/cell-8-output-1.png)
+
+Key things to notice:
+
+- **KHR (red) is always above USD (blue)** — riel lending is structurally riskier
+- **Both spike during 2016–2017** — a period of elevated stress
+- **After COVID, risk levels stabilize but at different "new normals"** — the gap between currencies persists
+
+---
+
+## What Does This Mean for Policy?
+
+### For the National Bank of Cambodia (NBC)
+
+1. **De-dollarization is showing results.** The growing influence of NBC policy on USD spreads and the decoupling of KHR spreads from the Fed suggest that de-dollarization is making Cambodia's monetary transmission more effective.
+
+2. **Monitor the two currencies separately.** The USD and KHR segments now follow different risk dynamics. A single aggregate indicator would mask important differences.
+
+3. **Update risk models.** Pre-COVID calibrations are outdated. All stress testing and capital adequacy assessments should use post-COVID parameters.
+
+### For Commercial Banks
+
+1. **Price riel risk accurately.** The 2–4× higher implied default probability in riel lending should be reflected in loan pricing and provisioning.
+
+2. **Prepare for continued de-dollarization.** As the riel segment grows, its higher structural risk will carry more weight in system-wide risk measures.
+
+### For International Stakeholders
+
+1. **Cambodia's financial system is evolving.** The post-COVID decoupling suggests a gradual maturation of the local currency financial market.
+
+2. **Dollar lending remains the dominant systemic risk driver** (80% of loans), but the riel segment is where the most interesting structural changes are occurring.
+
+---
+
+## How to Explore Further
+
+| If You Want To... | Go Here |
+|---|---|
+| See the full methodology | [Methodology Page](methodology.qmd) |
+| See how the CRI is built step by step | [Notebook 04 — CRI Computation](04_cri_computation.ipynb) |
+| Explore the COVID-19 impact analysis | [Notebook 06 — COVID-19 Analysis](06_covid_analysis.ipynb) |
+| See the Fed vs. NBC policy analysis | [Notebook 12 — Policy Divergence](12_policy_divergence.ipynb) |
+| See all stress test scenarios | [Notebook 05 — Stress Testing](05_stress_testing.ipynb) |
+| View all 12 analysis notebooks | [Homepage — Notebook List](index.qmd#analysis-notebooks) |
