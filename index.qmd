@@ -98,15 +98,15 @@ Each step of the analysis is documented in a dedicated notebook. Click the links
 
 | Notebook | Topic |
 |----------|-------|
-| [01 - Data Preparation](nb01_data_preparation.qmd) | Data sourcing, cleaning, and spread computation |
-| [02 - Exploratory Analysis](nb02_exploratory_analysis.qmd) | Descriptive statistics, time series visualization, correlation analysis |
-| [03 - Parameter Estimation](nb03_parameter_estimation.qmd) | OU model fitting via MLE with AR(1) cross-check |
-| [04 - CRI Computation](nb04_cri_computation.qmd) | Crisis thresholds, crisis probability, and CRI construction |
-| [05 - Stress Testing](nb05_stress_testing.qmd) | Stress scenario analysis under mild, moderate, and severe shocks |
-| [06 - COVID-19 Analysis](nb06_covid_analysis.qmd) | Sub-period parameter estimation and structural break detection |
-| [07 - Rolling Window](nb07_rolling_window.qmd) | 36-month rolling parameter estimation and convergence analysis |
-| [08 - Robustness Checks](nb08_robustness.qmd) | Alternative rates, thresholds, and weights |
-| [09 - Regime Switching](nb09_regime_switching.qmd) | Two-state Markov Regime-Switching OU model |
-| [10 - Dynamic Threshold](nb10_dynamic_threshold.qmd) | Rolling crisis threshold and dynamic CRI comparison |
-| [11 - Implied Default Probability](nb11_implied_pd.qmd) | Hazard rate extraction and recovery rate sensitivity |
-| [12 - Policy Divergence](nb12_policy_divergence.qmd) | VAR model, Granger causality, and impulse response functions |
+| [01 - Data Preparation](01_data_preparation.ipynb) | Data sourcing, cleaning, and spread computation |
+| [02 - Exploratory Analysis](02_exploratory_analysis.ipynb) | Descriptive statistics, time series visualization, correlation analysis |
+| [03 - Parameter Estimation](03_parameter_estimation.ipynb) | OU model fitting via MLE with AR(1) cross-check |
+| [04 - CRI Computation](04_cri_computation.ipynb) | Crisis thresholds, crisis probability, and CRI construction |
+| [05 - Stress Testing](05_stress_testing.ipynb) | Stress scenario analysis under mild, moderate, and severe shocks |
+| [06 - COVID-19 Analysis](06_covid_analysis.ipynb) | Sub-period parameter estimation and structural break detection |
+| [07 - Rolling Window](07_rolling_window.ipynb) | 36-month rolling parameter estimation and convergence analysis |
+| [08 - Robustness Checks](08_robustness.ipynb) | Alternative rates, thresholds, and weights |
+| [09 - Regime Switching](09_regime_switching.ipynb) | Two-state Markov Regime-Switching OU model |
+| [10 - Dynamic Threshold](10_dynamic_threshold.ipynb) | Rolling crisis threshold and dynamic CRI comparison |
+| [11 - Implied Default Probability](11_implied_pd.ipynb) | Hazard rate extraction and recovery rate sensitivity |
+| [12 - Policy Divergence](12_policy_divergence.ipynb) | VAR model, Granger causality, and impulse response functions |
