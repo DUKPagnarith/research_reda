@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Research Plan — Version 3">
-<meta name="dcterms.date" content="2026-02-20">
 
-<title>Research Roadmap: Credit Risk and Dollarization in Cambodia — A Dual-Currency Analysis Using Interest Rate Spreads</title>
+<title>Credit Risk and Dollarization in Cambodia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,185 +20,225 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
-<script src="index_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="index_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="index_files/libs/quarto-html/popper.min.js"></script>
-<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="index_files/libs/quarto-html/anchor.min.js"></script>
-<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap-a74871fe4945b66d259aafc266475145.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-665a47377fd1fb2966ef7e6e7341ee54.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+}</script>
+
 
 </head>
 
-<body class="quarto-light">
+<body class="nav-fixed quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Credit Risk and Dollarization in Cambodia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notebooks" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Notebooks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
+        <li>
+    <a class="dropdown-item" href="./nb01_data_preparation.html">
+ <span class="dropdown-text">01 - Data Preparation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb02_exploratory_analysis.html">
+ <span class="dropdown-text">02 - Exploratory Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb03_parameter_estimation.html">
+ <span class="dropdown-text">03 - Parameter Estimation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb04_cri_computation.html">
+ <span class="dropdown-text">04 - CRI Computation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb05_stress_testing.html">
+ <span class="dropdown-text">05 - Stress Testing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb06_covid_analysis.html">
+ <span class="dropdown-text">06 - COVID-19 Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb07_rolling_window.html">
+ <span class="dropdown-text">07 - Rolling Window</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb08_robustness.html">
+ <span class="dropdown-text">08 - Robustness Checks</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb09_regime_switching.html">
+ <span class="dropdown-text">09 - Regime Switching</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb10_dynamic_threshold.html">
+ <span class="dropdown-text">10 - Dynamic Threshold</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb11_implied_pd.html">
+ <span class="dropdown-text">11 - Implied Default Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nb12_policy_divergence.html">
+ <span class="dropdown-text">12 - Policy Divergence</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview"><span class="header-section-number">1</span> Project Overview</a>
+  <li><a href="#research-topic" id="toc-research-topic" class="nav-link active" data-scroll-target="#research-topic">Research Topic</a></li>
+  <li><a href="#methodology-overview" id="toc-methodology-overview" class="nav-link" data-scroll-target="#methodology-overview">Methodology Overview</a>
   <ul class="collapse">
-  <li><a href="#title-working" id="toc-title-working" class="nav-link" data-scroll-target="#title-working"><span class="header-section-number">1.1</span> Title (Working)</a></li>
-  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><span class="header-section-number">1.2</span> Research Questions</a></li>
-  <li><a href="#why-this-topic-is-strong" id="toc-why-this-topic-is-strong" class="nav-link" data-scroll-target="#why-this-topic-is-strong"><span class="header-section-number">1.3</span> Why This Topic Is Strong</a></li>
-  <li><a href="#the-big-idea-in-one-paragraph" id="toc-the-big-idea-in-one-paragraph" class="nav-link" data-scroll-target="#the-big-idea-in-one-paragraph"><span class="header-section-number">1.4</span> The Big Idea in One Paragraph</a></li>
+  <li><a href="#core-pipeline" id="toc-core-pipeline" class="nav-link" data-scroll-target="#core-pipeline">Core Pipeline</a></li>
+  <li><a href="#extended-analyses" id="toc-extended-analyses" class="nav-link" data-scroll-target="#extended-analyses">Extended Analyses</a></li>
   </ul></li>
-  <li><a href="#your-data" id="toc-your-data" class="nav-link" data-scroll-target="#your-data"><span class="header-section-number">2</span> Your Data</a>
+  <li><a href="#key-results-and-findings" id="toc-key-results-and-findings" class="nav-link" data-scroll-target="#key-results-and-findings">Key Results and Findings</a>
   <ul class="collapse">
-  <li><a href="#what-you-have" id="toc-what-you-have" class="nav-link" data-scroll-target="#what-you-have"><span class="header-section-number">2.1</span> What You Have</a></li>
-  <li><a href="#which-data-to-use" id="toc-which-data-to-use" class="nav-link" data-scroll-target="#which-data-to-use"><span class="header-section-number">2.2</span> Which Data to Use</a></li>
-  <li><a href="#which-loan-and-deposit-types-to-use" id="toc-which-loan-and-deposit-types-to-use" class="nav-link" data-scroll-target="#which-loan-and-deposit-types-to-use"><span class="header-section-number">2.3</span> Which Loan and Deposit Types to Use</a></li>
-  <li><a href="#your-four-raw-series-from-new-amount-section" id="toc-your-four-raw-series-from-new-amount-section" class="nav-link" data-scroll-target="#your-four-raw-series-from-new-amount-section"><span class="header-section-number">2.4</span> Your Four Raw Series (from “New Amount” section)</a></li>
-  <li><a href="#your-two-computed-spreads" id="toc-your-two-computed-spreads" class="nav-link" data-scroll-target="#your-two-computed-spreads"><span class="header-section-number">2.5</span> Your Two Computed Spreads</a></li>
-  <li><a href="#quick-data-preview-from-the-image" id="toc-quick-data-preview-from-the-image" class="nav-link" data-scroll-target="#quick-data-preview-from-the-image"><span class="header-section-number">2.6</span> Quick Data Preview (from the image)</a></li>
-  <li><a href="#important-note-on-sample-size" id="toc-important-note-on-sample-size" class="nav-link" data-scroll-target="#important-note-on-sample-size"><span class="header-section-number">2.7</span> Important Note on Sample Size</a></li>
+  <li><a href="#structural-risk-asymmetry" id="toc-structural-risk-asymmetry" class="nav-link" data-scroll-target="#structural-risk-asymmetry">1. Structural Risk Asymmetry</a></li>
+  <li><a href="#covid-19-as-a-structural-break" id="toc-covid-19-as-a-structural-break" class="nav-link" data-scroll-target="#covid-19-as-a-structural-break">2. COVID-19 as a Structural Break</a></li>
+  <li><a href="#the-decoupling-hypothesis-confirmed" id="toc-the-decoupling-hypothesis-confirmed" class="nav-link" data-scroll-target="#the-decoupling-hypothesis-confirmed">3. The Decoupling Hypothesis – Confirmed</a></li>
+  <li><a href="#nbc-policy-gaining-traction" id="toc-nbc-policy-gaining-traction" class="nav-link" data-scroll-target="#nbc-policy-gaining-traction">4. NBC Policy Gaining Traction</a></li>
+  <li><a href="#regime-switching-confirms-instability" id="toc-regime-switching-confirms-instability" class="nav-link" data-scroll-target="#regime-switching-confirms-instability">5. Regime Switching Confirms Instability</a></li>
+  <li><a href="#stress-test-results" id="toc-stress-test-results" class="nav-link" data-scroll-target="#stress-test-results">6. Stress Test Results</a></li>
+  <li><a href="#implied-default-probabilities" id="toc-implied-default-probabilities" class="nav-link" data-scroll-target="#implied-default-probabilities">7. Implied Default Probabilities</a></li>
   </ul></li>
-  <li><a href="#paper-structure" id="toc-paper-structure" class="nav-link" data-scroll-target="#paper-structure"><span class="header-section-number">3</span> Paper Structure</a>
-  <ul class="collapse">
-  <li><a href="#section-1-introduction-23-pages" id="toc-section-1-introduction-23-pages" class="nav-link" data-scroll-target="#section-1-introduction-23-pages"><span class="header-section-number">3.1</span> Section 1: Introduction (2–3 pages)</a>
-  <ul class="collapse">
-  <li><a href="#what-to-write" id="toc-what-to-write" class="nav-link" data-scroll-target="#what-to-write"><span class="header-section-number">3.1.1</span> What to Write</a></li>
-  <li><a href="#key-arguments-to-make" id="toc-key-arguments-to-make" class="nav-link" data-scroll-target="#key-arguments-to-make"><span class="header-section-number">3.1.2</span> Key Arguments to Make</a></li>
-  <li><a href="#how-to-end-the-introduction" id="toc-how-to-end-the-introduction" class="nav-link" data-scroll-target="#how-to-end-the-introduction"><span class="header-section-number">3.1.3</span> How to End the Introduction</a></li>
-  </ul></li>
-  <li><a href="#section-2-literature-review-34-pages" id="toc-section-2-literature-review-34-pages" class="nav-link" data-scroll-target="#section-2-literature-review-34-pages"><span class="header-section-number">3.2</span> Section 2: Literature Review (3–4 pages)</a>
-  <ul class="collapse">
-  <li><a href="#credit-risk-measurement" id="toc-credit-risk-measurement" class="nav-link" data-scroll-target="#credit-risk-measurement"><span class="header-section-number">3.2.1</span> 2.1 Credit Risk Measurement</a></li>
-  <li><a href="#interest-rate-spreads-as-risk-indicators" id="toc-interest-rate-spreads-as-risk-indicators" class="nav-link" data-scroll-target="#interest-rate-spreads-as-risk-indicators"><span class="header-section-number">3.2.2</span> 2.2 Interest Rate Spreads as Risk Indicators</a></li>
-  <li><a href="#stochastic-models-in-finance" id="toc-stochastic-models-in-finance" class="nav-link" data-scroll-target="#stochastic-models-in-finance"><span class="header-section-number">3.2.3</span> 2.3 Stochastic Models in Finance</a></li>
-  <li><a href="#cambodias-financial-system-and-dollarization" id="toc-cambodias-financial-system-and-dollarization" class="nav-link" data-scroll-target="#cambodias-financial-system-and-dollarization"><span class="header-section-number">3.2.4</span> 2.4 Cambodia’s Financial System and Dollarization</a></li>
-  <li><a href="#gap-in-literature" id="toc-gap-in-literature" class="nav-link" data-scroll-target="#gap-in-literature"><span class="header-section-number">3.2.5</span> 2.5 Gap in Literature</a></li>
-  </ul></li>
-  <li><a href="#section-3-methodology-56-pages" id="toc-section-3-methodology-56-pages" class="nav-link" data-scroll-target="#section-3-methodology-56-pages"><span class="header-section-number">3.3</span> Section 3: Methodology (5–6 pages)</a>
-  <ul class="collapse">
-  <li><a href="#data-selection-rationale" id="toc-data-selection-rationale" class="nav-link" data-scroll-target="#data-selection-rationale"><span class="header-section-number">3.3.1</span> 3.1 Data Selection Rationale</a></li>
-  <li><a href="#interest-rate-spread-definition" id="toc-interest-rate-spread-definition" class="nav-link" data-scroll-target="#interest-rate-spread-definition"><span class="header-section-number">3.3.2</span> 3.2 Interest Rate Spread Definition</a></li>
-  <li><a href="#the-ornstein-uhlenbeck-model" id="toc-the-ornstein-uhlenbeck-model" class="nav-link" data-scroll-target="#the-ornstein-uhlenbeck-model"><span class="header-section-number">3.3.3</span> 3.3 The Ornstein-Uhlenbeck Model</a></li>
-  <li><a href="#parameter-estimation" id="toc-parameter-estimation" class="nav-link" data-scroll-target="#parameter-estimation"><span class="header-section-number">3.3.4</span> 3.4 Parameter Estimation</a></li>
-  <li><a href="#crisis-threshold" id="toc-crisis-threshold" class="nav-link" data-scroll-target="#crisis-threshold"><span class="header-section-number">3.3.5</span> 3.5 Crisis Threshold</a></li>
-  <li><a href="#crisis-probability" id="toc-crisis-probability" class="nav-link" data-scroll-target="#crisis-probability"><span class="header-section-number">3.3.6</span> 3.6 Crisis Probability</a></li>
-  <li><a href="#currency-specific-credit-risk-indices" id="toc-currency-specific-credit-risk-indices" class="nav-link" data-scroll-target="#currency-specific-credit-risk-indices"><span class="header-section-number">3.3.7</span> 3.7 Currency-Specific Credit Risk Indices</a></li>
-  <li><a href="#system-wide-composite-cri" id="toc-system-wide-composite-cri" class="nav-link" data-scroll-target="#system-wide-composite-cri"><span class="header-section-number">3.3.8</span> 3.8 System-Wide Composite CRI</a></li>
-  <li><a href="#stress-testing" id="toc-stress-testing" class="nav-link" data-scroll-target="#stress-testing"><span class="header-section-number">3.3.9</span> 3.9 Stress Testing</a></li>
-  <li><a href="#rolling-window-analysis" id="toc-rolling-window-analysis" class="nav-link" data-scroll-target="#rolling-window-analysis"><span class="header-section-number">3.3.10</span> 3.10 Rolling Window Analysis</a></li>
-  <li><a href="#robustness-checks" id="toc-robustness-checks" class="nav-link" data-scroll-target="#robustness-checks"><span class="header-section-number">3.3.11</span> 3.11 Robustness Checks</a></li>
-  </ul></li>
-  <li><a href="#section-4-data-description-23-pages" id="toc-section-4-data-description-23-pages" class="nav-link" data-scroll-target="#section-4-data-description-23-pages"><span class="header-section-number">3.4</span> Section 4: Data Description (2–3 pages)</a>
-  <ul class="collapse">
-  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source"><span class="header-section-number">3.4.1</span> 4.1 Data Source</a></li>
-  <li><a href="#data-selection-justification" id="toc-data-selection-justification" class="nav-link" data-scroll-target="#data-selection-justification"><span class="header-section-number">3.4.2</span> 4.2 Data Selection Justification</a></li>
-  <li><a href="#computed-spreads" id="toc-computed-spreads" class="nav-link" data-scroll-target="#computed-spreads"><span class="header-section-number">3.4.3</span> 4.3 Computed Spreads</a></li>
-  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"><span class="header-section-number">3.4.4</span> 4.4 Descriptive Statistics</a></li>
-  <li><a href="#key-visualizations-for-this-section" id="toc-key-visualizations-for-this-section" class="nav-link" data-scroll-target="#key-visualizations-for-this-section"><span class="header-section-number">3.4.5</span> 4.5 Key Visualizations for This Section</a></li>
-  <li><a href="#supplementary-data-optional-but-helpful" id="toc-supplementary-data-optional-but-helpful" class="nav-link" data-scroll-target="#supplementary-data-optional-but-helpful"><span class="header-section-number">3.4.6</span> 4.6 Supplementary Data (Optional but Helpful)</a></li>
-  </ul></li>
-  <li><a href="#section-5-results-56-pages" id="toc-section-5-results-56-pages" class="nav-link" data-scroll-target="#section-5-results-56-pages"><span class="header-section-number">3.5</span> Section 5: Results (5–6 pages)</a>
-  <ul class="collapse">
-  <li><a href="#spread-dynamics-visual-overview" id="toc-spread-dynamics-visual-overview" class="nav-link" data-scroll-target="#spread-dynamics-visual-overview"><span class="header-section-number">3.5.1</span> 5.1 Spread Dynamics: Visual Overview</a></li>
-  <li><a href="#estimated-ou-parameters" id="toc-estimated-ou-parameters" class="nav-link" data-scroll-target="#estimated-ou-parameters"><span class="header-section-number">3.5.2</span> 5.2 Estimated OU Parameters</a></li>
-  <li><a href="#crisis-probability-over-time" id="toc-crisis-probability-over-time" class="nav-link" data-scroll-target="#crisis-probability-over-time"><span class="header-section-number">3.5.3</span> 5.3 Crisis Probability Over Time</a></li>
-  <li><a href="#currency-specific-cris" id="toc-currency-specific-cris" class="nav-link" data-scroll-target="#currency-specific-cris"><span class="header-section-number">3.5.4</span> 5.4 Currency-Specific CRIs</a></li>
-  <li><a href="#system-wide-composite-cri-1" id="toc-system-wide-composite-cri-1" class="nav-link" data-scroll-target="#system-wide-composite-cri-1"><span class="header-section-number">3.5.5</span> 5.5 System-Wide Composite CRI</a></li>
-  <li><a href="#rolling-window-parameter-evolution" id="toc-rolling-window-parameter-evolution" class="nav-link" data-scroll-target="#rolling-window-parameter-evolution"><span class="header-section-number">3.5.6</span> 5.6 Rolling Window Parameter Evolution</a></li>
-  <li><a href="#stress-test-results" id="toc-stress-test-results" class="nav-link" data-scroll-target="#stress-test-results"><span class="header-section-number">3.5.7</span> 5.7 Stress Test Results</a></li>
-  <li><a href="#robustness-check-summary" id="toc-robustness-check-summary" class="nav-link" data-scroll-target="#robustness-check-summary"><span class="header-section-number">3.5.8</span> 5.8 Robustness Check Summary</a></li>
-  </ul></li>
-  <li><a href="#section-6-discussion-23-pages" id="toc-section-6-discussion-23-pages" class="nav-link" data-scroll-target="#section-6-discussion-23-pages"><span class="header-section-number">3.6</span> Section 6: Discussion (2–3 pages)</a>
-  <ul class="collapse">
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings"><span class="header-section-number">3.6.1</span> 6.1 Key Findings</a></li>
-  <li><a href="#policy-implications" id="toc-policy-implications" class="nav-link" data-scroll-target="#policy-implications"><span class="header-section-number">3.6.2</span> 6.2 Policy Implications</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">3.6.3</span> 6.3 Limitations</a></li>
-  <li><a href="#future-research" id="toc-future-research" class="nav-link" data-scroll-target="#future-research"><span class="header-section-number">3.6.4</span> 6.4 Future Research</a></li>
-  </ul></li>
-  <li><a href="#section-7-conclusion-1-page" id="toc-section-7-conclusion-1-page" class="nav-link" data-scroll-target="#section-7-conclusion-1-page"><span class="header-section-number">3.7</span> Section 7: Conclusion (1 page)</a></li>
-  </ul></li>
-  <li><a href="#complete-model-summary" id="toc-complete-model-summary" class="nav-link" data-scroll-target="#complete-model-summary"><span class="header-section-number">4</span> Complete Model Summary</a></li>
-  <li><a href="#python-project-structure" id="toc-python-project-structure" class="nav-link" data-scroll-target="#python-project-structure"><span class="header-section-number">5</span> Python Project Structure</a>
-  <ul class="collapse">
-  <li><a href="#what-each-notebook-does" id="toc-what-each-notebook-does" class="nav-link" data-scroll-target="#what-each-notebook-does"><span class="header-section-number">5.0.1</span> What Each Notebook Does</a></li>
-  </ul></li>
-  <li><a href="#timeline-79-weeks" id="toc-timeline-79-weeks" class="nav-link" data-scroll-target="#timeline-79-weeks"><span class="header-section-number">6</span> Timeline (7–9 Weeks)</a></li>
-  <li><a href="#interview-preparation" id="toc-interview-preparation" class="nav-link" data-scroll-target="#interview-preparation"><span class="header-section-number">7</span> Interview Preparation</a>
-  <ul class="collapse">
-  <li><a href="#the-60-second-pitch" id="toc-the-60-second-pitch" class="nav-link" data-scroll-target="#the-60-second-pitch"><span class="header-section-number">7.1</span> The 60-Second Pitch</a></li>
-  <li><a href="#likely-follow-up-questions" id="toc-likely-follow-up-questions" class="nav-link" data-scroll-target="#likely-follow-up-questions"><span class="header-section-number">7.2</span> Likely Follow-Up Questions</a></li>
-  </ul></li>
-  <li><a href="#recommended-resources" id="toc-recommended-resources" class="nav-link" data-scroll-target="#recommended-resources"><span class="header-section-number">8</span> Recommended Resources</a>
-  <ul class="collapse">
-  <li><a href="#python-start-here" id="toc-python-start-here" class="nav-link" data-scroll-target="#python-start-here"><span class="header-section-number">8.1</span> Python (Start Here)</a></li>
-  <li><a href="#the-math" id="toc-the-math" class="nav-link" data-scroll-target="#the-math"><span class="header-section-number">8.2</span> The Math</a></li>
-  <li><a href="#cambodia-context" id="toc-cambodia-context" class="nav-link" data-scroll-target="#cambodia-context"><span class="header-section-number">8.3</span> Cambodia Context</a></li>
-  </ul></li>
-  <li><a href="#flow-diagram" id="toc-flow-diagram" class="nav-link" data-scroll-target="#flow-diagram"><span class="header-section-number">9</span> Flow Diagram</a></li>
-  <li><a href="#next-steps-what-to-do-right-now" id="toc-next-steps-what-to-do-right-now" class="nav-link" data-scroll-target="#next-steps-what-to-do-right-now"><span class="header-section-number">10</span> Next Steps: What to Do Right Now</a></li>
+  <li><a href="#analysis-notebooks" id="toc-analysis-notebooks" class="nav-link" data-scroll-target="#analysis-notebooks">Analysis Notebooks</a></li>
   </ul>
 </nav>
-</div>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Research Roadmap: Credit Risk and Dollarization in Cambodia — A Dual-Currency Analysis Using Interest Rate Spreads</h1>
-<p class="subtitle lead">A Step-by-Step Guide for Your First Research Project</p>
+<div class="quarto-title-block"><div><h1 class="title">Credit Risk and Dollarization in Cambodia</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">A Dual-Currency Analysis Using Interest Rate Spreads (2013–2025)</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Research Plan — Version 3 </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 20, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -210,728 +248,28 @@ window.Quarto = {
 </header>
 
 
-<section id="project-overview" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Project Overview</h1>
-<section id="title-working" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="title-working"><span class="header-section-number">1.1</span> Title (Working)</h2>
-<p><strong>“Credit Risk and Dollarization in Cambodia: A Dual-Currency Analysis Using Interest Rate Spreads (2021–2025)”</strong></p>
-</section>
-<section id="research-questions" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="research-questions"><span class="header-section-number">1.2</span> Research Questions</h2>
-<ol type="1">
-<li>How do credit risk dynamics differ between USD and KHR lending in Cambodia’s banking sector?</li>
-<li>Which currency segment is more sensitive to financial shocks and macroeconomic changes?</li>
-<li>Can a composite dual-currency Credit Risk Index serve as an effective early warning tool for monitoring financial stability?</li>
-</ol>
-</section>
-<section id="why-this-topic-is-strong" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="why-this-topic-is-strong"><span class="header-section-number">1.3</span> Why This Topic Is Strong</h2>
-<ul>
-<li><strong>Original</strong>: No existing study applies a dual-currency CRI framework to Cambodia</li>
-<li><strong>Policy-relevant</strong>: Cambodia is actively pursuing de-dollarization — your results speak directly to whether that changes the risk profile</li>
-<li><strong>Data-feasible</strong>: Uses only publicly available NBC interest rate data (no loan-level data needed)</li>
-<li><strong>Technically impressive</strong>: Stochastic modeling, comparative analysis, stress testing</li>
-<li><strong>Interview-ready</strong>: Shows you understand Cambodia’s unique banking landscape deeply</li>
-</ul>
-</section>
-<section id="the-big-idea-in-one-paragraph" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="the-big-idea-in-one-paragraph"><span class="header-section-number">1.4</span> The Big Idea in One Paragraph</h2>
-<p>Cambodia’s banking sector is unique because it operates in two currencies simultaneously — roughly 80% of lending is in USD and 20% in KHR. This means credit risk may behave very differently depending on which currency a loan is denominated in. By modeling the interest rate spread (loan rate minus deposit rate) separately for each currency using a mean-reverting stochastic process, you can construct currency-specific Credit Risk Indices and a system-wide composite index. Comparing how these indices behave over the post-COVID recovery period (2021–2025) reveals whether dollarization amplifies or dampens credit risk, and which segment serves as a better early warning signal.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Research Reda Lab – Business Club</strong></p>
+<p><strong>Members:</strong> DUK Pagnarith, PHAL Menghak, Hoeurn Sreyka</p>
+</div>
+</div>
+</div>
+<hr>
+<section id="research-topic" class="level2">
+<h2 class="anchored" data-anchor-id="research-topic">Research Topic</h2>
+<p>This project constructs currency-specific and system-wide <strong>Credit Risk Indices (CRIs)</strong> for Cambodia’s dual-currency banking sector. Cambodia’s economy is highly dollarized: approximately 80% of bank lending is denominated in US dollars, while the remaining 20% operates in Cambodian riel (KHR). This structural feature creates a unique vulnerability – domestic credit conditions are directly exposed to US Federal Reserve policy decisions. We investigate whether the two currency segments exhibit distinct risk dynamics and whether COVID-19 triggered a structural decoupling between them.</p>
 <hr>
 </section>
-</section>
-<section id="your-data" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Your Data</h1>
-<section id="what-you-have" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="what-you-have"><span class="header-section-number">2.1</span> What You Have</h2>
-<p>Monthly interest rate data from the <strong>National Bank of Cambodia (NBC)</strong> covering <strong>December 2021 to December 2025</strong> (approximately 49 monthly observations). The data includes deposit money banks’ interest rates on deposits and loans in both KHR and USD.</p>
-<p>The NBC reports two versions of each rate:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 37%">
-<col style="width: 42%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Version</th>
-<th>What It Measures</th>
-<th>Speed of Response</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Weighted Average Rate on <strong>New Amount</strong></td>
-<td>Rates on newly issued loans/deposits that month</td>
-<td>Fast — reflects banks’ current risk pricing</td>
-</tr>
-<tr class="even">
-<td>Weighted Average Rate on <strong>Outstanding Amount</strong></td>
-<td>Average rate across all existing loans/deposits</td>
-<td>Slow — diluted by legacy rates from prior years</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="which-data-to-use" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="which-data-to-use"><span class="header-section-number">2.2</span> Which Data to Use</h2>
-<p><strong>Primary analysis: Use “Weighted Average Rate on New Amount”</strong></p>
-<p>For an early warning indicator, you want the series that reacts fastest to changing risk conditions. New amount rates reflect banks’ current risk assessment in real time. Outstanding amount rates smooth out and delay the signal — you’d detect a shock months later than it actually hit.</p>
-<p><strong>Robustness check: Also run with “Outstanding Amount”</strong></p>
-<p>In your robustness section, repeat the analysis using outstanding amount rates. If results are qualitatively similar, it validates your approach. If the new amount CRI gives earlier/sharper signals (which it should), that’s a finding worth reporting.</p>
-</section>
-<section id="which-loan-and-deposit-types-to-use" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="which-loan-and-deposit-types-to-use"><span class="header-section-number">2.3</span> Which Loan and Deposit Types to Use</h2>
-<p>Your NBC data includes multiple product types. Each has different pricing mechanics:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 36%">
-<col style="width: 43%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Product</th>
-<th>Characteristics</th>
-<th>Suitable for CRI?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Overdraft</td>
-<td>Short-term revolving credit, flexible pricing</td>
-<td>No — priced for flexibility, not pure credit risk</td>
-</tr>
-<tr class="even">
-<td>Credit Card</td>
-<td>High rates reflecting convenience + unsecured risk</td>
-<td>No — bundled pricing distorts the credit risk signal</td>
-</tr>
-<tr class="odd">
-<td><strong>Term Loans</strong></td>
-<td><strong>Standard bank lending, fixed maturity</strong></td>
-<td><strong>Yes — most representative of credit risk pricing</strong></td>
-</tr>
-<tr class="even">
-<td>Other Loans</td>
-<td>Mixed category, harder to interpret</td>
-<td>No — ambiguous composition</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 36%">
-<col style="width: 43%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Product</th>
-<th>Characteristics</th>
-<th>Suitable for CRI?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Demand Deposits</td>
-<td>Very low rates, priced for liquidity</td>
-<td>No — near-zero rates don’t reflect credit dynamics</td>
-</tr>
-<tr class="even">
-<td>Saving Deposits</td>
-<td>Low rates, partially liquidity-driven</td>
-<td>No — similar issue</td>
-</tr>
-<tr class="odd">
-<td><strong>Term Deposits</strong></td>
-<td><strong>Fixed maturity, comparable to term loans</strong></td>
-<td><strong>Yes — best match for term loan spread</strong></td>
-</tr>
-<tr class="even">
-<td>Other Deposits</td>
-<td>Mixed category</td>
-<td>No — ambiguous</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Decision: Use Term Loans and Term Deposits for both currencies.</strong></p>
-</section>
-<section id="your-four-raw-series-from-new-amount-section" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="your-four-raw-series-from-new-amount-section"><span class="header-section-number">2.4</span> Your Four Raw Series (from “New Amount” section)</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Series</th>
-<th>Row in NBC Data</th>
-<th>Currency</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(r_{\text{loan},t}^{KHR}\)</span></td>
-<td>Row 14: Term Loans (KHR)</td>
-<td>KHR</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(r_{\text{deposit},t}^{KHR}\)</span></td>
-<td>Row 9: Term Deposits (KHR)</td>
-<td>KHR</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(r_{\text{loan},t}^{USD}\)</span></td>
-<td>Row 26: Term Loans (USD)</td>
-<td>USD</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(r_{\text{deposit},t}^{USD}\)</span></td>
-<td>Row 21: Term Deposits (USD)</td>
-<td>USD</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="your-two-computed-spreads" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="your-two-computed-spreads"><span class="header-section-number">2.5</span> Your Two Computed Spreads</h2>
-<p><span class="math display">\[
-S_t^{KHR} = r_{\text{Term Loans},t}^{KHR} - r_{\text{Term Deposits},t}^{KHR}
-\]</span></p>
-<p><span class="math display">\[
-S_t^{USD} = r_{\text{Term Loans},t}^{USD} - r_{\text{Term Deposits},t}^{USD}
-\]</span></p>
-</section>
-<section id="quick-data-preview-from-the-image" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="quick-data-preview-from-the-image"><span class="header-section-number">2.6</span> Quick Data Preview (from the image)</h2>
-<p>Using New Amount rates, here are a few sample values to confirm you’re reading the right rows:</p>
-<p><strong>KHR (Dec 2021):</strong></p>
-<ul>
-<li>Term Loans: 10.18%</li>
-<li>Term Deposits: 4.79%</li>
-<li>Spread: 10.18 − 4.79 = <strong>5.39%</strong></li>
-</ul>
-<p><strong>USD (Dec 2021):</strong></p>
-<ul>
-<li>Term Loans: 9.09%</li>
-<li>Term Deposits: 3.98%</li>
-<li>Spread: 9.09 − 3.98 = <strong>5.11%</strong></li>
-</ul>
-</section>
-<section id="important-note-on-sample-size" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="important-note-on-sample-size"><span class="header-section-number">2.7</span> Important Note on Sample Size</h2>
-<p>Your data covers <strong>~49 monthly observations</strong> (Dec 2021 – Dec 2025). This is a shorter sample than ideal for stochastic modeling, but it is workable for several reasons:</p>
-<ul>
-<li>The OU model has only 3 parameters (<span class="math inline">\(\kappa\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma\)</span>), so 49 observations provide reasonable estimation precision</li>
-<li>Monthly frequency gives enough data points (compared to quarterly which would give only ~16)</li>
-<li>You should acknowledge this as a limitation and discuss how results would be strengthened with longer data</li>
-<li><strong>Try to find older NBC data</strong>: If the NBC publishes historical statistical bulletins (even going back to 2015 or 2018), adding those observations would significantly strengthen your analysis. Check the NBC website statistical section or their annual reports.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="paper-structure" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Paper Structure</h1>
-<p>Aim for <strong>18–25 pages</strong> total.</p>
-<section id="section-1-introduction-23-pages" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="section-1-introduction-23-pages"><span class="header-section-number">3.1</span> Section 1: Introduction (2–3 pages)</h2>
-<section id="what-to-write" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="what-to-write"><span class="header-section-number">3.1.1</span> What to Write</h3>
-<p>Open with the significance of credit risk in banking, then narrow to Cambodia’s specific context. The key tension: Cambodia has a dual-currency banking system, and we don’t know whether credit risk behaves the same way in both segments.</p>
-</section>
-<section id="key-arguments-to-make" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="key-arguments-to-make"><span class="header-section-number">3.1.2</span> Key Arguments to Make</h3>
-<p><strong>Cambodia’s banking sector context:</strong></p>
-<ul>
-<li>Rapid credit growth over the past decade (often 15–25% annually)</li>
-<li>Banking assets have grown to over 180% of GDP</li>
-<li>The sector is a critical engine of economic growth but also a potential source of systemic risk</li>
-</ul>
-<p><strong>The dollarization challenge:</strong></p>
-<ul>
-<li>Cambodia is one of the most dollarized economies in the world</li>
-<li>Approximately 80% of loans and deposits are in USD</li>
-<li>The NBC has been gradually pushing de-dollarization (higher reserve requirements for USD, promoting KHR use)</li>
-<li>USD and KHR lending carry different risk profiles: KHR loans face additional exchange rate risk, while USD loans create systemic vulnerability to external dollar shocks</li>
-</ul>
-<p><strong>The data gap:</strong></p>
-<ul>
-<li>Granular loan-level default data is not widely available in Cambodia</li>
-<li>Traditional credit risk models (PD, LGD, EAD) require this data</li>
-<li>Interest rate spreads offer an indirect but powerful alternative — banks embed their risk assessment into the rates they charge</li>
-</ul>
-<p><strong>Your contribution:</strong></p>
-<ul>
-<li>First study to construct a dual-currency Credit Risk Index for Cambodia</li>
-<li>Uses only publicly available data from NBC</li>
-<li>Provides a practical early warning tool</li>
-<li>Captures the post-COVID recovery period and recent monetary tightening</li>
-</ul>
-</section>
-<section id="how-to-end-the-introduction" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="how-to-end-the-introduction"><span class="header-section-number">3.1.3</span> How to End the Introduction</h3>
-<p>State your three research questions clearly, then provide a brief roadmap of the paper.</p>
-</section>
-</section>
-<section id="section-2-literature-review-34-pages" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="section-2-literature-review-34-pages"><span class="header-section-number">3.2</span> Section 2: Literature Review (3–4 pages)</h2>
-<p>Organize into five themes:</p>
-<section id="credit-risk-measurement" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="credit-risk-measurement"><span class="header-section-number">3.2.1</span> 2.1 Credit Risk Measurement</h3>
-<p>Briefly explain the standard approach: banks measure credit risk through three components — Probability of Default (PD), Loss Given Default (LGD), and Exposure at Default (EAD). Together these determine expected credit losses. Mention that this framework requires loan-level data with observed defaults, which is a constraint in emerging markets like Cambodia.</p>
-<p>Reference the principle from credit risk modeling that risk factors differ across segments, so models should be built separately — this directly supports your decision to model USD and KHR separately.</p>
-</section>
-<section id="interest-rate-spreads-as-risk-indicators" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="interest-rate-spreads-as-risk-indicators"><span class="header-section-number">3.2.2</span> 2.2 Interest Rate Spreads as Risk Indicators</h3>
-<p>This is the theoretical foundation. The spread between lending and deposit rates reflects the price of credit risk — when banks perceive more risk, they charge higher loan rates relative to deposit rates. Cover:</p>
-<ul>
-<li>The TED spread (Treasury-Eurodollar spread) as a well-known systemic risk indicator</li>
-<li>Corporate bond spreads as credit risk measures</li>
-<li>Studies using bank-level spreads to assess financial health</li>
-<li>The logic: spreads capture credit risk, operating costs, and profit margin, but changes in spreads over time primarily reflect changes in perceived risk</li>
-</ul>
-</section>
-<section id="stochastic-models-in-finance" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="stochastic-models-in-finance"><span class="header-section-number">3.2.3</span> 2.3 Stochastic Models in Finance</h3>
-<p>Introduce the Ornstein-Uhlenbeck process and why mean-reverting models are appropriate for interest rate spreads. Key references:</p>
-<ul>
-<li>Vasicek (1977) — one of the earliest mean-reverting interest rate models</li>
-<li>Literature on stochastic modeling of credit spreads</li>
-</ul>
-</section>
-<section id="cambodias-financial-system-and-dollarization" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="cambodias-financial-system-and-dollarization"><span class="header-section-number">3.2.4</span> 2.4 Cambodia’s Financial System and Dollarization</h3>
-<ul>
-<li>Overview of Cambodia’s banking sector development</li>
-<li>Studies on dollarization in Cambodia (Menon 2008, Duma 2011, or more recent IMF reports)</li>
-<li>NBC’s de-dollarization efforts and their impact</li>
-<li>Any existing studies on financial stability or credit risk in Cambodia</li>
-</ul>
-</section>
-<section id="gap-in-literature" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="gap-in-literature"><span class="header-section-number">3.2.5</span> 2.5 Gap in Literature</h3>
-<p>No study has: (a) applied the CRI framework to Cambodia, (b) compared credit risk dynamics across USD and KHR segments, or (c) used Cambodia’s interest rate spreads to construct an early warning indicator.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Literature Review Strategy
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Search Google Scholar for: “interest rate spread credit risk”, “dollarization Cambodia banking”, “Ornstein-Uhlenbeck credit spread”, “financial stability early warning indicator”, “Cambodia banking sector risk”. Aim for 15–25 references. Focus on abstracts, introductions, and key results.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="section-3-methodology-56-pages" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="section-3-methodology-56-pages"><span class="header-section-number">3.3</span> Section 3: Methodology (5–6 pages)</h2>
-<section id="data-selection-rationale" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="data-selection-rationale"><span class="header-section-number">3.3.1</span> 3.1 Data Selection Rationale</h3>
-<p>Explain why you chose:</p>
-<ul>
-<li><strong>New Amount</strong> over Outstanding Amount rates (responsiveness to current conditions)</li>
-<li><strong>Term Loans</strong> over other loan types (most representative of standard credit pricing)</li>
-<li><strong>Term Deposits</strong> over other deposit types (best maturity-match with term loans)</li>
-</ul>
-<p>This subsection shows methodological rigor — you made deliberate, justified choices rather than blindly using whatever data was available.</p>
-</section>
-<section id="interest-rate-spread-definition" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="interest-rate-spread-definition"><span class="header-section-number">3.3.2</span> 3.2 Interest Rate Spread Definition</h3>
-<p>For each currency <span class="math inline">\(c \in \{USD, KHR\}\)</span>:</p>
-<p><span class="math display">\[
-S_t^c = r_{\text{Term Loans},t}^c - r_{\text{Term Deposits},t}^c
-\]</span></p>
-<p>This gives you two time series: <span class="math inline">\(S_t^{USD}\)</span> and <span class="math inline">\(S_t^{KHR}\)</span>.</p>
-<p><strong>Why model them separately</strong>: USD lending is influenced by global dollar conditions and Fed policy, while KHR lending is more sensitive to domestic monetary policy and exchange rate movements. Just as banks build separate models for different portfolio segments, you build separate CRIs.</p>
-</section>
-<section id="the-ornstein-uhlenbeck-model" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="the-ornstein-uhlenbeck-model"><span class="header-section-number">3.3.3</span> 3.3 The Ornstein-Uhlenbeck Model</h3>
-<p>For each currency <span class="math inline">\(c\)</span>, the spread follows a mean-reverting stochastic differential equation:</p>
-<p><span class="math display">\[
-dS_t^c = \kappa^c(\theta^c - S_t^c)\,dt + \sigma^c\,dW_t^c
-\]</span></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 16%">
-<col style="width: 62%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Meaning</th>
-<th>What to Compare Across Currencies</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\theta^c\)</span></td>
-<td>Long-run average spread</td>
-<td>Is the “normal” spread higher for KHR or USD?</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\kappa^c\)</span></td>
-<td>Speed of mean reversion</td>
-<td>Does one currency recover faster from shocks?</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\sigma^c\)</span></td>
-<td>Volatility</td>
-<td>Which currency has more volatile spreads?</td>
-</tr>
-</tbody>
-</table>
-<p>The explicit solution:</p>
-<p><span class="math display">\[
-S_t^c = \theta^c + (S_0^c - \theta^c)e^{-\kappa^c t} + \sigma^c \int_0^t e^{-\kappa^c(t-s)}\,dW_s^c
-\]</span></p>
-<p>The spread at time <span class="math inline">\(t\)</span> follows a normal distribution:</p>
-<p><span class="math display">\[
-S_t^c \sim \mathcal{N}\left(m^c(t),\; v^c(t)\right)
-\]</span></p>
-<p>where:</p>
-<p><span class="math display">\[
-m^c(t) = \theta^c + (S_0^c - \theta^c)e^{-\kappa^c t}
-\]</span></p>
-<p><span class="math display">\[
-v^c(t) = \frac{(\sigma^c)^2}{2\kappa^c}\left(1 - e^{-2\kappa^c t}\right)
-\]</span></p>
-</section>
-<section id="parameter-estimation" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="parameter-estimation"><span class="header-section-number">3.3.4</span> 3.4 Parameter Estimation</h3>
-<p>For discrete monthly observations with interval <span class="math inline">\(\Delta t = 1/12\)</span> (one month), the transition density:</p>
-<p><span class="math display">\[
-S_{t_{i+1}}^c \mid S_{t_i}^c \sim \mathcal{N}\left(\theta^c + (S_{t_i}^c - \theta^c)e^{-\kappa^c \Delta t},\; \frac{(\sigma^c)^2}{2\kappa^c}(1 - e^{-2\kappa^c \Delta t})\right)
-\]</span></p>
-<p>The <strong>log-likelihood function</strong>:</p>
-<p><span class="math display">\[
-\ell(\kappa^c, \theta^c, \sigma^c) = -\frac{n}{2}\ln(2\pi) - \frac{n}{2}\ln\left(\frac{(\sigma^c)^2}{2\kappa^c}(1 - e^{-2\kappa^c \Delta t})\right) - \sum_{i=1}^{n}\frac{\left(S_{t_i}^c - \theta^c - (S_{t_{i-1}}^c - \theta^c)e^{-\kappa^c \Delta t}\right)^2}{2 \cdot \frac{(\sigma^c)^2}{2\kappa^c}(1 - e^{-2\kappa^c \Delta t})}
-\]</span></p>
-<p>Maximize using <code>scipy.optimize.minimize</code> (minimize the <em>negative</em> log-likelihood) to get <span class="math inline">\(\hat{\kappa}^c\)</span>, <span class="math inline">\(\hat{\theta}^c\)</span>, <span class="math inline">\(\hat{\sigma}^c\)</span> for each currency.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Cross-Check: AR(1) Regression
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The OU process in discrete time is equivalent to an AR(1) model:</p>
-<p><span class="math display">\[S_{t+1}^c = a^c + b^c S_t^c + \varepsilon_t^c\]</span></p>
-<p>where <span class="math inline">\(b^c = e^{-\kappa^c \Delta t}\)</span>, <span class="math inline">\(a^c = \theta^c(1 - b^c)\)</span>, and <span class="math inline">\(\text{Var}(\varepsilon^c) = \frac{(\sigma^c)^2}{2\kappa^c}(1 - (b^c)^2)\)</span>.</p>
-<p>Run a simple OLS regression of <span class="math inline">\(S_{t+1}\)</span> on <span class="math inline">\(S_t\)</span> and back out the OU parameters. This is a quick way to verify your MLE results and adds credibility.</p>
-</div>
-</div>
-</section>
-<section id="crisis-threshold" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="crisis-threshold"><span class="header-section-number">3.3.5</span> 3.5 Crisis Threshold</h3>
-<p>For each currency, define a critical threshold <span class="math inline">\(S_c^c\)</span> above which the spread signals crisis conditions.</p>
-<p><strong>Primary approach</strong>: Use the <strong>95th percentile</strong> of historical spreads:</p>
-<p><span class="math display">\[
-S_c^{USD} = \text{Percentile}_{95}(S_t^{USD}), \qquad S_c^{KHR} = \text{Percentile}_{95}(S_t^{KHR})
-\]</span></p>
-<p><strong>Sensitivity analysis</strong>: Also test with the 90th and 99th percentiles.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Each currency gets its own threshold because their “normal” spread levels are different. KHR spreads are typically wider than USD spreads (reflecting exchange rate risk premium), so a single absolute threshold would be meaningless.</p>
-</div>
-</div>
-</section>
-<section id="crisis-probability" class="level3" data-number="3.3.6">
-<h3 data-number="3.3.6" class="anchored" data-anchor-id="crisis-probability"><span class="header-section-number">3.3.6</span> 3.6 Crisis Probability</h3>
-<p>For each currency:</p>
-<p><span class="math display">\[
-P(S_t^c &gt; S_c^c) = 1 - \Phi\left(\frac{S_c^c - m^c(t)}{\sqrt{v^c(t)}}\right)
-\]</span></p>
-<p>where <span class="math inline">\(\Phi(\cdot)\)</span> is the standard normal CDF.</p>
-</section>
-<section id="currency-specific-credit-risk-indices" class="level3" data-number="3.3.7">
-<h3 data-number="3.3.7" class="anchored" data-anchor-id="currency-specific-credit-risk-indices"><span class="header-section-number">3.3.7</span> 3.7 Currency-Specific Credit Risk Indices</h3>
-<p>For each currency:</p>
-<p><span class="math display">\[
-\text{CRI}^c = \alpha \cdot \hat{\sigma}^c + \beta \cdot P(S_t^c &gt; S_c^c)
-\]</span></p>
-<p>Use <span class="math inline">\(\alpha = \beta = 0.5\)</span> as the baseline (equal weight to volatility and crisis probability). Test sensitivity with alternative weights (e.g., <span class="math inline">\(\alpha = 0.3, \beta = 0.7\)</span> emphasizing crisis probability, or vice versa).</p>
-</section>
-<section id="system-wide-composite-cri" class="level3" data-number="3.3.8">
-<h3 data-number="3.3.8" class="anchored" data-anchor-id="system-wide-composite-cri"><span class="header-section-number">3.3.8</span> 3.8 System-Wide Composite CRI</h3>
-<p>Combine the two currency-specific indices:</p>
-<p><span class="math display">\[
-\text{CRI}_{\text{System}} = w_{USD} \cdot \text{CRI}^{USD} + w_{KHR} \cdot \text{CRI}^{KHR}
-\]</span></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 36%">
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 21%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Weighting Approach</th>
-<th><span class="math inline">\(w_{USD}\)</span></th>
-<th><span class="math inline">\(w_{KHR}\)</span></th>
-<th>Rationale</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Loan-share weighted (primary)</td>
-<td>~0.80</td>
-<td>~0.20</td>
-<td>Reflects actual banking system composition</td>
-</tr>
-<tr class="even">
-<td>Equal weighted</td>
-<td>0.50</td>
-<td>0.50</td>
-<td>Gives equal attention to both segments</td>
-</tr>
-<tr class="odd">
-<td>Time-varying</td>
-<td>Changes yearly</td>
-<td>Changes yearly</td>
-<td>Captures de-dollarization trend</td>
-</tr>
-</tbody>
-</table>
-<p>Run all three as a sensitivity analysis. Loan-share weighted is your primary result.</p>
-</section>
-<section id="stress-testing" class="level3" data-number="3.3.9">
-<h3 data-number="3.3.9" class="anchored" data-anchor-id="stress-testing"><span class="header-section-number">3.3.9</span> 3.9 Stress Testing</h3>
-<p>Apply stress shocks to both currencies:</p>
-<p><span class="math display">\[
-S_t^{c,\text{stress}} = S_t^c(1 + \delta)
-\]</span></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Scenario</th>
-<th><span class="math inline">\(\delta\)</span></th>
-<th>Interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mild</td>
-<td>0.10</td>
-<td>Minor economic slowdown</td>
-</tr>
-<tr class="even">
-<td>Moderate</td>
-<td>0.30</td>
-<td>Significant financial stress</td>
-</tr>
-<tr class="odd">
-<td>Severe</td>
-<td>0.50</td>
-<td>Major crisis scenario</td>
-</tr>
-</tbody>
-</table>
-<p>Recompute <span class="math inline">\(\text{CRI}^{USD}\)</span>, <span class="math inline">\(\text{CRI}^{KHR}\)</span>, and <span class="math inline">\(\text{CRI}_{\text{System}}\)</span> under each stress scenario. Compare to baseline.</p>
-<p><strong>Key question</strong>: Is the USD segment or KHR segment more fragile under stress? This has direct implications for de-dollarization policy.</p>
-</section>
-<section id="rolling-window-analysis" class="level3" data-number="3.3.10">
-<h3 data-number="3.3.10" class="anchored" data-anchor-id="rolling-window-analysis"><span class="header-section-number">3.3.10</span> 3.10 Rolling Window Analysis</h3>
-<p>Since your sample period is ~4 years, instead of a simple sub-period split, use a <strong>rolling window approach</strong> to track how risk evolves over time:</p>
-<ul>
-<li>Use a 12-month rolling window to re-estimate OU parameters monthly</li>
-<li>This produces a time series of <span class="math inline">\(\hat{\kappa}_t\)</span>, <span class="math inline">\(\hat{\theta}_t\)</span>, <span class="math inline">\(\hat{\sigma}_t\)</span> for each currency</li>
-<li>Plot these to show how the risk dynamics change over your sample period</li>
-</ul>
-<p>This approach is better than splitting a 4-year sample into sub-periods (which would give too few observations per period).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why Rolling Window Instead of Sub-Period Split
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The previous roadmap suggested splitting data into pre-COVID / COVID / post-COVID periods. With data starting in Dec 2021, you’re already in the post-COVID recovery period. A rolling window captures the gradual evolution of risk without requiring arbitrary cut points, and it works better with shorter samples.</p>
-<p>However, you can still annotate key events on your charts:</p>
-<ul>
-<li><strong>2022</strong>: Global monetary tightening (Fed rate hikes affecting USD lending)</li>
-<li><strong>2023</strong>: Cambodia’s post-COVID recovery acceleration</li>
-<li><strong>2024–2025</strong>: Recent developments in NBC policy and banking sector</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="robustness-checks" class="level3" data-number="3.3.11">
-<h3 data-number="3.3.11" class="anchored" data-anchor-id="robustness-checks"><span class="header-section-number">3.3.11</span> 3.11 Robustness Checks</h3>
-<p>Summarize all the sensitivity analyses in one subsection:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 46%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Check</th>
-<th>What You Vary</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Outstanding Amount rates</td>
-<td>Data source</td>
-<td>Confirm results hold with alternative rate measure</td>
-</tr>
-<tr class="even">
-<td>90th / 99th percentile thresholds</td>
-<td>Crisis threshold</td>
-<td>Show CRI is not sensitive to threshold choice</td>
-</tr>
-<tr class="odd">
-<td>Alternative CRI weights</td>
-<td><span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> values</td>
-<td>Show CRI ranking is stable across weight schemes</td>
-</tr>
-<tr class="even">
-<td>Equal vs.&nbsp;loan-share system weights</td>
-<td><span class="math inline">\(w_{USD}\)</span>, <span class="math inline">\(w_{KHR}\)</span></td>
-<td>Show system CRI is robust to weighting</td>
-</tr>
-<tr class="odd">
-<td>Alternative loan types (Overdraft)</td>
-<td>Product used for spread</td>
-<td>Confirm term loans give the cleanest signal</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="section-4-data-description-23-pages" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="section-4-data-description-23-pages"><span class="header-section-number">3.4</span> Section 4: Data Description (2–3 pages)</h2>
-<section id="data-source" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="data-source"><span class="header-section-number">3.4.1</span> 4.1 Data Source</h3>
-<ul>
-<li><strong>Source</strong>: National Bank of Cambodia, Deposit Money Banks’ Interest Rates on Deposits and Loans</li>
-<li><strong>Period</strong>: December 2021 – December 2025 (49 monthly observations)</li>
-<li><strong>Rate type</strong>: Weighted Average Rate on New Amount (primary); Outstanding Amount (robustness)</li>
-<li><strong>Products used</strong>: Term Loans and Term Deposits</li>
-<li><strong>Currencies</strong>: KHR and USD</li>
-<li><strong>Coverage</strong>: Including commercial banks and specialized banks</li>
-</ul>
-</section>
-<section id="data-selection-justification" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="data-selection-justification"><span class="header-section-number">3.4.2</span> 4.2 Data Selection Justification</h3>
-<p>Explain clearly (this shows methodological rigor):</p>
-<p><strong>Why New Amount rates</strong>: New amount rates capture banks’ current risk pricing. When a bank perceives rising credit risk, it immediately raises rates on new loans. Outstanding amount rates are diluted by legacy loans issued months or years earlier, making them slow to respond. For an early warning indicator, responsiveness is essential.</p>
-<p><strong>Why Term Loans and Term Deposits</strong>: Term loans are the most standard lending product — they have a fixed maturity and their pricing most directly reflects credit risk assessment. Overdrafts are priced for flexibility, credit cards bundle convenience premiums, and “other loans” is an ambiguous category. Similarly, term deposits are the best maturity match for term loans, avoiding the liquidity-driven pricing of demand and saving deposits.</p>
-</section>
-<section id="computed-spreads" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="computed-spreads"><span class="header-section-number">3.4.3</span> 4.3 Computed Spreads</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 28%">
-<col style="width: 25%">
-<col style="width: 45%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Formula</th>
-<th>Interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(S_t^{KHR}\)</span></td>
-<td><span class="math inline">\(r_{\text{Term Loans},t}^{KHR} - r_{\text{Term Deposits},t}^{KHR}\)</span></td>
-<td>Credit risk compensation in riel lending</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(S_t^{USD}\)</span></td>
-<td><span class="math inline">\(r_{\text{Term Loans},t}^{USD} - r_{\text{Term Deposits},t}^{USD}\)</span></td>
-<td>Credit risk compensation in dollar lending</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="descriptive-statistics" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="descriptive-statistics"><span class="header-section-number">3.4.4</span> 4.4 Descriptive Statistics</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Statistic</th>
-<th><span class="math inline">\(S_t^{USD}\)</span></th>
-<th><span class="math inline">\(S_t^{KHR}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mean</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="even">
-<td>Std. Dev.</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="odd">
-<td>Min</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="even">
-<td>Max</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="odd">
-<td>Skewness</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="even">
-<td>Percentile 5th</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="odd">
-<td>Percentile 95th</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="even">
-<td>Observations</td>
-<td>49</td>
-<td>49</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="key-visualizations-for-this-section" class="level3" data-number="3.4.5">
-<h3 data-number="3.4.5" class="anchored" data-anchor-id="key-visualizations-for-this-section"><span class="header-section-number">3.4.5</span> 4.5 Key Visualizations for This Section</h3>
-<ol type="1">
-<li><strong>Dual time series plot</strong>: Both <span class="math inline">\(S_t^{USD}\)</span> and <span class="math inline">\(S_t^{KHR}\)</span> on the same chart, with key events annotated (e.g., Fed rate hikes 2022, Cambodia banking sector developments)</li>
-<li><strong>Histograms</strong>: Distribution of each spread — are they approximately normal?</li>
-<li><strong>Scatter plot / correlation</strong>: How correlated are the two spread series? Do they move together or independently?</li>
-<li><strong>Raw rate plot</strong>: Show the four underlying rates (loan and deposit for each currency) so readers can see what’s driving the spread</li>
-</ol>
-</section>
-<section id="supplementary-data-optional-but-helpful" class="level3" data-number="3.4.6">
-<h3 data-number="3.4.6" class="anchored" data-anchor-id="supplementary-data-optional-but-helpful"><span class="header-section-number">3.4.6</span> 4.6 Supplementary Data (Optional but Helpful)</h3>
+<section id="methodology-overview" class="level2">
+<h2 class="anchored" data-anchor-id="methodology-overview">Methodology Overview</h2>
+<p>Our analytical framework proceeds in 16 steps, each structured around four dimensions: <strong>Framework</strong> (conceptual basis), <strong>What</strong> (the computation), <strong>Why</strong> (the justification), and <strong>How</strong> (the implementation). The complete methodology is detailed on the <a href="./methodology.html">Methodology</a> page.</p>
+<section id="core-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="core-pipeline">Core Pipeline</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
@@ -940,647 +278,247 @@ S_t^{c,\text{stress}} = S_t^c(1 + \delta)
 </colgroup>
 <thead>
 <tr class="header">
-<th>Data</th>
-<th>Source</th>
+<th style="text-align: center;">Step</th>
+<th>Method</th>
 <th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Share of USD vs.&nbsp;KHR lending</td>
-<td>NBC Annual Reports</td>
-<td>System CRI weights</td>
+<td style="text-align: center;">1</td>
+<td>Interest Rate Spread</td>
+<td>Compute the gap between term loan and term deposit rates for each currency</td>
 </tr>
 <tr class="even">
-<td>GDP growth rate</td>
-<td>World Bank / NBC</td>
-<td>Annotate charts with economic context</td>
+<td style="text-align: center;">2</td>
+<td>Ornstein-Uhlenbeck Model</td>
+<td>Model spreads as mean-reverting stochastic processes</td>
 </tr>
 <tr class="odd">
-<td>NPL ratios</td>
-<td>NBC / IMF reports</td>
-<td>Cross-validate CRI against actual default trends</td>
+<td style="text-align: center;">3</td>
+<td>Maximum Likelihood Estimation</td>
+<td>Estimate model parameters with exact Gaussian transition density</td>
 </tr>
 <tr class="even">
-<td>USD/KHR exchange rate</td>
-<td>NBC</td>
-<td>Context for KHR spread movements</td>
+<td style="text-align: center;">4</td>
+<td>AR(1) Cross-Check</td>
+<td>Independent validation of OU parameter estimates via OLS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td>Crisis Threshold</td>
+<td>Define currency-specific thresholds at the 95th percentile</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td>Crisis Probability</td>
+<td>Compute the probability that spreads exceed the threshold at each point in time</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td>Currency CRI</td>
+<td>Combine normalized volatility and crisis probability into a composite index</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td>System CRI</td>
+<td>Aggregate USD and KHR CRIs using loan-share weights</td>
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
-</section>
-<section id="section-5-results-56-pages" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="section-5-results-56-pages"><span class="header-section-number">3.5</span> Section 5: Results (5–6 pages)</h2>
-<section id="spread-dynamics-visual-overview" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="spread-dynamics-visual-overview"><span class="header-section-number">3.5.1</span> 5.1 Spread Dynamics: Visual Overview</h3>
-<p>Before diving into the model, describe what the raw spread data shows:</p>
-<ul>
-<li>Is there a clear trend? (Are spreads narrowing or widening over 2021–2025?)</li>
-<li>Which spread is larger — KHR or USD? (KHR should be higher due to exchange rate risk premium)</li>
-<li>Do they move together? (High correlation = common shocks; low correlation = different risk drivers)</li>
-<li>Are there visible structural breaks or sudden jumps?</li>
-</ul>
-</section>
-<section id="estimated-ou-parameters" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="estimated-ou-parameters"><span class="header-section-number">3.5.2</span> 5.2 Estimated OU Parameters</h3>
+<section id="extended-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="extended-analyses">Extended Analyses</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 29%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 43%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>USD</th>
-<th>KHR</th>
-<th>Interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\hat{\theta}\)</span></td>
-<td>?</td>
-<td>?</td>
-<td>Long-run “normal” spread level</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\hat{\kappa}\)</span></td>
-<td>?</td>
-<td>?</td>
-<td>Speed of recovery after shocks (higher = faster)</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\hat{\sigma}\)</span></td>
-<td>?</td>
-<td>?</td>
-<td>Spread volatility (higher = more unstable)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Key comparisons to discuss:</strong></p>
-<ul>
-<li>Is <span class="math inline">\(\theta^{KHR} &gt; \theta^{USD}\)</span>? (Expected — KHR loans carry exchange rate risk premium)</li>
-<li>Is <span class="math inline">\(\kappa^{KHR}\)</span> higher or lower than <span class="math inline">\(\kappa^{USD}\)</span>? (If lower, KHR spreads are more persistent after shocks)</li>
-<li>Is <span class="math inline">\(\sigma^{KHR} &gt; \sigma^{USD}\)</span>? (If so, the KHR segment is inherently more volatile)</li>
-</ul>
-<p>Also present the AR(1) cross-check results to validate your MLE estimates.</p>
-</section>
-<section id="crisis-probability-over-time" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="crisis-probability-over-time"><span class="header-section-number">3.5.3</span> 5.3 Crisis Probability Over Time</h3>
-<p>Plot <span class="math inline">\(P(S_t^{USD} &gt; S_c^{USD})\)</span> and <span class="math inline">\(P(S_t^{KHR} &gt; S_c^{KHR})\)</span> over time on the same chart. Annotate key events:</p>
-<ul>
-<li>2022: Fed rate hikes and global monetary tightening</li>
-<li>2023: Cambodia’s recovery and NBC policy changes</li>
-<li>2024–2025: Recent trends</li>
-</ul>
-<p><strong>Key question</strong>: Which currency’s crisis probability fluctuates more? Do they spike at the same times?</p>
-</section>
-<section id="currency-specific-cris" class="level3" data-number="3.5.4">
-<h3 data-number="3.5.4" class="anchored" data-anchor-id="currency-specific-cris"><span class="header-section-number">3.5.4</span> 5.4 Currency-Specific CRIs</h3>
-<p>Plot <span class="math inline">\(\text{CRI}^{USD}\)</span> and <span class="math inline">\(\text{CRI}^{KHR}\)</span> over time. Interpret using:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>CRI Level</th>
-<th>Interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Low</td>
-<td>Stable financial conditions</td>
-</tr>
-<tr class="even">
-<td>Moderate</td>
-<td>Elevated risk — increased monitoring warranted</td>
-</tr>
-<tr class="odd">
-<td>High</td>
-<td>Severe danger — potential crisis</td>
-</tr>
-</tbody>
-</table>
-<p><em>(Calibrate these thresholds based on your actual results)</em></p>
-</section>
-<section id="system-wide-composite-cri-1" class="level3" data-number="3.5.5">
-<h3 data-number="3.5.5" class="anchored" data-anchor-id="system-wide-composite-cri-1"><span class="header-section-number">3.5.5</span> 5.5 System-Wide Composite CRI</h3>
-<p>Plot <span class="math inline">\(\text{CRI}_{\text{System}}\)</span> alongside the individual currency CRIs. Discuss:</p>
-<ul>
-<li>Does the composite give a clearer or muddier signal?</li>
-<li>Are there periods where one currency’s CRI is high but the system CRI stays moderate (because the other segment is stable)?</li>
-</ul>
-</section>
-<section id="rolling-window-parameter-evolution" class="level3" data-number="3.5.6">
-<h3 data-number="3.5.6" class="anchored" data-anchor-id="rolling-window-parameter-evolution"><span class="header-section-number">3.5.6</span> 5.6 Rolling Window Parameter Evolution</h3>
-<p>Plot how <span class="math inline">\(\hat{\kappa}_t\)</span>, <span class="math inline">\(\hat{\theta}_t\)</span>, <span class="math inline">\(\hat{\sigma}_t\)</span> change over time for each currency using the 12-month rolling window. This shows:</p>
-<ul>
-<li>Is the banking sector becoming more or less stable?</li>
-<li>Are USD and KHR risk dynamics converging or diverging?</li>
-<li>Are there periods where volatility suddenly increases?</li>
-</ul>
-</section>
-<section id="stress-test-results" class="level3" data-number="3.5.7">
-<h3 data-number="3.5.7" class="anchored" data-anchor-id="stress-test-results"><span class="header-section-number">3.5.7</span> 5.7 Stress Test Results</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 31%">
-<col style="width: 17%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Scenario</th>
-<th><span class="math inline">\(\text{CRI}^{USD}\)</span></th>
-<th><span class="math inline">\(\text{CRI}^{KHR}\)</span></th>
-<th><span class="math inline">\(\text{CRI}_{\text{System}}\)</span></th>
-<th>Δ from Baseline</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Baseline</td>
-<td>?</td>
-<td>?</td>
-<td>?</td>
-<td>—</td>
-</tr>
-<tr class="even">
-<td>Mild (<span class="math inline">\(\delta=0.1\)</span>)</td>
-<td>?</td>
-<td>?</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="odd">
-<td>Moderate (<span class="math inline">\(\delta=0.3\)</span>)</td>
-<td>?</td>
-<td>?</td>
-<td>?</td>
-<td>?</td>
-</tr>
-<tr class="even">
-<td>Severe (<span class="math inline">\(\delta=0.5\)</span>)</td>
-<td>?</td>
-<td>?</td>
-<td>?</td>
-<td>?</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Key question</strong>: Which currency’s CRI is more sensitive to stress? If USD jumps more, the dominant 80% of banking is fragile. If KHR is more sensitive, it supports cautious de-dollarization.</p>
-</section>
-<section id="robustness-check-summary" class="level3" data-number="3.5.8">
-<h3 data-number="3.5.8" class="anchored" data-anchor-id="robustness-check-summary"><span class="header-section-number">3.5.8</span> 5.8 Robustness Check Summary</h3>
-<p>Present a compact table showing that your main findings hold under alternative specifications:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 39%">
-<col style="width: 44%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Robustness Check</th>
-<th>Main Finding Holds?</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Outstanding Amount rates</td>
-<td>?</td>
-<td>CRI levels differ but ranking same?</td>
-</tr>
-<tr class="even">
-<td>90th percentile threshold</td>
-<td>?</td>
-<td>Similar pattern?</td>
-</tr>
-<tr class="odd">
-<td>99th percentile threshold</td>
-<td>?</td>
-<td>Similar pattern?</td>
-</tr>
-<tr class="even">
-<td>Equal system weights</td>
-<td>?</td>
-<td>Materially different from loan-share?</td>
-</tr>
-<tr class="odd">
-<td>Alternative CRI weights (<span class="math inline">\(\alpha=0.3, \beta=0.7\)</span>)</td>
-<td>?</td>
-<td>Ranking preserved?</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="section-6-discussion-23-pages" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="section-6-discussion-23-pages"><span class="header-section-number">3.6</span> Section 6: Discussion (2–3 pages)</h2>
-<section id="key-findings" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="key-findings"><span class="header-section-number">3.6.1</span> 6.1 Key Findings</h3>
-<p>Interpret your results in terms of:</p>
-<ul>
-<li><strong>Dollarization and risk</strong>: Does the USD segment behave as a stabilizer or a vulnerability? The comparison of <span class="math inline">\(\text{CRI}^{USD}\)</span> vs.&nbsp;<span class="math inline">\(\text{CRI}^{KHR}\)</span> is your headline finding.</li>
-<li><strong>Risk evolution</strong>: Based on the rolling window, is Cambodia’s banking sector becoming more or less risky over 2021–2025?</li>
-<li><strong>Early warning value</strong>: Does the CRI pick up rising risk before it becomes obvious in other indicators?</li>
-</ul>
-</section>
-<section id="policy-implications" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="policy-implications"><span class="header-section-number">3.6.2</span> 6.2 Policy Implications</h3>
-<ul>
-<li><strong>For the NBC</strong>: The dual-currency CRI could be a practical monitoring tool requiring only data the NBC already publishes</li>
-<li><strong>For de-dollarization</strong>: If the KHR segment shows lower crisis sensitivity, it supports the agenda. If opposite, transition needs careful management</li>
-<li><strong>For banks</strong>: Understanding which currency is more volatile helps with internal risk management, pricing, and capital allocation</li>
-</ul>
-</section>
-<section id="limitations" class="level3" data-number="3.6.3">
-<h3 data-number="3.6.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">3.6.3</span> 6.3 Limitations</h3>
-<p>Be honest — this shows academic maturity:</p>
-<ul>
-<li><strong>Sample size</strong>: ~49 monthly observations is workable but not abundant. Results should be validated as more data becomes available.</li>
-<li><strong>Post-COVID only</strong>: The data starts in late 2021, so you don’t observe the initial COVID shock. Results reflect the recovery period rather than a full crisis cycle.</li>
-<li><strong>Spreads capture more than credit risk</strong>: Operating costs and profit margins are embedded. Changes in spreads don’t purely reflect credit risk.</li>
-<li><strong>Aggregate data</strong>: NBC rates are market averages across all banks. Individual banks may behave differently.</li>
-<li><strong>Model assumptions</strong>: The OU model assumes normally distributed shocks and constant parameters (within each estimation window). Reality may include jumps and regime changes.</li>
-<li><strong>No direct validation</strong>: Without loan-level default data, you can’t directly validate CRI against actual defaults.</li>
-</ul>
-</section>
-<section id="future-research" class="level3" data-number="3.6.4">
-<h3 data-number="3.6.4" class="anchored" data-anchor-id="future-research"><span class="header-section-number">3.6.4</span> 6.4 Future Research</h3>
-<ul>
-<li>Extend with longer historical data as it becomes available</li>
-<li>Apply to individual bank-level data if accessible</li>
-<li>Add macroeconomic variables (GDP growth, exchange rate, inflation) to enrich the model</li>
-<li>Compare Cambodia’s CRI to neighboring ASEAN economies (Vietnam, Laos, Myanmar)</li>
-<li>Test alternative stochastic models (e.g., jump-diffusion for sudden shocks)</li>
-<li>Incorporate the NBC’s loan classification data to validate CRI against NPL trends</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="section-7-conclusion-1-page" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="section-7-conclusion-1-page"><span class="header-section-number">3.7</span> Section 7: Conclusion (1 page)</h2>
-<p>Summarize:</p>
-<ol type="1">
-<li>You developed a dual-currency Credit Risk Index for Cambodia using publicly available NBC interest rate data</li>
-<li>State key findings (USD vs.&nbsp;KHR differences, risk evolution, stress test implications)</li>
-<li>The framework provides a practical, low-data-requirement tool for financial stability monitoring</li>
-<li>Particularly valuable for Cambodia and similar emerging markets where granular default data is scarce</li>
-<li>The dual-currency approach uniquely captures the risk implications of dollarization</li>
-</ol>
-<hr>
-</section>
-</section>
-<section id="complete-model-summary" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Complete Model Summary</h1>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 24%">
-<col style="width: 59%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Step</th>
-<th>Formula</th>
-<th>Run for Each Currency?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1. Compute spread</td>
-<td><span class="math inline">\(S_t^c = r_{\text{Term Loans},t}^c - r_{\text{Term Deposits},t}^c\)</span></td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="even">
-<td>2. Fit OU model</td>
-<td><span class="math inline">\(dS_t^c = \kappa^c(\theta^c - S_t^c)dt + \sigma^c dW_t^c\)</span></td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="odd">
-<td>3. Estimate parameters (MLE)</td>
-<td>Maximize log-likelihood for <span class="math inline">\((\kappa^c, \theta^c, \sigma^c)\)</span></td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="even">
-<td>4. Cross-check (AR(1))</td>
-<td>Regress <span class="math inline">\(S_{t+1}\)</span> on <span class="math inline">\(S_t\)</span>, back out OU parameters</td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="odd">
-<td>5. Set crisis threshold</td>
-<td><span class="math inline">\(S_c^c = P_{95}(S_t^c)\)</span></td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="even">
-<td>6. Crisis probability</td>
-<td><span class="math inline">\(P(S_t^c &gt; S_c^c) = 1 - \Phi\left(\frac{S_c^c - m^c(t)}{\sqrt{v^c(t)}}\right)\)</span></td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="odd">
-<td>7. Currency CRI</td>
-<td><span class="math inline">\(\text{CRI}^c = 0.5\hat{\sigma}^c + 0.5 P(S_t^c &gt; S_c^c)\)</span></td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="even">
-<td>8. System CRI</td>
-<td><span class="math inline">\(\text{CRI}_{\text{Sys}} = w_{USD}\text{CRI}^{USD} + w_{KHR}\text{CRI}^{KHR}\)</span></td>
-<td>Once (combined)</td>
-</tr>
-<tr class="odd">
-<td>9. Stress test</td>
-<td><span class="math inline">\(S_t^{c,\text{stress}} = S_t^c(1+\delta)\)</span>, recompute CRIs</td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="even">
-<td>10. Rolling window</td>
-<td>Re-estimate steps 2–7 on 12-month rolling window</td>
-<td>Yes (USD + KHR)</td>
-</tr>
-<tr class="odd">
-<td>11. Robustness</td>
-<td>Repeat with Outstanding Amount rates</td>
-<td>Yes (USD + KHR)</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="python-project-structure" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Python Project Structure</h1>
-<pre><code>cambodia-credit-risk/
-├── data/
-│   ├── raw/
-│   │   └── nbc_interest_rates.csv       # Your NBC data (copy from Excel)
-│   └── processed/
-│       ├── spreads_usd.csv              # Computed USD spread series
-│       └── spreads_khr.csv              # Computed KHR spread series
-├── notebooks/
-│   ├── 01_data_preparation.ipynb        # Load, clean, compute spreads
-│   ├── 02_exploratory_analysis.ipynb    # Dual-currency plots, stats, correlation
-│   ├── 03_parameter_estimation.ipynb    # MLE + AR(1) for BOTH currencies
-│   ├── 04_cri_computation.ipynb         # Crisis prob + CRI for USD, KHR, System
-│   ├── 05_stress_testing.ipynb          # Stress scenarios for both currencies
-│   ├── 06_rolling_window.ipynb          # 12-month rolling parameter evolution
-│   └── 07_robustness.ipynb              # Outstanding Amount + other checks
-├── figures/                             # Saved charts for the paper
-│   ├── fig1_spread_timeseries.png
-│   ├── fig2_spread_histograms.png
-│   ├── fig3_cri_timeseries.png
-│   ├── fig4_stress_test.png
-│   ├── fig5_rolling_parameters.png
-│   └── ...
-├── paper/
-│   └── paper.qmd                        # Your final paper
-└── README.md</code></pre>
-<section id="what-each-notebook-does" class="level3" data-number="5.0.1">
-<h3 data-number="5.0.1" class="anchored" data-anchor-id="what-each-notebook-does"><span class="header-section-number">5.0.1</span> What Each Notebook Does</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 28%">
-<col style="width: 37%">
+<col style="width: 26%">
 <col style="width: 34%">
+<col style="width: 39%">
 </colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Step</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td>Stress Testing</td>
+<td>Evaluate CRI response to hypothetical adverse shocks (10%, 30%, 50%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td>COVID-19 Sub-Period Analysis</td>
+<td>Test for structural parameter shifts across pre-COVID, COVID, and post-COVID periods</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">11</td>
+<td>Rolling Window Analysis</td>
+<td>Track parameter evolution over time using a 36-month rolling window</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">12</td>
+<td>Robustness Checks</td>
+<td>Verify findings under alternative rates, thresholds, and weights</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">13</td>
+<td>Regime-Switching OU Model</td>
+<td>Allow parameters to shift between latent calm and stress states</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">14</td>
+<td>Dynamic Threshold CRI</td>
+<td>Replace static crisis threshold with a rolling 36-month threshold</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">15</td>
+<td>Implied Default Probability</td>
+<td>Extract market-implied default probabilities from observed spreads</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">16</td>
+<td>Policy Divergence (VAR)</td>
+<td>Test whether US monetary policy transmits to each currency segment</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="key-results-and-findings" class="level2">
+<h2 class="anchored" data-anchor-id="key-results-and-findings">Key Results and Findings</h2>
+<section id="structural-risk-asymmetry" class="level3">
+<h3 class="anchored" data-anchor-id="structural-risk-asymmetry">1. Structural Risk Asymmetry</h3>
+<p>The KHR segment exhibits structurally higher credit risk than the USD segment across all metrics. KHR spreads are wider, more volatile, and revert to equilibrium more slowly. This is consistent with the exchange rate risk premium that lenders demand for riel-denominated lending in a dollarized economy.</p>
+</section>
+<section id="covid-19-as-a-structural-break" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-as-a-structural-break">2. COVID-19 as a Structural Break</h3>
+<p>COVID-19 did not merely produce a transitory spike in credit risk – it triggered a <strong>permanent regime shift</strong>. Post-COVID parameters have not reverted to pre-COVID levels for either currency. The KHR segment absorbed a disproportionately larger shock, with its equilibrium spread shifting to a higher level and its volatility remaining elevated.</p>
+</section>
+<section id="the-decoupling-hypothesis-confirmed" class="level3">
+<h3 class="anchored" data-anchor-id="the-decoupling-hypothesis-confirmed">3. The Decoupling Hypothesis – Confirmed</h3>
+<p>The most striking finding of this research is the <strong>post-COVID decoupling</strong> of the KHR credit market from US monetary policy:</p>
+<ul>
+<li><strong>Pre-COVID:</strong> The US Federal Funds Rate Granger-caused both USD and KHR spreads (p &lt; 0.001 for both). The Fed effectively set borrowing costs across the entire Cambodian banking system.</li>
+<li><strong>Post-COVID:</strong> The Fed Funds Rate continues to Granger-cause USD spreads (p = 0.0165), but has <strong>lost its influence</strong> over KHR spreads (p = 0.1592). The riel segment has decoupled from US monetary policy.</li>
+</ul>
+<p>This decoupling is corroborated by three independent methods:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rolling Correlations</td>
+<td>Correlation between KHR spread and FFR inverted from +0.77 (pre-COVID) to -0.46 (post-COVID)</td>
+</tr>
+<tr class="even">
+<td>Granger Causality</td>
+<td>FFR to KHR p-value shifted from 0.0000 to 0.1592</td>
+</tr>
+<tr class="odd">
+<td>Impulse Response Functions</td>
+<td>KHR spread shows near-zero response to FFR shocks; confidence bands include zero at all horizons</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nbc-policy-gaining-traction" class="level3">
+<h3 class="anchored" data-anchor-id="nbc-policy-gaining-traction">4. NBC Policy Gaining Traction</h3>
+<p>A surprise finding: NBC domestic monetary policy began Granger-causing <strong>USD spreads</strong> post-COVID (p = 0.0021), suggesting that local policy levers are gaining enough influence to spill over into the dollarized segment. This is a potential indicator of advancing de-dollarization.</p>
+</section>
+<section id="regime-switching-confirms-instability" class="level3">
+<h3 class="anchored" data-anchor-id="regime-switching-confirms-instability">5. Regime Switching Confirms Instability</h3>
+<p>The two-state Markov Regime-Switching OU model identifies distinct calm and stress regimes for both currencies. The KHR segment spends more time in the stress regime, confirming its higher inherent instability. The regime-switching model is favored over the standard OU model by the BIC criterion.</p>
+</section>
+<section id="stress-test-results" class="level3">
+<h3 class="anchored" data-anchor-id="stress-test-results">6. Stress Test Results</h3>
+<p>Under a severe stress scenario (50% spread increase), the KHR CRI responds more dramatically than the USD CRI, confirming that the riel segment amplifies credit stress more strongly. The dominant USD segment (80% of lending) remains the primary driver of system-wide risk under all scenarios.</p>
+</section>
+<section id="implied-default-probabilities" class="level3">
+<h3 class="anchored" data-anchor-id="implied-default-probabilities">7. Implied Default Probabilities</h3>
+<p>Using reduced-form credit pricing, the implied 1-year default probability for the KHR segment consistently exceeds that of the USD segment by a factor of 2 to 4, depending on the assumed recovery rate. This ratio has been relatively stable over time, reinforcing the structural nature of the risk differential.</p>
+<hr>
+</section>
+</section>
+<section id="analysis-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-notebooks">Analysis Notebooks</h2>
+<p>Each step of the analysis is documented in a dedicated notebook. Click the links below to explore the full code, figures, and detailed interpretations.</p>
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Notebook</th>
-<th>What It Does</th>
-<th>Key Output</th>
+<th>Topic</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>01</td>
-<td>Load NBC CSV, extract Term Loans + Term Deposits for both currencies, compute spreads, handle missing data</td>
-<td><code>spreads_usd.csv</code>, <code>spreads_khr.csv</code></td>
+<td><a href="./nb01_data_preparation.html">01 - Data Preparation</a></td>
+<td>Data sourcing, cleaning, and spread computation</td>
 </tr>
 <tr class="even">
-<td>02</td>
-<td>Descriptive stats table, dual time series plot, histograms, scatter/correlation, raw rates plot</td>
-<td>Figures 1–4, Table 1</td>
+<td><a href="./nb02_exploratory_analysis.html">02 - Exploratory Analysis</a></td>
+<td>Descriptive statistics, time series visualization, correlation analysis</td>
 </tr>
 <tr class="odd">
-<td>03</td>
-<td>MLE estimation of <span class="math inline">\((\kappa, \theta, \sigma)\)</span> for each currency + AR(1) OLS cross-check</td>
-<td>Table 2 (parameter estimates)</td>
+<td><a href="./nb03_parameter_estimation.html">03 - Parameter Estimation</a></td>
+<td>OU model fitting via MLE with AR(1) cross-check</td>
 </tr>
 <tr class="even">
-<td>04</td>
-<td>Compute <span class="math inline">\(m(t)\)</span>, <span class="math inline">\(v(t)\)</span>, crisis probability, CRI for USD, KHR, and System over time</td>
-<td>Figure 5 (CRI plot), Table 3</td>
+<td><a href="./nb04_cri_computation.html">04 - CRI Computation</a></td>
+<td>Crisis thresholds, crisis probability, and CRI construction</td>
 </tr>
 <tr class="odd">
-<td>05</td>
-<td>Apply <span class="math inline">\(\delta = 0.1, 0.3, 0.5\)</span> shocks, recompute CRIs, comparison charts</td>
-<td>Figure 6, Table 4</td>
+<td><a href="./nb05_stress_testing.html">05 - Stress Testing</a></td>
+<td>Stress scenario analysis under mild, moderate, and severe shocks</td>
 </tr>
 <tr class="even">
-<td>06</td>
-<td>12-month rolling window re-estimation, plot parameter evolution</td>
-<td>Figures 7–8</td>
+<td><a href="./nb06_covid_analysis.html">06 - COVID-19 Analysis</a></td>
+<td>Sub-period parameter estimation and structural break detection</td>
 </tr>
 <tr class="odd">
-<td>07</td>
-<td>Repeat analysis with Outstanding Amount rates + alternative thresholds/weights</td>
-<td>Table 5 (robustness)</td>
+<td><a href="./nb07_rolling_window.html">07 - Rolling Window</a></td>
+<td>36-month rolling parameter estimation and convergence analysis</td>
+</tr>
+<tr class="even">
+<td><a href="./nb08_robustness.html">08 - Robustness Checks</a></td>
+<td>Alternative rates, thresholds, and weights</td>
+</tr>
+<tr class="odd">
+<td><a href="./nb09_regime_switching.html">09 - Regime Switching</a></td>
+<td>Two-state Markov Regime-Switching OU model</td>
+</tr>
+<tr class="even">
+<td><a href="./nb10_dynamic_threshold.html">10 - Dynamic Threshold</a></td>
+<td>Rolling crisis threshold and dynamic CRI comparison</td>
+</tr>
+<tr class="odd">
+<td><a href="./nb11_implied_pd.html">11 - Implied Default Probability</a></td>
+<td>Hazard rate extraction and recovery rate sensitivity</td>
+</tr>
+<tr class="even">
+<td><a href="./nb12_policy_divergence.html">12 - Policy Divergence</a></td>
+<td>VAR model, Granger causality, and impulse response functions</td>
 </tr>
 </tbody>
 </table>
-<hr>
-</section>
-</section>
-<section id="timeline-79-weeks" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Timeline (7–9 Weeks)</h1>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 52%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Week</th>
-<th>Task</th>
-<th>Deliverable</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Learn Python basics (pandas, matplotlib, numpy). Install Anaconda and Jupyter. Format your NBC data into a clean CSV</td>
-<td>Can load CSV and make a basic plot</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>Extract the right rows (Term Loans, Term Deposits, New Amount). Compute spreads. Exploratory plots and descriptive stats</td>
-<td>Notebooks 01 + 02 complete</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Study the OU model math (watch YouTube videos). Implement MLE parameter estimation + AR(1) cross-check</td>
-<td>Notebook 03 complete</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Compute crisis probability and CRI for both currencies + system-wide. Plot the CRI time series</td>
-<td>Notebook 04 complete</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Run stress tests + rolling window analysis + robustness checks</td>
-<td>Notebooks 05 + 06 + 07 complete</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Start writing: Introduction, Literature Review, Methodology</td>
-<td>First draft Sections 1–3</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Write: Data Description, Results, Discussion, Conclusion</td>
-<td>First draft Sections 4–7</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>Polish all charts, refine writing, ensure consistency between text and results</td>
-<td>Complete draft</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Final review, formatting, prepare interview talking points</td>
-<td>Finished paper</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="interview-preparation" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Interview Preparation</h1>
-<section id="the-60-second-pitch" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="the-60-second-pitch"><span class="header-section-number">7.1</span> The 60-Second Pitch</h2>
-<blockquote class="blockquote">
-<p>“I built a dual-currency Credit Risk Index for Cambodia’s banking sector. Cambodia is heavily dollarized — about 80% of lending is in US dollars — so I wanted to understand whether credit risk behaves differently in the dollar segment versus the riel segment. I used four years of monthly interest rate data from the National Bank of Cambodia, specifically weighted average rates on new term loans and term deposits. I chose new amount rates over outstanding amount rates because they respond faster to changes in risk perception, which is critical for an early warning tool. I modeled the lending-deposit spread for each currency using an Ornstein-Uhlenbeck stochastic process, estimated crisis probabilities, and constructed three indices: a USD-specific CRI, a KHR-specific CRI, and a loan-share-weighted system composite. I also ran stress tests under mild, moderate, and severe scenarios, and used a rolling window to track how risk parameters evolve over time. The framework gives regulators and banks a practical monitoring tool that works without needing loan-level default data.”</p>
-</blockquote>
-</section>
-<section id="likely-follow-up-questions" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="likely-follow-up-questions"><span class="header-section-number">7.2</span> Likely Follow-Up Questions</h2>
-<p><strong>“Why did you use interest rate spreads instead of default data?”</strong> &gt; Cambodia doesn’t have widely available loan-level default data. The spread approach captures how banks price risk in real time using only publicly available data. It’s an indirect measure — when banks perceive higher credit risk, they widen spreads on new loans.</p>
-<p><strong>“Why new amount rates specifically?”</strong> &gt; Outstanding amount rates average across all existing loans, including ones issued years ago. They’re slow to react. New amount rates reflect what banks are charging right now — if risk perception changes today, it shows up in today’s new loan rates, not diluted by legacy positions.</p>
-<p><strong>“Why term loans and term deposits?”</strong> &gt; Term loans are the most standard lending product — their pricing most directly reflects credit risk. Overdrafts are priced for flexibility, credit cards bundle convenience premiums. Similarly, term deposits are the best maturity match, avoiding the liquidity-driven pricing of demand deposits.</p>
-<p><strong>“What’s the Ornstein-Uhlenbeck model?”</strong> &gt; A mean-reverting stochastic process. It captures the idea that spreads don’t wander randomly — they tend to return to a normal level driven by competition and monetary policy. Three intuitive parameters: long-run average, speed of reversion, and volatility.</p>
-<p><strong>“Is 4 years of data enough?”</strong> &gt; It’s a limitation I acknowledge. The OU model has only three parameters, so 49 observations provide reasonable estimates. I validated with AR(1) regression as a cross-check and used rolling windows rather than sub-period splits to make the most of the available data. Extending with older data would strengthen the analysis.</p>
-<p><strong>“What were your main findings?”</strong> &gt; [Depends on results — frame as a comparison story between USD and KHR segments]</p>
-<p><strong>“What are the limitations?”</strong> &gt; Three main ones: the spread captures operating costs and margins, not just credit risk; I’m working with aggregate market rates, not individual bank data; and the sample covers the post-COVID period, so I don’t observe the initial shock itself.</p>
-<hr>
-</section>
-</section>
-<section id="recommended-resources" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Recommended Resources</h1>
-<section id="python-start-here" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="python-start-here"><span class="header-section-number">8.1</span> Python (Start Here)</h2>
-<ul>
-<li><strong>Kaggle’s Python Course</strong> (free, ~5 hours) — enough to get started</li>
-<li><strong>pandas</strong>: Official “10 Minutes to pandas” tutorial</li>
-<li><strong>matplotlib</strong>: Official pyplot tutorial</li>
-<li><strong>scipy.optimize.minimize</strong>: For MLE — learn how this function works</li>
-</ul>
-</section>
-<section id="the-math" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="the-math"><span class="header-section-number">8.2</span> The Math</h2>
-<ul>
-<li><strong>OU process</strong>: YouTube “Ornstein-Uhlenbeck process explained” — watch 2–3 videos</li>
-<li><strong>MLE basics</strong>: Khan Academy Maximum Likelihood Estimation video</li>
-<li><strong>Normal CDF</strong>: You just need <code>scipy.stats.norm.cdf()</code> — understand what it returns</li>
-</ul>
-</section>
-<section id="cambodia-context" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="cambodia-context"><span class="header-section-number">8.3</span> Cambodia Context</h2>
-<ul>
-<li>NBC website → Statistics → Interest rates (for your data)</li>
-<li>NBC Annual Supervision Reports</li>
-<li>IMF Cambodia Article IV Consultation Reports (free on IMF website)</li>
-<li>World Bank Cambodia Economic Updates</li>
-<li>ADB Cambodia country reports</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="flow-diagram" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Flow Diagram</h1>
-<pre><code>┌──────────────────────────────────────────────────────┐
-│                     YOUR NBC DATA                     │
-│  Term Loan + Term Deposit rates (USD &amp; KHR)           │
-│  Weighted Average Rate on New Amount                  │
-│  Dec 2021 – Dec 2025 (49 monthly obs)                 │
-└────────────────────────┬─────────────────────────────┘
-                         │
-              ┌──────────┴──────────┐
-              ▼                     ▼
-       ┌─────────────┐       ┌─────────────┐
-       │  USD Spread  │       │  KHR Spread  │
-       │  = Term Loan │       │  = Term Loan │
-       │  − Term Dep  │       │  − Term Dep  │
-       └──────┬──────┘       └──────┬──────┘
-              │                     │
-              ▼                     ▼
-       ┌─────────────┐       ┌─────────────┐
-       │ Fit OU Model │       │ Fit OU Model │
-       │ κ, θ, σ     │       │ κ, θ, σ     │
-       │ (MLE + AR1)  │       │ (MLE + AR1)  │
-       └──────┬──────┘       └──────┬──────┘
-              │                     │
-              ▼                     ▼
-       ┌─────────────┐       ┌─────────────┐
-       │ Crisis Prob  │       │ Crisis Prob  │
-       │ P(S &gt; Sc)    │       │ P(S &gt; Sc)    │
-       └──────┬──────┘       └──────┬──────┘
-              │                     │
-              ▼                     ▼
-       ┌─────────────┐       ┌─────────────┐
-       │  CRI (USD)   │       │  CRI (KHR)   │
-       └──────┬──────┘       └──────┬──────┘
-              │                     │
-              ├─── Compare ─────────┤
-              │                     │
-              └──────────┬──────────┘
-                         ▼
-                ┌───────────────┐
-                │  CRI (System)  │
-                │ = 0.8 × USD    │
-                │ + 0.2 × KHR    │
-                └───────┬───────┘
-                        │
-              ┌─────────┴─────────┐
-              ▼                   ▼
-       ┌─────────────┐    ┌──────────────┐
-       │ Stress Test  │    │ Rolling      │
-       │ δ=0.1,0.3,  │    │ Window (12m) │
-       │ 0.5          │    │ Evolution    │
-       └─────────────┘    └──────────────┘</code></pre>
-<hr>
-</section>
-<section id="next-steps-what-to-do-right-now" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Next Steps: What to Do Right Now</h1>
-<ol type="1">
-<li><strong>Format your NBC data</strong> into a clean CSV with columns: <code>date</code>, <code>term_loan_khr</code>, <code>term_deposit_khr</code>, <code>term_loan_usd</code>, <code>term_deposit_usd</code> (from the “New Amount” section, rows 9, 14, 21, 26)</li>
-<li><strong>Check for older data</strong>: Look on the NBC website for historical statistical bulletins going back further than Dec 2021 — more data points = stronger analysis</li>
-<li><strong>Find USD/KHR lending shares</strong> from any recent NBC annual report (for system CRI weights)</li>
-<li><strong>Install Anaconda</strong> and open Jupyter Notebook</li>
-<li><strong>Plot both spreads</strong> — just seeing the data visually will give you immediate intuition about whether KHR and USD risk move together or apart</li>
-<li><strong>Come back to me</strong> when ready to code — I will help you build each notebook step by step, starting with data preparation and parameter estimation</li>
-</ol>
+
+
+<!-- -->
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1651,6 +589,57 @@ S_t^{c,\text{stress}} = S_t^c(1 + \delta)
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1980,7 +969,120 @@ S_t^{c,\text{stress}} = S_t^c(1 + \delta)
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Credit Risk and Dollarization in Cambodia"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "A Dual-Currency Analysis Using Interest Rate Spreads (2013--2025)"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal"}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>**Research Reda Lab -- Business Club**</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>**Members:** DUK Pagnarith, PHAL Menghak, Hoeurn Sreyka</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Topic</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>This project constructs currency-specific and system-wide **Credit Risk Indices (CRIs)** for Cambodia's dual-currency banking sector. Cambodia's economy is highly dollarized: approximately 80% of bank lending is denominated in US dollars, while the remaining 20% operates in Cambodian riel (KHR). This structural feature creates a unique vulnerability -- domestic credit conditions are directly exposed to US Federal Reserve policy decisions. We investigate whether the two currency segments exhibit distinct risk dynamics and whether COVID-19 triggered a structural decoupling between them.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Methodology Overview</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Our analytical framework proceeds in 16 steps, each structured around four dimensions: **Framework** (conceptual basis), **What** (the computation), **Why** (the justification), and **How** (the implementation). The complete methodology is detailed on the <span class="co">[</span><span class="ot">Methodology</span><span class="co">](methodology.qmd)</span> page.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Core Pipeline</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> Method <span class="pp">|</span> Purpose <span class="pp">|</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|--------|---------|</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> Interest Rate Spread <span class="pp">|</span> Compute the gap between term loan and term deposit rates for each currency <span class="pp">|</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> Ornstein-Uhlenbeck Model <span class="pp">|</span> Model spreads as mean-reverting stochastic processes <span class="pp">|</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> Maximum Likelihood Estimation <span class="pp">|</span> Estimate model parameters with exact Gaussian transition density <span class="pp">|</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> AR(1) Cross-Check <span class="pp">|</span> Independent validation of OU parameter estimates via OLS <span class="pp">|</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> Crisis Threshold <span class="pp">|</span> Define currency-specific thresholds at the 95th percentile <span class="pp">|</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> Crisis Probability <span class="pp">|</span> Compute the probability that spreads exceed the threshold at each point in time <span class="pp">|</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 7 <span class="pp">|</span> Currency CRI <span class="pp">|</span> Combine normalized volatility and crisis probability into a composite index <span class="pp">|</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 8 <span class="pp">|</span> System CRI <span class="pp">|</span> Aggregate USD and KHR CRIs using loan-share weights <span class="pp">|</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extended Analyses</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> Method <span class="pp">|</span> Purpose <span class="pp">|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----:|--------|---------|</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 9 <span class="pp">|</span> Stress Testing <span class="pp">|</span> Evaluate CRI response to hypothetical adverse shocks (10%, 30%, 50%) <span class="pp">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 10 <span class="pp">|</span> COVID-19 Sub-Period Analysis <span class="pp">|</span> Test for structural parameter shifts across pre-COVID, COVID, and post-COVID periods <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 11 <span class="pp">|</span> Rolling Window Analysis <span class="pp">|</span> Track parameter evolution over time using a 36-month rolling window <span class="pp">|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 12 <span class="pp">|</span> Robustness Checks <span class="pp">|</span> Verify findings under alternative rates, thresholds, and weights <span class="pp">|</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 13 <span class="pp">|</span> Regime-Switching OU Model <span class="pp">|</span> Allow parameters to shift between latent calm and stress states <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 14 <span class="pp">|</span> Dynamic Threshold CRI <span class="pp">|</span> Replace static crisis threshold with a rolling 36-month threshold <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 15 <span class="pp">|</span> Implied Default Probability <span class="pp">|</span> Extract market-implied default probabilities from observed spreads <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 16 <span class="pp">|</span> Policy Divergence (VAR) <span class="pp">|</span> Test whether US monetary policy transmits to each currency segment <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Results and Findings</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Structural Risk Asymmetry</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>The KHR segment exhibits structurally higher credit risk than the USD segment across all metrics. KHR spreads are wider, more volatile, and revert to equilibrium more slowly. This is consistent with the exchange rate risk premium that lenders demand for riel-denominated lending in a dollarized economy.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. COVID-19 as a Structural Break</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>COVID-19 did not merely produce a transitory spike in credit risk -- it triggered a **permanent regime shift**. Post-COVID parameters have not reverted to pre-COVID levels for either currency. The KHR segment absorbed a disproportionately larger shock, with its equilibrium spread shifting to a higher level and its volatility remaining elevated.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. The Decoupling Hypothesis -- Confirmed</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>The most striking finding of this research is the **post-COVID decoupling** of the KHR credit market from US monetary policy:</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Pre-COVID:** The US Federal Funds Rate Granger-caused both USD and KHR spreads (p &lt; 0.001 for both). The Fed effectively set borrowing costs across the entire Cambodian banking system.</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Post-COVID:** The Fed Funds Rate continues to Granger-cause USD spreads (p = 0.0165), but has **lost its influence** over KHR spreads (p = 0.1592). The riel segment has decoupled from US monetary policy.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>This decoupling is corroborated by three independent methods:</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Method <span class="pp">|</span> Evidence <span class="pp">|</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|----------|</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rolling Correlations <span class="pp">|</span> Correlation between KHR spread and FFR inverted from +0.77 (pre-COVID) to -0.46 (post-COVID) <span class="pp">|</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Granger Causality <span class="pp">|</span> FFR to KHR p-value shifted from 0.0000 to 0.1592 <span class="pp">|</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Impulse Response Functions <span class="pp">|</span> KHR spread shows near-zero response to FFR shocks; confidence bands include zero at all horizons <span class="pp">|</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. NBC Policy Gaining Traction</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>A surprise finding: NBC domestic monetary policy began Granger-causing **USD spreads** post-COVID (p = 0.0021), suggesting that local policy levers are gaining enough influence to spill over into the dollarized segment. This is a potential indicator of advancing de-dollarization.</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Regime Switching Confirms Instability</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>The two-state Markov Regime-Switching OU model identifies distinct calm and stress regimes for both currencies. The KHR segment spends more time in the stress regime, confirming its higher inherent instability. The regime-switching model is favored over the standard OU model by the BIC criterion.</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. Stress Test Results</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>Under a severe stress scenario (50% spread increase), the KHR CRI responds more dramatically than the USD CRI, confirming that the riel segment amplifies credit stress more strongly. The dominant USD segment (80% of lending) remains the primary driver of system-wide risk under all scenarios.</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Implied Default Probabilities</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>Using reduced-form credit pricing, the implied 1-year default probability for the KHR segment consistently exceeds that of the USD segment by a factor of 2 to 4, depending on the assumed recovery rate. This ratio has been relatively stable over time, reinforcing the structural nature of the risk differential.</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis Notebooks</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>Each step of the analysis is documented in a dedicated notebook. Click the links below to explore the full code, figures, and detailed interpretations.</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Notebook <span class="pp">|</span> Topic <span class="pp">|</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|-------|</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">01 - Data Preparation</span><span class="co">](nb01_data_preparation.qmd)</span> <span class="pp">|</span> Data sourcing, cleaning, and spread computation <span class="pp">|</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">02 - Exploratory Analysis</span><span class="co">](nb02_exploratory_analysis.qmd)</span> <span class="pp">|</span> Descriptive statistics, time series visualization, correlation analysis <span class="pp">|</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">03 - Parameter Estimation</span><span class="co">](nb03_parameter_estimation.qmd)</span> <span class="pp">|</span> OU model fitting via MLE with AR(1) cross-check <span class="pp">|</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">04 - CRI Computation</span><span class="co">](nb04_cri_computation.qmd)</span> <span class="pp">|</span> Crisis thresholds, crisis probability, and CRI construction <span class="pp">|</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">05 - Stress Testing</span><span class="co">](nb05_stress_testing.qmd)</span> <span class="pp">|</span> Stress scenario analysis under mild, moderate, and severe shocks <span class="pp">|</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">06 - COVID-19 Analysis</span><span class="co">](nb06_covid_analysis.qmd)</span> <span class="pp">|</span> Sub-period parameter estimation and structural break detection <span class="pp">|</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">07 - Rolling Window</span><span class="co">](nb07_rolling_window.qmd)</span> <span class="pp">|</span> 36-month rolling parameter estimation and convergence analysis <span class="pp">|</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">08 - Robustness Checks</span><span class="co">](nb08_robustness.qmd)</span> <span class="pp">|</span> Alternative rates, thresholds, and weights <span class="pp">|</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">09 - Regime Switching</span><span class="co">](nb09_regime_switching.qmd)</span> <span class="pp">|</span> Two-state Markov Regime-Switching OU model <span class="pp">|</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">10 - Dynamic Threshold</span><span class="co">](nb10_dynamic_threshold.qmd)</span> <span class="pp">|</span> Rolling crisis threshold and dynamic CRI comparison <span class="pp">|</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">11 - Implied Default Probability</span><span class="co">](nb11_implied_pd.qmd)</span> <span class="pp">|</span> Hazard rate extraction and recovery rate sensitivity <span class="pp">|</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">12 - Policy Divergence</span><span class="co">](nb12_policy_divergence.qmd)</span> <span class="pp">|</span> VAR model, Granger causality, and impulse response functions <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

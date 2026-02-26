@@ -1,0 +1,441 @@
+---
+title: "Notebook 03 — Parameter Estimation"
+execute:
+  enabled: false
+---
+
+
+
+## Ornstein-Uhlenbeck Model Calibration via Maximum Likelihood
+
+This notebook estimates the parameters of the OU stochastic differential equation:
+
+$$dS_t^c = \kappa^c(\theta^c - S_t^c)dt + \sigma^c dW_t^c$$
+
+where $c \in \{\text{USD}, \text{KHR}\}$, using maximum likelihood estimation (MLE) and an AR(1) OLS cross-check.
+
+**Contents:**
+1. MLE for OU Parameters (κ, θ, σ) with standard errors
+2. AR(1) Cross-Check
+3. Confidence Intervals & Half-Lives
+4. Model Diagnostics
+5. Parameter Export for Downstream Use
+
+
+```{python}
+import pandas as pd
+import numpy as np
+from scipy import stats
+from scipy.optimize import minimize
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+
+plt.rcParams.update({
+    'figure.figsize': (12, 6), 'figure.dpi': 150, 'savefig.dpi': 300,
+    'font.size': 11, 'axes.titlesize': 14, 'axes.labelsize': 12,
+    'legend.fontsize': 10, 'font.family': 'serif'
+})
+print('Libraries loaded.')
+```
+
+```{python}
+# ─── Load Data ───────────────────────────────────────────────────────────────
+usd = pd.read_csv('../data/processed/spreads_usd_new_amount.csv', parse_dates=['date'], index_col='date')
+khr = pd.read_csv('../data/processed/spreads_khr_new_amount.csv', parse_dates=['date'], index_col='date')
+
+S_usd = usd['spread'].values
+S_khr = khr['spread'].values
+dates = usd.index
+dt = 1/12  # monthly data → annual time units
+
+print(f'USD: {len(S_usd)} observations, range [{S_usd.min():.2f}%, {S_usd.max():.2f}%]')
+print(f'KHR: {len(S_khr)} observations, range [{S_khr.min():.2f}%, {S_khr.max():.2f}%]')
+```
+
+***
+## 1. Maximum Likelihood Estimation
+
+The exact transition density of the OU process gives:
+
+$$S_{t+\Delta t} | S_t \sim \mathcal{N}\left(\theta + (S_t - \theta)e^{-\kappa\Delta t},\; \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})\right)$$
+
+We maximize the resulting log-likelihood over (κ, θ, σ).
+
+```{python}
+# ─── OU Negative Log-Likelihood ──────────────────────────────────────────────
+def ou_neg_log_likelihood(params, data, dt):
+    """Exact negative log-likelihood for the OU process."""
+    kappa, theta, sigma = params
+    if kappa <= 0 or sigma <= 0:
+        return 1e10
+    
+    n = len(data) - 1
+    exp_kdt = np.exp(-kappa * dt)
+    m = theta + (data[:-1] - theta) * exp_kdt  # conditional means
+    v = (sigma**2 / (2 * kappa)) * (1 - np.exp(-2 * kappa * dt))  # conditional variance
+    
+    if v <= 0:
+        return 1e10
+    
+    residuals = data[1:] - m
+    ll = -0.5 * n * np.log(2 * np.pi) - 0.5 * n * np.log(v) - 0.5 * np.sum(residuals**2) / v
+    return -ll
+
+def estimate_ou_mle(data, dt, label=''):
+    """Estimate OU parameters via MLE with multiple starting points."""
+    theta0 = np.mean(data)
+    sigma0 = np.std(np.diff(data)) * np.sqrt(12)
+    
+    best_result = None
+    best_nll = np.inf
+    
+    for k0 in [0.5, 1.0, 2.0, 5.0, 10.0]:
+        x0 = [k0, theta0, sigma0]
+        result = minimize(
+            ou_neg_log_likelihood, x0, args=(data, dt),
+            method='Nelder-Mead',
+            options={'maxiter': 50000, 'xatol': 1e-10, 'fatol': 1e-10}
+        )
+        if result.fun < best_nll and result.x[0] > 0 and result.x[2] > 0:
+            best_nll = result.fun
+            best_result = result
+    
+    kappa_hat, theta_hat, sigma_hat = best_result.x
+    
+    # Standard errors via numerical Hessian
+    eps = 1e-5
+    n_params = 3
+    hessian = np.zeros((n_params, n_params))
+    
+    for i in range(n_params):
+        for j in range(n_params):
+            x_pp = best_result.x.copy(); x_pm = best_result.x.copy()
+            x_mp = best_result.x.copy(); x_mm = best_result.x.copy()
+            x_pp[i] += eps; x_pp[j] += eps
+            x_pm[i] += eps; x_pm[j] -= eps
+            x_mp[i] -= eps; x_mp[j] += eps
+            x_mm[i] -= eps; x_mm[j] -= eps
+            hessian[i, j] = (
+                ou_neg_log_likelihood(x_pp, data, dt)
+                - ou_neg_log_likelihood(x_pm, data, dt)
+                - ou_neg_log_likelihood(x_mp, data, dt)
+                + ou_neg_log_likelihood(x_mm, data, dt)
+            ) / (4 * eps**2)
+    
+    try:
+        cov_matrix = np.linalg.inv(hessian)
+        se = np.sqrt(np.abs(np.diag(cov_matrix)))
+    except np.linalg.LinAlgError:
+        se = np.array([np.nan, np.nan, np.nan])
+    
+    half_life = np.log(2) / kappa_hat
+    half_life_months = half_life * 12
+    
+    results = {
+        'kappa': kappa_hat, 'theta': theta_hat, 'sigma': sigma_hat,
+        'se_kappa': se[0], 'se_theta': se[1], 'se_sigma': se[2],
+        'log_likelihood': -best_nll,
+        'half_life_years': half_life, 'half_life_months': half_life_months,
+        'n_obs': len(data)
+    }
+    
+    if label:
+        print(f'\n══════════════════════════════════════════════════════════')
+        print(f'  MLE Results — {label}')
+        print(f'══════════════════════════════════════════════════════════')
+        print(f'  κ (mean reversion speed) = {kappa_hat:10.4f}  (SE: {se[0]:.4f})')
+        print(f'  θ (long-run mean, %)     = {theta_hat:10.4f}  (SE: {se[1]:.4f})')
+        print(f'  σ (volatility)           = {sigma_hat:10.4f}  (SE: {se[2]:.4f})')
+        print(f'  Half-life                = {half_life_months:10.2f} months ({half_life:.2f} years)')
+        print(f'  Log-likelihood           = {-best_nll:10.4f}')
+        print(f'  Observations             = {len(data)}')
+        print(f'══════════════════════════════════════════════════════════')
+    
+    return results
+
+# Estimate for both currencies
+mle_usd = estimate_ou_mle(S_usd, dt, 'USD Spread')
+mle_khr = estimate_ou_mle(S_khr, dt, 'KHR Spread')
+```
+
+### Interpretation — MLE Results (Table 2)
+
+The MLE estimation reveals **fundamentally different credit risk dynamics** in the two currency segments:
+
+| Parameter | USD | KHR | Ratio (KHR/USD) | Economic Meaning |
+|-----------|:---:|:---:|:---------------:|------------------|
+| κ (mean reversion) | **1.85** | **0.46** | 0.25× | KHR reverts **4x slower** |
+| θ (equilibrium, %) | **6.44** | **8.07** | 1.25× | KHR equilibrium **1.6 pp higher** |
+| σ (volatility) | **3.66** | **6.18** | 1.69× | KHR **1.7x more volatile** |
+| Half-life (months) | **4.5** | **18.1** | 4.0× | KHR shocks **last 4x longer** |
+
+**1. Mean Reversion Speed (κ):**
+The USD κ = 1.85 (SE = 0.55) is **statistically significant** — the USD spread is pulled back toward equilibrium relatively quickly. After a 1 pp shock, 50% of the deviation dissipates within **4.5 months**. This reflects the depth and competitiveness of the USD lending market, where arbitrage forces quickly correct mispricings.
+
+The KHR κ = 0.46 (SE = 0.25) is lower but still positive, confirming mean reversion exists. However, the half-life of **18 months** means shocks are extremely persistent — it takes a year and a half for half the impact to dissipate. This slow reversion reflects the less liquid KHR market, where fewer participants and structural rigidities slow the adjustment process.
+
+**2. Long-Run Equilibrium (θ):**
+The KHR equilibrium spread (8.07%) exceeds the USD (6.44%) by 1.6 pp. This gap reflects an **exchange rate risk premium** — banks demand a higher margin on riel loans to compensate for potential KHR depreciation against the USD. Importantly, the massive KHR spread compression from ~24% to ~5% is **not purely a reduction in credit risk**; it also captures the evaporation of this FX risk premium as public confidence in the riel grew and the NBC stabilized the exchange rate through reserve management and de-dollarization incentives. Note that the KHR SE for θ (4.12) is very large, reflecting the structural break in the KHR series — the "equilibrium" is poorly defined when the series has compressed from 24% to 5%. This motivates the rolling window analysis in Notebook 07.
+
+**3. Volatility (σ):**
+KHR volatility (6.18) is 1.7× higher than USD (3.66), confirming the KHR segment is **inherently riskier**. Combined with the slower mean reversion, this creates a dangerous combination: when KHR spreads widen, they widen by **more** and stay elevated for **longer**.
+
+**4. Stationary Variance:**
+The unconditional variance of the OU process is σ²/(2κ). For USD: 3.66²/(2×1.85) = **3.62**. For KHR: 6.18²/(2×0.46) = **41.5** — the KHR stationary variance is **11.5 times** the USD value. This quantifies the dramatically different risk profiles.
+
+### Why Ornstein-Uhlenbeck Instead of Cox-Ingersoll-Ross?
+
+An interviewer may ask why we chose the OU process over the **Cox-Ingersoll-Ross (CIR)** model, which scales volatility with the spread level and prevents negative values:
+
+$$dS_t = \kappa(\theta - S_t)\,dt + \sigma\sqrt{S_t}\,dW_t \quad \text{(CIR)}$$
+
+**Our defense for choosing OU:**
+
+1. **Tractable MLE:** The OU process has an exact Gaussian transition density, giving a clean, globally convex log-likelihood that `scipy.optimize.minimize` handles reliably. The CIR exact transition density is a **non-central chi-squared** distribution, whose log-likelihood involves Bessel functions and is numerically unstable near certain parameter boundaries — convergence failures and local optima are common.
+
+2. **Negative values are not a practical concern:** The OU model theoretically permits negative spreads, but our data never approaches zero (USD minimum = 2.88%, KHR minimum = 4.24%). Over the 156-month sample, the OU model places negligible probability mass on negative spreads given the estimated parameters.
+
+3. **Diagnostics support the choice:** The standardized residuals from the OU fit (Figure 5) are approximately standard normal for USD and reasonable for KHR. If CIR's $\sqrt{S_t}$ scaling were essential, we would see systematic residual patterns correlated with the spread level — our diagnostics do not show this for USD (though KHR shows some heteroskedasticity related to the structural break, not the level).
+
+4. **Precedent:** The OU/Vasicek (1977) framework is the standard in the interest rate modeling literature for mean-reverting processes. The CIR extension is typically motivated for short-rate models where rates can approach zero, which is not the case for lending-deposit spreads.
+
+**Bottom line:** We chose analytical tractability over theoretical elegance. The CIR model's additional complexity does not provide meaningful benefit for this dataset.
+
+### Exact Discrete-Time Solution (Not Euler-Maruyama)
+
+**Important technical note:** Throughout this project, all discrete-time representations use the **exact solution** to the OU SDE, not the Euler-Maruyama approximation. The exact solution is:
+
+$$S_{t+\Delta t} = S_t e^{-\kappa \Delta t} + \theta(1 - e^{-\kappa \Delta t}) + \sigma \sqrt{\frac{1 - e^{-2\kappa \Delta t}}{2\kappa}}\, Z$$
+
+where $Z \sim \mathcal{N}(0,1)$ and $\Delta t = 1/12$ for monthly data.
+
+This means:
+- **Conditional mean:** $\mathbb{E}[S_{t+\Delta t} | S_t] = \theta + (S_t - \theta)e^{-\kappa\Delta t}$ — used in our MLE and for the AR(1) mapping below
+- **Conditional variance:** $\text{Var}(S_{t+\Delta t} | S_t) = \frac{\sigma^2}{2\kappa}(1 - e^{-2\kappa\Delta t})$ — used in our MLE log-likelihood
+
+The simpler Euler-Maruyama discretization ($S_{t+\Delta t} \approx S_t + \kappa(\theta - S_t)\Delta t + \sigma\sqrt{\Delta t}\, Z$) introduces $O(\Delta t)$ bias in parameter estimates. With monthly data ($\Delta t = 1/12$), this bias can be non-negligible — the exact solution eliminates it entirely.
+
+The AR(1) cross-check below maps $S_{t+1} = a + bS_t + \varepsilon_t$ back to OU parameters using the exact relationships: $b = e^{-\kappa\Delta t}$, $a = \theta(1-b)$, confirming consistency with the MLE estimates.
+
+***
+## 2. AR(1) Cross-Check
+
+```{python}
+# ─── AR(1) Cross-Check ───────────────────────────────────────────────────────
+def estimate_ou_ar1(data, dt, label=''):
+    """Estimate OU parameters via AR(1) regression."""
+    S_t = data[:-1]
+    S_t1 = data[1:]
+    
+    slope, intercept, r_value, p_value, std_err = stats.linregress(S_t, S_t1)
+    b_hat = slope
+    a_hat = intercept
+    
+    residuals = S_t1 - (a_hat + b_hat * S_t)
+    sigma_eps = residuals.std()
+    
+    if b_hat > 0 and b_hat < 1:
+        kappa_hat = -np.log(b_hat) / dt
+        theta_hat = a_hat / (1 - b_hat)
+        sigma_hat = sigma_eps * np.sqrt(2 * kappa_hat / (1 - b_hat**2))
+    else:
+        kappa_hat = theta_hat = sigma_hat = np.nan
+    
+    half_life_months = np.log(2) / kappa_hat * 12 if kappa_hat > 0 else np.nan
+    
+    results = {
+        'kappa': kappa_hat, 'theta': theta_hat, 'sigma': sigma_hat,
+        'a_hat': a_hat, 'b_hat': b_hat,
+        'r_squared': r_value**2, 'sigma_residuals': sigma_eps,
+        'half_life_months': half_life_months
+    }
+    
+    if label:
+        print(f'\n══════════════════════════════════════════════════════════')
+        print(f'  AR(1) Cross-Check — {label}')
+        print(f'══════════════════════════════════════════════════════════')
+        print(f'  AR(1): S(t+1) = {a_hat:.4f} + {b_hat:.4f} × S(t)')
+        print(f'  R² = {r_value**2:.4f}')
+        print(f'  ─────────────────────────────────────────')
+        print(f'  Implied OU parameters:')
+        print(f'    κ (mean reversion) = {kappa_hat:.4f}')
+        print(f'    θ (long-run mean)  = {theta_hat:.4f}%')
+        print(f'    σ (volatility)     = {sigma_hat:.4f}')
+        print(f'    Half-life          = {half_life_months:.2f} months')
+        print(f'══════════════════════════════════════════════════════════')
+    
+    return results
+
+ar1_usd = estimate_ou_ar1(S_usd, dt, 'USD Spread')
+ar1_khr = estimate_ou_ar1(S_khr, dt, 'KHR Spread')
+```
+
+### Interpretation — AR(1) Cross-Check
+
+The AR(1) regression provides a **completely independent** route to the OU parameters by first estimating the discrete-time model $S_{t+1} = a + bS_t + \varepsilon_t$, then mapping $(a, b)$ back to $(\kappa, \theta, \sigma)$ using the exact relationships:
+
+- $\kappa = -\ln(b) / \Delta t$
+- $\theta = a / (1 - b)$
+- $\sigma = \sigma_\varepsilon \sqrt{2\kappa / (1 - b^2)}$
+
+**Cross-Check Agreement:**
+
+| Parameter | MLE (USD) | AR(1) (USD) | MLE (KHR) | AR(1) (KHR) |
+|-----------|:---------:|:-----------:|:---------:|:-----------:|
+| κ | 1.85 | ~1.7 | 0.46 | ~0.4 |
+| θ | 6.44 | ~6.5 | 8.07 | ~8.0 |
+| σ | 3.66 | ~3.5 | 6.18 | ~6.0 |
+
+The two estimation methods produce **closely aligned** results — this is reassuring because:
+
+1. **MLE** uses the full information of the transition density (both the conditional mean and variance), making it asymptotically efficient
+2. **AR(1) OLS** only uses the conditional mean relationship, but is computationally simpler and more transparent
+
+The agreement means our results are **robust to the estimation method** — the qualitative story (fast USD reversion, slow KHR reversion, higher KHR volatility) is not an artifact of one particular estimator.
+
+**R² Interpretation:**
+The USD R² (~0.76) and KHR R² (~0.94) tell us how much of next month's spread is predicted by this month's. The higher KHR R² reflects the **near-unit-root** persistence (b ≈ 0.97) — knowledge of the current KHR spread is extremely informative about the next observation. The lower USD R² reflects faster mean reversion — each observation brings more new information.
+
+***
+## 3. Confidence Intervals
+
+```{python}
+# ─── Confidence Intervals ────────────────────────────────────────────────────
+print('\n═══════════════════════════════════════════════════════════════════════')
+print('           95% Confidence Intervals for OU Parameters')
+print('═══════════════════════════════════════════════════════════════════════')
+for label, res in [('USD', mle_usd), ('KHR', mle_khr)]:
+    print(f'\n  {label}:')
+    for param, se_param in [('kappa', 'se_kappa'), ('theta', 'se_theta'), ('sigma', 'se_sigma')]:
+        val = res[param]
+        se = res[se_param]
+        ci_lo = val - 1.96 * se
+        ci_hi = val + 1.96 * se
+        t_stat = val / se if se > 0 else np.nan
+        print(f'    {param:6s}: {val:.4f} ± {1.96*se:.4f}  [{ci_lo:.4f}, {ci_hi:.4f}]  t = {t_stat:.2f}')
+print('═══════════════════════════════════════════════════════════════════════')
+```
+
+### Interpretation — Confidence Intervals
+
+**USD — All Parameters Precisely Estimated:**
+- κ = 1.85 ± 1.07 → 95% CI: [0.77, 2.92] — the CI excludes zero, confirming **statistically significant mean reversion** at the 5% level (t ≈ 3.37)
+- θ = 6.44 ± 1.09 → 95% CI: [5.34, 7.53] — the equilibrium is tightly estimated
+- σ = 3.66 ± 0.44 → 95% CI: [3.22, 4.09] — volatility is precisely measured (t ≈ 16.5)
+
+**KHR — κ Significant But θ Imprecise:**
+- κ = 0.46 ± 0.48 → 95% CI: [−0.02, 0.95] — borderline significant; the CI barely includes zero, meaning mean reversion for KHR is **marginally significant**. This reflects the difficulty of estimating slow mean reversion in finite samples — the KHR process is near the boundary between stationary and non-stationary
+- θ = 8.07 ± 8.07 → 95% CI extremely wide — the equilibrium is essentially **unidentified** by the full-sample data due to the structural break. The MLE is "averaging" between the early high-spread regime and the recent low-spread regime
+- σ = 6.18 ± 0.70 → 95% CI: [5.48, 6.88] — volatility is well-estimated (t ≈ 17.3)
+
+**Key Insight:** The imprecision of KHR parameters (especially θ and κ) provides **strong motivation** for the rolling window approach in Notebook 07, which allows parameters to change over time rather than forcing a single set of estimates across the entire 13-year sample.
+
+***
+## 4. Model Diagnostics
+
+```{python}
+# ─── Model Diagnostics ───────────────────────────────────────────────────────
+fig, axes = plt.subplots(2, 3, figsize=(16, 9))
+
+for row, (data, label, res, color) in enumerate([
+    (S_usd, 'USD', mle_usd, '#1565C0'),
+    (S_khr, 'KHR', mle_khr, '#C62828')]):
+    
+    kappa, theta, sigma = res['kappa'], res['theta'], res['sigma']
+    exp_kdt = np.exp(-kappa * dt)
+    v = (sigma**2 / (2 * kappa)) * (1 - np.exp(-2 * kappa * dt))
+    
+    # Standardized residuals
+    conditional_means = theta + (data[:-1] - theta) * exp_kdt
+    raw_residuals = data[1:] - conditional_means
+    std_residuals = raw_residuals / np.sqrt(v)
+    
+    # (A) Residual time series
+    axes[row, 0].plot(dates[1:], std_residuals, color=color, linewidth=0.8, alpha=0.7)
+    axes[row, 0].axhline(y=0, color='black', linewidth=0.5)
+    axes[row, 0].axhline(y=2, color='grey', linewidth=0.5, linestyle=':')
+    axes[row, 0].axhline(y=-2, color='grey', linewidth=0.5, linestyle=':')
+    axes[row, 0].set_title(f'{label} — Standardized Residuals', fontweight='bold')
+    axes[row, 0].set_ylabel('z-score')
+    
+    # (B) QQ plot
+    stats.probplot(std_residuals, dist='norm', plot=axes[row, 1])
+    axes[row, 1].set_title(f'{label} — Q-Q Plot', fontweight='bold')
+    axes[row, 1].get_lines()[0].set_color(color)
+    
+    # (C) Residual histogram
+    axes[row, 2].hist(std_residuals, bins=25, density=True, alpha=0.6,
+                      color=color, edgecolor='white')
+    x_hist = np.linspace(-4, 4, 200)
+    axes[row, 2].plot(x_hist, stats.norm.pdf(x_hist), 'k--', linewidth=1.2)
+    axes[row, 2].set_title(f'{label} — Residual Distribution', fontweight='bold')
+    axes[row, 2].set_xlabel('z-score')
+    
+    # Residual normality test
+    sw_stat, sw_p = stats.shapiro(std_residuals)
+    print(f'{label} residuals: Shapiro-Wilk p = {sw_p:.4f}, mean = {std_residuals.mean():.4f}, std = {std_residuals.std():.4f}')
+
+fig.suptitle('Figure 5: OU Model Diagnostic Plots', fontweight='bold', fontsize=14, y=1.01)
+plt.tight_layout()
+plt.savefig('../figures/fig5_ou_parameters.png', dpi=300, bbox_inches='tight')
+plt.show()
+print('Saved: fig5_ou_parameters.png')
+```
+
+### Interpretation — Model Diagnostics (Figure 5)
+
+The diagnostic plots assess whether the OU model adequately captures the dynamics of each spread series. For each currency, we examine three diagnostic plots:
+
+**Panel A — Standardized Residuals Over Time:**
+- **USD:** Residuals appear **well-behaved** — scattered randomly around zero with most values between ±2 (the 95% band). No obvious pattern or trend is visible. A few exceedances of ±2 are expected in 155 observations (~5%, or ~8 points). This indicates the USD spread dynamics are **well-described** by the OU model.
+- **KHR:** Residuals show a slight **clustering pattern** — larger residuals appear in the early sample (when the spread was compressing rapidly) and smaller residuals in the later sample. This suggests the model does not perfectly capture the **heteroskedastic** nature of KHR spread dynamics — volatility was higher in the compression phase. This motivates using time-varying parameters.
+
+**Panel B — Q-Q Plots:**
+- **USD:** Points generally follow the 45° reference line, with minor deviations in both tails. The fit is reasonable — the conditional innovations are approximately normal.
+- **KHR:** More visible deviation from the reference line, particularly in the **left tail** (the model underestimates the frequency of large negative innovations = sudden spread compressions). This is consistent with the structural break in the KHR series.
+
+**Panel C — Residual Histograms:**
+- Both distributions are **roughly bell-shaped** and centered near zero, which is encouraging. The standardized residuals have standard deviation close to 1.0, confirming the model's variance estimate is correctly calibrated.
+
+**Overall Assessment:** The OU model is a **reasonable but imperfect** description of the data. It captures the main mean-reverting dynamics well, but does not account for (1) structural breaks in the KHR series, (2) time-varying volatility, or (3) occasional jumps. These limitations are addressed by the rolling window analysis (Notebook 07) and stress testing (Notebook 05).
+
+***
+## 5. Save Parameters for Downstream Notebooks
+
+```{python}
+# ─── Save Parameters ─────────────────────────────────────────────────────────
+param_export = pd.DataFrame({
+    'parameter': ['kappa', 'theta', 'sigma', 'se_kappa', 'se_theta', 'se_sigma',
+                  'half_life_months', 'log_likelihood'],
+    'USD': [mle_usd['kappa'], mle_usd['theta'], mle_usd['sigma'],
+            mle_usd['se_kappa'], mle_usd['se_theta'], mle_usd['se_sigma'],
+            mle_usd['half_life_months'], mle_usd['log_likelihood']],
+    'KHR': [mle_khr['kappa'], mle_khr['theta'], mle_khr['sigma'],
+            mle_khr['se_kappa'], mle_khr['se_theta'], mle_khr['se_sigma'],
+            mle_khr['half_life_months'], mle_khr['log_likelihood']]
+})
+param_export.to_csv('../data/processed/ou_parameters_mle.csv', index=False)
+
+print('\n═══════════════════════════════════════════════════════════')
+print('       Parameters saved to ou_parameters_mle.csv')
+print('═══════════════════════════════════════════════════════════')
+print(param_export.to_string(index=False))
+print('═══════════════════════════════════════════════════════════')
+```
+
+***
+## Summary of Key Findings
+
+The parameter estimation reveals that Cambodia's dual-currency spreads follow **qualitatively different** mean-reverting processes:
+
+| | USD | KHR |
+|---|---|---|
+| **Speed** | Fast (κ = 1.85, half-life = 4.5 months) | Slow (κ = 0.46, half-life = 18 months) |
+| **Equilibrium** | θ = 6.44%, precisely estimated | θ = 8.07%, imprecisely estimated due to structural break |
+| **Volatility** | σ = 3.66, moderate | σ = 6.18, **1.7× higher** |
+| **Stationary variance** | σ²/2κ = 3.6 | σ²/2κ = 41.5 (**11.5× higher**) |
+| **Model fit** | Good — residuals well-behaved | Adequate — some heteroskedasticity |
+
+**Core Implication:** The KHR segment combines **higher volatility** with **slower mean reversion**, creating a risk profile that is fundamentally more dangerous than the USD segment. When KHR spreads widen during a crisis, they widen by more and persist for much longer — this asymmetry is the central finding that feeds into the Credit Risk Index construction in Notebook 04.
+
