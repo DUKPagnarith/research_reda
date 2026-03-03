@@ -68,6 +68,10 @@ Our analytical framework proceeds in 16 steps, each structured around four dimen
 | 14 | Dynamic Threshold CRI | Replace static crisis threshold with a rolling 36-month threshold |
 | 15 | Implied Default Probability | Estimate the probability of default from market prices *(rather than using abstract hazard rates)* |
 | 16 | Policy Divergence (VAR) | Vector Autoregression *(a model tracking how multiple variables influence each other over time)* — test whether US monetary policy transmits to each currency segment |
+| 17 | Inflation-Augmented VAR | Incorporate CPI inflation into the VAR to test whether domestic price pressures Granger-cause credit risk |
+| 18 | Exchange Rate Volatility | Measure realized FX volatility and test the currency-mismatch risk transmission channel |
+| 19 | Real Interest Rate CRI | Subtract inflation from nominal spreads (Fisher equation) and re-estimate the OU model on real spreads |
+| 20 | Unified Macro-Financial CRI | Capstone 5-variable VAR combining all macro drivers — Fed policy, inflation, and FX volatility |
 
 ---
 
@@ -138,3 +142,7 @@ Each step of the analysis is documented in a dedicated notebook. Click the links
 | [10 - Dynamic Threshold](10_dynamic_threshold.ipynb) | Rolling crisis threshold and dynamic CRI comparison |
 | [11 - Implied Default Probability](11_implied_pd.ipynb) | Market-implied default probability estimation and recovery rate sensitivity |
 | [12 - Policy Divergence](12_policy_divergence.ipynb) | VAR model, Granger causality, and impulse response functions |
+| [13 - Inflation-Augmented VAR](13_inflation_var.ipynb) | Incorporating CPI inflation into the VAR framework |
+| [14 - Exchange Rate Volatility](14_exchange_rate_var.ipynb) | FX realized volatility and credit risk transmission |
+| [15 - Real Interest Rate CRI](15_real_interest_rate_cri.ipynb) | Inflation-adjusted spreads and real-terms CRI |
+| [16 - Unified Macro-Financial CRI](16_unified_macro_financial_cri.ipynb) | Full 5-variable VAR capstone model |

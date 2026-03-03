@@ -42,6 +42,15 @@ website:
         href: 11_implied_pd.ipynb
       - text: 12 - Policy Divergence
         href: 12_policy_divergence.ipynb
+      - text: '---'
+      - text: 13 - Inflation-Augmented VAR
+        href: 13_inflation_var.ipynb
+      - text: 14 - Exchange Rate Volatility
+        href: 14_exchange_rate_var.ipynb
+      - text: 15 - Real Interest Rate CRI
+        href: 15_real_interest_rate_cri.ipynb
+      - text: 16 - Unified Macro-Financial CRI
+        href: 16_unified_macro_financial_cri.ipynb
 format:
   html:
     theme: cosmo
